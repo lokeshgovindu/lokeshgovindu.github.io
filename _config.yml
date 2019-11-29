@@ -11,4 +11,4 @@ theme: jekyll-theme-slate
 # twitter_username: lokeshgovindu
 # github_username:  lokeshgovindu
 
-show_excerpts: true # set to false to remove excerpts on the homepage
+show_excerpts: false # set to false to remove excerpts on the homepage
