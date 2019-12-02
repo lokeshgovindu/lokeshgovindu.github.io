@@ -1,12 +1,12 @@
-title: newtitle - Productivity Tools for Programmers
+title: Productivity Tools, Tips & Tricks
 author: Lokesh Govindu
 email: lokeshgovindu@gmail.com
-description: newdescription - Productivity Tools for Programmers
+# description: newdescription - Productivity Tools for Programmers
 #description: > # this means to ignore newlines until "baseurl:"
 #  Write an awesome description for your new site here. You can edit this
 #  line in _config.yml. It will appear in your document head meta (for
 #  Google search results) and in your feed.xml site description.
-theme: jekyll-theme-minimal
+theme: jekyll-theme-hacker
 # social links
 # twitter_username: lokeshgovindu
 # github_username:  lokeshgovindu
