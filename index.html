@@ -1,48 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>Productivity Tools, Tips & Tricks</title>
+    <title>Perrfect Match</title>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-</head>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style type="text/css">
+        body {
+            background: url("https://images.unsplash.com/photo-1531805140375-6d71f0fe4763");
+            background-size: cover;
+            background-position: center;
+            font-family: Lato, sans-serif;
+            color: white;
+        }
 
+        html {
+            height: 100%;
+        }
+        
+        #content {
+            text-align: center;
+            padding-top: 25%;
+            text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4),
+                         0px 8px 13px rgba(0, 0, 0, 0.1),
+                         0px 18px 23px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-width: 700;
+            font-size: 5em;
+        }
+
+        hr {
+            width: 500px;
+            border-top: 1px solid #f8f8f8;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
 <body>
 
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Perrfect Match</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="#">Home</a>
+                <a class="nav-item nav-link" href="#">About</a>
+                <a class="nav-item nav-link" href="#">Contact Us</a>
             </div>
             <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link" href="#">About Me</a>
+                <a class="nav-item nav-link" href="#">Sign Up <i class="fa fa-user-plus"></i></a>
+                <a class="nav-item nav-link" href="#">Login <i class="fa fa-user"></i></a>
             </div>
         </div>
-    </nav>
-    
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Coming soon...</h1>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="content">
+                <h1>Perrfect Match</h1>
+                <h3>The Only Human-Feline Dating App</h3>
+                <hr>
+                <button class="btn btn-secondary"><i class="fa fa-paw" aria-hidden="true"></i> Get Started!</button>
+            </div>
         </div>
     </div>
 </div>
 
 </body>
-
 </html>
