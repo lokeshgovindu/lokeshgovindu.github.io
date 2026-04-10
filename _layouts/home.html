@@ -2,37 +2,211 @@
 layout: default
 ---
 
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+<style>
+  .blog-home {
+    --bg: #f5f3ec;
+    --text: #1f2b35;
+    --muted: #5e6a74;
+    --accent: #0f766e;
+    --accent-soft: #d4efe9;
+    --card: #ffffff;
+    --line: #d6dde3;
+    --radius: 16px;
+    color: var(--text);
+  }
 
-  {{ content }}
+  .blog-home .hero {
+    padding: 2rem 0 1.4rem;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 1.6rem;
+  }
+
+  .blog-home .hero h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #12202c;
+  }
+
+  .blog-home .hero p {
+    margin-top: 0.7rem;
+    color: var(--muted);
+    max-width: 66ch;
+  }
+
+  .topic-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .topic-list a {
+    display: inline-flex;
+    text-decoration: none;
+    border: 1px solid #b8c8d4;
+    border-radius: 999px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.82rem;
+    color: #29465a;
+    background: #f8fbfc;
+  }
+
+  .topic-list a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .latest-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.9rem;
+  }
+
+  .latest-title h2 {
+    margin: 0;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    letter-spacing: 0.02em;
+  }
+
+  .latest-title a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .post-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .post-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1rem;
+    background: var(--card);
+    box-shadow: 0 10px 18px rgba(16, 28, 38, 0.06);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 22px rgba(16, 28, 38, 0.1);
+  }
+
+  .post-card .meta {
+    margin: 0 0 0.4rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .post-card h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.3;
+  }
+
+  .post-card h3 a {
+    text-decoration: none;
+    color: #122b3f;
+  }
+
+  .post-card h3 a:hover {
+    color: var(--accent);
+  }
+
+  .post-card .excerpt {
+    margin-top: 0.6rem;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .post-card .tags {
+    margin-top: 0.8rem;
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+
+  .post-card .tag {
+    font-size: 0.72rem;
+    border-radius: 999px;
+    padding: 0.15rem 0.55rem;
+    border: 1px solid #b9d5d0;
+    color: #25665f;
+    background: #eef9f6;
+  }
+
+  .empty-note {
+    border: 1px dashed #b7c4cf;
+    border-radius: var(--radius);
+    padding: 1rem;
+    color: var(--muted);
+    background: #f8fbfd;
+  }
+
+  @media (max-width: 760px) {
+    .post-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="blog-home">
+  <div class="hero">
+    <h1>{{ page.title | default: site.title }}</h1>
+    <p>{{ content | strip_html | strip_newlines }}</p>
+
+    {%- if site.tags.size > 0 -%}
+      <ul class="topic-list" aria-label="Popular topics">
+        {%- for tag in site.tags limit: 10 -%}
+          <li><a href="#" title="Tag page can be added later">{{ tag[0] }}</a></li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+
+  <div class="latest-title">
+    <h2>{{ page.list_title | default: "Latest Tips" }}</h2>
+    <a href="{{ '/feed.xml' | relative_url }}">Subscribe via RSS</a>
+  </div>
 
   {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
+    <ul class="post-grid">
+      {%- for post in site.posts limit: 8 -%}
         {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
+        <li class="post-card">
+          <p class="meta">{{ post.date | date: date_format }}</p>
+          <h3>
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h3>
+          {%- if site.show_excerpts -%}
+            <div class="excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</div>
+          {%- endif -%}
+          {%- if post.tags and post.tags.size > 0 -%}
+            <div class="tags">
+              {%- for tag in post.tags limit: 3 -%}
+                <span class="tag">{{ tag }}</span>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </li>
       {%- endfor -%}
     </ul>
-
-    <p class="feed-subscribe">
-      <a href="{{ 'feed.xml' | relative_url }}">
-        <svg class="svg-icon orange"><use xlink:href="{{ 'assets/minima-social-icons.svg#rss' | relative_url }}"></use></svg><span>Subscribe</span>
-      </a>
-    </p>
+  {%- else -%}
+    <div class="empty-note">
+      No posts yet. Add markdown files in the <code>_posts</code> folder to publish your tips.
+    </div>
   {%- endif -%}
-
-</div>
+</section>

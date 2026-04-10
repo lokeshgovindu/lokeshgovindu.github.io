@@ -1,6 +1,9 @@
 title: Productivity Tools, Tips & Tricks
 author: Lokesh Govindu
 email: lokeshgovindu@gmail.com
+description: Practical programming tips, code snippets, best practices, and productivity tricks for developers.
+baseurl: ""
+url: "https://lokeshgovindu.github.io"
 # description: newdescription - Productivity Tools for Programmers
 #description: > # this means to ignore newlines until "baseurl:"
 #  Write an awesome description for your new site here. You can edit this
@@ -9,6 +12,7 @@ email: lokeshgovindu@gmail.com
 theme: minima
 # social links
 # twitter_username: lokeshgovindu
-# github_username:  lokeshgovindu
+github_username: lokeshgovindu
 
 show_excerpts: true # set to false to remove excerpts on the homepage
+permalink: /posts/:title/
