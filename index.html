@@ -3,49 +3,122 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Productivity Tools, Tips & Tricks</title>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-            crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Tips &amp; Tricks | Lokesh Govindu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<!-- ───── NAVBAR ───── -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <!-- <a class="navbar-brand" href="#">LG</a> -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="index.html">
+            <i class="fa fa-code me-2"></i><span>Dev</span>Tips
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Home</a>
-            </div>
-            <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link" href="#">About</a>
-                <a class="nav-item nav-link" href="#">Contact</a>
-            </div>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="visual-studio.html">Visual Studio</a></li>
+                <li class="nav-item"><a class="nav-link" href="cmd-prompt.html">CMD Prompt</a></li>
+                <li class="nav-item"><a class="nav-link" href="general.html">General</a></li>
+                <li class="nav-item"><a class="nav-link" href="my-work.html">My Work</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-me.html">About Me</a></li>
+            </ul>
         </div>
     </div>
 </nav>
 
-<div class="container">
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">Coming soon...</h1>
+<!-- ───── HERO ───── -->
+<section id="home-hero">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="hero-badge"><i class="fa fa-rocket me-1"></i> Boost Your Productivity</div>
+                <h1 class="hero-title">
+                    Programmer <span class="accent">Tips</span> &amp;<br>
+                    <span class="accent">Tricks</span> Hub
+                </h1>
+                <p class="hero-sub">
+                    Curated shortcuts, commands, and workflows to help developers
+                    write code faster and smarter every single day.
+                </p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="visual-studio.html" class="btn btn-primary btn-lg px-4">
+                        <i class="fa fa-bolt me-2"></i>Explore Tips
+                    </a>
+                    <a href="about-me.html" class="btn btn-outline-light btn-lg px-4">About Me</a>
+                </div>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="hero-code">
+                    <div class="code-line"><span class="code-comment">// Productivity unlocked 🚀</span></div>
+                    <div class="code-line">&nbsp;</div>
+                    <div class="code-line"><span class="code-keyword">const</span> tips = {</div>
+                    <div class="code-line">&nbsp;&nbsp;visualStudio: <span class="code-string">"shortcuts &amp; refactoring"</span>,</div>
+                    <div class="code-line">&nbsp;&nbsp;cmdPrompt:    <span class="code-string">"powerful commands"</span>,</div>
+                    <div class="code-line">&nbsp;&nbsp;general:      <span class="code-string">"best practices"</span></div>
+                    <div class="code-line">};</div>
+                    <div class="code-line">&nbsp;</div>
+                    <div class="code-line"><span class="code-func">boostProductivity</span>(tips);</div>
+                    <div class="code-line">&nbsp;</div>
+                    <div class="code-line"><span class="code-comment">// OUTPUT: You are 10x faster! ✅</span></div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
+<!-- ───── CATEGORY CARDS ───── -->
+<section class="category-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <p class="section-label">Browse Topics</p>
+            <h2 class="section-title">Pick a Category</h2>
+            <p class="section-sub">Choose a topic to dive into curated tips, shortcuts, and best practices.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-sm-6 col-lg-4">
+                <a href="visual-studio.html" class="cat-card">
+                    <div class="cat-icon vs"><i class="fa fa-laptop-code"></i></div>
+                    <h5>Visual Studio</h5>
+                    <p>Shortcuts, refactoring tricks, and productivity features for the Visual Studio IDE.</p>
+                </a>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <a href="cmd-prompt.html" class="cat-card">
+                    <div class="cat-icon cmd"><i class="fa fa-terminal"></i></div>
+                    <h5>CMD Prompt</h5>
+                    <p>Powerful Windows command-line commands to navigate, automate, and debug faster.</p>
+                </a>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <a href="general.html" class="cat-card">
+                    <div class="cat-icon gen"><i class="fa fa-lightbulb"></i></div>
+                    <h5>General Tips</h5>
+                    <p>Universal programming best practices every developer should have in their toolkit.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── FOOTER ───── -->
+<footer>
+    <div class="container">
+        <p class="mb-0">&copy; 2026 <a href="index.html">Lokesh Govindu</a> &mdash; Productivity Tools, Tips &amp; Tricks</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

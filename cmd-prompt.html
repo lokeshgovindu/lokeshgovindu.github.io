@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMD Prompt Tips | Dev Tips &amp; Tricks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- ───── NAVBAR ───── -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <i class="fa fa-code me-2"></i><span>Dev</span>Tips
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="visual-studio.html">Visual Studio</a></li>
+                <li class="nav-item"><a class="nav-link active" href="cmd-prompt.html">CMD Prompt</a></li>
+                <li class="nav-item"><a class="nav-link" href="general.html">General</a></li>
+                <li class="nav-item"><a class="nav-link" href="my-work.html">My Work</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-me.html">About Me</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ───── PAGE HEADER ───── -->
+<div class="page-header">
+    <div class="container">
+        <div class="ph-label">Terminal Tips</div>
+        <h1>Command Prompt</h1>
+        <p>Useful commands and tricks to master the Windows Command Prompt and work faster from the terminal.</p>
+    </div>
+</div>
+
+<!-- ───── TIPS ───── -->
+<section class="tips-section">
+    <div class="container">
+        <div class="row g-4">
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-clock-rotate-left"></i></div>
+                    <h5>Command History</h5>
+                    <p>Cycle through previously executed commands without re-typing them.</p>
+                    <span class="tip-shortcut">↑ / ↓  Arrow Keys</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-folder-open"></i></div>
+                    <h5>Open Explorer Here</h5>
+                    <p>Launch Windows Explorer in the current working directory directly from CMD.</p>
+                    <span class="tip-shortcut">start .</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-sitemap"></i></div>
+                    <h5>List Directory Tree</h5>
+                    <p>Display the entire folder structure as an ASCII tree, including all files.</p>
+                    <span class="tip-shortcut">tree /f /a</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-clipboard"></i></div>
+                    <h5>Copy Output to Clipboard</h5>
+                    <p>Pipe any command's output directly into the clipboard for immediate pasting elsewhere.</p>
+                    <span class="tip-shortcut">&lt;cmd&gt; | clip</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-filter"></i></div>
+                    <h5>Filter Output with findstr</h5>
+                    <p>Search command output for lines containing a specific keyword or pattern.</p>
+                    <span class="tip-shortcut">&lt;cmd&gt; | findstr "text"</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-network-wired"></i></div>
+                    <h5>Full Network Configuration</h5>
+                    <p>Display all IP addresses and detailed adapter configuration for every interface.</p>
+                    <span class="tip-shortcut">ipconfig /all</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-list-check"></i></div>
+                    <h5>List Running Processes</h5>
+                    <p>View all currently running processes and their PIDs to identify resource usage.</p>
+                    <span class="tip-shortcut">tasklist</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-xmark"></i></div>
+                    <h5>Kill a Process</h5>
+                    <p>Force-terminate a process by its name or PID without opening Task Manager.</p>
+                    <span class="tip-shortcut">taskkill /f /im name.exe</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-file-magnifying-glass"></i></div>
+                    <h5>Find Files Recursively</h5>
+                    <p>Search for all files matching a pattern across the current directory and all subdirectories.</p>
+                    <span class="tip-shortcut">dir /s /b *.txt</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-arrows-rotate"></i></div>
+                    <h5>Clear the Screen</h5>
+                    <p>Wipe the terminal output for a clean workspace without closing the window.</p>
+                    <span class="tip-shortcut">cls</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-gear"></i></div>
+                    <h5>List Environment Variables</h5>
+                    <p>Print all environment variables set in the current session to inspect paths and settings.</p>
+                    <span class="tip-shortcut">set</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-folder-plus"></i></div>
+                    <h5>Create Nested Directories</h5>
+                    <p>Create multiple levels of directories in one command without creating them one by one.</p>
+                    <span class="tip-shortcut">mkdir a\b\c</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ───── FOOTER ───── -->
+<footer>
+    <div class="container">
+        <p class="mb-0">&copy; 2026 <a href="index.html">Lokesh Govindu</a> &mdash; Productivity Tools, Tips &amp; Tricks</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
