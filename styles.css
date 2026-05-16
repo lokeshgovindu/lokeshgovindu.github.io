@@ -1084,3 +1084,127 @@ footer a:hover { color: #ffffff; }
 .shortcut-table tr:hover td { background: var(--sky-pale); }
 
 .shortcut-table .tip-shortcut { margin-top: 0; }
+
+/* ================================================================
+   CMD Prompt Page — Cmder, Clink, Oh My Posh
+   ================================================================ */
+
+/* ── Tool Overview Cards ── */
+.tool-overview-card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem 2.25rem;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+}
+
+.tool-card-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 4px;
+}
+
+/* ── Feature List ── */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    font-size: 0.875rem;
+    color: var(--mid-text);
+    line-height: 1.65;
+    border-bottom: 1px solid var(--sky-pale);
+}
+
+.feature-list li:last-child { border-bottom: none; }
+
+.feature-list li > i {
+    color: var(--primary);
+    font-size: 0.75rem;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+/* ── Oh My Posh Terminal Mockup ── */
+.omp-terminal {
+    background: #1e1b4b;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(30, 27, 75, 0.4);
+}
+
+.omp-terminal-body {
+    padding: 1.25rem 1.5rem;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.omp-plain-prompt { color: #94a3b8; margin: 4px 0 0; }
+
+.omp-comment {
+    color: rgba(255, 255, 255, 0.35);
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.omp-prompt-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 3px 0;
+}
+
+.omp-seg {
+    padding: 3px 10px;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.omp-path   { background: #4f46e5; color: #ffffff; border-radius: 4px 0 0 4px; }
+.omp-branch { background: #059669; color: #ffffff; }
+.omp-clean  { background: #16a34a; color: #ffffff; border-radius: 0 4px 4px 0; padding-right: 12px; }
+.omp-dirty  { background: #d97706; color: #ffffff; border-radius: 0 4px 4px 0; padding-right: 12px; }
+.omp-staged { background: #7c3aed; color: #ffffff; border-radius: 0 4px 4px 0; padding-right: 12px; }
+.omp-arrow  { color: #a5b4fc; padding: 0 6px; font-size: 1rem; }
+
+/* ── Setup Step Numbers ── */
+.omp-step-num {
+    width: 30px;
+    height: 30px;
+    background: var(--primary);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* ── Inline Command Code Block ── */
+.cmd-code {
+    background: rgba(99, 102, 241, 0.07);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--primary-deep);
+    margin-top: 0.6rem;
+    overflow-x: auto;
+    display: block;
+    word-break: break-all;
+}
