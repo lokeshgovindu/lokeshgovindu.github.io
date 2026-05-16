@@ -1194,6 +1194,24 @@ footer a:hover { color: #ffffff; }
     flex-shrink: 0;
 }
 
+/* ── Multi-line Command Code Block ── */
+.cmd-code-block {
+    background: rgba(99, 102, 241, 0.07);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.8rem;
+    color: var(--primary-deep);
+    margin-top: 0.75rem;
+    overflow-x: auto;
+    white-space: pre;
+    line-height: 1.75;
+    display: block;
+}
+
+.cmd-code-block .cmt { color: var(--muted-text); font-style: italic; }
+
 /* ── Inline Command Code Block ── */
 .cmd-code {
     background: rgba(99, 102, 241, 0.07);
