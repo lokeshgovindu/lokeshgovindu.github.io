@@ -167,6 +167,103 @@ body {
 .code-string  { color: #a5f3fc; }
 .code-func    { color: #fde047; }
 
+/* ── Hero Visual Panel ── */
+.hero-visual {
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 360px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 12px 40px rgba(67, 56, 202, 0.3);
+    overflow: hidden;
+}
+
+.hv-header {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hv-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.hv-red    { background: #ff5f57; }
+.hv-yellow { background: #febc2e; }
+.hv-green  { background: #28c840; }
+
+.hv-title-bar {
+    margin-left: 8px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    font-family: 'Consolas', monospace;
+}
+
+.hv-body { padding: 1.4rem; }
+
+.hv-stat {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.2rem;
+}
+.hv-stat-label { color: rgba(255, 255, 255, 0.6); font-size: 0.75rem; margin-bottom: 4px; }
+.hv-stat-value { color: #ffffff; font-size: 1.9rem; font-weight: 700; letter-spacing: -0.5px; }
+
+.hv-tasks { margin-bottom: 1.25rem; }
+
+.hv-task {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 5px 0;
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.45);
+    opacity: 0;
+    animation: hvSlideIn 0.45s ease forwards;
+}
+.hv-task i { font-size: 0.88rem; flex-shrink: 0; }
+.hv-done   { color: rgba(255, 255, 255, 0.9); }
+.hv-done i { color: #4ade80; }
+
+.hv-a1 { animation-delay: 0.4s; }
+.hv-a2 { animation-delay: 0.85s; }
+.hv-a3 { animation-delay: 1.3s; }
+.hv-a4 { animation-delay: 1.75s; }
+.hv-a5 { animation-delay: 2.2s; }
+
+@keyframes hvSlideIn {
+    from { opacity: 0; transform: translateX(-12px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.hv-footer {}
+.hv-prog-label { color: rgba(255, 255, 255, 0.65); font-size: 0.75rem; margin-bottom: 6px; }
+.hv-prog-track {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    height: 7px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+.hv-prog-fill {
+    height: 100%;
+    background: linear-gradient(to right, #a5b4fc, #4ade80);
+    border-radius: 50px;
+    width: 0;
+    animation: hvGrowBar 1.2s 2.5s ease-out forwards;
+}
+@keyframes hvGrowBar { to { width: 72%; } }
+
+.hv-prog-pct { color: #a5b4fc; font-size: 0.8rem; font-weight: 600; text-align: right; }
+
 /* ── Category Cards (index.html only) ── */
 .category-section {
     padding: var(--section-py) 0;
@@ -851,3 +948,139 @@ footer a:hover { color: #ffffff; }
     border-color: rgba(255, 255, 255, 0.85);
     transform: translateY(-2px);
 }
+
+/* ================================================================
+   Visual Studio Page — Extensions, Shortcuts, Others
+   ================================================================ */
+
+/* ── Section alternating background ── */
+.tips-section-alt {
+    padding: var(--section-py) 0;
+    background: var(--sky-pale);
+}
+
+/* ── Extension Cards ── */
+.ext-card {
+    background: var(--sky-pale);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, background 0.25s;
+}
+
+.ext-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 32px rgba(99, 102, 241, 0.16);
+    border-color: var(--primary);
+    background: #ffffff;
+}
+
+.ext-card h5 {
+    font-weight: 600;
+    font-size: 0.98rem;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+}
+
+.ext-card h5 a {
+    color: var(--dark-text);
+    text-decoration: none;
+}
+
+.ext-card h5 a:hover { color: var(--primary); }
+
+.ext-card p {
+    font-size: 0.875rem;
+    color: var(--muted-text);
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.ext-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 1rem;
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: var(--sky-light);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    align-self: flex-start;
+}
+
+.ext-link:hover {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+}
+
+/* ── Keyboard Shortcuts Section ── */
+.shortcuts-section {
+    padding: var(--section-py) 0;
+    background: var(--sky-pale);
+}
+
+.shortcut-accordion .accordion-item {
+    border: 1px solid var(--border);
+    border-radius: 10px !important;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+
+.shortcut-accordion .accordion-button {
+    font-weight: 600;
+    color: var(--dark-text);
+    background: #ffffff;
+    font-size: 0.95rem;
+    border-radius: 10px !important;
+}
+
+.shortcut-accordion .accordion-button:not(.collapsed) {
+    background: var(--sky-light);
+    color: var(--primary-deep);
+    box-shadow: none;
+}
+
+.shortcut-accordion .accordion-body {
+    background: #ffffff;
+    padding: 0;
+}
+
+.shortcut-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.shortcut-table tr {
+    border-bottom: 1px solid var(--sky-pale);
+}
+
+.shortcut-table tr:last-child {
+    border-bottom: none;
+}
+
+.shortcut-table td {
+    padding: 10px 1.25rem;
+    vertical-align: middle;
+    font-size: 0.875rem;
+}
+
+.shortcut-table td:first-child { width: 40%; }
+
+.shortcut-table td:last-child {
+    color: var(--muted-text);
+    line-height: 1.6;
+}
+
+.shortcut-table tr:hover td { background: var(--sky-pale); }
+
+.shortcut-table .tip-shortcut { margin-top: 0; }

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/jpeg" href="/resources/LoGoAvatar.jpg">
 </head>
 
 <body>
@@ -39,36 +40,51 @@
 <section id="home-hero">
     <div class="container">
         <div class="row align-items-center g-5">
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <div class="hero-badge"><i class="fa fa-rocket me-1"></i> Boost Your Productivity</div>
                 <h1 class="hero-title">
-                    Programmer <span class="accent">Tips</span> &amp;<br>
+                    Productivity <span class="accent">Tips</span> &amp;<br>
                     <span class="accent">Tricks</span> Hub
                 </h1>
                 <p class="hero-sub">
                     Curated shortcuts, commands, and workflows to help developers
                     write code faster and smarter every single day.
                 </p>
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="/visual-studio/" class="btn btn-primary btn-lg px-4">
-                        <i class="fa fa-bolt me-2"></i>Explore Tips
-                    </a>
-                    <a href="/about-me/" class="btn btn-outline-light btn-lg px-4">About Me</a>
-                </div>
+                <p class="hero-sub">
+                    Every minute spent hunting for a command, re-typing the same snippet, or navigating
+                    menus by hand is a minute not spent building. Mastering your tools — the keyboard
+                    shortcuts, the terminal commands, the IDE features most developers never discover —
+                    compounds into hours reclaimed every week. This site is a curated reference for the
+                    tips and tricks that actually move the needle: practical, battle-tested, and ready
+                    to use today.
+                </p>
             </div>
-            <div class="col-lg-6 d-none d-lg-block">
-                <div class="hero-code">
-                    <div class="code-line"><span class="code-comment">// Productivity unlocked 🚀</span></div>
-                    <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-keyword">const</span> tips = {</div>
-                    <div class="code-line">&nbsp;&nbsp;visualStudio: <span class="code-string">"shortcuts &amp; refactoring"</span>,</div>
-                    <div class="code-line">&nbsp;&nbsp;cmdPrompt:    <span class="code-string">"powerful commands"</span>,</div>
-                    <div class="code-line">&nbsp;&nbsp;general:      <span class="code-string">"best practices"</span></div>
-                    <div class="code-line">};</div>
-                    <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-func">boostProductivity</span>(tips);</div>
-                    <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-comment">// OUTPUT: You are 10x faster! ✅</span></div>
+            <div class="col-lg-5 d-none d-lg-flex justify-content-center">
+                <div class="hero-visual">
+                    <div class="hv-header">
+                        <span class="hv-dot hv-red"></span>
+                        <span class="hv-dot hv-yellow"></span>
+                        <span class="hv-dot hv-green"></span>
+                        <span class="hv-title-bar">productivity.exe</span>
+                    </div>
+                    <div class="hv-body">
+                        <div class="hv-stat">
+                            <div class="hv-stat-label">Time saved this week</div>
+                            <div class="hv-stat-value">4.5 hrs</div>
+                        </div>
+                        <div class="hv-tasks">
+                            <div class="hv-task hv-done hv-a1"><i class="fa fa-check-circle"></i> Mastered 12 VS shortcuts</div>
+                            <div class="hv-task hv-done hv-a2"><i class="fa fa-check-circle"></i> Automated 3 repetitive tasks</div>
+                            <div class="hv-task hv-done hv-a3"><i class="fa fa-check-circle"></i> Learned 8 CMD tricks</div>
+                            <div class="hv-task hv-a4"><i class="fa fa-circle"></i> Explore Git workflows</div>
+                            <div class="hv-task hv-a5"><i class="fa fa-circle"></i> Set up code snippets</div>
+                        </div>
+                        <div class="hv-footer">
+                            <div class="hv-prog-label">Productivity Level</div>
+                            <div class="hv-prog-track"><div class="hv-prog-fill"></div></div>
+                            <div class="hv-prog-pct">72%</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

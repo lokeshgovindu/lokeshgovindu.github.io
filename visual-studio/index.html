@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/jpeg" href="/resources/LoGoAvatar.jpg">
 </head>
 
 <body>
@@ -40,120 +41,298 @@
     <div class="container">
         <div class="ph-label">IDE Tips</div>
         <h1>Visual Studio</h1>
-        <p>Keyboard shortcuts and features to supercharge your Visual Studio workflow.</p>
+        <p>Extensions, keyboard shortcuts, and pro tips to supercharge your Visual Studio workflow.</p>
     </div>
 </div>
 
-<!-- ───── TIPS ───── -->
+<!-- ───── EXTENSIONS ───── -->
 <section class="tips-section">
     <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Marketplace Picks</div>
+            <h2 class="section-title">Extensions</h2>
+            <p class="section-sub">Hand-picked extensions that meaningfully improve your daily workflow in Visual Studio.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="row g-4">
+
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon vs"><i class="fa fa-align-left"></i></div>
+                    <h5><a href="https://marketplace.visualstudio.com/search?term=Align+Assignments&target=VS" target="_blank" rel="noopener">Align Assignments</a></h5>
+                    <p>Automatically aligns assignment operators, variable declarations, and other constructs into clean vertical columns — making code dramatically easier to scan and review at a glance.</p>
+                    <a class="ext-link" href="https://marketplace.visualstudio.com/search?term=Align+Assignments&target=VS" target="_blank" rel="noopener"><i class="fab fa-microsoft me-1"></i>View on Marketplace</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon vs"><i class="fa fa-window-restore"></i></div>
+                    <h5><a href="https://marketplace.visualstudio.com/items?itemName=mayerwin.RenameVisualStudioWindowTitle" target="_blank" rel="noopener">Customize VS Window Title</a></h5>
+                    <p>Replaces the default title bar text with configurable tokens — solution path, Git branch, build configuration, and more. Invaluable when running multiple Visual Studio instances side by side.</p>
+                    <a class="ext-link" href="https://marketplace.visualstudio.com/items?itemName=mayerwin.RenameVisualStudioWindowTitle" target="_blank" rel="noopener"><i class="fab fa-microsoft me-1"></i>View on Marketplace</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon vs"><i class="fa fa-project-diagram"></i></div>
+                    <h5><a href="https://marketplace.visualstudio.com/items?itemName=LokeshGovindu.DependencyGraph" target="_blank" rel="noopener">Dependency Graph</a></h5>
+                    <p>Renders an interactive visual graph of project-to-project dependencies within your solution. Quickly spot circular dependencies, unexpected couplings, and layering violations before they become problems.</p>
+                    <a class="ext-link" href="https://marketplace.visualstudio.com/items?itemName=LokeshGovindu.DependencyGraph" target="_blank" rel="noopener"><i class="fab fa-microsoft me-1"></i>View on Marketplace</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon vs"><i class="fab fa-git-alt"></i></div>
+                    <h5><a href="https://marketplace.visualstudio.com/search?term=GitBlame&target=VS" target="_blank" rel="noopener">GitBlame</a></h5>
+                    <p>Annotates every line of the active file with the author, commit hash, and date of the last change — all displayed inline without leaving the editor. Perfect for understanding the history of a piece of code at a glance.</p>
+                    <a class="ext-link" href="https://marketplace.visualstudio.com/search?term=GitBlame&target=VS" target="_blank" rel="noopener"><i class="fab fa-microsoft me-1"></i>View on Marketplace</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon vs"><i class="fa fa-keyboard"></i></div>
+                    <h5><a href="https://marketplace.visualstudio.com/items?itemName=LokeshGovindu.IntelliCommand" target="_blank" rel="noopener">IntelliCommand</a></h5>
+                    <p>Displays a real-time pop-up showing the keyboard shortcut for any command you trigger via menu or toolbar. Use it for a week and you'll have memorized your most-used shortcuts without any deliberate study.</p>
+                    <a class="ext-link" href="https://marketplace.visualstudio.com/items?itemName=LokeshGovindu.IntelliCommand" target="_blank" rel="noopener"><i class="fab fa-microsoft me-1"></i>View on Marketplace</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon vs"><i class="fa fa-chalkboard-teacher"></i></div>
+                    <h5><a href="https://marketplace.visualstudio.com/items?itemName=LokeshGovindu.PresentationAssistant" target="_blank" rel="noopener">Presentation Assistant</a></h5>
+                    <p>Shows the name and keyboard shortcut of each executed command in a large on-screen overlay. An essential tool for live coding sessions, code reviews, and screencasts — your audience always knows exactly what you are doing.</p>
+                    <a class="ext-link" href="https://marketplace.visualstudio.com/items?itemName=LokeshGovindu.PresentationAssistant" target="_blank" rel="noopener"><i class="fab fa-microsoft me-1"></i>View on Marketplace</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon vs"><i class="fa fa-terminal"></i></div>
+                    <h5><a href="https://marketplace.visualstudio.com/items?itemName=SergeyVlasov.VisualCommander" target="_blank" rel="noopener">Visual Commander</a></h5>
+                    <p>The spiritual successor to Visual Studio macros. Write automation commands in C# or VB with full access to the DTE automation model. Record keystrokes, assign shortcuts, and hook into IDE events — all without shipping a separate VSIX.</p>
+                    <a class="ext-link" href="https://marketplace.visualstudio.com/items?itemName=SergeyVlasov.VisualCommander" target="_blank" rel="noopener"><i class="fab fa-microsoft me-1"></i>View on Marketplace</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon vs"><i class="fa fa-palette"></i></div>
+                    <h5><a href="https://marketplace.visualstudio.com/items?itemName=MikeWard-AnnArbor.VSColorOutput64" target="_blank" rel="noopener">VSColorOutput64</a></h5>
+                    <p>Colors the Build and Debug output windows using configurable regex patterns. Errors appear in red, warnings in yellow, success in green — scan hundreds of output lines instantly. Also adds elapsed build-time timestamps.</p>
+                    <a class="ext-link" href="https://marketplace.visualstudio.com/items?itemName=MikeWard-AnnArbor.VSColorOutput64" target="_blank" rel="noopener"><i class="fab fa-microsoft me-1"></i>View on Marketplace</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon vs"><i class="fa fa-file-code"></i></div>
+                    <h5><a href="https://marketplace.visualstudio.com/search?term=VSDoxyHighlighter&target=VS" target="_blank" rel="noopener">VSDoxyHighlighter</a></h5>
+                    <p>Adds rich syntax highlighting and auto-completion for Doxygen documentation comments in C and C++ files. Tags like <code>@param</code>, <code>@return</code>, and <code>@brief</code> are highlighted distinctly, making it faster to read and write well-formatted API docs.</p>
+                    <a class="ext-link" href="https://marketplace.visualstudio.com/search?term=VSDoxyHighlighter&target=VS" target="_blank" rel="noopener"><i class="fab fa-microsoft me-1"></i>View on Marketplace</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon vs"><i class="fa fa-glasses"></i></div>
+                    <h5><a href="https://marketplace.visualstudio.com/items?itemName=EntrianSolutions-RichieHindle.Entrian-Inline-Watch-64" target="_blank" rel="noopener">Entrian Inline Watch</a></h5>
+                    <p>Shows the live values of variables, expressions, and function return values as ghost-text annotations directly in the editor while you debug — no hovering or switching to the Watch/Locals window needed.</p>
+                    <a class="ext-link" href="https://marketplace.visualstudio.com/items?itemName=EntrianSolutions-RichieHindle.Entrian-Inline-Watch-64" target="_blank" rel="noopener"><i class="fab fa-microsoft me-1"></i>View on Marketplace</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ───── KEYBOARD SHORTCUTS ───── -->
+<section class="shortcuts-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Quick Reference</div>
+            <h2 class="section-title">Keyboard Shortcuts</h2>
+            <p class="section-sub">The shortcuts you reach for every day — organised by task. Click a group to expand.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="accordion shortcut-accordion" id="shortcutsAccordion">
+
+            <!-- Navigation -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingNav">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNav" aria-expanded="true" aria-controls="collapseNav">
+                        <i class="fa fa-compass me-2" style="color:var(--primary)"></i> Navigation
+                    </button>
+                </h2>
+                <div id="collapseNav" class="accordion-collapse collapse show" aria-labelledby="headingNav" data-bs-parent="#shortcutsAccordion">
+                    <div class="accordion-body p-0">
+                        <table class="shortcut-table">
+                            <tr><td><span class="tip-shortcut">Ctrl + ,</span></td><td>Go to File / Symbol — navigate anywhere in the solution instantly</td></tr>
+                            <tr><td><span class="tip-shortcut">F12</span></td><td>Go to Definition</td></tr>
+                            <tr><td><span class="tip-shortcut">Alt + F12</span></td><td>Peek Definition — view inline without leaving the current file</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + F12</span></td><td>Go to Implementation</td></tr>
+                            <tr><td><span class="tip-shortcut">Shift + F12</span></td><td>Find All References</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + G</span></td><td>Go to Line number</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + -</span></td><td>Navigate Backward (browser-style back)</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + Shift + -</span></td><td>Navigate Forward</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Editing -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEdit">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEdit" aria-expanded="false" aria-controls="collapseEdit">
+                        <i class="fa fa-edit me-2" style="color:var(--primary)"></i> Editing
+                    </button>
+                </h2>
+                <div id="collapseEdit" class="accordion-collapse collapse" aria-labelledby="headingEdit" data-bs-parent="#shortcutsAccordion">
+                    <div class="accordion-body p-0">
+                        <table class="shortcut-table">
+                            <tr><td><span class="tip-shortcut">Ctrl + .</span></td><td>Quick Actions &amp; Refactoring — code fixes, generate boilerplate</td></tr>
+                            <tr><td><span class="tip-shortcut">F2</span></td><td>Rename symbol across the entire codebase</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + D</span></td><td>Duplicate current line</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + K, D</span></td><td>Format Document — auto-indent entire file</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + K, F</span></td><td>Format Selection</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + K, C</span></td><td>Comment selected lines</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + K, U</span></td><td>Uncomment selected lines</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + M, O</span></td><td>Collapse all code regions / methods</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + M, L</span></td><td>Toggle all outlining (expand / collapse)</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + Space</span></td><td>Trigger IntelliSense manually</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Debugging -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingDebug">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDebug" aria-expanded="false" aria-controls="collapseDebug">
+                        <i class="fa fa-bug me-2" style="color:var(--primary)"></i> Debugging
+                    </button>
+                </h2>
+                <div id="collapseDebug" class="accordion-collapse collapse" aria-labelledby="headingDebug" data-bs-parent="#shortcutsAccordion">
+                    <div class="accordion-body p-0">
+                        <table class="shortcut-table">
+                            <tr><td><span class="tip-shortcut">F5</span></td><td>Start Debugging</td></tr>
+                            <tr><td><span class="tip-shortcut">Shift + F5</span></td><td>Stop Debugging</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + Shift + F5</span></td><td>Restart Debugging</td></tr>
+                            <tr><td><span class="tip-shortcut">F9</span></td><td>Toggle Breakpoint on current line</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + Shift + F9</span></td><td>Delete All Breakpoints</td></tr>
+                            <tr><td><span class="tip-shortcut">F10</span></td><td>Step Over — execute current line and advance</td></tr>
+                            <tr><td><span class="tip-shortcut">F11</span></td><td>Step Into — dive into the called function</td></tr>
+                            <tr><td><span class="tip-shortcut">Shift + F11</span></td><td>Step Out — finish current function and return to caller</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + F10</span></td><td>Run to Cursor — resume until the line under cursor</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Build & Run -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingBuild">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBuild" aria-expanded="false" aria-controls="collapseBuild">
+                        <i class="fa fa-cogs me-2" style="color:var(--primary)"></i> Build &amp; Run
+                    </button>
+                </h2>
+                <div id="collapseBuild" class="accordion-collapse collapse" aria-labelledby="headingBuild" data-bs-parent="#shortcutsAccordion">
+                    <div class="accordion-body p-0">
+                        <table class="shortcut-table">
+                            <tr><td><span class="tip-shortcut">Ctrl + Shift + B</span></td><td>Build Solution</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + F5</span></td><td>Start Without Debugging</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + Break</span></td><td>Cancel Build</td></tr>
+                            <tr><td><span class="tip-shortcut">Alt + F7</span></td><td>Open Project Properties</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Windows & Panels -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingWin">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWin" aria-expanded="false" aria-controls="collapseWin">
+                        <i class="fa fa-th-large me-2" style="color:var(--primary)"></i> Windows &amp; Panels
+                    </button>
+                </h2>
+                <div id="collapseWin" class="accordion-collapse collapse" aria-labelledby="headingWin" data-bs-parent="#shortcutsAccordion">
+                    <div class="accordion-body p-0">
+                        <table class="shortcut-table">
+                            <tr><td><span class="tip-shortcut">Ctrl + Alt + L</span></td><td>Solution Explorer</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + \, E</span></td><td>Error List</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + Alt + O</span></td><td>Output Window</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + Tab</span></td><td>Switch between open documents / tool windows</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + W</span></td><td>Close active document tab</td></tr>
+                            <tr><td><span class="tip-shortcut">Ctrl + K, W</span></td><td>Close all document tabs</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ───── OTHERS ───── -->
+<section class="tips-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Pro Tips</div>
+            <h2 class="section-title">Others</h2>
+            <p class="section-sub">Powerful Visual Studio features that many developers never discover.</p>
+            <div class="section-divider"></div>
+        </div>
         <div class="row g-4">
 
             <div class="col-md-6 col-xl-4">
                 <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-search"></i></div>
-                    <h5>Go to File / Symbol</h5>
-                    <p>Quickly navigate to any file or symbol in your solution without touching the mouse.</p>
-                    <span class="tip-shortcut">Ctrl + ,</span>
+                    <div class="tip-icon vs"><i class="fa fa-i-cursor"></i></div>
+                    <h5>Multi-Cursor Editing</h5>
+                    <p>Hold <strong>Alt</strong> and click to place multiple cursors anywhere, or use <strong>Alt + Shift + ↑/↓</strong> to extend a column selection. Edit dozens of identical spots in a single stroke — no search-and-replace needed.</p>
                 </div>
             </div>
 
             <div class="col-md-6 col-xl-4">
                 <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-magic"></i></div>
-                    <h5>Quick Actions &amp; Refactoring</h5>
-                    <p>Trigger smart code fixes, refactoring suggestions, and auto-generate boilerplate code.</p>
-                    <span class="tip-shortcut">Ctrl + .</span>
+                    <div class="tip-icon vs"><i class="fa fa-bookmark"></i></div>
+                    <h5>Bookmarks</h5>
+                    <p>Press <strong>Ctrl + K, K</strong> to toggle a bookmark, then <strong>Ctrl + K, N</strong> / <strong>P</strong> to jump between them. Open the Bookmark Window (<strong>Ctrl + K, W</strong>) to name, organise, and navigate all bookmarks across the solution.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon vs"><i class="fa fa-puzzle-piece"></i></div>
+                    <h5>Code Snippets</h5>
+                    <p>Type a snippet alias (e.g. <code>prop</code>, <code>ctor</code>, <code>for</code>, <code>try</code>) and press <strong>Tab</strong> twice to expand it into a full code template. Create your own reusable snippets via <em>Tools → Code Snippets Manager</em>.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon vs"><i class="fa fa-filter"></i></div>
+                    <h5>Solution Filters</h5>
+                    <p>Save a <code>.slnf</code> file that loads only a chosen subset of projects. This dramatically reduces load time and IntelliSense indexing in large solutions. Right-click projects in Solution Explorer → <em>Save as Solution Filter</em>.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon vs"><i class="fa fa-sync-alt"></i></div>
+                    <h5>Edit and Continue</h5>
+                    <p>Modify code while the debugger is paused at a breakpoint, then press <strong>F5</strong> to resume without restarting the session. Works for most C# and C++ changes. Enable it under <em>Tools → Options → Debugging → Edit and Continue</em>.</p>
                 </div>
             </div>
 
             <div class="col-md-6 col-xl-4">
                 <div class="tip-card">
                     <div class="tip-icon vs"><i class="fa fa-eye"></i></div>
-                    <h5>Peek Definition</h5>
-                    <p>View a symbol's definition inline without navigating away from the current file.</p>
-                    <span class="tip-shortcut">Alt + F12</span>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-pen"></i></div>
-                    <h5>Rename Symbol</h5>
-                    <p>Rename a variable, method, or class across the entire codebase safely in one step.</p>
-                    <span class="tip-shortcut">F2</span>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-layer-group"></i></div>
-                    <h5>Collapse All Code Regions</h5>
-                    <p>Fold all code regions at once to get a high-level structural overview of the file.</p>
-                    <span class="tip-shortcut">Ctrl + M, O</span>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-arrow-left"></i></div>
-                    <h5>Navigate Backward / Forward</h5>
-                    <p>Jump back and forth through your navigation history just like a web browser.</p>
-                    <span class="tip-shortcut">Ctrl + - &nbsp;/&nbsp; Ctrl + Shift + -</span>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-bug"></i></div>
-                    <h5>Set / Toggle Breakpoint</h5>
-                    <p>Place a breakpoint on the current line to pause execution during a debugging session.</p>
-                    <span class="tip-shortcut">F9</span>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-play"></i></div>
-                    <h5>Start Debugging</h5>
-                    <p>Build and launch the project in debug mode to step through and inspect your code.</p>
-                    <span class="tip-shortcut">F5</span>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-comment-slash"></i></div>
-                    <h5>Comment / Uncomment Block</h5>
-                    <p>Toggle comments on the selected lines with a single keystroke.</p>
-                    <span class="tip-shortcut">Ctrl + K, C &nbsp;/&nbsp; Ctrl + K, U</span>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-indent"></i></div>
-                    <h5>Format Document</h5>
-                    <p>Auto-format and re-indent the entire file to match your configured code style settings.</p>
-                    <span class="tip-shortcut">Ctrl + K, D</span>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-copy"></i></div>
-                    <h5>Duplicate Line</h5>
-                    <p>Copy the current line and insert it immediately below without using the clipboard.</p>
-                    <span class="tip-shortcut">Ctrl + D</span>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xl-4">
-                <div class="tip-card">
-                    <div class="tip-icon vs"><i class="fa fa-list"></i></div>
-                    <h5>Open Solution Explorer</h5>
-                    <p>Toggle the Solution Explorer to browse your project files and folder structure.</p>
-                    <span class="tip-shortcut">Ctrl + Alt + L</span>
+                    <h5>CodeLens</h5>
+                    <p>The subtle indicators above each method and class showing reference count, last author, and unit test status. Click any indicator to drill in. Customise what is shown under <em>Tools → Options → Text Editor → All Languages → CodeLens</em>.</p>
                 </div>
             </div>
 
