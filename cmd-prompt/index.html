@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMD Prompt Tips | Dev Tips &amp; Tricks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/jpeg" href="/resources/LoGoAvatar.jpg">
+</head>
+
+<body>
+
+<!-- ───── NAVBAR ───── -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="fa fa-home me-2"></i>Home
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/visual-studio/">Visual Studio</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/cmd-prompt/">CMD Prompt</a></li>
+                <li class="nav-item"><a class="nav-link" href="/windows/">Windows</a></li>
+                <li class="nav-item"><a class="nav-link" href="/my-work/">My Work</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about-me/">About Me</a></li>
+                <li class="nav-item ms-lg-2"><a class="nav-link nav-search-pill" href="/search/"><i class="fa fa-magnifying-glass me-1"></i>Search</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ───── PAGE HEADER ───── -->
+<div class="page-header">
+    <div class="container">
+        <div class="ph-label">Terminal Tips</div>
+        <h1>Command Prompt</h1>
+        <p>Cmder, Clink, and Oh My Posh — everything to make your Windows terminal experience fast, beautiful, and productive.</p>
+    </div>
+</div>
+
+<!-- ───── CMDER ───── -->
+<section id="cmder" class="tips-section-alt">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Better Console</div>
+            <h2 class="section-title">Cmder</h2>
+            <p class="section-sub">A portable, feature-rich console emulator that replaces plain Windows CMD with a beautiful, productive environment.</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="tool-overview-card mb-4">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon cmd"><i class="fa fa-terminal"></i></div>
+                        <div>
+                            <div class="tool-card-name">Cmder</div>
+                            <a class="ext-link" href="https://cmder.app/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>cmder.app</a>
+                        </div>
+                    </div>
+                    <p>Cmder is a portable console emulator for Windows built on top of <strong>ConEmu</strong> and enhanced with <strong>Clink</strong>. It ships with the Monokai color scheme, a beautiful lambda (λ) prompt, and optionally Git for Windows — giving you Unix commands like <code>ls</code>, <code>cat</code>, and <code>grep</code> right away. No installation needed: unzip, run, and carry it on a USB stick or sync it to the cloud.</p>
+                    <ul class="feature-list mt-3">
+                        <li><i class="fa fa-circle-check"></i><span>Multi-tab terminal — CMD, PowerShell, Bash, or any custom shell in one window</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Beautiful Monokai theme with a λ prompt out of the box</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Full Git for Windows support — Unix tools available in PATH</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Fully portable — settings, aliases, and history go wherever you go</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Right-click paste, mouse selection, and scrollback buffer</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <p class="section-label mb-2" style="text-align:left">Keyboard Shortcuts</p>
+                    <table class="shortcut-table">
+                        <tr><td><span class="tip-shortcut">Win + Alt + P</span></td><td>Open Settings / Preferences</td></tr>
+                        <tr><td><span class="tip-shortcut">Ctrl + T</span></td><td>New tab dialog (choose shell type)</td></tr>
+                        <tr><td><span class="tip-shortcut">Ctrl + W</span></td><td>Close current tab</td></tr>
+                        <tr><td><span class="tip-shortcut">Shift + Alt + 1</span></td><td>Open new CMD tab instantly</td></tr>
+                        <tr><td><span class="tip-shortcut">Shift + Alt + 2</span></td><td>Open new PowerShell tab instantly</td></tr>
+                        <tr><td><span class="tip-shortcut">Alt + Enter</span></td><td>Toggle fullscreen</td></tr>
+                        <tr><td><span class="tip-shortcut">Ctrl + R</span></td><td>Incremental history search</td></tr>
+                        <tr><td><span class="tip-shortcut">Ctrl + Alt + U</span></td><td>Traverse up the directory tree</td></tr>
+                        <tr><td><span class="tip-shortcut">Ctrl + `</span></td><td>Global summon / hide from taskbar</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-list-ul"></i></div>
+                    <h5>Tasks — Custom Shell Profiles</h5>
+                    <p>Tasks define what command runs when you open a new tab. Go to <em>Settings → Startup → Tasks</em> to create profiles for Git Bash, WSL, admin CMD, or any custom shell — each with its own working directory, icon, and hotkey.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-at"></i></div>
+                    <h5>Aliases</h5>
+                    <p>Create short aliases for long commands. Edit <code>%CMDER_ROOT%\config\user_aliases.cmd</code> and add lines like <code>g=git $*</code> or <code>ll=ls -la --color $*</code>. Use <code>$*</code> to forward all arguments to the target command.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-user-gear"></i></div>
+                    <h5>Startup Profile</h5>
+                    <p>Commands placed in <code>%CMDER_ROOT%\config\user_profile.cmd</code> run automatically each time a new tab opens. Use it to set environment variables, activate virtual environments, or initialise Oh My Posh.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── CLINK ───── -->
+<section id="clink" class="tips-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">CMD Enhancement</div>
+            <h2 class="section-title">Clink</h2>
+            <p class="section-sub">GNU Readline's powerful line editing brought natively to cmd.exe — already bundled inside Cmder.</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="tool-overview-card">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon cmd"><i class="fa fa-bolt"></i></div>
+                        <div>
+                            <div class="tool-card-name">Clink</div>
+                            <a class="ext-link" href="https://chrisant996.github.io/clink/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>chrisant996.github.io/clink</a>
+                        </div>
+                    </div>
+                    <p>Clink injects itself into a running <code>cmd.exe</code> process and replaces its line editing with the <strong>GNU Readline</strong> library — the same engine that powers Bash on Linux. The result is a dramatically smarter, faster command line without changing your shell or your habits.</p>
+                    <p class="mt-2">Cmder ships with Clink built-in, so you get all of this automatically. You can also install it standalone into any <code>cmd.exe</code> via <code>winget install clink</code>.</p>
+                </div>
+                <div class="col-lg-7">
+                    <ul class="feature-list">
+                        <li><i class="fa fa-circle-check"></i><span><strong>Auto-suggestions</strong> — ghost completions appear as you type, based on history and files. Press <kbd style="font-size:0.75rem">→</kbd> or <kbd style="font-size:0.75rem">End</kbd> to accept.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Persistent history across sessions</strong> — press <kbd style="font-size:0.75rem">F7</kbd> for a scrollable popup list, <kbd style="font-size:0.75rem">PgUp/PgDn</kbd> to filter by the typed prefix, or <kbd style="font-size:0.75rem">Ctrl+R</kbd> for incremental search.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Rich Tab completion</strong> — <kbd style="font-size:0.75rem">Tab</kbd> cycles through matches; <kbd style="font-size:0.75rem">Ctrl+Space</kbd> opens an interactive list for executables, paths, aliases, and environment variables.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Directory shortcuts</strong> — type <code>dirname\</code> to <code>cd</code> into it, <code>..</code> / <code>...</code> for parent dirs, and <code>-</code> to jump back to the previous directory.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Scriptable via Lua</strong> — add custom completions, dynamic prompt segments, and key bindings through Lua scripts without recompiling anything.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Colored input</strong> — context-sensitive syntax highlighting makes commands, arguments, and paths visually distinct as you type.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Inline autocomplete</strong> — as you type, Clink shows a greyed-out suggestion inline from your history. Press <kbd style="font-size:0.75rem">→</kbd> to accept the whole suggestion or <kbd style="font-size:0.75rem">Ctrl+→</kbd> to accept one word at a time, without ever leaving the command line.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Context-aware sub-command completion</strong> — pressing <kbd style="font-size:0.75rem">Tab</kbd> twice after a command like <code>git</code> lists all its valid sub-commands (e.g. <code>add</code>, <code>commit</code>, <code>push</code>…) directly in the terminal, so you never need to leave the prompt to look up syntax.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── OH MY POSH ───── -->
+<section id="oh-my-posh" class="tips-section-alt">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Prompt Engine</div>
+            <h2 class="section-title">Oh My Posh</h2>
+            <p class="section-sub">Transform your terminal prompt into an intelligent, context-aware display — Git status, language versions, and more, right where you type.</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="tool-overview-card mb-4">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon cmd"><i class="fa fa-palette"></i></div>
+                        <div>
+                            <div class="tool-card-name">Oh My Posh</div>
+                            <a class="ext-link" href="https://ohmyposh.dev/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>ohmyposh.dev</a>
+                        </div>
+                    </div>
+                    <p>Oh My Posh is a blazing-fast prompt theme engine built with Go. It works with <strong>any shell</strong> — CMD, PowerShell, Bash, Zsh, Fish — and on any OS. With over 180 built-in segment types, your prompt shows Git status, active language versions, cloud context, and much more.</p>
+                    <p class="mt-2">Paired with <strong>Cmder + Clink</strong>, it gives Windows CMD the intelligent, context-aware prompt that Linux developers have enjoyed for years — you know your branch state before typing a single command.</p>
+                    <ul class="feature-list mt-3">
+                        <li><i class="fa fa-circle-check"></i><span>50+ built-in themes, fully customisable via a JSON config file</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Git segment: branch name, ahead/behind count, staged, modified, untracked</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Works in CMD, PowerShell, Bash, Zsh — one config, everywhere</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Built with Go — near-instant render even with complex multi-segment configs</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <p class="section-label mb-2" style="text-align:left">Git Prompt — Before &amp; After</p>
+                    <div class="omp-terminal">
+                        <div class="hv-header">
+                            <span class="hv-dot hv-red"></span>
+                            <span class="hv-dot hv-yellow"></span>
+                            <span class="hv-dot hv-green"></span>
+                            <span class="hv-title-bar">Cmder — cmd.exe</span>
+                        </div>
+                        <div class="omp-terminal-body">
+                            <div class="omp-comment"># Plain cmd.exe — no context, no colour</div>
+                            <div class="omp-plain-prompt mb-3">C:\projects\myapp&gt; _</div>
+
+                            <div class="omp-comment"># Oh My Posh — branch is clean, in sync with remote</div>
+                            <div class="omp-prompt-line mb-1">
+                                <span class="omp-seg omp-path"><i class="fa fa-folder-open me-1"></i>~/projects/myapp</span><span class="omp-seg omp-branch"><i class="fab fa-git-alt me-1"></i> main</span><span class="omp-seg omp-clean"> ✓ </span><span class="omp-arrow">λ </span><span style="color:#e2e8f0">git log --oneline</span>
+                            </div>
+
+                            <div class="omp-comment mt-2"># 1 commit ahead · 2 modified · 1 untracked file</div>
+                            <div class="omp-prompt-line mb-1">
+                                <span class="omp-seg omp-path"><i class="fa fa-folder-open me-1"></i>~/projects/myapp</span><span class="omp-seg omp-branch"><i class="fab fa-git-alt me-1"></i> feature/login</span><span class="omp-seg omp-dirty"> ↑1 ~2 ?1 </span><span class="omp-arrow">λ </span><span style="color:#e2e8f0">git diff</span>
+                            </div>
+
+                            <div class="omp-comment mt-2"># 3 files staged and ready to commit</div>
+                            <div class="omp-prompt-line">
+                                <span class="omp-seg omp-path"><i class="fa fa-folder-open me-1"></i>~/projects/myapp</span><span class="omp-seg omp-branch"><i class="fab fa-git-alt me-1"></i> feature/login</span><span class="omp-seg omp-staged"> +3 staged </span><span class="omp-arrow">λ </span><span style="color:#e2e8f0">git commit -m "add login form"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="omp-step-num">1</div>
+                    <h5>Install Oh My Posh</h5>
+                    <p>One-line setup on Windows using winget:</p>
+                    <code class="cmd-code">winget install JanDeDobbeleer.OhMyPosh</code>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="omp-step-num">2</div>
+                    <h5>Install a Nerd Font</h5>
+                    <p>Segment icons require a patched font. Install one, then set it in Cmder (<em>Win+Alt+P → Main → Font</em>):</p>
+                    <code class="cmd-code">oh-my-posh font install</code>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="omp-step-num">3</div>
+                    <h5>Configure in Cmder</h5>
+                    <p>Add to <code>%CMDER_ROOT%\config\user_profile.cmd</code> to initialise on every new tab:</p>
+                    <code class="cmd-code">@for /f "delims=" %%i in ('oh-my-posh init cmd') do @%%i</code>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="omp-step-num">4</div>
+                    <h5>Choose a Theme</h5>
+                    <p>Browse 50+ themes at <a href="https://ohmyposh.dev/docs/themes" target="_blank" rel="noopener">ohmyposh.dev/docs/themes</a>, then point to your chosen file:</p>
+                    <code class="cmd-code">oh-my-posh init cmd --config "%POSH_THEMES_PATH%\jandedobbeleer.omp.json"</code>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── FOOTER ───── -->
+<footer>
+    <div class="container">
+        <p class="mb-0">&copy; 2026 <a href="/">Lokesh Govindu</a> &mdash; Productivity Tools, Tips &amp; Tricks</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
+

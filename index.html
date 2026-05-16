@@ -8,7 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/jpeg" href="/resources/LoGoAvatar.jpg">
 </head>
 
 <body>
@@ -16,8 +17,8 @@
 <!-- ───── NAVBAR ───── -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <i class="fa fa-code me-2"></i><span>Dev</span>Tips
+        <a class="navbar-brand" href="/">
+            <i class="fa fa-home me-2"></i>Home
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
                 aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,12 +26,12 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="visual-studio.html">Visual Studio</a></li>
-                <li class="nav-item"><a class="nav-link" href="cmd-prompt.html">CMD Prompt</a></li>
-                <li class="nav-item"><a class="nav-link" href="general.html">General</a></li>
-                <li class="nav-item"><a class="nav-link" href="my-work.html">My Work</a></li>
-                <li class="nav-item"><a class="nav-link" href="about-me.html">About Me</a></li>
+                <li class="nav-item"><a class="nav-link" href="/visual-studio/">Visual Studio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/cmd-prompt/">CMD Prompt</a></li>
+                <li class="nav-item"><a class="nav-link" href="/windows/">Windows</a></li>
+                <li class="nav-item"><a class="nav-link" href="/my-work/">My Work</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about-me/">About Me</a></li>
+                <li class="nav-item ms-lg-2"><a class="nav-link nav-search-pill" href="/search/"><i class="fa fa-magnifying-glass me-1"></i>Search</a></li>
             </ul>
         </div>
     </div>
@@ -40,36 +41,51 @@
 <section id="home-hero">
     <div class="container">
         <div class="row align-items-center g-5">
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <div class="hero-badge"><i class="fa fa-rocket me-1"></i> Boost Your Productivity</div>
                 <h1 class="hero-title">
-                    Programmer <span class="accent">Tips</span> &amp;<br>
+                    Productivity <span class="accent">Tips</span> &amp;<br>
                     <span class="accent">Tricks</span> Hub
                 </h1>
                 <p class="hero-sub">
                     Curated shortcuts, commands, and workflows to help developers
                     write code faster and smarter every single day.
                 </p>
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="visual-studio.html" class="btn btn-primary btn-lg px-4">
-                        <i class="fa fa-bolt me-2"></i>Explore Tips
-                    </a>
-                    <a href="about-me.html" class="btn btn-outline-light btn-lg px-4">About Me</a>
-                </div>
+                <p class="hero-sub">
+                    Every minute spent hunting for a command, re-typing the same snippet, or navigating
+                    menus by hand is a minute not spent building. Mastering your tools — the keyboard
+                    shortcuts, the terminal commands, the IDE features most developers never discover —
+                    compounds into hours reclaimed every week. This site is a curated reference for the
+                    tips and tricks that actually move the needle: practical, battle-tested, and ready
+                    to use today.
+                </p>
             </div>
-            <div class="col-lg-6 d-none d-lg-block">
-                <div class="hero-code">
-                    <div class="code-line"><span class="code-comment">// Productivity unlocked 🚀</span></div>
-                    <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-keyword">const</span> tips = {</div>
-                    <div class="code-line">&nbsp;&nbsp;visualStudio: <span class="code-string">"shortcuts &amp; refactoring"</span>,</div>
-                    <div class="code-line">&nbsp;&nbsp;cmdPrompt:    <span class="code-string">"powerful commands"</span>,</div>
-                    <div class="code-line">&nbsp;&nbsp;general:      <span class="code-string">"best practices"</span></div>
-                    <div class="code-line">};</div>
-                    <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-func">boostProductivity</span>(tips);</div>
-                    <div class="code-line">&nbsp;</div>
-                    <div class="code-line"><span class="code-comment">// OUTPUT: You are 10x faster! ✅</span></div>
+            <div class="col-lg-5 d-none d-lg-flex justify-content-center">
+                <div class="hero-visual">
+                    <div class="hv-header">
+                        <span class="hv-dot hv-red"></span>
+                        <span class="hv-dot hv-yellow"></span>
+                        <span class="hv-dot hv-green"></span>
+                        <span class="hv-title-bar">productivity.exe</span>
+                    </div>
+                    <div class="hv-body">
+                        <div class="hv-stat">
+                            <div class="hv-stat-label">Time saved this week</div>
+                            <div class="hv-stat-value">4.5 hrs</div>
+                        </div>
+                        <div class="hv-tasks">
+                            <div class="hv-task hv-done hv-a1"><i class="fa fa-check-circle"></i> Mastered 12 VS shortcuts</div>
+                            <div class="hv-task hv-done hv-a2"><i class="fa fa-check-circle"></i> Automated 3 repetitive tasks</div>
+                            <div class="hv-task hv-done hv-a3"><i class="fa fa-check-circle"></i> Learned 8 CMD tricks</div>
+                            <div class="hv-task hv-a4"><i class="fa fa-circle"></i> Explore Git workflows</div>
+                            <div class="hv-task hv-a5"><i class="fa fa-circle"></i> Set up code snippets</div>
+                        </div>
+                        <div class="hv-footer">
+                            <div class="hv-prog-label">Productivity Level</div>
+                            <div class="hv-prog-track"><div class="hv-prog-fill"></div></div>
+                            <div class="hv-prog-pct">72%</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,24 +103,24 @@
         </div>
         <div class="row g-4 justify-content-center">
             <div class="col-sm-6 col-lg-4">
-                <a href="visual-studio.html" class="cat-card">
+                <a href="/visual-studio/" class="cat-card">
                     <div class="cat-icon vs"><i class="fa fa-laptop-code"></i></div>
                     <h5>Visual Studio</h5>
                     <p>Shortcuts, refactoring tricks, and productivity features for the Visual Studio IDE.</p>
                 </a>
             </div>
             <div class="col-sm-6 col-lg-4">
-                <a href="cmd-prompt.html" class="cat-card">
+                <a href="/cmd-prompt/" class="cat-card">
                     <div class="cat-icon cmd"><i class="fa fa-terminal"></i></div>
                     <h5>CMD Prompt</h5>
                     <p>Powerful Windows command-line commands to navigate, automate, and debug faster.</p>
                 </a>
             </div>
             <div class="col-sm-6 col-lg-4">
-                <a href="general.html" class="cat-card">
+                <a href="/windows/" class="cat-card">
                     <div class="cat-icon gen"><i class="fa fa-lightbulb"></i></div>
-                    <h5>General Tips</h5>
-                    <p>Universal programming best practices every developer should have in their toolkit.</p>
+                    <h5>Windows Tips</h5>
+                    <p>PowerToys, SysInternals, FFmpeg, file explorers and tips to supercharge Windows.</p>
                 </a>
             </div>
         </div>
@@ -114,7 +130,7 @@
 <!-- ───── FOOTER ───── -->
 <footer>
     <div class="container">
-        <p class="mb-0">&copy; 2026 <a href="index.html">Lokesh Govindu</a> &mdash; Productivity Tools, Tips &amp; Tricks</p>
+        <p class="mb-0">&copy; 2026 <a href="/">Lokesh Govindu</a> &mdash; Productivity Tools, Tips &amp; Tricks</p>
     </div>
 </footer>
 
@@ -122,3 +138,6 @@
 </body>
 
 </html>
+
+
+

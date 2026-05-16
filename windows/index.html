@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Tips | Dev Tips &amp; Tricks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/jpeg" href="/resources/LoGoAvatar.jpg">
+</head>
+
+<body>
+
+<!-- ───── NAVBAR ───── -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="fa fa-home me-2"></i>Home
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="/visual-studio/">Visual Studio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/cmd-prompt/">CMD Prompt</a></li>
+                <li class="nav-item"><a class="nav-link active" href="/windows/">Windows</a></li>
+                <li class="nav-item"><a class="nav-link" href="/my-work/">My Work</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about-me/">About Me</a></li>
+                <li class="nav-item ms-lg-2"><a class="nav-link nav-search-pill" href="/search/"><i class="fa fa-magnifying-glass me-1"></i>Search</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ───── PAGE HEADER ───── -->
+<div class="page-header">
+    <div class="container">
+        <div class="ph-label">Productivity</div>
+        <h1>Windows Tips</h1>
+        <p>Power tools, file explorers, screenshot apps, FFmpeg, and essential Windows tricks to supercharge your daily workflow.</p>
+    </div>
+</div>
+
+<!-- ───── WINDOWS POWER TOOLS ───── -->
+<section id="power-tools" class="tips-section-alt">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Must-Have Software</div>
+            <h2 class="section-title">Windows Power Tools</h2>
+            <p class="section-sub">Free, powerful utilities that Windows should have shipped with from day one.</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- PowerToys -->
+        <div id="powertoys" class="tool-overview-card mb-4">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon gen"><i class="fa fa-layer-group"></i></div>
+                        <div>
+                            <div class="tool-card-name">Microsoft PowerToys</div>
+                            <a class="ext-link" href="https://github.com/microsoft/PowerToys" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>github.com/microsoft/PowerToys</a>
+                        </div>
+                    </div>
+                    <p>PowerToys is a free, open-source set of utilities by Microsoft that adds dozens of productivity features missing from Windows. Each utility can be enabled or disabled independently, and the whole suite is configured from a single Settings panel.</p>
+                    <code class="cmd-code">winget install Microsoft.PowerToys</code>
+                </div>
+                <div class="col-lg-7">
+                    <ul class="feature-list">
+                        <li><i class="fa fa-circle-check"></i><span><strong>FancyZones</strong> (<kbd style="font-size:0.75rem">Win + `</kbd>) — define custom window snap zones beyond the default four corners; drag windows into them while holding Shift.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>PowerToys Run</strong> (<kbd style="font-size:0.75rem">Alt + Space</kbd>) — instant launcher for apps, files, URLs, and calculations, like macOS Spotlight.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Color Picker</strong> (<kbd style="font-size:0.75rem">Win + Shift + C</kbd>) — pick any on-screen color and copy its HEX, RGB, or HSL value to the clipboard.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>File Locksmith</strong> — right-click any file to instantly see which process is locking it, without needing Process Explorer.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Image Resizer</strong> — batch-resize images from the right-click context menu using configurable presets.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>PowerRename</strong> — bulk-rename files using regular expressions; live preview shows changes before applying.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Text Extractor</strong> (<kbd style="font-size:0.75rem">Win + Shift + T</kbd>) — OCR any region of your screen and copy the text to the clipboard instantly.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Peek</strong> (<kbd style="font-size:0.75rem">Ctrl + Space</kbd>) — quick-preview a file (images, PDFs, Markdown, code) without opening its full application.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Keyboard Manager</strong> — remap any key or shortcut system-wide; useful for fixing broken laptop keys or creating global hotkeys.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SysInternals -->
+        <div id="sysinternals" class="tool-overview-card mb-4">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon gen"><i class="fa fa-microscope"></i></div>
+                        <div>
+                            <div class="tool-card-name">Sysinternals Suite</div>
+                            <a class="ext-link" href="https://learn.microsoft.com/en-us/sysinternals/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>learn.microsoft.com/sysinternals</a>
+                        </div>
+                    </div>
+                    <p>Sysinternals is a collection of advanced Windows system utilities from Microsoft. Every Windows power user and sysadmin should have these in their toolkit. You can also run them live without installing — just browse <code>\\live.sysinternals.com\tools</code> from Explorer.</p>
+                    <code class="cmd-code">winget install 9P7KNL5RWT25 --source msstore</code>
+                </div>
+                <div class="col-lg-7">
+                    <ul class="feature-list">
+                        <li><i class="fa fa-circle-check"></i><span><strong>Process Explorer</strong> — far more powerful than Task Manager; shows parent-child process trees, loaded DLLs, open handles, and lets you kill or suspend processes.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Process Monitor</strong> — real-time logging of every file system, registry, and network call made by every process; indispensable for diagnosing issues.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Autoruns</strong> — shows everything configured to auto-start with Windows (registry, services, scheduled tasks, browser extensions); disable or remove unwanted entries.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>TCPView</strong> — lists all active TCP and UDP endpoints with the owning process; great for spotting unexpected network connections.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>PsExec</strong> — run commands on remote machines without installing a client; useful for IT automation and troubleshooting.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>BgInfo</strong> — renders system info (hostname, IP, uptime, OS version) directly onto your desktop wallpaper — useful in multi-VM environments.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SystemInformer -->
+        <div id="systeminformer" class="tool-overview-card">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon gen"><i class="fa fa-chart-line"></i></div>
+                        <div>
+                            <div class="tool-card-name">SystemInformer</div>
+                            <a class="ext-link" href="https://systeminformer.sourceforge.io/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>systeminformer.sourceforge.io</a>
+                        </div>
+                    </div>
+                    <p>SystemInformer (formerly <strong>Process Hacker</strong>) is a free, open-source advanced task manager and system monitor. It gives you deeper visibility into what Windows is doing than any built-in tool, making it ideal for debugging, security research, and performance analysis.</p>
+                    <code class="cmd-code">winget install winsiderss.systeminformer</code>
+                </div>
+                <div class="col-lg-7">
+                    <ul class="feature-list">
+                        <li><i class="fa fa-circle-check"></i><span><strong>Process tree</strong> — visualise parent-child process relationships; instantly see which process spawned which.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Real-time per-process graphs</strong> — CPU, memory, disk, and network usage graphs broken down per process, not just system-wide totals.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>DLL &amp; handle inspector</strong> — see every DLL loaded and every file, registry key, mutex, and pipe that a process has open.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Network connections per process</strong> — view active TCP/UDP connections mapped to the owning process, with geolocation support.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Memory map viewer</strong> — inspect and dump memory regions of any process — useful for security research and debugging.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Service &amp; driver management</strong> — start, stop, pause, and configure Windows services and kernel-mode drivers from one interface.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── FILE EXPLORERS ───── -->
+<section id="file-explorers" class="tips-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Beyond File Explorer</div>
+            <h2 class="section-title">File Explorer Alternatives</h2>
+            <p class="section-sub">Modern, dual-pane, and tabbed file managers that make navigating your file system significantly faster.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-3">
+                <div class="ext-card">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-table-columns"></i></div>
+                    <h5>xplorer<sup>2</sup></h5>
+                    <span class="badge bg-warning-subtle text-warning-emphasis mb-2" style="font-size:0.72rem">Freemium</span>
+                    <p>Battle-tested dual-pane file manager with tabbed browsing, a powerful viewer pane, rich metadata columns, bookmarks, and a fully keyboard-driven workflow. The Lite edition is free; Ultimate adds scripting and advanced features.</p>
+                    <a class="ext-link" href="https://www.zabkat.com/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>zabkat.com</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="ext-card">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-folder-open"></i></div>
+                    <h5>XYplorer</h5>
+                    <span class="badge bg-danger-subtle text-danger-emphasis mb-2" style="font-size:0.72rem">Paid (30-day trial)</span>
+                    <p>Fully portable, dual-pane file manager with a built-in scripting engine, color filters, visual filters, multi-rename, and a breadcrumb mini-tree. No installation required — carry it on a USB stick.</p>
+                    <a class="ext-link" href="https://www.xyplorer.com/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>xyplorer.com</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="ext-card">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-rectangle-history"></i></div>
+                    <h5>OneCommander</h5>
+                    <span class="badge bg-success-subtle text-success-emphasis mb-2" style="font-size:0.72rem">Free</span>
+                    <p>Modern, beautifully designed file manager with multi-pane column view, tab groups, file tagging, dark mode, and OneDrive/cloud integration. A great choice if you want a clean modern UX over raw power.</p>
+                    <a class="ext-link" href="https://www.onecommander.com/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>onecommander.com</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="ext-card">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-folder"></i></div>
+                    <h5>Files App</h5>
+                    <span class="badge bg-success-subtle text-success-emphasis mb-2" style="font-size:0.72rem">Free &amp; Open Source</span>
+                    <p>A stunning open-source replacement for Windows Explorer with a fluent design, native tabs (before Windows 11 added them), dual pane, tags, archives support, and Git status in the UI. Available on the Microsoft Store.</p>
+                    <a class="ext-link" href="https://files.community/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>files.community</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── SCREENSHOT TOOLS ───── -->
+<section id="screenshot-tools" class="tips-section-alt">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Screen Capture</div>
+            <h2 class="section-title">Screenshot &amp; Screen Capture</h2>
+            <p class="section-sub">Far more capable than the built-in Snipping Tool — with annotation, recording, and instant sharing.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-camera"></i></div>
+                    <h5>ShareX</h5>
+                    <span class="badge bg-success-subtle text-success-emphasis mb-2" style="font-size:0.72rem">Free &amp; Open Source</span>
+                    <p>The most feature-complete screenshot tool available. Capture regions, scrolling pages, or full screens; annotate with shapes, text, and arrows; record screens as video or GIF; auto-upload to 80+ services and copy the URL in one keystroke. Includes OCR, color picker, and image editor.</p>
+                    <a class="ext-link" href="https://getsharex.com/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>getsharex.com</a>
+                    <code class="cmd-code mt-2">winget install ShareX.ShareX</code>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-expand"></i></div>
+                    <h5>Screenpresso</h5>
+                    <span class="badge bg-warning-subtle text-warning-emphasis mb-2" style="font-size:0.72rem">Freemium</span>
+                    <p>Lightweight and fast with an elegant built-in media library that organises all your captures. Supports region capture, scrolling capture, webcam overlay, and screen recording with audio. The free tier covers most everyday use.</p>
+                    <a class="ext-link" href="https://www.screenpresso.com/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>screenpresso.com</a>
+                    <code class="cmd-code mt-2">winget install Learnpulse.Screenpresso</code>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="ext-card">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-leaf"></i></div>
+                    <h5>Greenshot</h5>
+                    <span class="badge bg-success-subtle text-success-emphasis mb-2" style="font-size:0.72rem">Free &amp; Open Source</span>
+                    <p>A minimal, rock-solid screenshot tool that integrates with the PrintScreen key. Capture a region, annotate it, and send it directly to email, Office, a printer, or a cloud service with a single shortcut. Very low resource footprint.</p>
+                    <a class="ext-link" href="https://getgreenshot.org/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>getgreenshot.org</a>
+                    <code class="cmd-code mt-2">winget install Greenshot.Greenshot</code>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── VIDEO & MEDIA ───── -->
+<section id="video-media" class="tips-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Video &amp; Media</div>
+            <h2 class="section-title">FFmpeg &amp; yt-dlp</h2>
+            <p class="section-sub">Two command-line power tools — one for downloading video, one for converting it.</p>
+            <div class="section-divider"></div>
+        </div>
+
+        <!-- yt-dlp -->
+        <div id="yt-dlp" class="tool-overview-card mb-4">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon gen"><i class="fab fa-youtube"></i></div>
+                        <div>
+                            <div class="tool-card-name">yt-dlp</div>
+                            <a class="ext-link" href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>github.com/yt-dlp/yt-dlp</a>
+                        </div>
+                    </div>
+                    <p>yt-dlp is the most actively maintained fork of youtube-dl. It downloads video and audio from YouTube and 1000+ other sites, supports full playlists, chapters, subtitles, metadata embedding, and SponsorBlock integration. Works best with FFmpeg installed alongside it.</p>
+                    <code class="cmd-code">winget install yt-dlp</code>
+                    <ul class="feature-list mt-3">
+                        <li><i class="fa fa-circle-check"></i><span>Downloads from YouTube, Vimeo, Twitter/X, TikTok, and 1,000+ other sites</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Full playlist &amp; channel downloads with configurable output templates</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>SponsorBlock integration — automatically skip or cut sponsor segments</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Embeds metadata, thumbnails, and subtitles into the downloaded file</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <p class="section-label mb-2" style="text-align:left">Common Commands</p>
+<pre class="cmd-code-block"><span class="cmt"># Download best quality (auto-merges video + audio)</span>
+yt-dlp URL
+
+<span class="cmt"># Best quality capped at 1080p</span>
+yt-dlp -f "bestvideo[height&lt;=1080]+bestaudio" URL
+
+<span class="cmt"># Audio only — save as MP3</span>
+yt-dlp -x --audio-format mp3 URL
+
+<span class="cmt"># Download entire playlist</span>
+yt-dlp --yes-playlist "PLAYLIST_URL"
+
+<span class="cmt"># List all available formats/resolutions</span>
+yt-dlp -F URL
+
+<span class="cmt"># Embed English subtitles into the file</span>
+yt-dlp --write-subs --sub-lang en --embed-subs URL
+
+<span class="cmt"># Throttle download speed (e.g. 2 MB/s)</span>
+yt-dlp --rate-limit 2M URL</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- FFmpeg -->
+        <div id="ffmpeg" class="tool-overview-card">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon gen"><i class="fa fa-film"></i></div>
+                        <div>
+                            <div class="tool-card-name">FFmpeg</div>
+                            <a class="ext-link" href="https://ffmpeg.org/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>ffmpeg.org</a>
+                        </div>
+                    </div>
+                    <p>FFmpeg is the Swiss Army knife of video and audio processing. It can convert, compress, trim, merge, stream, and analyse virtually any media format. It runs entirely on the command line and is used behind the scenes by VLC, Chrome, and most video software.</p>
+                    <code class="cmd-code">winget install Gyan.FFmpeg</code>
+                    <ul class="feature-list mt-3">
+                        <li><i class="fa fa-circle-check"></i><span>Supports virtually every video and audio codec and container format</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Hardware-accelerated encoding via NVENC, QuickSync, AMF</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Complex filter graph for overlay, scale, crop, and subtitle burn-in</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Used internally by yt-dlp to merge separate video and audio streams</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <p class="section-label mb-2" style="text-align:left">Common Commands</p>
+<pre class="cmd-code-block"><span class="cmt"># Convert between formats (auto-detects codec from extension)</span>
+ffmpeg -i input.mkv output.mp4
+
+<span class="cmt"># Extract audio track as MP3</span>
+ffmpeg -i input.mp4 -vn -acodec libmp3lame output.mp3
+
+<span class="cmt"># Compress video (higher CRF = smaller file, lower quality)</span>
+ffmpeg -i input.mp4 -crf 28 output.mp4
+
+<span class="cmt"># Trim: start at 1:00, cut 2 minutes (no re-encode)</span>
+ffmpeg -i input.mp4 -ss 00:01:00 -t 00:02:00 -c copy out.mp4
+
+<span class="cmt"># Merge separate video and audio files</span>
+ffmpeg -i video.mp4 -i audio.m4a -c copy output.mp4
+
+<span class="cmt"># Create an animated GIF from a video clip</span>
+ffmpeg -i input.mp4 -vf "fps=15,scale=640:-1" output.gif
+
+<span class="cmt"># Scale video to 1920x1080</span>
+ffmpeg -i input.mp4 -vf "scale=1920:1080" output.mp4</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── WINDOWS TIPS ───── -->
+<section id="windows-tips" class="tips-section-alt">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Built-in Features</div>
+            <h2 class="section-title">Windows Tips &amp; Tricks</h2>
+            <p class="section-sub">Hidden settings, power shortcuts, and underused features built right into Windows.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-keyboard"></i></div>
+                    <h5>Run Dialog Autocomplete</h5>
+                    <p>Enable inline autocomplete in the Run dialog (<em>Win+R</em>) and File Explorer address bar: open <strong>Folder Options</strong> → General tab → check <strong>"Use inline AutoComplete in File Explorer and Run dialog box"</strong>.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-clipboard-list"></i></div>
+                    <h5>Clipboard History</h5>
+                    <p>Press <strong>Win + V</strong> to open a scrollable clipboard history that stores your last 25 items. Enable it first in <em>Settings → System → Clipboard → Clipboard history</em>. Pin frequently-used snippets so they survive reboots.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-desktop"></i></div>
+                    <h5>Virtual Desktops</h5>
+                    <p>Create a new virtual desktop with <strong>Win + Ctrl + D</strong>, switch between them with <strong>Win + Ctrl + ← / →</strong>, and manage or close them from <strong>Win + Tab</strong> (Task View). Useful for separating work contexts.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-bolt"></i></div>
+                    <h5>Win + X Power User Menu</h5>
+                    <p>Press <strong>Win + X</strong> for a quick-access menu that links directly to Device Manager, Disk Management, Event Viewer, Task Manager, Terminal (Admin), and more — without navigating the Start menu.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-folder-gear"></i></div>
+                    <h5>God Mode</h5>
+                    <p>Create a folder anywhere and name it exactly: <code>GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}</code>. It becomes a Control Panel super-folder with all ~200 Windows settings in one scrollable list.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-face-smile"></i></div>
+                    <h5>Emoji Picker</h5>
+                    <p>Press <strong>Win + . </strong>or <strong>Win + ;</strong> to open the emoji picker in any text field. It also includes kaomoji, symbols, and GIFs. Works system-wide in any application that accepts text input.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-sliders"></i></div>
+                    <h5>Environment Variables Shortcut</h5>
+                    <p>Open Environment Variables instantly: press <strong>Win + R</strong> and type <code>sysdm.cpl</code> → Advanced → Environment Variables. Alternatively, search "env" in the Start menu for "Edit the system environment variables".</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-magnifying-glass"></i></div>
+                    <h5>Ctrl + Shift + Esc</h5>
+                    <p>Opens <strong>Task Manager directly</strong> — no right-click on the taskbar, no Ctrl+Alt+Del menu required. Combine with <em>More details</em> and the Startup tab to manage auto-starting programs in one step.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ───── DEVELOPER BEST PRACTICES ───── -->
+<section id="best-practices" class="tips-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Universal Habits</div>
+            <h2 class="section-title">Developer Best Practices</h2>
+            <p class="section-sub">Language-agnostic habits that make every codebase more maintainable and every developer more effective.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="row g-4">
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-code-branch"></i></div>
+                    <h5>Use Version Control</h5>
+                    <p>Commit early, commit often. Write meaningful commit messages that explain the "why", not just the "what".</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-pen-nib"></i></div>
+                    <h5>Write Self-Documenting Code</h5>
+                    <p>Use descriptive names for variables, functions, and classes so the code reads like plain English.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-flask"></i></div>
+                    <h5>Test Before You Ship</h5>
+                    <p>Write unit tests for critical logic. Catching bugs early saves hours of painful debugging in production.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-recycle"></i></div>
+                    <h5>DRY Principle</h5>
+                    <p>Don't Repeat Yourself. Extract duplicated logic into reusable functions or shared modules.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-gauge-high"></i></div>
+                    <h5>Profile Before Optimizing</h5>
+                    <p>Measure first, optimize second. Use profiling tools to find real bottlenecks instead of guessing.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-book-open"></i></div>
+                    <h5>Read the Official Docs</h5>
+                    <p>Official documentation is the most accurate and up-to-date resource for any library or framework.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-scissors"></i></div>
+                    <h5>Keep Functions Small</h5>
+                    <p>A function should do one thing and do it well. If it grows too long, break it into smaller pieces.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-comments"></i></div>
+                    <h5>Do Code Reviews</h5>
+                    <p>Peer reviews catch bugs, spread knowledge, and keep coding standards consistent across the team.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-duck"></i></div>
+                    <h5>Rubber Duck Debugging</h5>
+                    <p>Explain your code line-by-line out loud — to a rubber duck or a colleague. The act of explaining often reveals the bug.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-keyboard"></i></div>
+                    <h5>Learn Your Keyboard Shortcuts</h5>
+                    <p>Reducing mouse usage with shortcuts adds up to hours saved every week.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-triangle-exclamation"></i></div>
+                    <h5>Handle Errors Gracefully</h5>
+                    <p>Never silently swallow exceptions. Log them, handle them meaningfully, or let them propagate appropriately.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon gen"><i class="fa fa-shield-halved"></i></div>
+                    <h5>Security First</h5>
+                    <p>Validate all inputs, avoid hardcoded secrets, and follow the principle of least privilege by default.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ───── FOOTER ───── -->
+<footer>
+    <div class="container">
+        <p class="mb-0">&copy; 2026 <a href="/">Lokesh Govindu</a> &mdash; Productivity Tools, Tips &amp; Tricks</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+
+
