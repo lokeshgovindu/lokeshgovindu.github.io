@@ -1,0 +1,7 @@
+<div class="page-header">
+    <div class="container">
+        {%- if page.ph_label %}<div class="ph-label">{{ page.ph_label }}</div>{%- endif %}
+        <h1>{{ page.heading | default: page.title }}</h1>
+        {%- if page.ph_sub %}<p>{{ page.ph_sub }}</p>{%- endif %}
+    </div>
+</div>

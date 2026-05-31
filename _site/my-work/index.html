@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Work | Dev Tips & Tricks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/jpeg" href="/resources/LoGoAvatar.jpg">
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="fa fa-home me-2"></i>Home
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0"><li class="nav-item"><a class="nav-link" href="/visual-studio/">Visual Studio</a></li><li class="nav-item"><a class="nav-link" href="/cmd-prompt/">CMD Prompt</a></li><li class="nav-item"><a class="nav-link" href="/windows/">Windows</a></li><li class="nav-item"><a class="nav-link active" href="/my-work/">My Work</a></li><li class="nav-item"><a class="nav-link" href="/about-me/">About Me</a></li><li class="nav-item ms-lg-2"><a class="nav-link nav-search-pill" href="/search/"><i class="fa fa-magnifying-glass me-1"></i>Search</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="page-header">
+    <div class="container"><div class="ph-label">Open Source &amp; Personal Projects</div>
+        <h1>My Work</h1><p>A collection of tools and extensions I've built to make everyday development faster, smarter, and more enjoyable — from Windows utilities to Visual Studio IDE extensions.</p>
+    </div>
+</div>
+
+
+
+<!-- ───── GITHUB INTRO ───── -->
+<section class="projects-intro-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9 text-center">
+                <div class="section-label">GitHub</div>
+                <h2 class="section-title">Open Source Contributions</h2>
+                <p class="section-sub" style="max-width: 680px;">
+                    Over the years I've channelled countless hours of curiosity and frustration into tools
+                    that actually solve real problems. Every project here began as a personal itch — something
+                    missing from my daily workflow — and grew into a polished, shareable solution.
+                    Browse the highlights below, and feel free to explore the full repository list on GitHub.
+                </p>
+                <div class="section-divider"></div>
+                <div class="mt-4">
+                    <a href="https://github.com/lokeshgovindu" target="_blank" rel="noopener noreferrer" class="btn-github-profile">
+                        <i class="fab fa-github"></i> View All Repositories on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION: Windows Applications
+═══════════════════════════════════════════════ -->
+<section class="projects-section" id="windows-apps">
+    <div class="container">
+
+        <div class="project-section-header">
+            <div class="project-section-icon windows-app-icon">
+                <i class="fab fa-windows"></i>
+            </div>
+            <div>
+                <div class="section-label" style="text-align: left;">Windows Applications</div>
+                <h2 class="section-title mb-0" style="text-align: left;">Native Desktop Tools</h2>
+            </div>
+        </div>
+
+        <!-- ── AltTab ── -->
+        <div class="project-card project-card-featured">
+            <div class="project-card-accent cpp"></div>
+            <div class="row g-0">
+                <div class="col-lg-7 project-card-body">
+                    <span class="project-type-badge windows-app">
+                        <i class="fab fa-windows"></i> Windows Application
+                    </span>
+                    <h3 class="project-title">
+                        <i class="fa fa-window-restore me-2" style="color: #3b82f6;"></i>AltTab
+                    </h3>
+                    <p class="project-description">
+                        AltTab is a powerful, lightweight Windows application written in C++ and the Win32 API
+                        that completely reimagines how you switch between open windows. The native Windows task
+                        switcher is functional, but limited — AltTab puts you fully in control. Filter through
+                        every open window in real time using a fuzzy search algorithm that intelligently matches
+                        even approximate input, so you can land on the right window without memorising exact titles.
+                    </p>
+                    <p class="project-description">
+                        A dedicated <strong>Alt + `</strong> shortcut lets you cycle exclusively through windows
+                        belonging to the same application, making it effortless to hop between multiple instances
+                        of your editor, browser, or terminal. Right-click context menus put powerful process
+                        management at your fingertips — terminate processes, hide windows, or bring them back
+                        — without ever leaving the keyboard. Fine-tune the experience to your taste with a rich
+                        settings UI that controls font style, background colour, window transparency, and dimensions.
+                    </p>
+                    <ul class="project-features">
+                        <li>Fuzzy search filtering across all open windows — no exact title needed</li>
+                        <li>Alt + ` shortcut to cycle windows of the same application</li>
+                        <li>Terminate or hide processes with keyboard shortcuts via context menu</li>
+                        <li>Fully configurable font, colour, transparency, and window size</li>
+                        <li>Lightweight C++ / Win32 — minimal footprint, maximum speed</li>
+                    </ul>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag"><i class="fa fa-code me-1"></i>C++</span>
+                        <span class="tech-tag">Win32 API</span>
+                        <span class="tech-tag">Windows</span>
+                        <span class="tech-tag">Fuzzy Search</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fa fa-star"></i> 28 Stars</span>
+                        <span><i class="fa fa-code-fork"></i> 6 Forks</span>
+                        <span><i class="fa fa-download"></i> 7 Releases</span>
+                    </div>
+                </div>
+                <div class="col-lg-5 project-card-sidebar">
+                    <div class="project-sidebar-inner">
+                        <div class="project-sidebar-graphic alttab-graphic">
+                            <div class="mock-switcher">
+                                <div class="mock-switcher-search">
+                                    <i class="fa fa-search me-2" style="opacity:0.5;"></i>
+                                    <span class="mock-typing">code_</span>
+                                </div>
+                                <div class="mock-switcher-item active">
+                                    <i class="fa fa-file-code me-2"></i> Visual Studio Code
+                                </div>
+                                <div class="mock-switcher-item">
+                                    <i class="fa fa-terminal me-2"></i> Windows Terminal
+                                </div>
+                                <div class="mock-switcher-item">
+                                    <i class="fa fa-globe me-2"></i> Chrome
+                                </div>
+                                <div class="mock-switcher-item">
+                                    <i class="fa fa-folder me-2"></i> File Explorer
+                                </div>
+                            </div>
+                            <div class="mock-kbd-row">
+                                <span class="mock-kbd">Alt</span>
+                                <span class="mock-kbd-plus">+</span>
+                                <span class="mock-kbd">Tab</span>
+                            </div>
+                        </div>
+                        <div class="project-sidebar-links">
+                            <a href="https://github.com/lokeshgovindu/AltTab" target="_blank" rel="noopener noreferrer" class="btn-github">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                            <a href="https://lokeshgovindu.github.io/AltTab/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fa fa-external-link-alt"></i> Project Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION: Visual Studio Extensions
+═══════════════════════════════════════════════ -->
+<section class="projects-section projects-section-alt" id="vs-extensions">
+    <div class="container">
+
+        <div class="project-section-header">
+            <div class="project-section-icon vs-icon">
+                <i class="fa fa-puzzle-piece"></i>
+            </div>
+            <div>
+                <div class="section-label" style="text-align: left;">Visual Studio IDE</div>
+                <h2 class="section-title mb-0" style="text-align: left;">Extensions &amp; Plugins</h2>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- ── PresentationAssistant ── -->
+            <div class="col-lg-6">
+                <div class="project-card h-100">
+                    <div class="project-card-accent csharp"></div>
+                    <div class="project-card-body">
+                        <span class="project-type-badge vs-extension">
+                            <i class="fa fa-puzzle-piece"></i> VS Extension
+                        </span>
+                        <h4 class="project-title">
+                            <i class="fa fa-chalkboard-teacher me-2" style="color: #7c3aed;"></i>PresentationAssistant
+                        </h4>
+                        <p class="project-description">
+                            When you're on stage delivering a live coding session, workshop, or technical demo,
+                            your keyboard shortcuts fly by in a blur — leaving your audience guessing. PresentationAssistant
+                            solves this elegantly. Every command and shortcut you invoke is displayed on screen in
+                            real time, beautifully overlaid over the IDE, so your audience follows every move
+                            without missing a beat.
+                        </p>
+                        <p class="project-description">
+                            Whether you're refactoring, navigating the editor, or stepping through a debugger,
+                            your keystrokes become a visible, educational part of the presentation. Transform
+                            passive spectators into engaged learners with zero configuration overhead.
+                        </p>
+                        <ul class="project-features">
+                            <li>Real-time overlay of keyboard shortcuts during live sessions</li>
+                            <li>Configurable display duration and visual style</li>
+                            <li>Action blocklist to suppress sensitive or internal shortcuts</li>
+                            <li>Zero friction — installs and works immediately</li>
+                        </ul>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                            <span class="tech-tag">VSIX</span>
+                            <span class="tech-tag">WPF / XAML</span>
+                            <span class="tech-tag">Visual Studio SDK</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fa fa-star"></i> 2 Stars</span>
+                            <span><i class="fa fa-code-fork"></i> 1 Fork</span>
+                            <span><i class="fa fa-tag"></i> 2 Releases</span>
+                        </div>
+                    </div>
+                    <div class="project-card-footer">
+                        <a href="https://github.com/lokeshgovindu/PresentationAssistant" target="_blank" rel="noopener noreferrer" class="btn-github">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── DependencyGraph ── -->
+            <div class="col-lg-6">
+                <div class="project-card h-100">
+                    <div class="project-card-accent csharp"></div>
+                    <div class="project-card-body">
+                        <span class="project-type-badge vs-extension">
+                            <i class="fa fa-puzzle-piece"></i> VS Extension
+                        </span>
+                        <h4 class="project-title">
+                            <i class="fa fa-project-diagram me-2" style="color: #7c3aed;"></i>DependencyGraph
+                        </h4>
+                        <p class="project-description">
+                            Large solutions with dozens of interlinked projects quickly become architectural
+                            labyrinths. DependencyGraph cuts through the complexity by generating a clean,
+                            interactive visual graph of all project dependencies within your Visual Studio
+                            solution, letting you understand the entire architecture at a single glance.
+                        </p>
+                        <p class="project-description">
+                            Drill down to the deepest transitive references, zoom in on direct project
+                            dependencies, or explore the full reference tree — all from within the IDE.
+                            Need to share the diagram? Export it to industry-standard <strong>DGML</strong>
+                            or <strong>Graphviz DOT</strong> formats for inclusion in design documents or
+                            team architecture reviews.
+                        </p>
+                        <ul class="project-features">
+                            <li>Interactive dependency graph directly inside Visual Studio</li>
+                            <li>Multiple view modes: deepest, all, or project-only references</li>
+                            <li>Export to DGML and Graphviz DOT formats</li>
+                            <li>Status bar integration showing total project count</li>
+                        </ul>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                            <span class="tech-tag">VSIX</span>
+                            <span class="tech-tag">DGML</span>
+                            <span class="tech-tag">Graphviz DOT</span>
+                            <span class="tech-tag">Visual Studio SDK</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fa fa-star"></i> 3 Stars</span>
+                            <span><i class="fa fa-code-fork"></i> 2 Forks</span>
+                            <span><i class="fa fa-tag"></i> 2 Releases</span>
+                        </div>
+                    </div>
+                    <div class="project-card-footer">
+                        <a href="https://github.com/lokeshgovindu/DependencyGraph" target="_blank" rel="noopener noreferrer" class="btn-github">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CommandPalette ── -->
+            <div class="col-lg-6">
+                <div class="project-card h-100">
+                    <div class="project-card-accent csharp"></div>
+                    <div class="project-card-body">
+                        <span class="project-type-badge vs-extension">
+                            <i class="fa fa-puzzle-piece"></i> VS Extension
+                        </span>
+                        <h4 class="project-title">
+                            <i class="fa fa-terminal me-2" style="color: #7c3aed;"></i>CommandPalette
+                        </h4>
+                        <p class="project-description">
+                            Developers who have used VS Code, Sublime Text, or any JetBrains IDE know the
+                            sheer joy of a Command Palette — type a few characters and any action in the editor
+                            is instantly at your fingertips. CommandPalette brings that same experience to
+                            Visual Studio, an IDE renowned for its power but notorious for its labyrinthine menus.
+                        </p>
+                        <p class="project-description">
+                            Invoke the palette with a single shortcut, start typing, and watch as intelligent
+                            fuzzy matching surfaces the most relevant Visual Studio commands in real time.
+                            No more hunting through nested menus or memorising dozens of keyboard shortcuts —
+                            just type what you want to do and press Enter.
+                        </p>
+                        <ul class="project-features">
+                            <li>Instant access to any Visual Studio command via a single shortcut</li>
+                            <li>Intelligent fuzzy matching surfaces commands as you type</li>
+                            <li>Persists and recalls the previous command for quick re-execution</li>
+                            <li>Lightweight, keyboard-first design with minimal distraction</li>
+                        </ul>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                            <span class="tech-tag">VSIX</span>
+                            <span class="tech-tag">WPF / XAML</span>
+                            <span class="tech-tag">MVVM</span>
+                            <span class="tech-tag">Visual Studio SDK</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fa fa-star"></i> 1 Star</span>
+                            <span><i class="fa fa-code-fork"></i> 0 Forks</span>
+                        </div>
+                    </div>
+                    <div class="project-card-footer">
+                        <a href="https://github.com/lokeshgovindu/CommandPalette" target="_blank" rel="noopener noreferrer" class="btn-github">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── GoToRecentFile ── -->
+            <div class="col-lg-6">
+                <div class="project-card h-100">
+                    <div class="project-card-accent csharp"></div>
+                    <div class="project-card-body">
+                        <span class="project-type-badge vs-extension">
+                            <i class="fa fa-puzzle-piece"></i> VS Extension
+                        </span>
+                        <h4 class="project-title">
+                            <i class="fa fa-history me-2" style="color: #7c3aed;"></i>GoToRecentFile
+                        </h4>
+                        <p class="project-description">
+                            In large codebases, you're constantly bouncing between the same handful of files —
+                            the ones you edited this morning, the header you've been tweaking, the test file
+                            always open alongside the implementation. GoToRecentFile gives you a fast, searchable
+                            interface to jump directly to any recently opened file without ever lifting your
+                            hands from the keyboard.
+                        </p>
+                        <p class="project-description">
+                            Built with a clean, theme-aware UI that respects Visual Studio's colour themes
+                            — light or dark — it blends seamlessly into the IDE and stays out of your way
+                            until you need it. Forget hunting through Solution Explorer or clicking through
+                            the native "Recent Files" submenu. Your most-visited files are always one
+                            keystroke away.
+                        </p>
+                        <ul class="project-features">
+                            <li>Searchable recent files list accessible via a keyboard shortcut</li>
+                            <li>Respects Visual Studio's light and dark colour themes</li>
+                            <li>Deduplication — no repeated entries for the same file</li>
+                            <li>Seamless VSIX integration with the Visual Studio IDE</li>
+                        </ul>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                            <span class="tech-tag">VSIX</span>
+                            <span class="tech-tag">WPF / XAML</span>
+                            <span class="tech-tag">Visual Studio SDK</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fa fa-star"></i> 0 Stars</span>
+                            <span><i class="fa fa-code-fork"></i> 0 Forks</span>
+                            <span><i class="fa fa-tag"></i> Recently Released</span>
+                        </div>
+                    </div>
+                    <div class="project-card-footer">
+                        <a href="https://github.com/lokeshgovindu/GoToRecentFile" target="_blank" rel="noopener noreferrer" class="btn-github">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /row -->
+    </div>
+</section>
+
+<!-- ───── CALL TO ACTION ───── -->
+<section class="projects-cta-section">
+    <div class="container">
+        <div class="projects-cta-card">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-8">
+                    <div class="section-label" style="text-align:left; color: rgba(255,255,255,0.7);">More on GitHub</div>
+                    <h3 style="color:#ffffff; font-weight:700; margin-bottom:0.5rem;">Want to see more?</h3>
+                    <p style="color:rgba(255,255,255,0.82); margin-bottom:0; line-height:1.75;">
+                        These are just the highlights. Head over to my GitHub profile to explore all
+                        my repositories, browse the source code, open issues, or contribute.
+                        All projects are open source and contributions are always welcome.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="https://github.com/lokeshgovindu" target="_blank" rel="noopener noreferrer" class="btn-github-cta">
+                        <i class="fab fa-github me-2"></i> github.com/lokeshgovindu
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div class="container">
+        <p class="mb-0">&copy; 2026 <a href="/">Lokesh Govindu</a> &mdash; Productivity Tools, Tips &amp; Tricks</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

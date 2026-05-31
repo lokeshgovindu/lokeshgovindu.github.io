@@ -1,52 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Windows Tips | Dev Tips &amp; Tricks</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css">
-    <link rel="icon" type="image/jpeg" href="/resources/LoGoAvatar.jpg">
-</head>
-
-<body>
-
-<!-- ───── NAVBAR ───── -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-            <i class="fa fa-home me-2"></i>Home
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
-                aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="/visual-studio/">Visual Studio</a></li>
-                <li class="nav-item"><a class="nav-link" href="/cmd-prompt/">CMD Prompt</a></li>
-                <li class="nav-item"><a class="nav-link active" href="/general/">Windows</a></li>
-                <li class="nav-item"><a class="nav-link" href="/my-work/">My Work</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about-me/">About Me</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- ───── PAGE HEADER ───── -->
-<div class="page-header">
-    <div class="container">
-        <div class="ph-label">Productivity</div>
-        <h1>Windows Tips</h1>
-        <p>Power tools, file explorers, screenshot apps, FFmpeg, and essential Windows tricks to supercharge your daily workflow.</p>
-    </div>
-</div>
+---
+title: Windows Tips
+nav: windows
+ph_label: Productivity
+heading: Windows Tips
+ph_sub: Power tools, file explorers, screenshot apps, FFmpeg, and essential Windows tricks to supercharge your daily workflow.
+---
 
 <!-- ───── WINDOWS POWER TOOLS ───── -->
-<section class="tips-section-alt">
+<section id="power-tools" class="tips-section-alt">
     <div class="container">
         <div class="text-center mb-5">
             <div class="section-label">Must-Have Software</div>
@@ -56,7 +17,7 @@
         </div>
 
         <!-- PowerToys -->
-        <div class="tool-overview-card mb-4">
+        <div id="powertoys" class="tool-overview-card mb-4">
             <div class="row g-4 align-items-start">
                 <div class="col-lg-5">
                     <div class="d-flex align-items-center gap-3 mb-3">
@@ -86,7 +47,7 @@
         </div>
 
         <!-- SysInternals -->
-        <div class="tool-overview-card mb-4">
+        <div id="sysinternals" class="tool-overview-card mb-4">
             <div class="row g-4 align-items-start">
                 <div class="col-lg-5">
                     <div class="d-flex align-items-center gap-3 mb-3">
@@ -113,7 +74,7 @@
         </div>
 
         <!-- SystemInformer -->
-        <div class="tool-overview-card">
+        <div id="systeminformer" class="tool-overview-card">
             <div class="row g-4 align-items-start">
                 <div class="col-lg-5">
                     <div class="d-flex align-items-center gap-3 mb-3">
@@ -142,7 +103,7 @@
 </section>
 
 <!-- ───── FILE EXPLORERS ───── -->
-<section class="tips-section">
+<section id="file-explorers" class="tips-section">
     <div class="container">
         <div class="text-center mb-5">
             <div class="section-label">Beyond File Explorer</div>
@@ -192,7 +153,7 @@
 </section>
 
 <!-- ───── SCREENSHOT TOOLS ───── -->
-<section class="tips-section-alt">
+<section id="screenshot-tools" class="tips-section-alt">
     <div class="container">
         <div class="text-center mb-5">
             <div class="section-label">Screen Capture</div>
@@ -236,7 +197,7 @@
 </section>
 
 <!-- ───── VIDEO & MEDIA ───── -->
-<section class="tips-section">
+<section id="video-media" class="tips-section">
     <div class="container">
         <div class="text-center mb-5">
             <div class="section-label">Video &amp; Media</div>
@@ -246,7 +207,7 @@
         </div>
 
         <!-- yt-dlp -->
-        <div class="tool-overview-card mb-4">
+        <div id="yt-dlp" class="tool-overview-card mb-4">
             <div class="row g-4 align-items-start">
                 <div class="col-lg-5">
                     <div class="d-flex align-items-center gap-3 mb-3">
@@ -267,6 +228,7 @@
                 </div>
                 <div class="col-lg-7">
                     <p class="section-label mb-2" style="text-align:left">Common Commands</p>
+{% raw %}
 <pre class="cmd-code-block"><span class="cmt"># Download best quality (auto-merges video + audio)</span>
 yt-dlp URL
 
@@ -287,12 +249,13 @@ yt-dlp --write-subs --sub-lang en --embed-subs URL
 
 <span class="cmt"># Throttle download speed (e.g. 2 MB/s)</span>
 yt-dlp --rate-limit 2M URL</pre>
+{% endraw %}
                 </div>
             </div>
         </div>
 
         <!-- FFmpeg -->
-        <div class="tool-overview-card">
+        <div id="ffmpeg" class="tool-overview-card">
             <div class="row g-4 align-items-start">
                 <div class="col-lg-5">
                     <div class="d-flex align-items-center gap-3 mb-3">
@@ -340,7 +303,7 @@ ffmpeg -i input.mp4 -vf "scale=1920:1080" output.mp4</pre>
 </section>
 
 <!-- ───── WINDOWS TIPS ───── -->
-<section class="tips-section-alt">
+<section id="windows-tips" class="tips-section-alt">
     <div class="container">
         <div class="text-center mb-5">
             <div class="section-label">Built-in Features</div>
@@ -410,7 +373,7 @@ ffmpeg -i input.mp4 -vf "scale=1920:1080" output.mp4</pre>
 </section>
 
 <!-- ───── DEVELOPER BEST PRACTICES ───── -->
-<section class="tips-section">
+<section id="best-practices" class="tips-section">
     <div class="container">
         <div class="text-center mb-5">
             <div class="section-label">Universal Habits</div>
@@ -519,16 +482,3 @@ ffmpeg -i input.mp4 -vf "scale=1920:1080" output.mp4</pre>
         </div>
     </div>
 </section>
-
-<!-- ───── FOOTER ───── -->
-<footer>
-    <div class="container">
-        <p class="mb-0">&copy; 2026 <a href="/">Lokesh Govindu</a> &mdash; Productivity Tools, Tips &amp; Tricks</p>
-    </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
-
