@@ -2,10 +2,16 @@ title: Productivity Tools, Tips & Tricks
 author: Lokesh Govindu
 email: lokeshgovindu@gmail.com
 description: Curated productivity tips, shortcuts, and workflows for developers — Visual Studio, CMD Prompt, Windows, and more.
+url: "https://lokeshgovindu.github.io"
+baseurl: ""
 
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+# Plugins (bundled with the github-pages gem)
+plugins:
+  - jekyll-sitemap
 
 exclude:
   - README.md

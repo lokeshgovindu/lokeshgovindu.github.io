@@ -715,6 +715,8 @@ footer a:hover { color: #ffffff; }
 }
 
 .mock-typing {
+    border-right: 2px solid #c7d2fe;
+    padding-right: 2px;
     animation: blink-cursor 1s step-end infinite;
 }
 
