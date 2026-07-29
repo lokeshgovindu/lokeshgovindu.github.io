@@ -1298,6 +1298,40 @@ footer a:hover { color: #ffffff; }
 }
 
 /* ================================================================
+   Topic Teaser Cards & Detail Pages
+   ================================================================ */
+
+a.ext-card,
+a.project-card,
+a.project-card-featured {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.tool-overview-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.ext-card .ext-link-hint {
+    margin-top: auto;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--muted-text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.back-link:hover { color: var(--primary); }
+
+/* ================================================================
    Comments (giscus)
    ================================================================ */
 

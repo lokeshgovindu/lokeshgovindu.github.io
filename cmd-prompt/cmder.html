@@ -1,0 +1,74 @@
+---
+title: Cmder
+nav: cmd-prompt
+ph_label: Better Console
+heading: Cmder
+ph_sub: A portable, feature-rich console emulator that replaces plain Windows CMD.
+comments: true
+---
+
+<section class="tips-section">
+    <div class="container">
+        <a href="{{ '/cmd-prompt/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to CMD Prompt Tools</a>
+
+        <div class="tool-overview-card">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon cmd"><i class="fa fa-terminal"></i></div>
+                        <div>
+                            <div class="tool-card-name">Cmder</div>
+                            <a class="ext-link" href="https://cmder.app/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>cmder.app</a>
+                        </div>
+                    </div>
+                    <p>Cmder is a portable console emulator for Windows built on top of <strong>ConEmu</strong> and enhanced with <strong>Clink</strong>. It ships with the Monokai color scheme, a beautiful lambda (λ) prompt, and optionally Git for Windows — giving you Unix commands like <code>ls</code>, <code>cat</code>, and <code>grep</code> right away. No installation needed: unzip, run, and carry it on a USB stick or sync it to the cloud.</p>
+                    <ul class="feature-list mt-3">
+                        <li><i class="fa fa-circle-check"></i><span>Multi-tab terminal — CMD, PowerShell, Bash, or any custom shell in one window</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Beautiful Monokai theme with a λ prompt out of the box</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Full Git for Windows support — Unix tools available in PATH</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Fully portable — settings, aliases, and history go wherever you go</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Right-click paste, mouse selection, and scrollback buffer</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <p class="section-label mb-2" style="text-align:left">Keyboard Shortcuts</p>
+                    <table class="shortcut-table">
+                        <tr><td><span class="tip-shortcut">Win + Alt + P</span></td><td>Open Settings / Preferences</td></tr>
+                        <tr><td><span class="tip-shortcut">Ctrl + T</span></td><td>New tab dialog (choose shell type)</td></tr>
+                        <tr><td><span class="tip-shortcut">Ctrl + W</span></td><td>Close current tab</td></tr>
+                        <tr><td><span class="tip-shortcut">Shift + Alt + 1</span></td><td>Open new CMD tab instantly</td></tr>
+                        <tr><td><span class="tip-shortcut">Shift + Alt + 2</span></td><td>Open new PowerShell tab instantly</td></tr>
+                        <tr><td><span class="tip-shortcut">Alt + Enter</span></td><td>Toggle fullscreen</td></tr>
+                        <tr><td><span class="tip-shortcut">Ctrl + R</span></td><td>Incremental history search</td></tr>
+                        <tr><td><span class="tip-shortcut">Ctrl + Alt + U</span></td><td>Traverse up the directory tree</td></tr>
+                        <tr><td><span class="tip-shortcut">Ctrl + `</span></td><td>Global summon / hide from taskbar</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-list-ul"></i></div>
+                    <h5>Tasks — Custom Shell Profiles</h5>
+                    <p>Tasks define what command runs when you open a new tab. Go to <em>Settings → Startup → Tasks</em> to create profiles for Git Bash, WSL, admin CMD, or any custom shell — each with its own working directory, icon, and hotkey.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-at"></i></div>
+                    <h5>Aliases</h5>
+                    <p>Create short aliases for long commands. Edit <code>%CMDER_ROOT%\config\user_aliases.cmd</code> and add lines like <code>g=git $*</code> or <code>ll=ls -la --color $*</code>. Use <code>$*</code> to forward all arguments to the target command.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-user-gear"></i></div>
+                    <h5>Startup Profile</h5>
+                    <p>Commands placed in <code>%CMDER_ROOT%\config\user_profile.cmd</code> run automatically each time a new tab opens. Use it to set environment variables, activate virtual environments, or initialise Oh My Posh.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

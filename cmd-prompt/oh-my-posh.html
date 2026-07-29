@@ -1,0 +1,101 @@
+---
+title: Oh My Posh
+nav: cmd-prompt
+ph_label: Prompt Engine
+heading: Oh My Posh
+ph_sub: Transform your terminal prompt into an intelligent, context-aware display.
+comments: true
+---
+
+<section class="tips-section">
+    <div class="container">
+        <a href="{{ '/cmd-prompt/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to CMD Prompt Tools</a>
+
+        <div class="tool-overview-card">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon cmd"><i class="fa fa-palette"></i></div>
+                        <div>
+                            <div class="tool-card-name">Oh My Posh</div>
+                            <a class="ext-link" href="https://ohmyposh.dev/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>ohmyposh.dev</a>
+                        </div>
+                    </div>
+                    <p>Oh My Posh is a blazing-fast prompt theme engine built with Go. It works with <strong>any shell</strong> — CMD, PowerShell, Bash, Zsh, Fish — and on any OS. With over 180 built-in segment types, your prompt shows Git status, active language versions, cloud context, and much more.</p>
+                    <p class="mt-2">Paired with <strong>Cmder + Clink</strong>, it gives Windows CMD the intelligent, context-aware prompt that Linux developers have enjoyed for years — you know your branch state before typing a single command.</p>
+                    <ul class="feature-list mt-3">
+                        <li><i class="fa fa-circle-check"></i><span>50+ built-in themes, fully customisable via a JSON config file</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Git segment: branch name, ahead/behind count, staged, modified, untracked</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Works in CMD, PowerShell, Bash, Zsh — one config, everywhere</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Built with Go — near-instant render even with complex multi-segment configs</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <p class="section-label mb-2" style="text-align:left">Git Prompt — Before &amp; After</p>
+                    <div class="omp-terminal">
+                        <div class="hv-header">
+                            <span class="hv-dot hv-red"></span>
+                            <span class="hv-dot hv-yellow"></span>
+                            <span class="hv-dot hv-green"></span>
+                            <span class="hv-title-bar">Cmder — cmd.exe</span>
+                        </div>
+                        <div class="omp-terminal-body">
+                            <div class="omp-comment"># Plain cmd.exe — no context, no colour</div>
+                            <div class="omp-plain-prompt mb-3">C:\projects\myapp&gt; _</div>
+
+                            <div class="omp-comment"># Oh My Posh — branch is clean, in sync with remote</div>
+                            <div class="omp-prompt-line mb-1">
+                                <span class="omp-seg omp-path"><i class="fa fa-folder-open me-1"></i>~/projects/myapp</span><span class="omp-seg omp-branch"><i class="fab fa-git-alt me-1"></i> main</span><span class="omp-seg omp-clean"> ✓ </span><span class="omp-arrow">λ </span><span style="color:#e2e8f0">git log --oneline</span>
+                            </div>
+
+                            <div class="omp-comment mt-2"># 1 commit ahead · 2 modified · 1 untracked file</div>
+                            <div class="omp-prompt-line mb-1">
+                                <span class="omp-seg omp-path"><i class="fa fa-folder-open me-1"></i>~/projects/myapp</span><span class="omp-seg omp-branch"><i class="fab fa-git-alt me-1"></i> feature/login</span><span class="omp-seg omp-dirty"> ↑1 ~2 ?1 </span><span class="omp-arrow">λ </span><span style="color:#e2e8f0">git diff</span>
+                            </div>
+
+                            <div class="omp-comment mt-2"># 3 files staged and ready to commit</div>
+                            <div class="omp-prompt-line">
+                                <span class="omp-seg omp-path"><i class="fa fa-folder-open me-1"></i>~/projects/myapp</span><span class="omp-seg omp-branch"><i class="fab fa-git-alt me-1"></i> feature/login</span><span class="omp-seg omp-staged"> +3 staged </span><span class="omp-arrow">λ </span><span style="color:#e2e8f0">git commit -m "add login form"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="omp-step-num">1</div>
+                    <h5>Install Oh My Posh</h5>
+                    <p>One-line setup on Windows using winget:</p>
+                    <code class="cmd-code">winget install JanDeDobbeleer.OhMyPosh</code>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="omp-step-num">2</div>
+                    <h5>Install a Nerd Font</h5>
+                    <p>Segment icons require a patched font. Install one, then set it in Cmder (<em>Win+Alt+P → Main → Font</em>):</p>
+                    <code class="cmd-code">oh-my-posh font install</code>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="omp-step-num">3</div>
+                    <h5>Configure in Cmder</h5>
+                    <p>Add to <code>%CMDER_ROOT%\config\user_profile.cmd</code> to initialise on every new tab:</p>
+                    <code class="cmd-code">@for /f "delims=" %%i in ('oh-my-posh init cmd') do @%%i</code>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="tip-card">
+                    <div class="omp-step-num">4</div>
+                    <h5>Choose a Theme</h5>
+                    <p>Browse 50+ themes at <a href="https://ohmyposh.dev/docs/themes" target="_blank" rel="noopener">ohmyposh.dev/docs/themes</a>, then point to your chosen file:</p>
+                    <code class="cmd-code">oh-my-posh init cmd --config "%POSH_THEMES_PATH%\jandedobbeleer.omp.json"</code>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

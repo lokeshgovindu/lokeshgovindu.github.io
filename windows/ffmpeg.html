@@ -1,0 +1,59 @@
+---
+title: FFmpeg
+nav: windows
+ph_label: Video & Media
+heading: FFmpeg
+ph_sub: The Swiss Army knife of video and audio processing — convert, compress, trim, merge, stream, and analyse virtually any media format.
+comments: true
+---
+
+<section class="tips-section">
+    <div class="container">
+        <a href="{{ '/windows/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to Windows Tips</a>
+
+        <div class="tool-overview-card">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon gen"><i class="fa fa-film"></i></div>
+                        <div>
+                            <div class="tool-card-name">FFmpeg</div>
+                            <a class="ext-link" href="https://ffmpeg.org/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>ffmpeg.org</a>
+                        </div>
+                    </div>
+                    <p>FFmpeg is the Swiss Army knife of video and audio processing. It can convert, compress, trim, merge, stream, and analyse virtually any media format. It runs entirely on the command line and is used behind the scenes by VLC, Chrome, and most video software.</p>
+                    <code class="cmd-code">winget install Gyan.FFmpeg</code>
+                    <ul class="feature-list mt-3">
+                        <li><i class="fa fa-circle-check"></i><span>Supports virtually every video and audio codec and container format</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Hardware-accelerated encoding via NVENC, QuickSync, AMF</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Complex filter graph for overlay, scale, crop, and subtitle burn-in</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Used internally by yt-dlp to merge separate video and audio streams</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <p class="section-label mb-2" style="text-align:left">Common Commands</p>
+<pre class="cmd-code-block"><span class="cmt"># Convert between formats (auto-detects codec from extension)</span>
+ffmpeg -i input.mkv output.mp4
+
+<span class="cmt"># Extract audio track as MP3</span>
+ffmpeg -i input.mp4 -vn -acodec libmp3lame output.mp3
+
+<span class="cmt"># Compress video (higher CRF = smaller file, lower quality)</span>
+ffmpeg -i input.mp4 -crf 28 output.mp4
+
+<span class="cmt"># Trim: start at 1:00, cut 2 minutes (no re-encode)</span>
+ffmpeg -i input.mp4 -ss 00:01:00 -t 00:02:00 -c copy out.mp4
+
+<span class="cmt"># Merge separate video and audio files</span>
+ffmpeg -i video.mp4 -i audio.m4a -c copy output.mp4
+
+<span class="cmt"># Create an animated GIF from a video clip</span>
+ffmpeg -i input.mp4 -vf "fps=15,scale=640:-1" output.gif
+
+<span class="cmt"># Scale video to 1920x1080</span>
+ffmpeg -i input.mp4 -vf "scale=1920:1080" output.mp4</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

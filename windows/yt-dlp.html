@@ -1,0 +1,61 @@
+---
+title: yt-dlp
+nav: windows
+ph_label: Video & Media
+heading: yt-dlp
+ph_sub: The most actively maintained fork of youtube-dl — downloads video and audio from YouTube and 1000+ other sites.
+comments: true
+---
+
+<section class="tips-section">
+    <div class="container">
+        <a href="{{ '/windows/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to Windows Tips</a>
+
+        <div class="tool-overview-card">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon gen"><i class="fab fa-youtube"></i></div>
+                        <div>
+                            <div class="tool-card-name">yt-dlp</div>
+                            <a class="ext-link" href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>github.com/yt-dlp/yt-dlp</a>
+                        </div>
+                    </div>
+                    <p>yt-dlp is the most actively maintained fork of youtube-dl. It downloads video and audio from YouTube and 1000+ other sites, supports full playlists, chapters, subtitles, metadata embedding, and SponsorBlock integration. Works best with FFmpeg installed alongside it.</p>
+                    <code class="cmd-code">winget install yt-dlp.yt-dlp</code>
+                    <ul class="feature-list mt-3">
+                        <li><i class="fa fa-circle-check"></i><span>Downloads from YouTube, Vimeo, Twitter/X, TikTok, and 1,000+ other sites</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Full playlist &amp; channel downloads with configurable output templates</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>SponsorBlock integration — automatically skip or cut sponsor segments</span></li>
+                        <li><i class="fa fa-circle-check"></i><span>Embeds metadata, thumbnails, and subtitles into the downloaded file</span></li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <p class="section-label mb-2" style="text-align:left">Common Commands</p>
+{% raw %}
+<pre class="cmd-code-block"><span class="cmt"># Download best quality (auto-merges video + audio)</span>
+yt-dlp URL
+
+<span class="cmt"># Best quality capped at 1080p</span>
+yt-dlp -f "bestvideo[height&lt;=1080]+bestaudio" URL
+
+<span class="cmt"># Audio only — save as MP3</span>
+yt-dlp -x --audio-format mp3 URL
+
+<span class="cmt"># Download entire playlist</span>
+yt-dlp --yes-playlist "PLAYLIST_URL"
+
+<span class="cmt"># List all available formats/resolutions</span>
+yt-dlp -F URL
+
+<span class="cmt"># Embed English subtitles into the file</span>
+yt-dlp --write-subs --sub-lang en --embed-subs URL
+
+<span class="cmt"># Throttle download speed (e.g. 2 MB/s)</span>
+yt-dlp --rate-limit 2M URL</pre>
+{% endraw %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

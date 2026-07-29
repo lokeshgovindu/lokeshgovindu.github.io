@@ -6,43 +6,43 @@ const SITE_SEARCH_DATA = [
   // ═══════════════════════════════════════════════════════════
   { title: "Align Assignments", section: "Visual Studio", category: "Extension",
     content: "Automatically aligns variable assignments and declarations across multiple lines for cleaner, more readable code.",
-    tags: ["align", "format", "assignments", "code style"], url: "/visual-studio/#ext-align" },
+    tags: ["align", "format", "assignments", "code style"], url: "/visual-studio/align-assignments/" },
 
   { title: "Customize VS Window Title", section: "Visual Studio", category: "Extension",
     content: "Replace the default Visual Studio title bar with a custom template showing solution name, Git branch, active configuration, and more.",
-    tags: ["title bar", "window title", "customize", "branch", "solution"], url: "/visual-studio/#ext-window-title" },
+    tags: ["title bar", "window title", "customize", "branch", "solution"], url: "/visual-studio/customize-window-title/" },
 
   { title: "Dependency Graph", section: "Visual Studio", category: "Extension",
     content: "Visualise project and file dependencies as an interactive graph. Identify circular dependencies and understand the architecture at a glance.",
-    tags: ["dependency", "graph", "visualization", "architecture", "circular"], url: "/visual-studio/#ext-dependency-graph" },
+    tags: ["dependency", "graph", "visualization", "architecture", "circular"], url: "/visual-studio/dependency-graph/" },
 
   { title: "GitBlame", section: "Visual Studio", category: "Extension",
     content: "Inline git blame annotations show who last modified each line and when, directly in the editor margin. No switching to a separate window.",
-    tags: ["git", "blame", "annotation", "author", "version control"], url: "/visual-studio/#ext-gitblame" },
+    tags: ["git", "blame", "annotation", "author", "version control"], url: "/visual-studio/gitblame/" },
 
   { title: "IntelliCommand", section: "Visual Studio", category: "Extension",
     content: "Shows a popup listing keyboard shortcuts for every command you execute, helping you learn and memorize Visual Studio shortcuts over time.",
-    tags: ["shortcuts", "keyboard", "learn", "commands", "intellicommand"], url: "/visual-studio/#ext-intellicommand" },
+    tags: ["shortcuts", "keyboard", "learn", "commands", "intellicommand"], url: "/visual-studio/intellicommand/" },
 
   { title: "Presentation Assistant", section: "Visual Studio", category: "Extension",
     content: "Displays the name and shortcut of every command you execute in an on-screen overlay — perfect for demos, screen recordings, and pair programming.",
-    tags: ["presentation", "demo", "screencast", "shortcut display", "overlay"], url: "/visual-studio/#ext-presentation-assistant" },
+    tags: ["presentation", "demo", "screencast", "shortcut display", "overlay"], url: "/visual-studio/presentation-assistant/" },
 
   { title: "Visual Commander", section: "Visual Studio", category: "Extension",
     content: "Add custom commands and macros to Visual Studio using C# or VB.NET scripts. Automate repetitive tasks without writing a full extension.",
-    tags: ["macro", "automation", "script", "command", "vcmd"], url: "/visual-studio/#ext-visual-commander" },
+    tags: ["macro", "automation", "script", "command", "vcmd"], url: "/visual-studio/visual-commander/" },
 
   { title: "VSColorOutput64", section: "Visual Studio", category: "Extension",
     content: "Color-codes the Output window by message type — errors in red, warnings in yellow, success in green — making long build logs easy to scan.",
-    tags: ["color", "output window", "build log", "errors", "warnings"], url: "/visual-studio/#ext-vscoloroutput" },
+    tags: ["color", "output window", "build log", "errors", "warnings"], url: "/visual-studio/vscoloroutput64/" },
 
   { title: "VSDoxyHighlighter", section: "Visual Studio", category: "Extension",
     content: "Syntax highlighting for Doxygen documentation comments in C, C++, and C# files. Makes @param, @return and other tags visually distinct.",
-    tags: ["doxygen", "documentation", "highlight", "comments", "c++", "c#"], url: "/visual-studio/#ext-vsdoxy" },
+    tags: ["doxygen", "documentation", "highlight", "comments", "c++", "c#"], url: "/visual-studio/vsdoxyhighlighter/" },
 
   { title: "Entrian Inline Watch", section: "Visual Studio", category: "Extension",
     content: "Shows variable values inline in the editor during debugging — like a permanent Watch window built into the code view itself.",
-    tags: ["debug", "watch", "variable", "inline", "debugger"], url: "/visual-studio/#ext-entrian" },
+    tags: ["debug", "watch", "variable", "inline", "debugger"], url: "/visual-studio/entrian-inline-watch/" },
 
   // ═══════════════════════════════════════════════════════════
   //  VISUAL STUDIO — Keyboard Shortcuts
@@ -135,107 +135,107 @@ const SITE_SEARCH_DATA = [
   // ═══════════════════════════════════════════════════════════
   { title: "Cmder", section: "CMD Prompt", category: "Tool",
     content: "Portable console emulator for Windows built on ConEmu + Clink. Multi-tab terminal with Monokai theme, Git for Windows, Unix commands, aliases, and custom tasks.",
-    tags: ["cmder", "terminal", "console", "tabs", "portable", "conemu"], url: "/cmd-prompt/#cmder" },
+    tags: ["cmder", "terminal", "console", "tabs", "portable", "conemu"], url: "/cmd-prompt/cmder/" },
 
   { title: "Clink — GNU Readline for CMD", section: "CMD Prompt", category: "Tool",
     content: "Injects GNU Readline into cmd.exe. Adds inline auto-suggestions, persistent history (F7), rich Tab completion, directory shortcuts, context-aware sub-command listing, and Lua scripting. Bundled in Cmder.",
-    tags: ["clink", "autocomplete", "readline", "history", "completion", "tab", "cmd"], url: "/cmd-prompt/#clink" },
+    tags: ["clink", "autocomplete", "readline", "history", "completion", "tab", "cmd"], url: "/cmd-prompt/clink/" },
 
   { title: "Oh My Posh — Prompt Theme Engine", section: "CMD Prompt", category: "Tool",
     content: "Blazing-fast prompt engine for any shell. Displays Git branch, ahead/behind count, staged/modified/untracked files, language versions, and more in a beautiful colored prompt. Works in CMD, PowerShell, Bash, and more.",
-    tags: ["oh my posh", "prompt", "theme", "git", "terminal", "powershell", "bash"], url: "/cmd-prompt/#oh-my-posh" },
+    tags: ["oh my posh", "prompt", "theme", "git", "terminal", "powershell", "bash"], url: "/cmd-prompt/oh-my-posh/" },
 
   // ═══════════════════════════════════════════════════════════
   //  WINDOWS — Power Tools
   // ═══════════════════════════════════════════════════════════
   { title: "Microsoft PowerToys", section: "Windows", category: "Tool",
     content: "Free open-source utility suite from Microsoft. FancyZones, PowerToys Run (Alt+Space), Color Picker, File Locksmith, Image Resizer, PowerRename, Text Extractor, Peek, Keyboard Manager, Mouse utilities and more.",
-    tags: ["powertoys", "microsoft", "utilities", "productivity", "fancyzones", "windows"], url: "/windows/#powertoys" },
+    tags: ["powertoys", "microsoft", "utilities", "productivity", "fancyzones", "windows"], url: "/windows/powertoys/" },
 
   { title: "FancyZones — Custom Window Snap", section: "Windows", category: "Tool",
     content: "Define custom window snap zones beyond Windows' default corners. Drag windows while holding Shift to snap into your custom grid layouts. Part of PowerToys.",
-    tags: ["fancy zones", "snap", "window layout", "grid", "powertoys", "windows"], url: "/windows/#powertoys" },
+    tags: ["fancy zones", "snap", "window layout", "grid", "powertoys", "windows"], url: "/windows/powertoys/" },
 
   { title: "PowerToys Run — Quick Launcher", section: "Windows", category: "Tool",
     content: "Alt+Space opens a fast launcher to find apps, files, URLs, and evaluate calculations — like macOS Spotlight, built into Windows. Part of PowerToys.",
-    tags: ["launcher", "alt+space", "spotlight", "quick launch", "search", "powertoys"], url: "/windows/#powertoys" },
+    tags: ["launcher", "alt+space", "spotlight", "quick launch", "search", "powertoys"], url: "/windows/powertoys/" },
 
   { title: "Color Picker (PowerToys)", section: "Windows", category: "Tool",
     content: "Win+Shift+C — pick any color on screen and instantly copy its HEX, RGB, or HSL value to the clipboard. Part of PowerToys.",
-    tags: ["color picker", "hex", "rgb", "hsl", "design", "powertoys"], url: "/windows/#powertoys" },
+    tags: ["color picker", "hex", "rgb", "hsl", "design", "powertoys"], url: "/windows/powertoys/" },
 
   { title: "PowerRename", section: "Windows", category: "Tool",
     content: "Bulk rename files using regular expressions directly from the right-click context menu. Live preview shows changes before committing. Part of PowerToys.",
-    tags: ["rename", "batch rename", "regex", "files", "bulk", "powertoys"], url: "/windows/#powertoys" },
+    tags: ["rename", "batch rename", "regex", "files", "bulk", "powertoys"], url: "/windows/powertoys/" },
 
   { title: "Text Extractor (PowerToys)", section: "Windows", category: "Tool",
     content: "Win+Shift+T — OCR any region of your screen and copy the extracted text to the clipboard. Supports multiple languages. Part of PowerToys.",
-    tags: ["ocr", "text extractor", "screenshot text", "copy text", "powertoys"], url: "/windows/#powertoys" },
+    tags: ["ocr", "text extractor", "screenshot text", "copy text", "powertoys"], url: "/windows/powertoys/" },
 
   { title: "Sysinternals Suite", section: "Windows", category: "Tool",
     content: "Advanced Windows system utilities from Microsoft. Process Explorer, Process Monitor, Autoruns, TCPView, PsExec, BgInfo. Run live from \\\\live.sysinternals.com\\tools without installing.",
-    tags: ["sysinternals", "process explorer", "process monitor", "autoruns", "tcpview", "microsoft"], url: "/windows/#sysinternals" },
+    tags: ["sysinternals", "process explorer", "process monitor", "autoruns", "tcpview", "microsoft"], url: "/windows/sysinternals/" },
 
   { title: "Process Explorer (Sysinternals)", section: "Windows", category: "Tool",
     content: "Advanced task manager showing parent-child process trees, loaded DLLs, open handles, and GPU/disk/network usage per process. Replace Task Manager entirely.",
-    tags: ["process explorer", "task manager", "processes", "dll", "handles", "sysinternals"], url: "/windows/#sysinternals" },
+    tags: ["process explorer", "task manager", "processes", "dll", "handles", "sysinternals"], url: "/windows/sysinternals/" },
 
   { title: "Process Monitor (Sysinternals)", section: "Windows", category: "Tool",
     content: "Real-time logging of every file system, registry, and network call made by every process. Indispensable for diagnosing mysterious Windows issues.",
-    tags: ["process monitor", "registry", "file system", "network", "monitoring", "sysinternals"], url: "/windows/#sysinternals" },
+    tags: ["process monitor", "registry", "file system", "network", "monitoring", "sysinternals"], url: "/windows/sysinternals/" },
 
   { title: "Autoruns (Sysinternals)", section: "Windows", category: "Tool",
     content: "Shows everything configured to auto-start with Windows — registry run keys, services, scheduled tasks, browser extensions. Disable or delete unwanted startup entries.",
-    tags: ["autoruns", "startup", "autostart", "services", "scheduled tasks", "sysinternals"], url: "/windows/#sysinternals" },
+    tags: ["autoruns", "startup", "autostart", "services", "scheduled tasks", "sysinternals"], url: "/windows/sysinternals/" },
 
   { title: "SystemInformer (Process Hacker)", section: "Windows", category: "Tool",
     content: "Formerly Process Hacker. Advanced open-source task manager with process tree, per-process CPU/memory/disk/network graphs, DLL and handle inspector, memory map viewer, and service management.",
-    tags: ["systeminformer", "process hacker", "task manager", "performance", "monitoring", "open source"], url: "/windows/#systeminformer" },
+    tags: ["systeminformer", "process hacker", "task manager", "performance", "monitoring", "open source"], url: "/windows/systeminformer/" },
 
   // ═══════════════════════════════════════════════════════════
   //  WINDOWS — File Explorer Alternatives
   // ═══════════════════════════════════════════════════════════
   { title: "xplorer2 — Dual-Pane File Manager", section: "Windows", category: "Tool",
     content: "Battle-tested dual-pane tabbed file manager with rich metadata columns, viewer pane, bookmarks, and fully keyboard-driven workflow. Lite edition is free.",
-    tags: ["file manager", "dual pane", "xplorer2", "explorer alternative", "tabs"], url: "/windows/#file-explorers" },
+    tags: ["file manager", "dual pane", "xplorer2", "explorer alternative", "tabs"], url: "/windows/xplorer2/" },
 
   { title: "XYplorer — Portable File Manager", section: "Windows", category: "Tool",
     content: "Fully portable dual-pane file manager with built-in scripting engine, color and visual filters, multi-rename, and breadcrumb mini-tree. No installation needed.",
-    tags: ["file manager", "dual pane", "xyplorer", "portable", "scripting", "explorer alternative"], url: "/windows/#file-explorers" },
+    tags: ["file manager", "dual pane", "xyplorer", "portable", "scripting", "explorer alternative"], url: "/windows/xyplorer/" },
 
   { title: "OneCommander — Modern File Manager", section: "Windows", category: "Tool",
     content: "Modern file manager with multi-pane column view, tab groups, file tagging, dark mode, and OneDrive/cloud integration. Free with optional Pro upgrade.",
-    tags: ["file manager", "onecommander", "modern", "tabs", "cloud", "explorer alternative"], url: "/windows/#file-explorers" },
+    tags: ["file manager", "onecommander", "modern", "tabs", "cloud", "explorer alternative"], url: "/windows/onecommander/" },
 
   { title: "Files App — Open Source Explorer", section: "Windows", category: "Tool",
     content: "Open-source modern replacement for Windows Explorer with fluent design, native tabs, dual pane, tags, archive support, and Git status in the UI.",
-    tags: ["files app", "file manager", "open source", "tabs", "explorer alternative"], url: "/windows/#file-explorers" },
+    tags: ["files app", "file manager", "open source", "tabs", "explorer alternative"], url: "/windows/files-app/" },
 
   // ═══════════════════════════════════════════════════════════
   //  WINDOWS — Screenshot Tools
   // ═══════════════════════════════════════════════════════════
   { title: "ShareX — Feature-Rich Screenshot Tool", section: "Windows", category: "Tool",
     content: "Free open-source screenshot powerhouse. Region, scrolling, or full-screen capture; annotation; screen recording; GIF creation; auto-upload to 80+ services. Also includes OCR and color picker.",
-    tags: ["screenshot", "screen capture", "record", "gif", "sharex", "open source", "upload"], url: "/windows/#screenshot-tools" },
+    tags: ["screenshot", "screen capture", "record", "gif", "sharex", "open source", "upload"], url: "/windows/sharex/" },
 
   { title: "Screenpresso — Screen Capture & Recording", section: "Windows", category: "Tool",
     content: "Lightweight freemium screenshot tool with built-in media library, scrolling capture, webcam overlay, and screen recording with audio.",
-    tags: ["screenshot", "screenpresso", "recording", "scrolling capture", "video"], url: "/windows/#screenshot-tools" },
+    tags: ["screenshot", "screenpresso", "recording", "scrolling capture", "video"], url: "/windows/screenpresso/" },
 
   { title: "Greenshot — Lightweight Screenshot", section: "Windows", category: "Tool",
     content: "Free open-source screenshot tool. Integrates with PrintScreen key, annotates, and exports directly to email, Office apps, a printer, or cloud. Very low resource usage.",
-    tags: ["screenshot", "greenshot", "open source", "printscreen", "lightweight", "annotation"], url: "/windows/#screenshot-tools" },
+    tags: ["screenshot", "greenshot", "open source", "printscreen", "lightweight", "annotation"], url: "/windows/greenshot/" },
 
   // ═══════════════════════════════════════════════════════════
   //  WINDOWS — Video & Media
   // ═══════════════════════════════════════════════════════════
   { title: "yt-dlp — Download YouTube Videos", section: "Windows", category: "Tool",
     content: "Download videos, audio, and full playlists from YouTube and 1,000+ other sites. Supports best-quality auto-merge, audio-only MP3, subtitles, SponsorBlock, and download speed limiting.",
-    tags: ["youtube", "download", "video", "playlist", "mp3", "yt-dlp", "audio"], url: "/windows/#yt-dlp" },
+    tags: ["youtube", "download", "video", "playlist", "mp3", "yt-dlp", "audio"], url: "/windows/yt-dlp/" },
 
   { title: "FFmpeg — Video Processing", section: "Windows", category: "Tool",
     content: "Swiss Army knife of video and audio processing. Convert formats, compress, trim, extract audio, merge streams, create animated GIFs. Used behind the scenes by yt-dlp.",
-    tags: ["ffmpeg", "video", "convert", "compress", "trim", "audio", "gif", "media"], url: "/windows/#ffmpeg" },
+    tags: ["ffmpeg", "video", "convert", "compress", "trim", "audio", "gif", "media"], url: "/windows/ffmpeg/" },
 
   // ═══════════════════════════════════════════════════════════
   //  WINDOWS — Tips & Tricks

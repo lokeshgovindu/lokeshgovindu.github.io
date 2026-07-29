@@ -17,87 +17,30 @@ comments: true
             <div class="section-divider"></div>
         </div>
 
-        <!-- PowerToys -->
-        <div id="powertoys" class="tool-overview-card mb-4">
-            <div class="row g-4 align-items-start">
-                <div class="col-lg-5">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="tip-icon gen"><i class="fa fa-layer-group"></i></div>
-                        <div>
-                            <div class="tool-card-name">Microsoft PowerToys</div>
-                            <a class="ext-link" href="https://github.com/microsoft/PowerToys" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>github.com/microsoft/PowerToys</a>
-                        </div>
-                    </div>
-                    <p>PowerToys is a free, open-source set of utilities by Microsoft that adds dozens of productivity features missing from Windows. Each utility can be enabled or disabled independently, and the whole suite is configured from a single Settings panel.</p>
-                    <code class="cmd-code">winget install Microsoft.PowerToys</code>
-                </div>
-                <div class="col-lg-7">
-                    <ul class="feature-list">
-                        <li><i class="fa fa-circle-check"></i><span><strong>FancyZones</strong> (<kbd style="font-size:0.75rem">Win + `</kbd>) — define custom window snap zones beyond the default four corners; drag windows into them while holding Shift.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>PowerToys Run</strong> (<kbd style="font-size:0.75rem">Alt + Space</kbd>) — instant launcher for apps, files, URLs, and calculations, like macOS Spotlight.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Color Picker</strong> (<kbd style="font-size:0.75rem">Win + Shift + C</kbd>) — pick any on-screen color and copy its HEX, RGB, or HSL value to the clipboard.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>File Locksmith</strong> — right-click any file to instantly see which process is locking it, without needing Process Explorer.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Image Resizer</strong> — batch-resize images from the right-click context menu using configurable presets.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>PowerRename</strong> — bulk-rename files using regular expressions; live preview shows changes before applying.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Text Extractor</strong> (<kbd style="font-size:0.75rem">Win + Shift + T</kbd>) — OCR any region of your screen and copy the text to the clipboard instantly.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Peek</strong> (<kbd style="font-size:0.75rem">Ctrl + Space</kbd>) — quick-preview a file (images, PDFs, Markdown, code) without opening its full application.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Keyboard Manager</strong> — remap any key or shortcut system-wide; useful for fixing broken laptop keys or creating global hotkeys.</span></li>
-                    </ul>
-                </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-4">
+                <a href="{{ '/windows/powertoys/' | relative_url }}" class="ext-card d-block">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-layer-group"></i></div>
+                    <h5>Microsoft PowerToys</h5>
+                    <p>Free, open-source set of utilities by Microsoft that adds dozens of productivity features missing from Windows. Each utility can be enabled or disabled independently from a single Settings panel.</p>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
-        </div>
-
-        <!-- SysInternals -->
-        <div id="sysinternals" class="tool-overview-card mb-4">
-            <div class="row g-4 align-items-start">
-                <div class="col-lg-5">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="tip-icon gen"><i class="fa fa-microscope"></i></div>
-                        <div>
-                            <div class="tool-card-name">Sysinternals Suite</div>
-                            <a class="ext-link" href="https://learn.microsoft.com/en-us/sysinternals/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>learn.microsoft.com/sysinternals</a>
-                        </div>
-                    </div>
-                    <p>Sysinternals is a collection of advanced Windows system utilities from Microsoft. Every Windows power user and sysadmin should have these in their toolkit. You can also run them live without installing — just browse <code>\\live.sysinternals.com\tools</code> from Explorer.</p>
-                    <code class="cmd-code">winget install 9P7KNL5RWT25 --source msstore</code>
-                </div>
-                <div class="col-lg-7">
-                    <ul class="feature-list">
-                        <li><i class="fa fa-circle-check"></i><span><strong>Process Explorer</strong> — far more powerful than Task Manager; shows parent-child process trees, loaded DLLs, open handles, and lets you kill or suspend processes.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Process Monitor</strong> — real-time logging of every file system, registry, and network call made by every process; indispensable for diagnosing issues.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Autoruns</strong> — shows everything configured to auto-start with Windows (registry, services, scheduled tasks, browser extensions); disable or remove unwanted entries.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>TCPView</strong> — lists all active TCP and UDP endpoints with the owning process; great for spotting unexpected network connections.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>PsExec</strong> — run commands on remote machines without installing a client; useful for IT automation and troubleshooting.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>BgInfo</strong> — renders system info (hostname, IP, uptime, OS version) directly onto your desktop wallpaper — useful in multi-VM environments.</span></li>
-                    </ul>
-                </div>
+            <div class="col-md-6 col-xl-4">
+                <a href="{{ '/windows/sysinternals/' | relative_url }}" class="ext-card d-block">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-microscope"></i></div>
+                    <h5>Sysinternals Suite</h5>
+                    <p>A collection of advanced Windows system utilities from Microsoft. Every Windows power user and sysadmin should have these in their toolkit.</p>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
-        </div>
-
-        <!-- SystemInformer -->
-        <div id="systeminformer" class="tool-overview-card">
-            <div class="row g-4 align-items-start">
-                <div class="col-lg-5">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="tip-icon gen"><i class="fa fa-chart-line"></i></div>
-                        <div>
-                            <div class="tool-card-name">SystemInformer</div>
-                            <a class="ext-link" href="https://systeminformer.sourceforge.io/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>systeminformer.sourceforge.io</a>
-                        </div>
-                    </div>
-                    <p>SystemInformer (formerly <strong>Process Hacker</strong>) is a free, open-source advanced task manager and system monitor. It gives you deeper visibility into what Windows is doing than any built-in tool, making it ideal for debugging, security research, and performance analysis.</p>
-                    <code class="cmd-code">winget install winsiderss.systeminformer</code>
-                </div>
-                <div class="col-lg-7">
-                    <ul class="feature-list">
-                        <li><i class="fa fa-circle-check"></i><span><strong>Process tree</strong> — visualise parent-child process relationships; instantly see which process spawned which.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Real-time per-process graphs</strong> — CPU, memory, disk, and network usage graphs broken down per process, not just system-wide totals.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>DLL &amp; handle inspector</strong> — see every DLL loaded and every file, registry key, mutex, and pipe that a process has open.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Network connections per process</strong> — view active TCP/UDP connections mapped to the owning process, with geolocation support.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Memory map viewer</strong> — inspect and dump memory regions of any process — useful for security research and debugging.</span></li>
-                        <li><i class="fa fa-circle-check"></i><span><strong>Service &amp; driver management</strong> — start, stop, pause, and configure Windows services and kernel-mode drivers from one interface.</span></li>
-                    </ul>
-                </div>
+            <div class="col-md-6 col-xl-4">
+                <a href="{{ '/windows/systeminformer/' | relative_url }}" class="ext-card d-block">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-chart-line"></i></div>
+                    <h5>SystemInformer</h5>
+                    <p>SystemInformer (formerly Process Hacker) is a free, open-source advanced task manager and system monitor. It gives you deeper visibility into what Windows is doing than any built-in tool.</p>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
         </div>
     </div>
@@ -114,40 +57,40 @@ comments: true
         </div>
         <div class="row g-4">
             <div class="col-md-6 col-xl-3">
-                <div class="ext-card">
+                <a href="{{ '/windows/xplorer2/' | relative_url }}" class="ext-card d-block">
                     <div class="tip-icon gen mb-3"><i class="fa fa-table-columns"></i></div>
                     <h5>xplorer<sup>2</sup></h5>
                     <span class="badge bg-warning-subtle text-warning-emphasis mb-2" style="font-size:0.72rem">Freemium</span>
-                    <p>Battle-tested dual-pane file manager with tabbed browsing, a powerful viewer pane, rich metadata columns, bookmarks, and a fully keyboard-driven workflow. The Lite edition is free; Ultimate adds scripting and advanced features.</p>
-                    <a class="ext-link" href="https://www.zabkat.com/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>zabkat.com</a>
-                </div>
+                    <p>Battle-tested dual-pane file manager with tabbed browsing, a powerful viewer pane, rich metadata columns, bookmarks, and a fully keyboard-driven workflow.</p>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
             <div class="col-md-6 col-xl-3">
-                <div class="ext-card">
+                <a href="{{ '/windows/xyplorer/' | relative_url }}" class="ext-card d-block">
                     <div class="tip-icon gen mb-3"><i class="fa fa-folder-open"></i></div>
                     <h5>XYplorer</h5>
                     <span class="badge bg-danger-subtle text-danger-emphasis mb-2" style="font-size:0.72rem">Paid (30-day trial)</span>
-                    <p>Fully portable, dual-pane file manager with a built-in scripting engine, color filters, visual filters, multi-rename, and a breadcrumb mini-tree. No installation required — carry it on a USB stick.</p>
-                    <a class="ext-link" href="https://www.xyplorer.com/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>xyplorer.com</a>
-                </div>
+                    <p>Fully portable, dual-pane file manager with a built-in scripting engine, color filters, visual filters, multi-rename, and a breadcrumb mini-tree.</p>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
             <div class="col-md-6 col-xl-3">
-                <div class="ext-card">
+                <a href="{{ '/windows/onecommander/' | relative_url }}" class="ext-card d-block">
                     <div class="tip-icon gen mb-3"><i class="fa fa-rectangle-list"></i></div>
                     <h5>OneCommander</h5>
                     <span class="badge bg-success-subtle text-success-emphasis mb-2" style="font-size:0.72rem">Free</span>
-                    <p>Modern, beautifully designed file manager with multi-pane column view, tab groups, file tagging, dark mode, and OneDrive/cloud integration. A great choice if you want a clean modern UX over raw power.</p>
-                    <a class="ext-link" href="https://www.onecommander.com/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>onecommander.com</a>
-                </div>
+                    <p>Modern, beautifully designed file manager with multi-pane column view, tab groups, file tagging, dark mode, and OneDrive/cloud integration.</p>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
             <div class="col-md-6 col-xl-3">
-                <div class="ext-card">
+                <a href="{{ '/windows/files-app/' | relative_url }}" class="ext-card d-block">
                     <div class="tip-icon gen mb-3"><i class="fa fa-folder"></i></div>
                     <h5>Files App</h5>
                     <span class="badge bg-success-subtle text-success-emphasis mb-2" style="font-size:0.72rem">Free &amp; Open Source</span>
-                    <p>A stunning open-source replacement for Windows Explorer with a fluent design, native tabs (before Windows 11 added them), dual pane, tags, archives support, and Git status in the UI. Available on the Microsoft Store.</p>
-                    <a class="ext-link" href="https://files.community/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>files.community</a>
-                </div>
+                    <p>A stunning open-source replacement for Windows Explorer with a fluent design, native tabs, dual pane, tags, archives support, and Git status in the UI.</p>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
         </div>
     </div>
@@ -164,34 +107,34 @@ comments: true
         </div>
         <div class="row g-4">
             <div class="col-md-6 col-xl-4">
-                <div class="ext-card">
+                <a href="{{ '/windows/sharex/' | relative_url }}" class="ext-card d-block">
                     <div class="tip-icon gen mb-3"><i class="fa fa-camera"></i></div>
                     <h5>ShareX</h5>
                     <span class="badge bg-success-subtle text-success-emphasis mb-2" style="font-size:0.72rem">Free &amp; Open Source</span>
-                    <p>The most feature-complete screenshot tool available. Capture regions, scrolling pages, or full screens; annotate with shapes, text, and arrows; record screens as video or GIF; auto-upload to 80+ services and copy the URL in one keystroke. Includes OCR, color picker, and image editor.</p>
-                    <a class="ext-link" href="https://getsharex.com/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>getsharex.com</a>
+                    <p>The most feature-complete screenshot tool available. Capture regions, scrolling pages, or full screens; annotate, record as video or GIF, and auto-upload to 80+ services.</p>
                     <code class="cmd-code mt-2">winget install ShareX.ShareX</code>
-                </div>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
             <div class="col-md-6 col-xl-4">
-                <div class="ext-card">
+                <a href="{{ '/windows/screenpresso/' | relative_url }}" class="ext-card d-block">
                     <div class="tip-icon gen mb-3"><i class="fa fa-expand"></i></div>
                     <h5>Screenpresso</h5>
                     <span class="badge bg-warning-subtle text-warning-emphasis mb-2" style="font-size:0.72rem">Freemium</span>
-                    <p>Lightweight and fast with an elegant built-in media library that organises all your captures. Supports region capture, scrolling capture, webcam overlay, and screen recording with audio. The free tier covers most everyday use.</p>
-                    <a class="ext-link" href="https://www.screenpresso.com/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>screenpresso.com</a>
+                    <p>Lightweight and fast with an elegant built-in media library that organises all your captures. Supports region capture, scrolling capture, webcam overlay, and screen recording with audio.</p>
                     <code class="cmd-code mt-2">winget install Learnpulse.Screenpresso</code>
-                </div>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
             <div class="col-md-6 col-xl-4">
-                <div class="ext-card">
+                <a href="{{ '/windows/greenshot/' | relative_url }}" class="ext-card d-block">
                     <div class="tip-icon gen mb-3"><i class="fa fa-leaf"></i></div>
                     <h5>Greenshot</h5>
                     <span class="badge bg-success-subtle text-success-emphasis mb-2" style="font-size:0.72rem">Free &amp; Open Source</span>
-                    <p>A minimal, rock-solid screenshot tool that integrates with the PrintScreen key. Capture a region, annotate it, and send it directly to email, Office, a printer, or a cloud service with a single shortcut. Very low resource footprint.</p>
-                    <a class="ext-link" href="https://getgreenshot.org/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>getgreenshot.org</a>
+                    <p>A minimal, rock-solid screenshot tool that integrates with the PrintScreen key. Capture a region, annotate it, and send it directly to email, Office, a printer, or a cloud service.</p>
                     <code class="cmd-code mt-2">winget install Greenshot.Greenshot</code>
-                </div>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
         </div>
     </div>
@@ -207,97 +150,22 @@ comments: true
             <div class="section-divider"></div>
         </div>
 
-        <!-- yt-dlp -->
-        <div id="yt-dlp" class="tool-overview-card mb-4">
-            <div class="row g-4 align-items-start">
-                <div class="col-lg-5">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="tip-icon gen"><i class="fab fa-youtube"></i></div>
-                        <div>
-                            <div class="tool-card-name">yt-dlp</div>
-                            <a class="ext-link" href="https://github.com/yt-dlp/yt-dlp" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>github.com/yt-dlp/yt-dlp</a>
-                        </div>
-                    </div>
-                    <p>yt-dlp is the most actively maintained fork of youtube-dl. It downloads video and audio from YouTube and 1000+ other sites, supports full playlists, chapters, subtitles, metadata embedding, and SponsorBlock integration. Works best with FFmpeg installed alongside it.</p>
-                    <code class="cmd-code">winget install yt-dlp.yt-dlp</code>
-                    <ul class="feature-list mt-3">
-                        <li><i class="fa fa-circle-check"></i><span>Downloads from YouTube, Vimeo, Twitter/X, TikTok, and 1,000+ other sites</span></li>
-                        <li><i class="fa fa-circle-check"></i><span>Full playlist &amp; channel downloads with configurable output templates</span></li>
-                        <li><i class="fa fa-circle-check"></i><span>SponsorBlock integration — automatically skip or cut sponsor segments</span></li>
-                        <li><i class="fa fa-circle-check"></i><span>Embeds metadata, thumbnails, and subtitles into the downloaded file</span></li>
-                    </ul>
-                </div>
-                <div class="col-lg-7">
-                    <p class="section-label mb-2" style="text-align:left">Common Commands</p>
-{% raw %}
-<pre class="cmd-code-block"><span class="cmt"># Download best quality (auto-merges video + audio)</span>
-yt-dlp URL
-
-<span class="cmt"># Best quality capped at 1080p</span>
-yt-dlp -f "bestvideo[height&lt;=1080]+bestaudio" URL
-
-<span class="cmt"># Audio only — save as MP3</span>
-yt-dlp -x --audio-format mp3 URL
-
-<span class="cmt"># Download entire playlist</span>
-yt-dlp --yes-playlist "PLAYLIST_URL"
-
-<span class="cmt"># List all available formats/resolutions</span>
-yt-dlp -F URL
-
-<span class="cmt"># Embed English subtitles into the file</span>
-yt-dlp --write-subs --sub-lang en --embed-subs URL
-
-<span class="cmt"># Throttle download speed (e.g. 2 MB/s)</span>
-yt-dlp --rate-limit 2M URL</pre>
-{% endraw %}
-                </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-6">
+                <a href="{{ '/windows/yt-dlp/' | relative_url }}" class="ext-card d-block">
+                    <div class="tip-icon gen mb-3"><i class="fab fa-youtube"></i></div>
+                    <h5>yt-dlp</h5>
+                    <p>The most actively maintained fork of youtube-dl. Downloads video and audio from YouTube and 1000+ other sites, with full playlist, subtitle, and SponsorBlock support.</p>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
-        </div>
-
-        <!-- FFmpeg -->
-        <div id="ffmpeg" class="tool-overview-card">
-            <div class="row g-4 align-items-start">
-                <div class="col-lg-5">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <div class="tip-icon gen"><i class="fa fa-film"></i></div>
-                        <div>
-                            <div class="tool-card-name">FFmpeg</div>
-                            <a class="ext-link" href="https://ffmpeg.org/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>ffmpeg.org</a>
-                        </div>
-                    </div>
-                    <p>FFmpeg is the Swiss Army knife of video and audio processing. It can convert, compress, trim, merge, stream, and analyse virtually any media format. It runs entirely on the command line and is used behind the scenes by VLC, Chrome, and most video software.</p>
-                    <code class="cmd-code">winget install Gyan.FFmpeg</code>
-                    <ul class="feature-list mt-3">
-                        <li><i class="fa fa-circle-check"></i><span>Supports virtually every video and audio codec and container format</span></li>
-                        <li><i class="fa fa-circle-check"></i><span>Hardware-accelerated encoding via NVENC, QuickSync, AMF</span></li>
-                        <li><i class="fa fa-circle-check"></i><span>Complex filter graph for overlay, scale, crop, and subtitle burn-in</span></li>
-                        <li><i class="fa fa-circle-check"></i><span>Used internally by yt-dlp to merge separate video and audio streams</span></li>
-                    </ul>
-                </div>
-                <div class="col-lg-7">
-                    <p class="section-label mb-2" style="text-align:left">Common Commands</p>
-<pre class="cmd-code-block"><span class="cmt"># Convert between formats (auto-detects codec from extension)</span>
-ffmpeg -i input.mkv output.mp4
-
-<span class="cmt"># Extract audio track as MP3</span>
-ffmpeg -i input.mp4 -vn -acodec libmp3lame output.mp3
-
-<span class="cmt"># Compress video (higher CRF = smaller file, lower quality)</span>
-ffmpeg -i input.mp4 -crf 28 output.mp4
-
-<span class="cmt"># Trim: start at 1:00, cut 2 minutes (no re-encode)</span>
-ffmpeg -i input.mp4 -ss 00:01:00 -t 00:02:00 -c copy out.mp4
-
-<span class="cmt"># Merge separate video and audio files</span>
-ffmpeg -i video.mp4 -i audio.m4a -c copy output.mp4
-
-<span class="cmt"># Create an animated GIF from a video clip</span>
-ffmpeg -i input.mp4 -vf "fps=15,scale=640:-1" output.gif
-
-<span class="cmt"># Scale video to 1920x1080</span>
-ffmpeg -i input.mp4 -vf "scale=1920:1080" output.mp4</pre>
-                </div>
+            <div class="col-md-6 col-xl-6">
+                <a href="{{ '/windows/ffmpeg/' | relative_url }}" class="ext-card d-block">
+                    <div class="tip-icon gen mb-3"><i class="fa fa-film"></i></div>
+                    <h5>FFmpeg</h5>
+                    <p>The Swiss Army knife of video and audio processing. Convert, compress, trim, merge, stream, and analyse virtually any media format from the command line.</p>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
             </div>
         </div>
     </div>

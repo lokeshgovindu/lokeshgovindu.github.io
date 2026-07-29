@@ -4,6 +4,7 @@ nav: my-work
 ph_label: Open Source &amp; Personal Projects
 heading: My Work
 ph_sub: A collection of tools and extensions I've built to make everyday development faster, smarter, and more enjoyable — from Windows utilities to Visual Studio IDE extensions.
+comments: true
 ---
 
 <!-- ───── GITHUB INTRO ───── -->
@@ -47,7 +48,7 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
         </div>
 
         <!-- ── AltTab ── -->
-        <div class="project-card project-card-featured">
+        <a href="{{ '/my-work/alttab/' | relative_url }}" class="project-card project-card-featured">
             <div class="project-card-accent cpp"></div>
             <div class="row g-0">
                 <div class="col-lg-7 project-card-body">
@@ -58,26 +59,14 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                         <i class="fa fa-window-restore me-2" style="color: #3b82f6;"></i>AltTab
                     </h3>
                     <p class="project-description">
-                        AltTab is a powerful, lightweight Windows application written in C++ and the Win32 API
-                        that completely reimagines how you switch between open windows. The native Windows task
-                        switcher is functional, but limited — AltTab puts you fully in control. Filter through
-                        every open window in real time using a fuzzy search algorithm that intelligently matches
-                        even approximate input, so you can land on the right window without memorising exact titles.
-                    </p>
-                    <p class="project-description">
-                        A dedicated <strong>Alt + `</strong> shortcut lets you cycle exclusively through windows
-                        belonging to the same application, making it effortless to hop between multiple instances
-                        of your editor, browser, or terminal. Right-click context menus put powerful process
-                        management at your fingertips — terminate processes, hide windows, or bring them back
-                        — without ever leaving the keyboard. Fine-tune the experience to your taste with a rich
-                        settings UI that controls font style, background colour, window transparency, and dimensions.
+                        A lightweight Windows application written in C++ and the Win32 API that reimagines
+                        window switching — fuzzy search filtering, per-application cycling, and right-click
+                        process management, all without leaving the keyboard.
                     </p>
                     <ul class="project-features">
                         <li>Fuzzy search filtering across all open windows — no exact title needed</li>
                         <li>Alt + ` shortcut to cycle windows of the same application</li>
                         <li>Terminate or hide processes with keyboard shortcuts via context menu</li>
-                        <li>Fully configurable font, colour, transparency, and window size</li>
-                        <li>Lightweight C++ / Win32 — minimal footprint, maximum speed</li>
                     </ul>
                     <div class="project-tech-tags">
                         <span class="tech-tag"><i class="fa fa-code me-1"></i>C++</span>
@@ -90,6 +79,7 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                         <span><i class="fa fa-code-fork"></i> 6 Forks</span>
                         <span><i class="fa fa-download"></i> 7 Releases</span>
                     </div>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
                 </div>
                 <div class="col-lg-5 project-card-sidebar">
                     <div class="project-sidebar-inner">
@@ -118,18 +108,10 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                                 <span class="mock-kbd">Tab</span>
                             </div>
                         </div>
-                        <div class="project-sidebar-links">
-                            <a href="https://github.com/lokeshgovindu/AltTab" target="_blank" rel="noopener noreferrer" class="btn-github">
-                                <i class="fab fa-github"></i> View on GitHub
-                            </a>
-                            <a href="https://lokeshgovindu.github.io/AltTab/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
-                                <i class="fa fa-external-link-alt"></i> Project Site
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
 
     </div>
 </section>
@@ -154,7 +136,7 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
 
             <!-- ── PresentationAssistant ── -->
             <div class="col-lg-6">
-                <div class="project-card h-100">
+                <a href="{{ '/my-work/presentationassistant/' | relative_url }}" class="project-card h-100">
                     <div class="project-card-accent csharp"></div>
                     <div class="project-card-body">
                         <span class="project-type-badge vs-extension">
@@ -164,22 +146,14 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                             <i class="fa fa-chalkboard-teacher me-2" style="color: #7c3aed;"></i>PresentationAssistant
                         </h4>
                         <p class="project-description">
-                            When you're on stage delivering a live coding session, workshop, or technical demo,
-                            your keyboard shortcuts fly by in a blur — leaving your audience guessing. PresentationAssistant
-                            solves this elegantly. Every command and shortcut you invoke is displayed on screen in
-                            real time, beautifully overlaid over the IDE, so your audience follows every move
-                            without missing a beat.
-                        </p>
-                        <p class="project-description">
-                            Whether you're refactoring, navigating the editor, or stepping through a debugger,
-                            your keystrokes become a visible, educational part of the presentation. Transform
-                            passive spectators into engaged learners with zero configuration overhead.
+                            Displays every command and shortcut you invoke as a real-time on-screen overlay —
+                            perfect for live coding sessions, workshops, and technical demos where your audience
+                            needs to follow along.
                         </p>
                         <ul class="project-features">
                             <li>Real-time overlay of keyboard shortcuts during live sessions</li>
                             <li>Configurable display duration and visual style</li>
                             <li>Action blocklist to suppress sensitive or internal shortcuts</li>
-                            <li>Zero friction — installs and works immediately</li>
                         </ul>
                         <div class="project-tech-tags">
                             <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
@@ -194,16 +168,14 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                         </div>
                     </div>
                     <div class="project-card-footer">
-                        <a href="https://github.com/lokeshgovindu/PresentationAssistant" target="_blank" rel="noopener noreferrer" class="btn-github">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
+                        <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- ── DependencyGraph ── -->
             <div class="col-lg-6">
-                <div class="project-card h-100">
+                <a href="{{ '/my-work/dependencygraph/' | relative_url }}" class="project-card h-100">
                     <div class="project-card-accent csharp"></div>
                     <div class="project-card-body">
                         <span class="project-type-badge vs-extension">
@@ -213,23 +185,14 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                             <i class="fa fa-project-diagram me-2" style="color: #7c3aed;"></i>DependencyGraph
                         </h4>
                         <p class="project-description">
-                            Large solutions with dozens of interlinked projects quickly become architectural
-                            labyrinths. DependencyGraph cuts through the complexity by generating a clean,
-                            interactive visual graph of all project dependencies within your Visual Studio
-                            solution, letting you understand the entire architecture at a single glance.
-                        </p>
-                        <p class="project-description">
-                            Drill down to the deepest transitive references, zoom in on direct project
-                            dependencies, or explore the full reference tree — all from within the IDE.
-                            Need to share the diagram? Export it to industry-standard <strong>DGML</strong>
-                            or <strong>Graphviz DOT</strong> formats for inclusion in design documents or
-                            team architecture reviews.
+                            Generates a clean, interactive visual graph of all project dependencies within
+                            your Visual Studio solution, with export to DGML and Graphviz DOT for design
+                            documents and architecture reviews.
                         </p>
                         <ul class="project-features">
                             <li>Interactive dependency graph directly inside Visual Studio</li>
                             <li>Multiple view modes: deepest, all, or project-only references</li>
                             <li>Export to DGML and Graphviz DOT formats</li>
-                            <li>Status bar integration showing total project count</li>
                         </ul>
                         <div class="project-tech-tags">
                             <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
@@ -245,16 +208,14 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                         </div>
                     </div>
                     <div class="project-card-footer">
-                        <a href="https://github.com/lokeshgovindu/DependencyGraph" target="_blank" rel="noopener noreferrer" class="btn-github">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
+                        <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- ── CommandPalette ── -->
             <div class="col-lg-6">
-                <div class="project-card h-100">
+                <a href="{{ '/my-work/commandpalette/' | relative_url }}" class="project-card h-100">
                     <div class="project-card-accent csharp"></div>
                     <div class="project-card-body">
                         <span class="project-type-badge vs-extension">
@@ -264,22 +225,13 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                             <i class="fa fa-terminal me-2" style="color: #7c3aed;"></i>CommandPalette
                         </h4>
                         <p class="project-description">
-                            Developers who have used VS Code, Sublime Text, or any JetBrains IDE know the
-                            sheer joy of a Command Palette — type a few characters and any action in the editor
-                            is instantly at your fingertips. CommandPalette brings that same experience to
-                            Visual Studio, an IDE renowned for its power but notorious for its labyrinthine menus.
-                        </p>
-                        <p class="project-description">
-                            Invoke the palette with a single shortcut, start typing, and watch as intelligent
-                            fuzzy matching surfaces the most relevant Visual Studio commands in real time.
-                            No more hunting through nested menus or memorising dozens of keyboard shortcuts —
-                            just type what you want to do and press Enter.
+                            Brings the VS Code-style Command Palette experience to Visual Studio — invoke it
+                            with a single shortcut, then fuzzy-match your way to any command instantly.
                         </p>
                         <ul class="project-features">
                             <li>Instant access to any Visual Studio command via a single shortcut</li>
                             <li>Intelligent fuzzy matching surfaces commands as you type</li>
                             <li>Persists and recalls the previous command for quick re-execution</li>
-                            <li>Lightweight, keyboard-first design with minimal distraction</li>
                         </ul>
                         <div class="project-tech-tags">
                             <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
@@ -294,16 +246,14 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                         </div>
                     </div>
                     <div class="project-card-footer">
-                        <a href="https://github.com/lokeshgovindu/CommandPalette" target="_blank" rel="noopener noreferrer" class="btn-github">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
+                        <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
                     </div>
-                </div>
+                </a>
             </div>
 
             <!-- ── GoToRecentFile ── -->
             <div class="col-lg-6">
-                <div class="project-card h-100">
+                <a href="{{ '/my-work/gotorecentfile/' | relative_url }}" class="project-card h-100">
                     <div class="project-card-accent csharp"></div>
                     <div class="project-card-body">
                         <span class="project-type-badge vs-extension">
@@ -313,24 +263,14 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                             <i class="fa fa-history me-2" style="color: #7c3aed;"></i>GoToRecentFile
                         </h4>
                         <p class="project-description">
-                            In large codebases, you're constantly bouncing between the same handful of files —
-                            the ones you edited this morning, the header you've been tweaking, the test file
-                            always open alongside the implementation. GoToRecentFile gives you a fast, searchable
-                            interface to jump directly to any recently opened file without ever lifting your
-                            hands from the keyboard.
-                        </p>
-                        <p class="project-description">
-                            Built with a clean, theme-aware UI that respects Visual Studio's colour themes
-                            — light or dark — it blends seamlessly into the IDE and stays out of your way
-                            until you need it. Forget hunting through Solution Explorer or clicking through
-                            the native "Recent Files" submenu. Your most-visited files are always one
-                            keystroke away.
+                            A fast, searchable interface to jump directly to any recently opened file without
+                            lifting your hands from the keyboard — with a theme-aware UI that respects
+                            Visual Studio's light and dark themes.
                         </p>
                         <ul class="project-features">
                             <li>Searchable recent files list accessible via a keyboard shortcut</li>
                             <li>Respects Visual Studio's light and dark colour themes</li>
                             <li>Deduplication — no repeated entries for the same file</li>
-                            <li>Seamless VSIX integration with the Visual Studio IDE</li>
                         </ul>
                         <div class="project-tech-tags">
                             <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
@@ -345,11 +285,41 @@ ph_sub: A collection of tools and extensions I've built to make everyday develop
                         </div>
                     </div>
                     <div class="project-card-footer">
-                        <a href="https://github.com/lokeshgovindu/GoToRecentFile" target="_blank" rel="noopener noreferrer" class="btn-github">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
+                        <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
                     </div>
-                </div>
+                </a>
+            </div>
+
+            <!-- ── OpenFileInSolution ── -->
+            <div class="col-lg-6">
+                <a href="{{ '/my-work/openfileinsolution/' | relative_url }}" class="project-card h-100">
+                    <div class="project-card-accent csharp"></div>
+                    <div class="project-card-body">
+                        <span class="project-type-badge vs-extension">
+                            <i class="fa fa-puzzle-piece"></i> VS Extension
+                        </span>
+                        <h4 class="project-title">
+                            <i class="fa fa-folder-open me-2" style="color: #7c3aed;"></i>OpenFileInSolution
+                        </h4>
+                        <p class="project-description">
+                            Quickly open any file in the solution.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                            <span class="tech-tag">VSIX</span>
+                            <span class="tech-tag">WPF / XAML</span>
+                            <span class="tech-tag">Visual Studio SDK</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fa fa-star"></i> 0 Stars</span>
+                            <span><i class="fa fa-code-fork"></i> 0 Forks</span>
+                            <span><i class="fa fa-tag"></i> Recently Released</span>
+                        </div>
+                    </div>
+                    <div class="project-card-footer">
+                        <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                    </div>
+                </a>
             </div>
 
         </div><!-- /row -->

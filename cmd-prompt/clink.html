@@ -1,0 +1,42 @@
+---
+title: Clink
+nav: cmd-prompt
+ph_label: CMD Enhancement
+heading: Clink
+ph_sub: GNU Readline's powerful line editing brought natively to cmd.exe.
+comments: true
+---
+
+<section class="tips-section">
+    <div class="container">
+        <a href="{{ '/cmd-prompt/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to CMD Prompt Tools</a>
+
+        <div class="tool-overview-card">
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div class="tip-icon cmd"><i class="fa fa-bolt"></i></div>
+                        <div>
+                            <div class="tool-card-name">Clink</div>
+                            <a class="ext-link" href="https://chrisant996.github.io/clink/" target="_blank" rel="noopener"><i class="fa fa-arrow-up-right-from-square me-1"></i>chrisant996.github.io/clink</a>
+                        </div>
+                    </div>
+                    <p>Clink injects itself into a running <code>cmd.exe</code> process and replaces its line editing with the <strong>GNU Readline</strong> library — the same engine that powers Bash on Linux. The result is a dramatically smarter, faster command line without changing your shell or your habits.</p>
+                    <p class="mt-2">Cmder ships with Clink built-in, so you get all of this automatically. You can also install it standalone into any <code>cmd.exe</code> via <code>winget install chrisant996.clink</code>.</p>
+                </div>
+                <div class="col-lg-7">
+                    <ul class="feature-list">
+                        <li><i class="fa fa-circle-check"></i><span><strong>Auto-suggestions</strong> — ghost completions appear as you type, based on history and files. Press <kbd style="font-size:0.75rem">→</kbd> or <kbd style="font-size:0.75rem">End</kbd> to accept.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Persistent history across sessions</strong> — press <kbd style="font-size:0.75rem">F7</kbd> for a scrollable popup list, <kbd style="font-size:0.75rem">PgUp/PgDn</kbd> to filter by the typed prefix, or <kbd style="font-size:0.75rem">Ctrl+R</kbd> for incremental search.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Rich Tab completion</strong> — <kbd style="font-size:0.75rem">Tab</kbd> cycles through matches; <kbd style="font-size:0.75rem">Ctrl+Space</kbd> opens an interactive list for executables, paths, aliases, and environment variables.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Directory shortcuts</strong> — type <code>dirname\</code> to <code>cd</code> into it, <code>..</code> / <code>...</code> for parent dirs, and <code>-</code> to jump back to the previous directory.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Scriptable via Lua</strong> — add custom completions, dynamic prompt segments, and key bindings through Lua scripts without recompiling anything.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Colored input</strong> — context-sensitive syntax highlighting makes commands, arguments, and paths visually distinct as you type.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Inline autocomplete</strong> — as you type, Clink shows a greyed-out suggestion inline from your history. Press <kbd style="font-size:0.75rem">→</kbd> to accept the whole suggestion or <kbd style="font-size:0.75rem">Ctrl+→</kbd> to accept one word at a time, without ever leaving the command line.</span></li>
+                        <li><i class="fa fa-circle-check"></i><span><strong>Context-aware sub-command completion</strong> — pressing <kbd style="font-size:0.75rem">Tab</kbd> twice after a command like <code>git</code> lists all its valid sub-commands (e.g. <code>add</code>, <code>commit</code>, <code>push</code>…) directly in the terminal, so you never need to leave the prompt to look up syntax.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
