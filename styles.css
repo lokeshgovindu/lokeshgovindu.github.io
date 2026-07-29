@@ -153,10 +153,9 @@ body {
 /* ── Hero (index.html only) ── */
 #home-hero {
     background: linear-gradient(135deg, #312e81 0%, #4f46e5 50%, #818cf8 100%);
-    min-height: 100vh;
     display: flex;
     align-items: center;
-    padding-top: 72px;
+    padding: 140px 0 100px;
     position: relative;
     overflow: hidden;
 }
@@ -1556,23 +1555,153 @@ a.tool-overview-card {
 .admin-status-info { color: var(--muted-text); }
 
 /* ================================================================
-   Search Page
+   Navbar Search Box (site-wide, live dropdown)
    ================================================================ */
 
-.nav-search-pill { transition: background 0.2s, border-color 0.2s; }
+.nav-search-wrap {
+    position: relative;
+}
 
-@media (min-width: 992px) {
-    .nav-search-pill {
-        background: rgba(255, 255, 255, 0.12);
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        border-radius: 20px !important;
-        padding: 4px 14px !important;
-    }
-    .nav-search-pill:hover {
-        background: rgba(255, 255, 255, 0.24) !important;
-        border-color: rgba(255, 255, 255, 0.4);
+.nav-search-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--sky-light);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 12px;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.nav-search-box:focus-within {
+    border-color: var(--primary);
+    background: var(--surface);
+}
+
+.nav-search-icon {
+    color: var(--muted-text);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.nav-search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--mid-text);
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    width: 180px;
+    min-width: 0;
+}
+
+@media (min-width: 1200px) {
+    .nav-search-input {
+        width: 260px;
     }
 }
+
+.nav-search-input::placeholder { color: var(--muted-text); }
+
+.nav-search-clear {
+    background: none;
+    border: none;
+    color: var(--muted-text);
+    cursor: pointer;
+    padding: 0;
+    font-size: 0.75rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.nav-search-clear:hover { color: var(--dark-text); }
+
+.nav-search-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 380px;
+    max-height: 420px;
+    overflow-y: auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+    z-index: 1050;
+    padding: 8px;
+}
+
+.nav-search-dropdown.show { display: block; }
+
+.nav-search-result {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s;
+}
+
+.nav-search-result:hover,
+.nav-search-result:focus {
+    background: var(--sky-light);
+    color: inherit;
+}
+
+.nav-search-result-icon {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    background: var(--sky-light);
+    color: var(--primary);
+}
+
+.nav-search-result-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--dark-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-search-result-section {
+    font-size: 0.72rem;
+    color: var(--muted-text);
+}
+
+.nav-search-empty {
+    padding: 16px;
+    text-align: center;
+    color: var(--muted-text);
+    font-size: 0.85rem;
+}
+
+.nav-search-seeall {
+    display: block;
+    text-align: center;
+    padding: 8px 10px;
+    margin-top: 4px;
+    border-top: 1px solid var(--border);
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-decoration: none;
+}
+
+.nav-search-seeall:hover { text-decoration: underline; }
+
+/* ================================================================
+   Search Page
+   ================================================================ */
 
 .search-box {
     position: relative;
@@ -1846,9 +1975,23 @@ section:target {
         gap: 0.2rem;
     }
 
-    .nav-search-pill {
-        display: inline-flex;
-        width: fit-content;
+    .nav-search-wrap {
+        order: -1;
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-search-box {
+        width: 100%;
+    }
+
+    .nav-search-input {
+        width: 100%;
+    }
+
+    .nav-search-dropdown {
+        width: 100%;
+        left: 0;
+        right: 0;
     }
 
     #home-hero {

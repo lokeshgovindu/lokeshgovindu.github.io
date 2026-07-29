@@ -11,6 +11,14 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item me-lg-2 nav-search-wrap">
+                    <form id="navSearchForm" class="nav-search-box" role="search" autocomplete="off">
+                        <i class="fa fa-magnifying-glass nav-search-icon"></i>
+                        <input type="text" id="navSearchInput" class="nav-search-input" placeholder="Search…" autocomplete="off" spellcheck="false" aria-label="Search the site">
+                        <button type="button" id="navSearchClear" class="nav-search-clear d-none" aria-label="Clear search"><i class="fa fa-xmark"></i></button>
+                    </form>
+                    <div id="navSearchDropdown" class="nav-search-dropdown"></div>
+                </li>
                 {%- for item in nav_items -%}
                   {%- assign parts = item | split: "," -%}
                   {%- assign item_id = parts[0] -%}
@@ -23,12 +31,6 @@
                   {%- endif -%}
                 <li class="nav-item"><a class="nav-link{{ active_class }}" href="{{ item_url | relative_url }}">{{ item_label }}</a></li>
                 {%- endfor -%}
-                {%- if nav == "search" -%}
-                  {%- assign search_active = " active" -%}
-                {%- else -%}
-                  {%- assign search_active = "" -%}
-                {%- endif -%}
-                <li class="nav-item ms-lg-2"><a class="nav-link nav-search-pill{{ search_active }}" href="{{ '/search/' | relative_url }}"><i class="fa fa-magnifying-glass me-1"></i>Search</a></li>
                 <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
                     <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false" title="Toggle dark mode">
                         <i class="fa fa-moon" aria-hidden="true"></i>

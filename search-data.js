@@ -1,3 +1,7 @@
+---
+permalink: /search-data.js
+layout: null
+---
 /* Site-wide search index — consumed by /search/index.html via Fuse.js */
 const SITE_SEARCH_DATA = [
 
@@ -286,6 +290,25 @@ const SITE_SEARCH_DATA = [
   { title: "GitHub Profile", section: "About Me", category: "Contact",
     content: "Browse repositories and open-source projects by Lokesh Govindu on GitHub at github.com/lokeshgovindu.",
     tags: ["github", "repositories", "open source", "code", "projects", "contact"], url: "/about-me/#contact" },
+
+  // ═══════════════════════════════════════════════════════════
+  //  MY WORK — Projects (auto-generated, one entry per page)
+  // ═══════════════════════════════════════════════════════════
+  {% assign my_work_pages = site.pages | where: "nav", "my-work" | where_exp: "p", "p.url != '/my-work/'" %}
+  {% for p in my_work_pages %}
+  { title: {{ p.title | jsonify }}, section: "My Work", category: "Project",
+    content: {{ p.ph_sub | default: p.title | jsonify }},
+    tags: [], url: "{{ p.url }}" },
+  {% endfor %}
+
+  // ═══════════════════════════════════════════════════════════
+  //  BLOG — Posts (auto-generated, one entry per post)
+  // ═══════════════════════════════════════════════════════════
+  {% for post in site.posts %}
+  { title: {{ post.title | jsonify }}, section: "Blog", category: "Post",
+    content: {{ post.excerpt | strip_html | strip_newlines | truncatewords: 30 | jsonify }},
+    tags: {{ post.tags | jsonify }}, url: "{{ post.url }}" },
+  {% endfor %}
 
 ];
 

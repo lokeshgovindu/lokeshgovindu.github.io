@@ -26,6 +26,8 @@ ph_sub: Search across all tips, extensions, tools, shortcuts, and commands on th
                     <button class="filter-btn" data-filter="Visual Studio">Visual Studio</button>
                     <button class="filter-btn" data-filter="CMD Prompt">CMD Prompt</button>
                     <button class="filter-btn" data-filter="Windows">Windows</button>
+                    <button class="filter-btn" data-filter="My Work">My Work</button>
+                    <button class="filter-btn" data-filter="Blog">Blog</button>
                     <button class="filter-btn" data-filter="About Me">About Me</button>
                 </div>
             </div>
@@ -46,11 +48,6 @@ ph_sub: Search across all tips, extensions, tools, shortcuts, and commands on th
     </div>
 </section>
 
-<!-- Fuse.js — client-side fuzzy search -->
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
-<!-- Site search index -->
-<script src="{{ '/search-data.js' | relative_url }}"></script>
-
 {% raw %}
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -62,6 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterBtns  = document.querySelectorAll('.filter-btn');
 
     let activeFilter  = 'all';
+
+    /* ── Hide results wrapper initially (may be shown below if ?q= is set) ── */
+    document.getElementById('searchResults').classList.add('d-none');
 
     /* ── Fuse.js config ── */
     const fuse = new Fuse(SITE_SEARCH_DATA, {
@@ -81,6 +81,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'Visual Studio': 'text-bg-primary',
         'CMD Prompt':    'text-bg-warning',
         'Windows':       'text-bg-info',
+        'My Work':       'text-bg-dark',
+        'Blog':          'text-bg-primary',
         'About Me':      'text-bg-success'
     };
     const categoryBadge = {
@@ -90,6 +92,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'Command':       'text-bg-secondary',
         'Tip':           'text-bg-info',
         'Best Practice': 'text-bg-dark',
+        'Project':       'text-bg-dark',
+        'Post':          'text-bg-primary',
         'Contact':       'text-bg-success'
     };
 
@@ -98,6 +102,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'Visual Studio': '<div class="tip-icon vs" style="width:38px;height:38px;min-width:38px;border-radius:10px;font-size:0.9rem"><i class="fa fa-code"></i></div>',
         'CMD Prompt':    '<div class="tip-icon cmd" style="width:38px;height:38px;min-width:38px;border-radius:10px;font-size:0.9rem"><i class="fa fa-terminal"></i></div>',
         'Windows':       '<div class="tip-icon gen" style="width:38px;height:38px;min-width:38px;border-radius:10px;font-size:0.9rem"><i class="fab fa-windows"></i></div>',
+        'My Work':       '<div class="tip-icon" style="width:38px;height:38px;min-width:38px;border-radius:10px;font-size:0.9rem;background:#dbeafe;color:#1d4ed8"><i class="fa fa-diagram-project"></i></div>',
+        'Blog':          '<div class="tip-icon" style="width:38px;height:38px;min-width:38px;border-radius:10px;font-size:0.9rem;background:#ede9fe;color:#7c3aed"><i class="fa fa-pen-nib"></i></div>',
         'About Me':      '<div class="tip-icon" style="width:38px;height:38px;min-width:38px;border-radius:10px;font-size:0.9rem;background:#dcfce7;color:#16a34a"><i class="fa fa-user"></i></div>'
     };
 
@@ -228,15 +234,26 @@ document.addEventListener('DOMContentLoaded', function () {
             name: 'Windows', url: '/windows/',
             icon: 'fab fa-windows', cls: 'gen',
             desc: 'Tools, apps &amp; Windows tips'
+        },
+        {
+            name: 'My Work', url: '/my-work/',
+            icon: 'fa fa-diagram-project', style: 'background:#dbeafe;color:#1d4ed8',
+            desc: 'Open-source projects &amp; extensions'
+        },
+        {
+            name: 'Blog', url: '/blog/',
+            icon: 'fa fa-pen-nib', style: 'background:#ede9fe;color:#7c3aed',
+            desc: 'Longer-form notes &amp; write-ups'
         }
     ];
 
     initialEl.innerHTML = categories.map(c => {
         const count = SITE_SEARCH_DATA.filter(d => d.section === c.name).length;
+        const iconStyle = 'width:52px;height:52px;border-radius:14px;font-size:1.2rem' + (c.style ? ';' + c.style : '');
         return (
             '<div class="col-md-4">' +
             '<a href="' + c.url + '" class="search-cat-card">' +
-            '<div class="tip-icon ' + c.cls + ' mx-auto mb-3" style="width:52px;height:52px;border-radius:14px;font-size:1.2rem">' +
+            '<div class="tip-icon ' + (c.cls || '') + ' mx-auto mb-3" style="' + iconStyle + '">' +
             '<i class="' + c.icon + '"></i></div>' +
             '<div style="font-weight:700;color:var(--dark-text);margin-bottom:4px">' + c.name + '</div>' +
             '<div style="font-size:0.82rem;color:var(--muted-text)">' + c.desc + '</div>' +
@@ -244,9 +261,6 @@ document.addEventListener('DOMContentLoaded', function () {
             '</a></div>'
         );
     }).join('');
-
-    /* ── Hide results wrapper initially ── */
-    document.getElementById('searchResults').classList.add('d-none');
 });
 </script>
 {% endraw %}
