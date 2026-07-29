@@ -19,11 +19,18 @@
 
     applyIcon(document.documentElement.getAttribute('data-theme') || 'light');
 
+    function syncGiscusTheme(theme) {
+        var iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: theme } } }, 'https://giscus.app');
+    }
+
     toggle.addEventListener('click', function () {
         var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', next);
         localStorage.setItem('theme', next);
         applyIcon(next);
+        syncGiscusTheme(next);
     });
 })();
 </script>
