@@ -1,0 +1,32 @@
+---
+title: Blog
+nav: blog
+ph_label: Notes & Writing
+heading: Blog
+ph_sub: Longer-form notes and write-ups — deeper dives than a quick tip.
+---
+
+<section class="tips-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+
+                {% if site.posts.size == 0 %}
+                <p class="section-sub text-center">No posts yet — check back soon.</p>
+                {% endif %}
+
+                {% for post in site.posts %}
+                <a href="{{ post.url | relative_url }}" class="blog-post-card d-block">
+                    <div class="blog-post-card-date"><i class="fa fa-calendar me-1"></i>{{ post.date | date: "%B %-d, %Y" }}</div>
+                    <h3 class="blog-post-card-title">{{ post.title }}</h3>
+                    {% if post.excerpt %}
+                    <p class="blog-post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+                    {% endif %}
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </a>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>

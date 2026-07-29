@@ -1,0 +1,171 @@
+---
+title: Admin
+sitemap: false
+noindex: true
+---
+
+<section class="blog-post-section">
+    <div class="container">
+        <a href="{{ '/blog/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to Blog</a>
+
+        <div class="admin-panel">
+            <h1 class="blog-post-title" style="margin-bottom: 0.5rem;">New Blog Post</h1>
+            <p class="section-sub" style="margin: 0 0 2rem; text-align: left; max-width: none;">
+                Publishes straight to the live site via GitHub's API — there's no draft state. Once submitted,
+                GitHub Pages will rebuild automatically, usually within a minute or two.
+            </p>
+
+            <div class="admin-token-block mb-4">
+                <label class="form-label" for="admin-token">GitHub Personal Access Token</label>
+                <input type="password" id="admin-token" class="form-control" placeholder="github_pat_..." autocomplete="off">
+                <p class="form-text mt-2 mb-0">
+                    Needs a <strong>fine-grained token</strong> scoped to only this repository, with
+                    <strong>Contents: Read and write</strong> permission.
+                    <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create one here</a>.
+                    It's stored only in this browser's local storage and sent directly to GitHub's API — never anywhere else.
+                </p>
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                    <button type="button" id="save-token" class="btn-project-site">Save Token on This Device</button>
+                    <button type="button" id="forget-token" class="btn-project-site">Forget Token</button>
+                </div>
+            </div>
+
+            <hr style="border-color: var(--border); margin: 2rem 0;">
+
+            <form id="post-form">
+                <div class="mb-3">
+                    <label class="form-label" for="post-title">Title</label>
+                    <input type="text" id="post-title" class="form-control" placeholder="My New Post" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="post-tags">Tags <span class="form-text">(comma-separated, optional)</span></label>
+                    <input type="text" id="post-tags" class="form-control" placeholder="windows, productivity">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="post-body">Content <span class="form-text">(Markdown)</span></label>
+                    <textarea id="post-body" class="form-control" rows="16" style="font-family:'Consolas','Courier New',monospace; font-size:0.92rem;" placeholder="Write your post here using Markdown — headings, lists, code blocks, and links all work." required></textarea>
+                </div>
+                <button type="submit" id="publish-btn" class="btn-github-profile"><i class="fa fa-cloud-arrow-up me-2"></i>Publish Post</button>
+            </form>
+
+            <div id="publish-status" class="admin-status mt-3" role="status"></div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function () {
+    var REPO = 'lokeshgovindu/lokeshgovindu.github.io';
+    var BRANCH = 'master';
+    var STORAGE_KEY = 'admin_gh_token';
+
+    var tokenInput = document.getElementById('admin-token');
+    var saveTokenBtn = document.getElementById('save-token');
+    var forgetTokenBtn = document.getElementById('forget-token');
+    var form = document.getElementById('post-form');
+    var publishBtn = document.getElementById('publish-btn');
+    var statusEl = document.getElementById('publish-status');
+
+    var savedToken = localStorage.getItem(STORAGE_KEY);
+    if (savedToken) tokenInput.value = savedToken;
+
+    function setStatus(message, type) {
+        statusEl.textContent = message;
+        statusEl.className = 'admin-status mt-3 admin-status-' + type;
+    }
+
+    saveTokenBtn.addEventListener('click', function () {
+        localStorage.setItem(STORAGE_KEY, tokenInput.value.trim());
+        setStatus('Token saved on this device.', 'info');
+    });
+
+    forgetTokenBtn.addEventListener('click', function () {
+        localStorage.removeItem(STORAGE_KEY);
+        tokenInput.value = '';
+        setStatus('Token removed from this device.', 'info');
+    });
+
+    function slugify(text) {
+        return text.toLowerCase().trim()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+    }
+
+    function toBase64Utf8(str) {
+        return btoa(unescape(encodeURIComponent(str)));
+    }
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var token = tokenInput.value.trim();
+        var title = document.getElementById('post-title').value.trim();
+        var tagsRaw = document.getElementById('post-tags').value.trim();
+        var body = document.getElementById('post-body').value;
+
+        if (!token) { setStatus('Please enter your GitHub token.', 'error'); return; }
+        if (!title) { setStatus('Please enter a title.', 'error'); return; }
+        if (!body) { setStatus('Please write some content.', 'error'); return; }
+
+        var slug = slugify(title);
+        if (!slug) { setStatus('Title must contain at least one letter or number.', 'error'); return; }
+
+        var now = new Date();
+        var yyyy = now.getFullYear();
+        var mm = String(now.getMonth() + 1).padStart(2, '0');
+        var dd = String(now.getDate()).padStart(2, '0');
+        var filename = yyyy + '-' + mm + '-' + dd + '-' + slug + '.md';
+        var path = '_posts/' + filename;
+
+        var tags = tagsRaw ? tagsRaw.split(',').map(function (t) { return t.trim(); }).filter(Boolean) : [];
+        var frontMatter = '---\ntitle: ' + JSON.stringify(title) + '\n';
+        if (tags.length) {
+            frontMatter += 'tags: [' + tags.map(function (t) { return JSON.stringify(t); }).join(', ') + ']\n';
+        }
+        frontMatter += '---\n\n';
+        var fullContent = frontMatter + body + '\n';
+
+        publishBtn.disabled = true;
+        setStatus('Publishing…', 'info');
+
+        fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/vnd.github+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Add post: ' + title,
+                content: toBase64Utf8(fullContent),
+                branch: BRANCH
+            })
+        }).then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (data) {
+                return { ok: res.ok, status: res.status, data: data };
+            });
+        }).then(function (result) {
+            if (result.ok) {
+                var postUrl = '/blog/' + slug + '/';
+                setStatus('Published! It should be live at ' + postUrl + ' within a minute or two, once GitHub Pages rebuilds.', 'success');
+                form.reset();
+                if (savedToken) tokenInput.value = savedToken;
+            } else if (result.status === 401) {
+                setStatus('Authentication failed — check that your token is correct and hasn\'t expired.', 'error');
+            } else if (result.status === 404) {
+                setStatus('Repository not found or token lacks access — check the token\'s repository access and permissions.', 'error');
+            } else if (result.data.message && /sha/i.test(result.data.message)) {
+                setStatus('A post with this exact title already exists today — try a different title.', 'error');
+            } else {
+                setStatus('Publish failed: ' + (result.data.message || 'HTTP ' + result.status), 'error');
+            }
+        }).catch(function (err) {
+            setStatus('Network error while publishing: ' + err.message, 'error');
+        }).finally(function () {
+            publishBtn.disabled = false;
+        });
+    });
+})();
+</script>
