@@ -14,6 +14,7 @@
     var input = document.getElementById('navSearchInput');
     var form = document.getElementById('navSearchForm');
     var clearBtn = document.getElementById('navSearchClear');
+    var kbdHint = document.getElementById('navSearchKbd');
     var dropdown = document.getElementById('navSearchDropdown');
     if (!input || !dropdown) return;
 
@@ -101,7 +102,12 @@
     });
 
     input.addEventListener('focus', function () {
+        if (kbdHint) kbdHint.classList.add('d-none');
         if (input.value.trim().length >= 2) dropdown.classList.add('show');
+    });
+
+    input.addEventListener('blur', function () {
+        if (kbdHint && input.value.trim().length === 0) kbdHint.classList.remove('d-none');
     });
 
     input.addEventListener('keydown', function (e) {
@@ -140,6 +146,12 @@
 
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') dropdown.classList.remove('show');
+
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            input.focus();
+            input.select();
+        }
     });
 })();
 </script>

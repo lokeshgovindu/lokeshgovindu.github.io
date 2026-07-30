@@ -1618,6 +1618,20 @@ a.tool-overview-card {
     flex-shrink: 0;
 }
 
+.nav-search-kbd {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--muted-text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 1px 6px;
+    line-height: 1.5;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
 .nav-search-clear:hover { color: var(--dark-text); }
 
 .nav-search-dropdown {
@@ -1995,6 +2009,10 @@ section:target {
 
     .nav-search-input {
         width: 100%;
+    }
+
+    .nav-search-kbd {
+        display: none;
     }
 
     .nav-search-dropdown {
