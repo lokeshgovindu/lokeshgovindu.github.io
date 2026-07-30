@@ -18,6 +18,20 @@
     --chip-text:   var(--primary-deep);
     --section-py:  80px;
     color-scheme: light;
+
+    /* Code syntax highlighting */
+    --code-comment:  #64748b;  /* slate-500  */
+    --code-keyword:  #4338ca;  /* indigo-700 */
+    --code-string:   #047857;  /* emerald-700 */
+    --code-number:   #b45309;  /* amber-700  */
+    --code-function: #1d4ed8; /* blue-700   */
+    --code-tag:      #be185d; /* pink-700   */
+    --code-variable: #0f766e; /* teal-700   */
+    --code-constant: #7c3aed; /* violet-600 */
+    --code-deleted:  #b91c1c;
+    --code-deleted-bg: #fee2e2;
+    --code-inserted: #15803d;
+    --code-inserted-bg: #dcfce7;
 }
 
 :root[data-theme="dark"] {
@@ -34,6 +48,20 @@
     --tint-bg:     rgba(99, 102, 241, 0.12);
     --chip-text:   #c7d2fe;
     color-scheme: dark;
+
+    /* Code syntax highlighting */
+    --code-comment:  #8b98ac;
+    --code-keyword:  #a5b4fc;  /* indigo-300 */
+    --code-string:   #6ee7b7;  /* emerald-300 */
+    --code-number:   #fbbf24;  /* amber-400  */
+    --code-function: #93c5fd; /* blue-300   */
+    --code-tag:      #f9a8d4; /* pink-300   */
+    --code-variable: #5eead4; /* teal-300   */
+    --code-constant: #c4b5fd; /* violet-300 */
+    --code-deleted:  #fca5a5;
+    --code-deleted-bg: rgba(239, 68, 68, 0.15);
+    --code-inserted: #86efac;
+    --code-inserted-bg: rgba(34, 197, 94, 0.15);
 }
 
 html { scroll-behavior: smooth; }
@@ -1481,6 +1509,138 @@ a.tool-overview-card {
     color: var(--mid-text);
 }
 
+/* ── Syntax highlighting ──
+   Rouge (server-rendered posts, classes like .k/.s/.nf) and highlight.js
+   (client-rendered admin preview, classes like .hljs-keyword) tokenize
+   differently, so the rules below target both class schemes against the
+   same --code-* palette — not byte-identical highlighting, but the same
+   colors for the same kind of token in both places. */
+
+.blog-post-content .highlight .c,
+.blog-post-content .highlight .c1,
+.blog-post-content .highlight .cm,
+.blog-post-content .highlight .cs,
+.blog-post-content .highlight .cp,
+.blog-post-content .highlight .go,
+.blog-post-content .highlight .gp,
+.blog-post-content .hljs-comment,
+.blog-post-content .hljs-quote {
+    color: var(--code-comment);
+    font-style: italic;
+}
+
+.blog-post-content .highlight .k,
+.blog-post-content .highlight .kc,
+.blog-post-content .highlight .kd,
+.blog-post-content .highlight .kn,
+.blog-post-content .highlight .kp,
+.blog-post-content .highlight .kr,
+.blog-post-content .highlight .kt,
+.blog-post-content .highlight .ow,
+.blog-post-content .hljs-keyword,
+.blog-post-content .hljs-literal,
+.blog-post-content .hljs-selector-tag {
+    color: var(--code-keyword);
+    font-weight: 600;
+}
+
+.blog-post-content .highlight .s,
+.blog-post-content .highlight .s1,
+.blog-post-content .highlight .s2,
+.blog-post-content .highlight .sb,
+.blog-post-content .highlight .sc,
+.blog-post-content .highlight .sd,
+.blog-post-content .highlight .se,
+.blog-post-content .highlight .sh,
+.blog-post-content .highlight .si,
+.blog-post-content .highlight .sx,
+.blog-post-content .highlight .sr,
+.blog-post-content .highlight .ss,
+.blog-post-content .highlight .dl,
+.blog-post-content .hljs-string,
+.blog-post-content .hljs-template-string,
+.blog-post-content .hljs-regexp {
+    color: var(--code-string);
+}
+
+.blog-post-content .highlight .m,
+.blog-post-content .highlight .mf,
+.blog-post-content .highlight .mh,
+.blog-post-content .highlight .mi,
+.blog-post-content .highlight .mo,
+.blog-post-content .highlight .mb,
+.blog-post-content .highlight .mx,
+.blog-post-content .highlight .il,
+.blog-post-content .hljs-number {
+    color: var(--code-number);
+}
+
+.blog-post-content .highlight .nf,
+.blog-post-content .highlight .nc,
+.blog-post-content .highlight .nd,
+.blog-post-content .highlight .ne,
+.blog-post-content .highlight .nb,
+.blog-post-content .hljs-title,
+.blog-post-content .hljs-built_in,
+.blog-post-content .hljs-section {
+    color: var(--code-function);
+}
+
+.blog-post-content .highlight .nt,
+.blog-post-content .highlight .na,
+.blog-post-content .highlight .ni,
+.blog-post-content .hljs-tag,
+.blog-post-content .hljs-name,
+.blog-post-content .hljs-attr,
+.blog-post-content .hljs-attribute,
+.blog-post-content .hljs-selector-id,
+.blog-post-content .hljs-selector-class {
+    color: var(--code-tag);
+}
+
+.blog-post-content .highlight .nv,
+.blog-post-content .highlight .vc,
+.blog-post-content .highlight .vg,
+.blog-post-content .highlight .vi,
+.blog-post-content .highlight .bp,
+.blog-post-content .highlight .py,
+.blog-post-content .highlight .nl,
+.blog-post-content .hljs-variable,
+.blog-post-content .hljs-params {
+    color: var(--code-variable);
+}
+
+.blog-post-content .highlight .no,
+.blog-post-content .highlight .nn,
+.blog-post-content .hljs-symbol,
+.blog-post-content .hljs-meta,
+.blog-post-content .hljs-bullet {
+    color: var(--code-constant);
+}
+
+.blog-post-content .highlight .err {
+    color: var(--code-deleted);
+    font-weight: 600;
+}
+
+.blog-post-content .highlight .gd,
+.blog-post-content .hljs-deletion {
+    color: var(--code-deleted);
+    background: var(--code-deleted-bg);
+}
+
+.blog-post-content .highlight .gi,
+.blog-post-content .hljs-addition {
+    color: var(--code-inserted);
+    background: var(--code-inserted-bg);
+}
+
+.blog-post-content .highlight .gh,
+.blog-post-content .highlight .gu {
+    color: var(--dark-text);
+    font-weight: 700;
+}
+
 .blog-post-content img {
     max-width: 100%;
     border-radius: 12px;
@@ -1541,12 +1701,44 @@ a.tool-overview-card {
     margin: 0 auto;
 }
 
-.admin-token-block {
+.admin-auth-card {
     background: var(--sky-pale);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1.5rem 1.75rem;
 }
+
+.admin-auth-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.admin-user-chip { display: flex; align-items: center; gap: 0.65rem; }
+
+.admin-user-chip img {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+}
+
+.admin-user-chip span { font-weight: 600; color: var(--dark-text); font-size: 0.92rem; }
+
+.admin-link-btn {
+    color: var(--muted-text);
+    font-size: 0.85rem;
+    text-decoration: underline;
+    text-decoration-color: var(--border);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.admin-link-btn:hover { color: var(--primary); text-decoration-color: var(--primary); }
 
 .admin-status {
     font-size: 0.9rem;
@@ -1557,6 +1749,76 @@ a.tool-overview-card {
 .admin-status-success { color: #16a34a; }
 .admin-status-error { color: #dc2626; }
 .admin-status-info { color: var(--muted-text); }
+
+/* ── GitHub-style Write / Preview editor ── */
+
+.md-editor {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--surface);
+}
+
+.md-editor-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--sky-pale);
+    border-bottom: 1px solid var(--border);
+    padding: 0 0.5rem;
+}
+
+.md-editor-tablist { display: flex; }
+
+.md-editor-tab {
+    padding: 0.65rem 1rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--muted-text);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.md-editor-tab.active { color: var(--dark-text); border-bottom-color: var(--primary); }
+
+.md-editor-hint {
+    font-size: 0.8rem;
+    color: var(--muted-text);
+    text-decoration: none;
+    padding: 0 0.25rem;
+}
+
+.md-editor-hint:hover { color: var(--primary); }
+
+.md-editor-body textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 380px;
+    border: none;
+    border-radius: 0;
+    resize: vertical;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.92rem;
+    background: var(--surface);
+    color: var(--mid-text);
+    padding: 0.9rem 1rem;
+}
+
+.md-editor-body textarea:focus { outline: none; box-shadow: none; }
+
+.md-editor-preview {
+    box-sizing: border-box;
+    height: 380px;
+    overflow-y: auto;
+    padding: 0.9rem 1rem;
+    color: var(--mid-text);
+}
+
+.md-editor-preview.is-empty { color: var(--muted-text); font-style: italic; }
+.md-editor-preview :first-child { margin-top: 0; }
 
 /* ================================================================
    Navbar Search Box (site-wide, live dropdown)
@@ -1618,6 +1880,8 @@ a.tool-overview-card {
     flex-shrink: 0;
 }
 
+.nav-search-clear.is-hidden { visibility: hidden; }
+
 .nav-search-kbd {
     font-family: 'Inter', sans-serif;
     font-size: 0.68rem;
@@ -1631,6 +1895,10 @@ a.tool-overview-card {
     flex-shrink: 0;
     white-space: nowrap;
 }
+
+/* Hidden while focused/typing, but stays in the layout (visibility, not
+   display) so the search box doesn't change width when it disappears. */
+.nav-search-kbd.is-hidden { visibility: hidden; }
 
 .nav-search-clear:hover { color: var(--dark-text); }
 

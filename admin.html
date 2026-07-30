@@ -15,18 +15,29 @@ noindex: true
                 GitHub Pages will rebuild automatically, usually within a minute or two.
             </p>
 
-            <div class="admin-token-block mb-4">
-                <label class="form-label" for="admin-token">GitHub Personal Access Token</label>
-                <input type="password" id="admin-token" class="form-control" placeholder="github_pat_..." autocomplete="off">
-                <p class="form-text mt-2 mb-0">
-                    Needs a <strong>fine-grained token</strong> scoped to only this repository, with
-                    <strong>Contents: Read and write</strong> permission.
-                    <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create one here</a>.
-                    It's stored only in this browser's local storage and sent directly to GitHub's API — never anywhere else.
-                </p>
-                <div class="d-flex flex-wrap gap-2 mt-3">
-                    <button type="button" id="save-token" class="btn-project-site">Save Token on This Device</button>
-                    <button type="button" id="forget-token" class="btn-project-site">Forget Token</button>
+            <div class="admin-auth-card mb-4">
+                <div id="auth-signedout">
+                    <label class="form-label" for="admin-token">GitHub Personal Access Token</label>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <input type="password" id="admin-token" class="form-control" style="flex: 1 1 260px;" placeholder="github_pat_..." autocomplete="off">
+                        <button type="button" id="save-token" class="btn-project-site">Sign In</button>
+                    </div>
+                    <p class="form-text mt-2 mb-0">
+                        <a href="https://github.com/settings/personal-access-tokens/new?target_name=lokeshgovindu&amp;contents=write" target="_blank" rel="noopener">Create a fine-grained token</a>
+                        — under <strong>Repository access</strong>, choose <strong>Only select repositories</strong> →
+                        <code>lokeshgovindu.github.io</code>, then click <strong>Generate token</strong>
+                        (the <strong>Contents: Read and write</strong> permission is already pre-filled by the link above).
+                        Paste it above and hit Enter or Sign In — it's stored only in this browser's local storage and
+                        sent directly to GitHub's API, never anywhere else.
+                    </p>
+                </div>
+
+                <div id="auth-signedin" class="admin-auth-row" style="display: none;">
+                    <div class="admin-user-chip">
+                        <img id="auth-avatar" src="" alt="">
+                        <span>Signed in as <strong id="auth-username"></strong></span>
+                    </div>
+                    <button type="button" id="signout-btn" class="admin-link-btn">Sign out</button>
                 </div>
             </div>
 
@@ -36,14 +47,27 @@ noindex: true
                 <div class="mb-3">
                     <label class="form-label" for="post-title">Title</label>
                     <input type="text" id="post-title" class="form-control" placeholder="My New Post" required>
+                    <p id="title-hint" class="form-text mt-1 mb-0"></p>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="post-tags">Tags <span class="form-text">(comma-separated, optional)</span></label>
                     <input type="text" id="post-tags" class="form-control" placeholder="windows, productivity">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="post-body">Content <span class="form-text">(Markdown)</span></label>
-                    <textarea id="post-body" class="form-control" rows="16" style="font-family:'Consolas','Courier New',monospace; font-size:0.92rem;" placeholder="Write your post here using Markdown — headings, lists, code blocks, and links all work." required></textarea>
+                    <label class="form-label">Content <span class="form-text">(Markdown)</span></label>
+                    <div class="md-editor">
+                        <div class="md-editor-tabs">
+                            <div class="md-editor-tablist" role="tablist">
+                                <button type="button" class="md-editor-tab active" data-tab="write" role="tab" aria-selected="true">Write</button>
+                                <button type="button" class="md-editor-tab" data-tab="preview" role="tab" aria-selected="false">Preview</button>
+                            </div>
+                            <a class="md-editor-hint" href="https://www.markdownguide.org/cheat-sheet/" target="_blank" rel="noopener">Markdown is supported</a>
+                        </div>
+                        <div class="md-editor-body">
+                            <textarea id="post-body" rows="16" placeholder="Write your post here using Markdown — headings, lists, code blocks, and links all work." required></textarea>
+                            <div id="post-preview" class="md-editor-preview blog-post-content is-empty" style="display: none;">Nothing to preview yet.</div>
+                        </div>
+                    </div>
                 </div>
                 <button type="submit" id="publish-btn" class="btn-github-profile"><i class="fa fa-cloud-arrow-up me-2"></i>Publish Post</button>
             </form>
@@ -53,37 +77,148 @@ noindex: true
     </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
 <script>
 (function () {
     var REPO = 'lokeshgovindu/lokeshgovindu.github.io';
     var BRANCH = 'master';
-    var STORAGE_KEY = 'admin_gh_token';
 
+    var TOKEN_KEY = 'admin_gh_token';
+    var USER_KEY = 'admin_gh_user';
+
+    var signoutBtn = document.getElementById('signout-btn');
+    var authSignedOut = document.getElementById('auth-signedout');
+    var authSignedIn = document.getElementById('auth-signedin');
+    var authAvatar = document.getElementById('auth-avatar');
+    var authUsername = document.getElementById('auth-username');
     var tokenInput = document.getElementById('admin-token');
     var saveTokenBtn = document.getElementById('save-token');
-    var forgetTokenBtn = document.getElementById('forget-token');
+
     var form = document.getElementById('post-form');
     var publishBtn = document.getElementById('publish-btn');
     var statusEl = document.getElementById('publish-status');
+    var bodyInput = document.getElementById('post-body');
+    var previewEl = document.getElementById('post-preview');
+    var tabButtons = document.querySelectorAll('.md-editor-tab');
+    var titleInput = document.getElementById('post-title');
+    var titleHint = document.getElementById('title-hint');
 
-    var savedToken = localStorage.getItem(STORAGE_KEY);
-    if (savedToken) tokenInput.value = savedToken;
+    var authToken = localStorage.getItem(TOKEN_KEY) || '';
 
     function setStatus(message, type) {
         statusEl.textContent = message;
         statusEl.className = 'admin-status mt-3 admin-status-' + type;
     }
 
-    saveTokenBtn.addEventListener('click', function () {
-        localStorage.setItem(STORAGE_KEY, tokenInput.value.trim());
-        setStatus('Token saved on this device.', 'info');
+    function showSignedOut() {
+        authSignedOut.style.display = '';
+        authSignedIn.style.display = 'none';
+    }
+
+    function showSignedIn(user) {
+        authSignedOut.style.display = 'none';
+        authSignedIn.style.display = '';
+        authAvatar.src = user.avatar_url || '';
+        authAvatar.alt = user.login || '';
+        authUsername.textContent = user.login || 'GitHub user';
+    }
+
+    function setToken(token) {
+        authToken = token;
+        localStorage.setItem(TOKEN_KEY, token);
+
+        return fetch('https://api.github.com/user', {
+            headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+        }).then(function (res) {
+            if (!res.ok) { throw new Error('GitHub rejected that token (HTTP ' + res.status + ').'); }
+            return res.json();
+        }).then(function (user) {
+            localStorage.setItem(USER_KEY, JSON.stringify({ login: user.login, avatar_url: user.avatar_url }));
+            showSignedIn(user);
+            setStatus('Signed in as ' + user.login + '.', 'success');
+        }).catch(function (err) {
+            clearToken();
+            setStatus(err.message, 'error');
+        });
+    }
+
+    function clearToken() {
+        authToken = '';
+        localStorage.removeItem(TOKEN_KEY);
+        localStorage.removeItem(USER_KEY);
+        showSignedOut();
+    }
+
+    // Restore a previous session immediately from cache, then quietly re-validate.
+    if (authToken) {
+        var cachedUser = localStorage.getItem(USER_KEY);
+        if (cachedUser) {
+            try { showSignedIn(JSON.parse(cachedUser)); } catch (e) { showSignedOut(); }
+        } else {
+            showSignedOut();
+        }
+        setToken(authToken);
+    } else {
+        showSignedOut();
+    }
+
+    signoutBtn.addEventListener('click', function () {
+        clearToken();
+        setStatus('Signed out.', 'info');
+        tokenInput.focus();
     });
 
-    forgetTokenBtn.addEventListener('click', function () {
-        localStorage.removeItem(STORAGE_KEY);
-        tokenInput.value = '';
-        setStatus('Token removed from this device.', 'info');
+    function trySignIn() {
+        var token = tokenInput.value.trim();
+        if (!token) { setStatus('Paste a token first.', 'error'); return; }
+        setToken(token);
+    }
+
+    saveTokenBtn.addEventListener('click', trySignIn);
+    tokenInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); trySignIn(); }
     });
+
+    // ---- Write / Preview tabs ----
+
+    function renderPreview() {
+        var markdown = bodyInput.value.trim();
+        if (!markdown) {
+            previewEl.textContent = 'Nothing to preview yet.';
+            previewEl.classList.add('is-empty');
+        } else {
+            previewEl.innerHTML = marked.parse(bodyInput.value);
+            previewEl.classList.remove('is-empty');
+            previewEl.querySelectorAll('pre code').forEach(function (block) {
+                hljs.highlightElement(block);
+            });
+        }
+    }
+
+    tabButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            tabButtons.forEach(function (b) {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+
+            if (btn.dataset.tab === 'preview') {
+                previewEl.style.height = bodyInput.offsetHeight + 'px';
+                renderPreview();
+                bodyInput.style.display = 'none';
+                previewEl.style.display = '';
+            } else {
+                previewEl.style.display = 'none';
+                bodyInput.style.display = '';
+                bodyInput.focus();
+            }
+        });
+    });
+
+    // ---- Publish ----
 
     function slugify(text) {
         return text.toLowerCase().trim()
@@ -97,28 +232,86 @@ noindex: true
         return btoa(unescape(encodeURIComponent(str)));
     }
 
+    function pathForSlug(slug) {
+        var now = new Date();
+        var yyyy = now.getFullYear();
+        var mm = String(now.getMonth() + 1).padStart(2, '0');
+        var dd = String(now.getDate()).padStart(2, '0');
+        return '_posts/' + yyyy + '-' + mm + '-' + dd + '-' + slug + '.md';
+    }
+
+    // Cache of the last slug we checked, so submit can skip a redundant
+    // lookup if the live title-hint check already just ran for it.
+    var lastCheckedSlug = null;
+    var lastCheckedTaken = null;
+
+    function checkSlugTaken(path) {
+        var headers = { 'Accept': 'application/vnd.github+json' };
+        if (authToken) { headers['Authorization'] = 'Bearer ' + authToken; }
+        return fetch('https://api.github.com/repos/' + REPO + '/contents/' + path + '?ref=' + BRANCH, { headers: headers })
+            .then(function (res) { return res.status === 200; })
+            .catch(function () { return null; }); // unknown — don't block on a network hiccup
+    }
+
+    var titleHintTimer = null;
+    titleInput.addEventListener('input', function () {
+        clearTimeout(titleHintTimer);
+        var slug = slugify(titleInput.value.trim());
+        if (!slug) { titleHint.textContent = ''; return; }
+
+        titleHintTimer = setTimeout(function () {
+            var path = pathForSlug(slug);
+            checkSlugTaken(path).then(function (taken) {
+                lastCheckedSlug = slug;
+                lastCheckedTaken = taken;
+                titleHint.textContent = taken ? 'A post with this exact title already exists today — try a different title.' : '';
+                titleHint.style.color = taken ? '#dc2626' : '';
+            });
+        }, 500);
+    });
+
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        var token = tokenInput.value.trim();
-        var title = document.getElementById('post-title').value.trim();
+        var title = titleInput.value.trim();
         var tagsRaw = document.getElementById('post-tags').value.trim();
-        var body = document.getElementById('post-body').value;
+        var body = bodyInput.value;
 
-        if (!token) { setStatus('Please enter your GitHub token.', 'error'); return; }
+        if (!authToken) { setStatus('Please sign in with a token first.', 'error'); return; }
         if (!title) { setStatus('Please enter a title.', 'error'); return; }
         if (!body) { setStatus('Please write some content.', 'error'); return; }
 
         var slug = slugify(title);
         if (!slug) { setStatus('Title must contain at least one letter or number.', 'error'); return; }
 
-        var now = new Date();
-        var yyyy = now.getFullYear();
-        var mm = String(now.getMonth() + 1).padStart(2, '0');
-        var dd = String(now.getDate()).padStart(2, '0');
-        var filename = yyyy + '-' + mm + '-' + dd + '-' + slug + '.md';
-        var path = '_posts/' + filename;
+        var path = pathForSlug(slug);
 
+        publishBtn.disabled = true;
+        setStatus('Checking title…', 'info');
+
+        var slugCheck = (lastCheckedSlug === slug && lastCheckedTaken !== null)
+            ? Promise.resolve(lastCheckedTaken)
+            : checkSlugTaken(path);
+
+        slugCheck.then(function (taken) {
+            if (taken) {
+                setStatus('A post with this exact title already exists today — try a different title.', 'error');
+                publishBtn.disabled = false;
+                return;
+            }
+
+            if (!window.confirm('Publish "' + title + '"? This goes live immediately — there\'s no draft state.')) {
+                setStatus('Publish cancelled.', 'info');
+                publishBtn.disabled = false;
+                return;
+            }
+
+            publishPost(title, tagsRaw, body, path);
+        });
+    });
+
+    function publishPost(title, tagsRaw, body, path) {
+        var slug = slugify(title);
         var tags = tagsRaw ? tagsRaw.split(',').map(function (t) { return t.trim(); }).filter(Boolean) : [];
         var frontMatter = '---\ntitle: ' + JSON.stringify(title) + '\n';
         if (tags.length) {
@@ -127,13 +320,12 @@ noindex: true
         frontMatter += '---\n\n';
         var fullContent = frontMatter + body + '\n';
 
-        publishBtn.disabled = true;
         setStatus('Publishing…', 'info');
 
         fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
             method: 'PUT',
             headers: {
-                'Authorization': 'Bearer ' + token,
+                'Authorization': 'Bearer ' + authToken,
                 'Accept': 'application/vnd.github+json',
                 'Content-Type': 'application/json'
             },
@@ -151,11 +343,16 @@ noindex: true
                 var postUrl = '/blog/' + slug + '/';
                 setStatus('Published! It should be live at ' + postUrl + ' within a minute or two, once GitHub Pages rebuilds.', 'success');
                 form.reset();
-                if (savedToken) tokenInput.value = savedToken;
+                titleHint.textContent = '';
+                lastCheckedSlug = null;
+                lastCheckedTaken = null;
+                previewEl.style.display = 'none';
+                bodyInput.style.display = '';
+                tabButtons[0].click();
             } else if (result.status === 401) {
-                setStatus('Authentication failed — check that your token is correct and hasn\'t expired.', 'error');
+                setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
             } else if (result.status === 404) {
-                setStatus('Repository not found or token lacks access — check the token\'s repository access and permissions.', 'error');
+                setStatus('Repository not found or access lacks permission — check scopes/token access.', 'error');
             } else if (result.data.message && /sha/i.test(result.data.message)) {
                 setStatus('A post with this exact title already exists today — try a different title.', 'error');
             } else {
@@ -166,6 +363,6 @@ noindex: true
         }).finally(function () {
             publishBtn.disabled = false;
         });
-    });
+    }
 })();
 </script>

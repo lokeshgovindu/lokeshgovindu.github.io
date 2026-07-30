@@ -93,7 +93,7 @@
 
     input.addEventListener('input', function () {
         var q = input.value.trim();
-        clearBtn.classList.toggle('d-none', q.length === 0);
+        clearBtn.classList.toggle('is-hidden', q.length === 0);
         if (q.length < 2) {
             dropdown.classList.remove('show');
             return;
@@ -102,12 +102,12 @@
     });
 
     input.addEventListener('focus', function () {
-        if (kbdHint) kbdHint.classList.add('d-none');
+        if (kbdHint) kbdHint.classList.add('is-hidden');
         if (input.value.trim().length >= 2) dropdown.classList.add('show');
     });
 
     input.addEventListener('blur', function () {
-        if (kbdHint && input.value.trim().length === 0) kbdHint.classList.remove('d-none');
+        if (kbdHint && input.value.trim().length === 0) kbdHint.classList.remove('is-hidden');
     });
 
     input.addEventListener('keydown', function (e) {
@@ -127,7 +127,7 @@
 
     clearBtn.addEventListener('click', function () {
         input.value = '';
-        clearBtn.classList.add('d-none');
+        clearBtn.classList.add('is-hidden');
         dropdown.classList.remove('show');
         input.focus();
     });
