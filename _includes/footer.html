@@ -43,12 +43,29 @@
         });
     }
 
+    var resultEls = [];
+    var activeIndex = -1;
+
+    function setActive(index) {
+        resultEls.forEach(function (el) { el.classList.remove('active'); });
+        if (index < 0 || index >= resultEls.length) {
+            activeIndex = -1;
+            return;
+        }
+        activeIndex = index;
+        var el = resultEls[activeIndex];
+        el.classList.add('active');
+        el.scrollIntoView({ block: 'nearest' });
+    }
+
     function render(query) {
         var results = fuse.search(query).slice(0, 6).map(function (r) { return r.item; });
 
         if (results.length === 0) {
             dropdown.innerHTML = '<div class="nav-search-empty">No results for &ldquo;' + escapeHtml(query) + '&rdquo;</div>';
             dropdown.classList.add('show');
+            resultEls = [];
+            activeIndex = -1;
             return;
         }
 
@@ -69,6 +86,8 @@
 
         dropdown.innerHTML = html;
         dropdown.classList.add('show');
+        resultEls = Array.prototype.slice.call(dropdown.querySelectorAll('.nav-search-result, .nav-search-seeall'));
+        activeIndex = -1;
     }
 
     input.addEventListener('input', function () {
@@ -83,6 +102,21 @@
 
     input.addEventListener('focus', function () {
         if (input.value.trim().length >= 2) dropdown.classList.add('show');
+    });
+
+    input.addEventListener('keydown', function (e) {
+        if (!dropdown.classList.contains('show') || resultEls.length === 0) return;
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            setActive(activeIndex + 1 >= resultEls.length ? resultEls.length - 1 : activeIndex + 1);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            setActive(activeIndex - 1 < 0 ? 0 : activeIndex - 1);
+        } else if (e.key === 'Enter' && activeIndex >= 0 && resultEls[activeIndex]) {
+            e.preventDefault();
+            window.location.href = resultEls[activeIndex].getAttribute('href');
+        }
     });
 
     clearBtn.addEventListener('click', function () {

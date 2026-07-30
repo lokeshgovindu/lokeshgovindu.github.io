@@ -104,35 +104,35 @@ const SITE_SEARCH_DATA = [
   // ═══════════════════════════════════════════════════════════
   { title: "DIR — List Directory", section: "CMD Prompt", category: "Command",
     content: "List directory contents. DIR /S recurses subdirectories, /B gives bare names, /O:N sorts by name, /O:S by size, /A:H shows hidden files.",
-    tags: ["dir", "list", "directory", "files", "cmd"], url: "/cmd-prompt/" },
+    tags: ["dir", "list", "directory", "files", "cmd"], url: "/cmd-prompt/#built-in-commands" },
 
   { title: "FINDSTR — Search Text in Files", section: "CMD Prompt", category: "Command",
     content: "Search for text in files with regular expression support. FINDSTR /S searches subdirectories, /I is case-insensitive, /N shows line numbers.",
-    tags: ["findstr", "find", "search", "text", "regex", "grep", "cmd"], url: "/cmd-prompt/" },
+    tags: ["findstr", "find", "search", "text", "regex", "grep", "cmd"], url: "/cmd-prompt/#built-in-commands" },
 
   { title: "TASKLIST / TASKKILL", section: "CMD Prompt", category: "Command",
     content: "TASKLIST lists all running processes. TASKKILL /IM name.exe terminates by name, /PID number by process ID, /F forces termination.",
-    tags: ["process", "kill", "task", "tasklist", "taskkill", "pid", "cmd"], url: "/cmd-prompt/" },
+    tags: ["process", "kill", "task", "tasklist", "taskkill", "pid", "cmd"], url: "/cmd-prompt/#built-in-commands" },
 
   { title: "ROBOCOPY — Robust File Copy", section: "CMD Prompt", category: "Command",
     content: "Mirror directories, retry failed copies, log results. Use /MIR to mirror, /R:3 to retry 3 times, /LOG:file.txt to log output.",
-    tags: ["copy", "backup", "sync", "robocopy", "mirror", "cmd"], url: "/cmd-prompt/" },
+    tags: ["copy", "backup", "sync", "robocopy", "mirror", "cmd"], url: "/cmd-prompt/#built-in-commands" },
 
   { title: "IPCONFIG — Network Configuration", section: "CMD Prompt", category: "Command",
     content: "Show IP addresses for all adapters. /all shows DNS, MAC, DHCP details. /flushdns clears the DNS resolver cache.",
-    tags: ["network", "ip", "ipconfig", "dns", "mac", "dhcp", "cmd"], url: "/cmd-prompt/" },
+    tags: ["network", "ip", "ipconfig", "dns", "mac", "dhcp", "cmd"], url: "/cmd-prompt/#built-in-commands" },
 
   { title: "NETSTAT — Network Connections", section: "CMD Prompt", category: "Command",
     content: "Show active TCP/UDP connections and listening ports. -ano adds PIDs to identify which process owns a port. -b shows the executable.",
-    tags: ["network", "ports", "connections", "netstat", "tcp", "udp", "cmd"], url: "/cmd-prompt/" },
+    tags: ["network", "ports", "connections", "netstat", "tcp", "udp", "cmd"], url: "/cmd-prompt/#built-in-commands" },
 
   { title: "WMIC — System Information", section: "CMD Prompt", category: "Command",
     content: "Query hardware and OS info. wmic cpu get name, wmic memorychip get capacity, wmic logicaldisk get size,freespace.",
-    tags: ["wmic", "system", "hardware", "cpu", "memory", "disk", "cmd"], url: "/cmd-prompt/" },
+    tags: ["wmic", "system", "hardware", "cpu", "memory", "disk", "cmd"], url: "/cmd-prompt/#built-in-commands" },
 
   { title: "SET / SETX — Environment Variables", section: "CMD Prompt", category: "Command",
     content: "SET VAR=value sets a variable for the current session. SETX VAR value persists it permanently. SETX /M sets a system-wide variable.",
-    tags: ["environment", "variables", "set", "setx", "path", "cmd"], url: "/cmd-prompt/" },
+    tags: ["environment", "variables", "set", "setx", "path", "cmd"], url: "/cmd-prompt/#built-in-commands" },
 
   // ═══════════════════════════════════════════════════════════
   //  CMD PROMPT — Tools

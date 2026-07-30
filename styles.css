@@ -1650,9 +1650,14 @@ a.tool-overview-card {
 }
 
 .nav-search-result:hover,
-.nav-search-result:focus {
+.nav-search-result:focus,
+.nav-search-result.active {
     background: var(--sky-light);
     color: inherit;
+}
+
+.nav-search-seeall.active {
+    background: var(--sky-light);
 }
 
 .nav-search-result-icon {

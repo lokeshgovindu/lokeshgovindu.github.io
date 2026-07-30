@@ -44,3 +44,73 @@ comments: true
         </div>
     </div>
 </section>
+
+<!-- ───── BUILT-IN COMMANDS ───── -->
+<section id="built-in-commands" class="tips-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-label">Command Reference</div>
+            <h2 class="section-title">Built-in Commands</h2>
+            <p class="section-sub">Powerful commands built right into cmd.exe — no extra tools required.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-folder-open"></i></div>
+                    <h5>DIR — List Directory</h5>
+                    <p>List directory contents. <code>/S</code> recurses subdirectories, <code>/B</code> gives bare names, <code>/O:N</code> sorts by name, <code>/O:S</code> by size, <code>/A:H</code> shows hidden files.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-magnifying-glass"></i></div>
+                    <h5>FINDSTR — Search Text in Files</h5>
+                    <p>Search for text in files with regular expression support. <code>/S</code> searches subdirectories, <code>/I</code> is case-insensitive, <code>/N</code> shows line numbers.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-list-check"></i></div>
+                    <h5>TASKLIST / TASKKILL</h5>
+                    <p><code>TASKLIST</code> lists all running processes. <code>TASKKILL /IM name.exe</code> terminates by name, <code>/PID number</code> by process ID, <code>/F</code> forces termination.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-copy"></i></div>
+                    <h5>ROBOCOPY — Robust File Copy</h5>
+                    <p>Mirror directories, retry failed copies, log results. Use <code>/MIR</code> to mirror, <code>/R:3</code> to retry 3 times, <code>/LOG:file.txt</code> to log output.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-network-wired"></i></div>
+                    <h5>IPCONFIG — Network Configuration</h5>
+                    <p>Show IP addresses for all adapters. <code>/all</code> shows DNS, MAC, and DHCP details. <code>/flushdns</code> clears the DNS resolver cache.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-ethernet"></i></div>
+                    <h5>NETSTAT — Network Connections</h5>
+                    <p>Show active TCP/UDP connections and listening ports. <code>-ano</code> adds PIDs to identify which process owns a port. <code>-b</code> shows the executable.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-microchip"></i></div>
+                    <h5>WMIC — System Information</h5>
+                    <p>Query hardware and OS info, e.g. <code>wmic cpu get name</code>, <code>wmic memorychip get capacity</code>, <code>wmic logicaldisk get size,freespace</code>.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-4">
+                <div class="tip-card">
+                    <div class="tip-icon cmd"><i class="fa fa-sliders"></i></div>
+                    <h5>SET / SETX — Environment Variables</h5>
+                    <p><code>SET VAR=value</code> sets a variable for the current session. <code>SETX VAR value</code> persists it permanently; <code>SETX /M</code> sets a system-wide variable.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
