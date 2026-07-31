@@ -1792,6 +1792,18 @@ a.tool-overview-card {
 
 .md-editor-hint:hover { color: var(--primary); }
 
+button.md-editor-hint {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+
+button.md-editor-hint:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
 .md-editor-body textarea {
     display: block;
     box-sizing: border-box;

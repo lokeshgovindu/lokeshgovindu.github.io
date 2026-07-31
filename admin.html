@@ -11,8 +11,9 @@ noindex: true
         <div class="admin-panel">
             <h1 id="admin-heading" class="blog-post-title" style="margin-bottom: 0.5rem;">New Blog Post</h1>
             <p class="section-sub" style="margin: 0 0 2rem; text-align: left; max-width: none;">
-                Publishes straight to the live site via GitHub's API — there's no draft state. Once submitted,
-                GitHub Pages will rebuild automatically, usually within a minute or two.
+                Publishes straight to the live site via GitHub's API. Save as a draft to keep working on it
+                privately, or publish to go live immediately — either way, GitHub Pages rebuilds automatically,
+                usually within a minute or two of publishing.
             </p>
 
             <div class="admin-auth-card mb-4">
@@ -78,7 +79,11 @@ noindex: true
                                     <button type="button" class="md-editor-tab active" data-tab="write" role="tab" aria-selected="true">Write</button>
                                     <button type="button" class="md-editor-tab" data-tab="preview" role="tab" aria-selected="false">Preview</button>
                                 </div>
-                                <a class="md-editor-hint" href="https://www.markdownguide.org/cheat-sheet/" target="_blank" rel="noopener">Markdown is supported</a>
+                                <div class="d-flex align-items-center">
+                                    <button type="button" id="insert-image-btn" class="md-editor-hint"><i class="fa fa-image me-1"></i>Insert image</button>
+                                    <input type="file" id="image-file-input" accept="image/*" style="display: none;">
+                                    <a class="md-editor-hint" href="https://www.markdownguide.org/cheat-sheet/" target="_blank" rel="noopener">Markdown is supported</a>
+                                </div>
                             </div>
                             <div class="md-editor-body">
                                 <textarea id="post-body" rows="16" placeholder="Write your post here using Markdown — headings, lists, code blocks, and links all work." required></textarea>
@@ -87,7 +92,8 @@ noindex: true
                         </div>
                     </div>
                     <div class="d-flex gap-2 flex-wrap">
-                        <button type="submit" id="publish-btn" class="btn-github-profile"><i class="fa fa-cloud-arrow-up me-2"></i>Publish Post</button>
+                        <button type="submit" id="save-draft-btn" name="save-draft-btn" class="btn-project-site"><i class="fa fa-file-pen me-2"></i>Save as Draft</button>
+                        <button type="submit" id="publish-btn" name="publish-btn" class="btn-github-profile"><i class="fa fa-cloud-arrow-up me-2"></i>Publish Post</button>
                         <button type="button" id="delete-btn" class="btn btn-outline-danger" style="display: none;"><i class="fa fa-trash me-2"></i>Delete Post</button>
                     </div>
                 </form>
@@ -118,7 +124,10 @@ noindex: true
 
     var form = document.getElementById('post-form');
     var publishBtn = document.getElementById('publish-btn');
+    var saveDraftBtn = document.getElementById('save-draft-btn');
     var deleteBtn = document.getElementById('delete-btn');
+    var insertImageBtn = document.getElementById('insert-image-btn');
+    var imageFileInput = document.getElementById('image-file-input');
     var statusEl = document.getElementById('publish-status');
     var bodyInput = document.getElementById('post-body');
     var previewEl = document.getElementById('post-preview');
@@ -134,7 +143,7 @@ noindex: true
     var signedOutNotice = document.getElementById('editor-signedout-notice');
 
     var authToken = localStorage.getItem(TOKEN_KEY) || '';
-    var editingPost = null; // { path, sha } when editing an existing post
+    var editingPost = null; // { path, sha, type: 'post'|'draft' } when editing an existing post/draft
     var loadedPosts = [];
 
     function setStatus(message, type) {
@@ -253,6 +262,92 @@ noindex: true
         });
     });
 
+    // ---- Image upload ----
+
+    function readFileAsBase64(file) {
+        return new Promise(function (resolve, reject) {
+            var reader = new FileReader();
+            reader.onload = function () { resolve(reader.result.split(',')[1]); };
+            reader.onerror = function () { reject(new Error('Could not read that file.')); };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function sanitizeFilename(name) {
+        return name.toLowerCase().replace(/[^a-z0-9.\-]+/g, '-').replace(/-+/g, '-');
+    }
+
+    insertImageBtn.addEventListener('click', function () {
+        if (!authToken) { setStatus('Please sign in with a token first.', 'error'); return; }
+        imageFileInput.click();
+    });
+
+    imageFileInput.addEventListener('change', function () {
+        var file = imageFileInput.files[0];
+        imageFileInput.value = ''; // reset, so picking the same file again still fires 'change'
+        if (!file) return;
+
+        if (file.type.indexOf('image/') !== 0) {
+            setStatus('Please choose an image file.', 'error');
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            var sizeMb = Math.round(file.size / 1024 / 1024 * 10) / 10;
+            if (!window.confirm('That image is ' + sizeMb + 'MB — large images slow down the page. Upload anyway?')) {
+                return;
+            }
+        }
+
+        var altText = bodyInput.value.slice(bodyInput.selectionStart, bodyInput.selectionEnd) || file.name.replace(/\.[^.]+$/, '');
+        var path = 'assets/blog/' + Date.now() + '-' + sanitizeFilename(file.name);
+
+        insertImageBtn.disabled = true;
+        setStatus('Uploading image…', 'info');
+
+        readFileAsBase64(file).then(function (base64) {
+            return fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + authToken,
+                    'Accept': 'application/vnd.github+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Upload image: ' + file.name,
+                    content: base64,
+                    branch: BRANCH
+                })
+            });
+        }).then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (data) {
+                return { ok: res.ok, status: res.status, data: data };
+            });
+        }).then(function (result) {
+            if (!result.ok) {
+                if (result.status === 401) {
+                    setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
+                } else {
+                    setStatus('Image upload failed: ' + (result.data.message || 'HTTP ' + result.status), 'error');
+                }
+                return;
+            }
+
+            var markdown = '![' + altText + '](/' + path + ')';
+            var start = bodyInput.selectionStart;
+            var end = bodyInput.selectionEnd;
+            bodyInput.value = bodyInput.value.slice(0, start) + markdown + bodyInput.value.slice(end);
+            var cursorPos = start + markdown.length;
+            bodyInput.focus();
+            bodyInput.setSelectionRange(cursorPos, cursorPos);
+            setStatus('Image uploaded and inserted.', 'success');
+        }).catch(function (err) {
+            setStatus('Network error while uploading: ' + err.message, 'error');
+        }).finally(function () {
+            insertImageBtn.disabled = false;
+        });
+    });
+
     // ---- Publish ----
 
     function slugify(text) {
@@ -267,16 +362,29 @@ noindex: true
         return path.split('/').pop().replace(/\.md$/, '').replace(/^\d{4}-\d{2}-\d{2}-/, '');
     }
 
+    function datePrefixFromPath(path) {
+        var match = path.split('/').pop().match(/^(\d{4}-\d{2}-\d{2})-/);
+        return match ? match[1] : null;
+    }
+
     function toBase64Utf8(str) {
         return btoa(unescape(encodeURIComponent(str)));
     }
 
-    function pathForSlug(slug) {
+    function todayDatePrefix() {
         var now = new Date();
         var yyyy = now.getFullYear();
         var mm = String(now.getMonth() + 1).padStart(2, '0');
         var dd = String(now.getDate()).padStart(2, '0');
-        return '_posts/' + yyyy + '-' + mm + '-' + dd + '-' + slug + '.md';
+        return yyyy + '-' + mm + '-' + dd;
+    }
+
+    function pathForSlug(slug) {
+        return '_posts/' + todayDatePrefix() + '-' + slug + '.md';
+    }
+
+    function pathForDraftSlug(slug) {
+        return '_drafts/' + slug + '.md';
     }
 
     function ghHeaders(extra) {
@@ -310,20 +418,55 @@ noindex: true
 
     // ---- Mode switching: New Post vs Edit Existing Post ----
 
+    var currentMode = 'new';
+
+    // Centralizes what the three action buttons look like for every
+    // combination of mode ('new'/'edit') and what's currently loaded
+    // (nothing, a draft, or a published post).
+    function updateButtons() {
+        if (currentMode === 'new') {
+            saveDraftBtn.style.display = '';
+            saveDraftBtn.innerHTML = '<i class="fa fa-file-pen me-2"></i>Save as Draft';
+            publishBtn.style.display = '';
+            publishBtn.innerHTML = '<i class="fa fa-cloud-arrow-up me-2"></i>Publish Post';
+            deleteBtn.style.display = 'none';
+            return;
+        }
+
+        // Edit mode, nothing chosen yet.
+        if (!editingPost) {
+            saveDraftBtn.style.display = 'none';
+            publishBtn.style.display = 'none';
+            deleteBtn.style.display = 'none';
+            return;
+        }
+
+        deleteBtn.style.display = '';
+
+        if (editingPost.type === 'draft') {
+            saveDraftBtn.style.display = '';
+            saveDraftBtn.innerHTML = '<i class="fa fa-file-pen me-2"></i>Save Draft';
+            publishBtn.style.display = '';
+            publishBtn.innerHTML = '<i class="fa fa-cloud-arrow-up me-2"></i>Publish';
+        } else {
+            saveDraftBtn.style.display = 'none';
+            publishBtn.style.display = '';
+            publishBtn.innerHTML = '<i class="fa fa-floppy-disk me-2"></i>Save Changes';
+        }
+    }
+
     function setMode(mode) {
+        currentMode = mode;
         modeTabs.forEach(function (b) { b.classList.toggle('active', b.dataset.mode === mode); });
         editPicker.style.display = mode === 'edit' ? '' : 'none';
         editingPost = null;
-        deleteBtn.style.display = 'none';
         form.reset();
         titleHint.textContent = '';
         previewEl.style.display = 'none';
         bodyInput.style.display = '';
         tabButtons[0].click();
         adminHeading.textContent = mode === 'edit' ? 'Edit Blog Post' : 'New Blog Post';
-        publishBtn.innerHTML = mode === 'edit'
-            ? '<i class="fa fa-floppy-disk me-2"></i>Save Changes'
-            : '<i class="fa fa-cloud-arrow-up me-2"></i>Publish Post';
+        updateButtons();
 
         if (mode === 'edit') loadPostList();
     }
@@ -332,41 +475,64 @@ noindex: true
         btn.addEventListener('click', function () { setMode(btn.dataset.mode); });
     });
 
-    function loadPostList() {
-        editSelect.innerHTML = '';
-        editSelect.appendChild(new Option('Loading posts…', ''));
-
-        fetch('https://api.github.com/repos/' + REPO + '/contents/_posts?ref=' + BRANCH, { headers: ghHeaders() })
+    // Lists .md files in a folder, tagging each with `type`. A missing
+    // folder (e.g. no drafts yet) is treated as an empty list, not an error.
+    function listFolder(folder, type) {
+        return fetch('https://api.github.com/repos/' + REPO + '/contents/' + folder + '?ref=' + BRANCH, { headers: ghHeaders() })
             .then(function (res) {
-                if (!res.ok) throw new Error('Could not list posts (HTTP ' + res.status + ').');
+                if (res.status === 404) return [];
+                if (!res.ok) throw new Error('Could not list ' + folder + ' (HTTP ' + res.status + ').');
                 return res.json();
             })
             .then(function (files) {
                 var mdFiles = files.filter(function (f) { return /\.md$/.test(f.name); });
-                if (mdFiles.length === 0) {
-                    editSelect.innerHTML = '';
-                    editSelect.appendChild(new Option('No posts found', ''));
-                    return;
-                }
                 return Promise.all(mdFiles.map(function (f) {
                     return fetch('https://api.github.com/repos/' + REPO + '/contents/' + f.path + '?ref=' + BRANCH,
                         { headers: ghHeaders({ Accept: 'application/vnd.github.raw' }) })
                         .then(function (res) { return res.text(); })
                         .then(function (text) {
-                            return { name: f.name, path: f.path, sha: f.sha, title: parsePost(text).title || f.name };
+                            return { name: f.name, path: f.path, sha: f.sha, type: type, title: parsePost(text).title || f.name };
                         })
                         .catch(function () {
-                            return { name: f.name, path: f.path, sha: f.sha, title: f.name };
+                            return { name: f.name, path: f.path, sha: f.sha, type: type, title: f.name };
                         });
-                })).then(function (posts) {
-                    posts.sort(function (a, b) { return b.name.localeCompare(a.name); });
-                    loadedPosts = posts;
-                    editSelect.innerHTML = '';
-                    editSelect.appendChild(new Option('Select a post…', ''));
-                    posts.forEach(function (p, i) {
-                        editSelect.appendChild(new Option(p.title, String(i)));
+                }));
+            });
+    }
+
+    function loadPostList() {
+        editSelect.innerHTML = '';
+        editSelect.appendChild(new Option('Loading posts…', ''));
+
+        Promise.all([listFolder('_drafts', 'draft'), listFolder('_posts', 'post')])
+            .then(function (results) {
+                var drafts = results[0].sort(function (a, b) { return b.name.localeCompare(a.name); });
+                var posts = results[1].sort(function (a, b) { return b.name.localeCompare(a.name); });
+                loadedPosts = drafts.concat(posts);
+
+                editSelect.innerHTML = '';
+                if (loadedPosts.length === 0) {
+                    editSelect.appendChild(new Option('No posts or drafts found', ''));
+                    return;
+                }
+                editSelect.appendChild(new Option('Select a post…', ''));
+
+                if (drafts.length) {
+                    var draftGroup = document.createElement('optgroup');
+                    draftGroup.label = 'Drafts';
+                    drafts.forEach(function (p) {
+                        draftGroup.appendChild(new Option(p.title, String(loadedPosts.indexOf(p))));
                     });
-                });
+                    editSelect.appendChild(draftGroup);
+                }
+                if (posts.length) {
+                    var postGroup = document.createElement('optgroup');
+                    postGroup.label = 'Published';
+                    posts.forEach(function (p) {
+                        postGroup.appendChild(new Option(p.title, String(loadedPosts.indexOf(p))));
+                    });
+                    editSelect.appendChild(postGroup);
+                }
             })
             .catch(function (err) {
                 editSelect.innerHTML = '';
@@ -379,16 +545,16 @@ noindex: true
         var idx = editSelect.value;
         if (idx === '' || !loadedPosts[idx]) {
             editingPost = null;
-            deleteBtn.style.display = 'none';
+            updateButtons();
             return;
         }
         var chosen = loadedPosts[idx];
 
-        setStatus('Loading post…', 'info');
+        setStatus('Loading ' + chosen.type + '…', 'info');
         fetch('https://api.github.com/repos/' + REPO + '/contents/' + chosen.path + '?ref=' + BRANCH,
             { headers: ghHeaders({ Accept: 'application/vnd.github.raw' }) })
             .then(function (res) {
-                if (!res.ok) throw new Error('Could not load that post (HTTP ' + res.status + ').');
+                if (!res.ok) throw new Error('Could not load that ' + chosen.type + ' (HTTP ' + res.status + ').');
                 return res.text();
             })
             .then(function (text) {
@@ -396,9 +562,9 @@ noindex: true
                 titleInput.value = parsed.title;
                 tagsInput.value = parsed.tags;
                 bodyInput.value = parsed.body;
-                editingPost = { path: chosen.path, sha: chosen.sha };
-                deleteBtn.style.display = '';
-                setStatus('Loaded "' + parsed.title + '" for editing.', 'info');
+                editingPost = { path: chosen.path, sha: chosen.sha, type: chosen.type };
+                updateButtons();
+                setStatus('Loaded "' + parsed.title + '" (' + chosen.type + ') for editing.', 'info');
             })
             .catch(function (err) {
                 setStatus(err.message, 'error');
@@ -436,9 +602,26 @@ noindex: true
         }, 500);
     });
 
+    function setButtonsDisabled(disabled) {
+        saveDraftBtn.disabled = disabled;
+        publishBtn.disabled = disabled;
+        deleteBtn.disabled = disabled;
+    }
+
+    function buildFrontMatter(title, tagsRaw) {
+        var tags = tagsRaw ? tagsRaw.split(',').map(function (t) { return t.trim(); }).filter(Boolean) : [];
+        var frontMatter = '---\ntitle: ' + JSON.stringify(title) + '\n';
+        if (tags.length) {
+            frontMatter += 'tags: [' + tags.map(function (t) { return JSON.stringify(t); }).join(', ') + ']\n';
+        }
+        frontMatter += '---\n\n';
+        return frontMatter;
+    }
+
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
+        var clickedSaveDraft = e.submitter && e.submitter.id === 'save-draft-btn';
         var title = titleInput.value.trim();
         var tagsRaw = tagsInput.value.trim();
         var body = bodyInput.value;
@@ -447,22 +630,44 @@ noindex: true
         if (!title) { setStatus('Please enter a title.', 'error'); return; }
         if (!body) { setStatus('Please write some content.', 'error'); return; }
 
-        if (editingPost) {
+        var slug = slugify(title);
+        if (!slug) { setStatus('Title must contain at least one letter or number.', 'error'); return; }
+
+        // ---- Save as Draft / Save Draft ----
+        if (clickedSaveDraft) {
+            var draftPath = (editingPost && editingPost.type === 'draft') ? editingPost.path : pathForDraftSlug(slug);
+            var draftSha = (editingPost && editingPost.type === 'draft') ? editingPost.sha : null;
+            setButtonsDisabled(true);
+            saveDraft(title, tagsRaw, body, draftPath, draftSha);
+            return;
+        }
+
+        // ---- Publish a loaded draft ----
+        if (editingPost && editingPost.type === 'draft') {
+            if (!window.confirm('Publish "' + title + '"? This makes it live on the site immediately.')) {
+                setStatus('Publish cancelled.', 'info');
+                return;
+            }
+            setButtonsDisabled(true);
+            promoteDraft(title, tagsRaw, body, editingPost.path, editingPost.sha);
+            return;
+        }
+
+        // ---- Save changes to a loaded published post ----
+        if (editingPost && editingPost.type === 'post') {
             if (!window.confirm('Save changes to "' + title + '"? This updates the live post immediately.')) {
                 setStatus('Save cancelled.', 'info');
                 return;
             }
-            publishBtn.disabled = true;
+            setButtonsDisabled(true);
             savePost(title, tagsRaw, body, editingPost.path, editingPost.sha);
             return;
         }
 
-        var slug = slugify(title);
-        if (!slug) { setStatus('Title must contain at least one letter or number.', 'error'); return; }
-
+        // ---- Publish a brand-new post ----
         var path = pathForSlug(slug);
 
-        publishBtn.disabled = true;
+        setButtonsDisabled(true);
         setStatus('Checking title…', 'info');
 
         var slugCheck = (lastCheckedSlug === slug && lastCheckedTaken !== null)
@@ -472,13 +677,13 @@ noindex: true
         slugCheck.then(function (taken) {
             if (taken) {
                 setStatus('A post with this exact title already exists today — try a different title.', 'error');
-                publishBtn.disabled = false;
+                setButtonsDisabled(false);
                 return;
             }
 
-            if (!window.confirm('Publish "' + title + '"? This goes live immediately — there\'s no draft state.')) {
+            if (!window.confirm('Publish "' + title + '"? This goes live immediately.')) {
                 setStatus('Publish cancelled.', 'info');
-                publishBtn.disabled = false;
+                setButtonsDisabled(false);
                 return;
             }
 
@@ -487,14 +692,22 @@ noindex: true
     });
 
     function savePost(title, tagsRaw, body, path, sha) {
-        var slug = sha ? slugFromPath(path) : slugify(title);
-        var tags = tagsRaw ? tagsRaw.split(',').map(function (t) { return t.trim(); }).filter(Boolean) : [];
-        var frontMatter = '---\ntitle: ' + JSON.stringify(title) + '\n';
-        if (tags.length) {
-            frontMatter += 'tags: [' + tags.map(function (t) { return JSON.stringify(t); }).join(', ') + ']\n';
+        var fullContent = buildFrontMatter(title, tagsRaw) + body + '\n';
+
+        // Editing an existing post whose title changed enough to change its
+        // slug — rename the file (keeping its original publish date) rather
+        // than silently leaving the URL out of sync with the new title.
+        if (sha) {
+            var newSlug = slugify(title);
+            if (newSlug !== slugFromPath(path)) {
+                var datePrefix = datePrefixFromPath(path) || todayDatePrefix();
+                var newPath = '_posts/' + datePrefix + '-' + newSlug + '.md';
+                renamePost(title, fullContent, path, sha, newPath, newSlug);
+                return;
+            }
         }
-        frontMatter += '---\n\n';
-        var fullContent = frontMatter + body + '\n';
+
+        var slug = sha ? slugFromPath(path) : slugify(title);
 
         setStatus(sha ? 'Saving…' : 'Publishing…', 'info');
 
@@ -534,20 +747,296 @@ noindex: true
         }).catch(function (err) {
             setStatus('Network error while saving: ' + err.message, 'error');
         }).finally(function () {
-            publishBtn.disabled = false;
+            setButtonsDisabled(false);
+        });
+    }
+
+    function renamePost(title, fullContent, oldPath, oldSha, newPath, newSlug) {
+        setStatus('Checking new title…', 'info');
+
+        checkSlugTaken(newPath).then(function (taken) {
+            if (taken) {
+                setStatus('A post with this exact title already exists on that date — try a different title.', 'error');
+                setButtonsDisabled(false);
+                return;
+            }
+
+            setStatus('Saving…', 'info');
+
+            fetch('https://api.github.com/repos/' + REPO + '/contents/' + newPath, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + authToken,
+                    'Accept': 'application/vnd.github+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Rename post: ' + title,
+                    content: toBase64Utf8(fullContent),
+                    branch: BRANCH
+                })
+            }).then(function (res) {
+                return res.json().catch(function () { return {}; }).then(function (data) {
+                    return { ok: res.ok, status: res.status, data: data };
+                });
+            }).then(function (result) {
+                if (!result.ok) {
+                    if (result.status === 401) {
+                        setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
+                    } else {
+                        setStatus('Save failed: ' + (result.data.message || 'HTTP ' + result.status), 'error');
+                    }
+                    setButtonsDisabled(false);
+                    return;
+                }
+
+                var postUrl = '/blog/' + newSlug + '/';
+
+                // Renamed successfully — clean up the file at its old path.
+                // If this part fails, the rename itself already succeeded,
+                // so warn rather than treat it as an error.
+                fetch('https://api.github.com/repos/' + REPO + '/contents/' + oldPath, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + authToken,
+                        'Accept': 'application/vnd.github+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Remove renamed post: ' + title,
+                        sha: oldSha,
+                        branch: BRANCH
+                    })
+                }).then(function (res) { return res.ok; })
+                    .catch(function () { return false; })
+                    .then(function (cleaned) {
+                        setStatus(
+                            'Saved! Its address is now ' + postUrl + ' — it should update within a minute or two.' +
+                            (cleaned ? '' : ' (The old file at ' + oldPath + ' could not be removed automatically — delete it manually from GitHub when you get a chance.)'),
+                            'success'
+                        );
+                        setButtonsDisabled(false);
+                        setMode('new');
+                    });
+            }).catch(function (err) {
+                setStatus('Network error while saving: ' + err.message, 'error');
+                setButtonsDisabled(false);
+            });
+        });
+    }
+
+    function saveDraft(title, tagsRaw, body, path, sha) {
+        var fullContent = buildFrontMatter(title, tagsRaw) + body + '\n';
+
+        if (sha) {
+            var newSlug = slugify(title);
+            var oldSlug = path.split('/').pop().replace(/\.md$/, '');
+            if (newSlug !== oldSlug) {
+                renameDraft(title, fullContent, path, sha, pathForDraftSlug(newSlug));
+                return;
+            }
+        }
+
+        setStatus('Saving draft…', 'info');
+
+        var requestBody = {
+            message: (sha ? 'Update draft: ' : 'Save draft: ') + title,
+            content: toBase64Utf8(fullContent),
+            branch: BRANCH
+        };
+        if (sha) requestBody.sha = sha;
+
+        fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
+            method: 'PUT',
+            headers: {
+                'Authorization': 'Bearer ' + authToken,
+                'Accept': 'application/vnd.github+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        }).then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (data) {
+                return { ok: res.ok, status: res.status, data: data };
+            });
+        }).then(function (result) {
+            if (result.ok) {
+                setStatus('Draft saved — it stays private and only shows up here under Edit Existing Post.', 'success');
+                setMode('new');
+            } else if (result.status === 401) {
+                setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
+            } else if (result.status === 404) {
+                setStatus('Repository not found or access lacks permission — check scopes/token access.', 'error');
+            } else if (result.data.message && /sha/i.test(result.data.message)) {
+                setStatus(sha ? 'This draft changed elsewhere since you loaded it — reload and try again.' : 'A draft with this exact title already exists — try a different title.', 'error');
+            } else {
+                setStatus('Save draft failed: ' + (result.data.message || 'HTTP ' + result.status), 'error');
+            }
+        }).catch(function (err) {
+            setStatus('Network error while saving: ' + err.message, 'error');
+        }).finally(function () {
+            setButtonsDisabled(false);
+        });
+    }
+
+    function renameDraft(title, fullContent, oldPath, oldSha, newPath) {
+        setStatus('Checking new title…', 'info');
+
+        checkSlugTaken(newPath).then(function (taken) {
+            if (taken) {
+                setStatus('A draft with this exact title already exists — try a different title.', 'error');
+                setButtonsDisabled(false);
+                return;
+            }
+
+            setStatus('Saving draft…', 'info');
+
+            fetch('https://api.github.com/repos/' + REPO + '/contents/' + newPath, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + authToken,
+                    'Accept': 'application/vnd.github+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Rename draft: ' + title,
+                    content: toBase64Utf8(fullContent),
+                    branch: BRANCH
+                })
+            }).then(function (res) {
+                return res.json().catch(function () { return {}; }).then(function (data) {
+                    return { ok: res.ok, status: res.status, data: data };
+                });
+            }).then(function (result) {
+                if (!result.ok) {
+                    if (result.status === 401) {
+                        setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
+                    } else {
+                        setStatus('Save draft failed: ' + (result.data.message || 'HTTP ' + result.status), 'error');
+                    }
+                    setButtonsDisabled(false);
+                    return;
+                }
+
+                fetch('https://api.github.com/repos/' + REPO + '/contents/' + oldPath, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + authToken,
+                        'Accept': 'application/vnd.github+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Remove renamed draft: ' + title,
+                        sha: oldSha,
+                        branch: BRANCH
+                    })
+                }).then(function (res) { return res.ok; })
+                    .catch(function () { return false; })
+                    .then(function (cleaned) {
+                        setStatus(
+                            'Draft saved under its new title.' +
+                            (cleaned ? '' : ' (The old draft file at ' + oldPath + ' could not be removed automatically — delete it manually from GitHub when you get a chance.)'),
+                            'success'
+                        );
+                        setButtonsDisabled(false);
+                        setMode('new');
+                    });
+            }).catch(function (err) {
+                setStatus('Network error while saving: ' + err.message, 'error');
+                setButtonsDisabled(false);
+            });
+        });
+    }
+
+    function promoteDraft(title, tagsRaw, body, draftPath, draftSha) {
+        var slug = slugify(title);
+        var newPath = pathForSlug(slug);
+        var fullContent = buildFrontMatter(title, tagsRaw) + body + '\n';
+
+        setStatus('Checking title…', 'info');
+
+        checkSlugTaken(newPath).then(function (taken) {
+            if (taken) {
+                setStatus('A post with this exact title already exists today — try a different title before publishing.', 'error');
+                setButtonsDisabled(false);
+                return;
+            }
+
+            setStatus('Publishing…', 'info');
+
+            fetch('https://api.github.com/repos/' + REPO + '/contents/' + newPath, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': 'Bearer ' + authToken,
+                    'Accept': 'application/vnd.github+json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Publish draft: ' + title,
+                    content: toBase64Utf8(fullContent),
+                    branch: BRANCH
+                })
+            }).then(function (res) {
+                return res.json().catch(function () { return {}; }).then(function (data) {
+                    return { ok: res.ok, status: res.status, data: data };
+                });
+            }).then(function (result) {
+                if (!result.ok) {
+                    if (result.status === 401) {
+                        setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
+                    } else {
+                        setStatus('Publish failed: ' + (result.data.message || 'HTTP ' + result.status), 'error');
+                    }
+                    setButtonsDisabled(false);
+                    return;
+                }
+
+                var postUrl = '/blog/' + slug + '/';
+
+                // The post is live now — clean up the old draft file. If this
+                // part fails, the publish itself already succeeded, so warn
+                // rather than treat it as an error.
+                fetch('https://api.github.com/repos/' + REPO + '/contents/' + draftPath, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': 'Bearer ' + authToken,
+                        'Accept': 'application/vnd.github+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Remove published draft: ' + title,
+                        sha: draftSha,
+                        branch: BRANCH
+                    })
+                }).then(function (res) { return res.ok; })
+                    .catch(function () { return false; })
+                    .then(function (cleaned) {
+                        setStatus(
+                            'Published! It should be live at ' + postUrl + ' within a minute or two.' +
+                            (cleaned ? '' : ' (The old draft file could not be removed automatically — delete it manually from GitHub when you get a chance.)'),
+                            'success'
+                        );
+                        setButtonsDisabled(false);
+                        setMode('new');
+                    });
+            }).catch(function (err) {
+                setStatus('Network error while publishing: ' + err.message, 'error');
+                setButtonsDisabled(false);
+            });
         });
     }
 
     deleteBtn.addEventListener('click', function () {
         if (!editingPost) return;
         var title = titleInput.value.trim() || 'this post';
+        var noun = editingPost.type === 'draft' ? 'draft' : 'post';
 
-        if (!window.confirm('Delete "' + title + '"? This removes it from the live site immediately and can\'t be undone from here.')) {
+        if (!window.confirm('Delete this ' + noun + ' ("' + title + '")? ' +
+            (noun === 'post' ? 'This removes it from the live site immediately and ' : 'This ') +
+            'can\'t be undone from here.')) {
             return;
         }
 
-        deleteBtn.disabled = true;
-        publishBtn.disabled = true;
+        setButtonsDisabled(true);
         setStatus('Deleting…', 'info');
 
         fetch('https://api.github.com/repos/' + REPO + '/contents/' + editingPost.path, {
@@ -558,7 +1047,7 @@ noindex: true
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                message: 'Delete post: ' + title,
+                message: 'Delete ' + noun + ': ' + title,
                 sha: editingPost.sha,
                 branch: BRANCH
             })
@@ -568,22 +1057,21 @@ noindex: true
             });
         }).then(function (result) {
             if (result.ok) {
-                setStatus('Deleted. It will disappear from the site once GitHub Pages rebuilds, usually within a minute or two.', 'success');
+                setStatus('Deleted' + (noun === 'post' ? '. It will disappear from the site once GitHub Pages rebuilds, usually within a minute or two.' : ' draft.'), 'success');
                 setMode('new');
             } else if (result.status === 401) {
                 setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
             } else if (result.status === 404) {
-                setStatus('That post could not be found — it may have already been deleted.', 'error');
+                setStatus('That ' + noun + ' could not be found — it may have already been deleted.', 'error');
             } else if (result.data.message && /sha/i.test(result.data.message)) {
-                setStatus('This post changed elsewhere since you loaded it — reload and try again.', 'error');
+                setStatus('This ' + noun + ' changed elsewhere since you loaded it — reload and try again.', 'error');
             } else {
                 setStatus('Delete failed: ' + (result.data.message || 'HTTP ' + result.status), 'error');
             }
         }).catch(function (err) {
             setStatus('Network error while deleting: ' + err.message, 'error');
         }).finally(function () {
-            deleteBtn.disabled = false;
-            publishBtn.disabled = false;
+            setButtonsDisabled(false);
         });
     });
 })();
