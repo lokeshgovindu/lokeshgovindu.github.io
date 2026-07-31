@@ -49,6 +49,16 @@ noindex: true
             </p>
 
             <div id="post-editor-section" style="display: none;">
+                <div id="autosave-banner" class="admin-token-block mb-4" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <span id="autosave-banner-text"></span>
+                        <div class="d-flex gap-2">
+                            <button type="button" id="autosave-restore-btn" class="btn-project-site">Restore</button>
+                            <button type="button" id="autosave-discard-btn" class="admin-link-btn">Discard</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="d-flex gap-2 mb-4" id="admin-mode-tabs">
                     <button type="button" class="filter-btn active" data-mode="new">New Post</button>
                     <button type="button" class="filter-btn" data-mode="edit">Edit Existing Post</button>
@@ -141,6 +151,10 @@ noindex: true
     var editSelect = document.getElementById('edit-post-select');
     var postEditorSection = document.getElementById('post-editor-section');
     var signedOutNotice = document.getElementById('editor-signedout-notice');
+    var autosaveBanner = document.getElementById('autosave-banner');
+    var autosaveBannerText = document.getElementById('autosave-banner-text');
+    var autosaveRestoreBtn = document.getElementById('autosave-restore-btn');
+    var autosaveDiscardBtn = document.getElementById('autosave-discard-btn');
 
     var authToken = localStorage.getItem(TOKEN_KEY) || '';
     var editingPost = null; // { path, sha, type: 'post'|'draft' } when editing an existing post/draft
@@ -475,6 +489,89 @@ noindex: true
         btn.addEventListener('click', function () { setMode(btn.dataset.mode); });
     });
 
+    // ---- Autosave to localStorage, in case a tab close or crash loses
+    // unsaved work in the editor ----
+
+    var AUTOSAVE_KEY = 'admin_autosave';
+    var AUTOSAVE_MAX_AGE_MS = 24 * 60 * 60 * 1000; // ignore anything older than a day
+    var autosaveTimer = null;
+
+    function clearAutosave() {
+        localStorage.removeItem(AUTOSAVE_KEY);
+    }
+
+    function autosaveNow() {
+        var title = titleInput.value;
+        var tags = tagsInput.value;
+        var body = bodyInput.value;
+
+        if (!title && !tags && !body) {
+            clearAutosave();
+            return;
+        }
+
+        localStorage.setItem(AUTOSAVE_KEY, JSON.stringify({
+            mode: currentMode,
+            editingPath: editingPost ? editingPost.path : null,
+            editingSha: editingPost ? editingPost.sha : null,
+            editingType: editingPost ? editingPost.type : null,
+            title: title,
+            tags: tags,
+            body: body,
+            savedAt: Date.now()
+        }));
+    }
+
+    function scheduleAutosave() {
+        clearTimeout(autosaveTimer);
+        autosaveTimer = setTimeout(autosaveNow, 1000);
+    }
+
+    titleInput.addEventListener('input', scheduleAutosave);
+    tagsInput.addEventListener('input', scheduleAutosave);
+    bodyInput.addEventListener('input', scheduleAutosave);
+
+    function checkForAutosave() {
+        var raw = localStorage.getItem(AUTOSAVE_KEY);
+        if (!raw) return;
+
+        var saved;
+        try {
+            saved = JSON.parse(raw);
+        } catch (e) {
+            clearAutosave();
+            return;
+        }
+
+        if (!saved.savedAt || Date.now() - saved.savedAt > AUTOSAVE_MAX_AGE_MS) {
+            clearAutosave();
+            return;
+        }
+
+        autosaveBannerText.textContent = 'You have unsaved work from ' + new Date(saved.savedAt).toLocaleString() +
+            ' ("' + (saved.title || 'Untitled') + '").';
+        autosaveBanner.style.display = '';
+
+        autosaveRestoreBtn.onclick = function () {
+            setMode(saved.mode === 'edit' ? 'edit' : 'new');
+            titleInput.value = saved.title || '';
+            tagsInput.value = saved.tags || '';
+            bodyInput.value = saved.body || '';
+            if (saved.editingPath) {
+                editingPost = { path: saved.editingPath, sha: saved.editingSha, type: saved.editingType };
+                updateButtons();
+            }
+            autosaveBanner.style.display = 'none';
+        };
+
+        autosaveDiscardBtn.onclick = function () {
+            clearAutosave();
+            autosaveBanner.style.display = 'none';
+        };
+    }
+
+    checkForAutosave();
+
     // Lists .md files in a folder, tagging each with `type`. A missing
     // folder (e.g. no drafts yet) is treated as an empty list, not an error.
     function listFolder(folder, type) {
@@ -734,6 +831,7 @@ noindex: true
             if (result.ok) {
                 var postUrl = '/blog/' + slug + '/';
                 setStatus((sha ? 'Saved! ' : 'Published! ') + 'It should be live at ' + postUrl + ' within a minute or two, once GitHub Pages rebuilds.', 'success');
+                clearAutosave();
                 setMode('new');
             } else if (result.status === 401) {
                 setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
@@ -816,6 +914,7 @@ noindex: true
                             'success'
                         );
                         setButtonsDisabled(false);
+                        clearAutosave();
                         setMode('new');
                     });
             }).catch(function (err) {
@@ -861,6 +960,7 @@ noindex: true
         }).then(function (result) {
             if (result.ok) {
                 setStatus('Draft saved — it stays private and only shows up here under Edit Existing Post.', 'success');
+                clearAutosave();
                 setMode('new');
             } else if (result.status === 401) {
                 setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
@@ -938,6 +1038,7 @@ noindex: true
                             'success'
                         );
                         setButtonsDisabled(false);
+                        clearAutosave();
                         setMode('new');
                     });
             }).catch(function (err) {
@@ -1016,6 +1117,7 @@ noindex: true
                             'success'
                         );
                         setButtonsDisabled(false);
+                        clearAutosave();
                         setMode('new');
                     });
             }).catch(function (err) {
@@ -1058,6 +1160,7 @@ noindex: true
         }).then(function (result) {
             if (result.ok) {
                 setStatus('Deleted' + (noun === 'post' ? '. It will disappear from the site once GitHub Pages rebuilds, usually within a minute or two.' : ' draft.'), 'success');
+                clearAutosave();
                 setMode('new');
             } else if (result.status === 401) {
                 setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
