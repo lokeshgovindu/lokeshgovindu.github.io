@@ -34,3 +34,6 @@ jobs:
             echo "robots.txt was rendered with an HTML layout instead of as plain text"
             exit 1
           fi
+
+      - name: Check for broken internal links
+        run: bundle exec ruby script/check_links.rb
