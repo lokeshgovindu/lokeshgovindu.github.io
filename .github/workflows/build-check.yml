@@ -1,0 +1,36 @@
+name: Build Check
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll build
+
+      - name: Check generated JavaScript for syntax errors
+        run: |
+          shopt -s globstar nullglob
+          for f in _site/**/*.js; do
+            echo "Checking $f"
+            node --check "$f"
+          done
+
+      - name: Check robots.txt is plain text, not wrapped in HTML
+        run: |
+          if grep -q '<html' _site/robots.txt; then
+            echo "robots.txt was rendered with an HTML layout instead of as plain text"
+            exit 1
+          fi
