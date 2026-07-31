@@ -9,7 +9,7 @@ noindex: true
         <a href="{{ '/blog/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to Blog</a>
 
         <div class="admin-panel">
-            <h1 class="blog-post-title" style="margin-bottom: 0.5rem;">New Blog Post</h1>
+            <h1 id="admin-heading" class="blog-post-title" style="margin-bottom: 0.5rem;">New Blog Post</h1>
             <p class="section-sub" style="margin: 0 0 2rem; text-align: left; max-width: none;">
                 Publishes straight to the live site via GitHub's API — there's no draft state. Once submitted,
                 GitHub Pages will rebuild automatically, usually within a minute or two.
@@ -43,34 +43,52 @@ noindex: true
 
             <hr style="border-color: var(--border); margin: 2rem 0;">
 
-            <form id="post-form">
-                <div class="mb-3">
-                    <label class="form-label" for="post-title">Title</label>
-                    <input type="text" id="post-title" class="form-control" placeholder="My New Post" required>
-                    <p id="title-hint" class="form-text mt-1 mb-0"></p>
+            <p id="editor-signedout-notice" class="section-sub" style="text-align: left; max-width: none;">
+                <i class="fa fa-lock me-2"></i>Sign in with GitHub above to write a new post or edit an existing one.
+            </p>
+
+            <div id="post-editor-section" style="display: none;">
+                <div class="d-flex gap-2 mb-4" id="admin-mode-tabs">
+                    <button type="button" class="filter-btn active" data-mode="new">New Post</button>
+                    <button type="button" class="filter-btn" data-mode="edit">Edit Existing Post</button>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="post-tags">Tags <span class="form-text">(comma-separated, optional)</span></label>
-                    <input type="text" id="post-tags" class="form-control" placeholder="windows, productivity">
+
+                <div id="edit-post-picker" class="mb-4" style="display: none;">
+                    <label class="form-label" for="edit-post-select">Choose a post to edit</label>
+                    <select id="edit-post-select" class="form-control">
+                        <option value="">Select a post…</option>
+                    </select>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Content <span class="form-text">(Markdown)</span></label>
-                    <div class="md-editor">
-                        <div class="md-editor-tabs">
-                            <div class="md-editor-tablist" role="tablist">
-                                <button type="button" class="md-editor-tab active" data-tab="write" role="tab" aria-selected="true">Write</button>
-                                <button type="button" class="md-editor-tab" data-tab="preview" role="tab" aria-selected="false">Preview</button>
+
+                <form id="post-form">
+                    <div class="mb-3">
+                        <label class="form-label" for="post-title">Title</label>
+                        <input type="text" id="post-title" class="form-control" placeholder="My New Post" required>
+                        <p id="title-hint" class="form-text mt-1 mb-0"></p>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="post-tags">Tags <span class="form-text">(comma-separated, optional)</span></label>
+                        <input type="text" id="post-tags" class="form-control" placeholder="windows, productivity">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Content <span class="form-text">(Markdown)</span></label>
+                        <div class="md-editor">
+                            <div class="md-editor-tabs">
+                                <div class="md-editor-tablist" role="tablist">
+                                    <button type="button" class="md-editor-tab active" data-tab="write" role="tab" aria-selected="true">Write</button>
+                                    <button type="button" class="md-editor-tab" data-tab="preview" role="tab" aria-selected="false">Preview</button>
+                                </div>
+                                <a class="md-editor-hint" href="https://www.markdownguide.org/cheat-sheet/" target="_blank" rel="noopener">Markdown is supported</a>
                             </div>
-                            <a class="md-editor-hint" href="https://www.markdownguide.org/cheat-sheet/" target="_blank" rel="noopener">Markdown is supported</a>
-                        </div>
-                        <div class="md-editor-body">
-                            <textarea id="post-body" rows="16" placeholder="Write your post here using Markdown — headings, lists, code blocks, and links all work." required></textarea>
-                            <div id="post-preview" class="md-editor-preview blog-post-content is-empty" style="display: none;">Nothing to preview yet.</div>
+                            <div class="md-editor-body">
+                                <textarea id="post-body" rows="16" placeholder="Write your post here using Markdown — headings, lists, code blocks, and links all work." required></textarea>
+                                <div id="post-preview" class="md-editor-preview blog-post-content is-empty" style="display: none;">Nothing to preview yet.</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <button type="submit" id="publish-btn" class="btn-github-profile"><i class="fa fa-cloud-arrow-up me-2"></i>Publish Post</button>
-            </form>
+                    <button type="submit" id="publish-btn" class="btn-github-profile"><i class="fa fa-cloud-arrow-up me-2"></i>Publish Post</button>
+                </form>
+            </div>
 
             <div id="publish-status" class="admin-status mt-3" role="status"></div>
         </div>
@@ -103,8 +121,17 @@ noindex: true
     var tabButtons = document.querySelectorAll('.md-editor-tab');
     var titleInput = document.getElementById('post-title');
     var titleHint = document.getElementById('title-hint');
+    var tagsInput = document.getElementById('post-tags');
+    var adminHeading = document.getElementById('admin-heading');
+    var modeTabs = document.querySelectorAll('#admin-mode-tabs .filter-btn');
+    var editPicker = document.getElementById('edit-post-picker');
+    var editSelect = document.getElementById('edit-post-select');
+    var postEditorSection = document.getElementById('post-editor-section');
+    var signedOutNotice = document.getElementById('editor-signedout-notice');
 
     var authToken = localStorage.getItem(TOKEN_KEY) || '';
+    var editingPost = null; // { path, sha } when editing an existing post
+    var loadedPosts = [];
 
     function setStatus(message, type) {
         statusEl.textContent = message;
@@ -114,6 +141,8 @@ noindex: true
     function showSignedOut() {
         authSignedOut.style.display = '';
         authSignedIn.style.display = 'none';
+        postEditorSection.style.display = 'none';
+        signedOutNotice.style.display = '';
     }
 
     function showSignedIn(user) {
@@ -122,6 +151,8 @@ noindex: true
         authAvatar.src = user.avatar_url || '';
         authAvatar.alt = user.login || '';
         authUsername.textContent = user.login || 'GitHub user';
+        postEditorSection.style.display = '';
+        signedOutNotice.style.display = 'none';
     }
 
     function setToken(token) {
@@ -228,6 +259,10 @@ noindex: true
             .replace(/^-|-$/g, '');
     }
 
+    function slugFromPath(path) {
+        return path.split('/').pop().replace(/\.md$/, '').replace(/^\d{4}-\d{2}-\d{2}-/, '');
+    }
+
     function toBase64Utf8(str) {
         return btoa(unescape(encodeURIComponent(str)));
     }
@@ -239,6 +274,126 @@ noindex: true
         var dd = String(now.getDate()).padStart(2, '0');
         return '_posts/' + yyyy + '-' + mm + '-' + dd + '-' + slug + '.md';
     }
+
+    function ghHeaders(extra) {
+        var headers = { 'Accept': 'application/vnd.github+json' };
+        if (authToken) headers['Authorization'] = 'Bearer ' + authToken;
+        if (extra) { for (var k in extra) headers[k] = extra[k]; }
+        return headers;
+    }
+
+    // Parses the simple front matter this tool writes (title: "...", tags: [...]).
+    function parsePost(text) {
+        var match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+        if (!match) return { title: '', tags: '', body: text };
+
+        var fm = match[1];
+        var body = match[2].replace(/^\r?\n/, '').replace(/\n$/, '');
+
+        var titleMatch = fm.match(/^title:\s*(.+)$/m);
+        var title = titleMatch ? titleMatch[1].trim() : '';
+        try { title = JSON.parse(title); } catch (e) { title = title.replace(/^["']|["']$/g, ''); }
+
+        var tagsMatch = fm.match(/^tags:\s*\[(.*)\]\s*$/m);
+        var tags = '';
+        if (tagsMatch) {
+            try { tags = JSON.parse('[' + tagsMatch[1] + ']').join(', '); }
+            catch (e) { tags = tagsMatch[1].replace(/["']/g, '').trim(); }
+        }
+
+        return { title: title, tags: tags, body: body };
+    }
+
+    // ---- Mode switching: New Post vs Edit Existing Post ----
+
+    function setMode(mode) {
+        modeTabs.forEach(function (b) { b.classList.toggle('active', b.dataset.mode === mode); });
+        editPicker.style.display = mode === 'edit' ? '' : 'none';
+        editingPost = null;
+        form.reset();
+        titleHint.textContent = '';
+        previewEl.style.display = 'none';
+        bodyInput.style.display = '';
+        tabButtons[0].click();
+        adminHeading.textContent = mode === 'edit' ? 'Edit Blog Post' : 'New Blog Post';
+        publishBtn.innerHTML = mode === 'edit'
+            ? '<i class="fa fa-floppy-disk me-2"></i>Save Changes'
+            : '<i class="fa fa-cloud-arrow-up me-2"></i>Publish Post';
+
+        if (mode === 'edit') loadPostList();
+    }
+
+    modeTabs.forEach(function (btn) {
+        btn.addEventListener('click', function () { setMode(btn.dataset.mode); });
+    });
+
+    function loadPostList() {
+        editSelect.innerHTML = '';
+        editSelect.appendChild(new Option('Loading posts…', ''));
+
+        fetch('https://api.github.com/repos/' + REPO + '/contents/_posts?ref=' + BRANCH, { headers: ghHeaders() })
+            .then(function (res) {
+                if (!res.ok) throw new Error('Could not list posts (HTTP ' + res.status + ').');
+                return res.json();
+            })
+            .then(function (files) {
+                var mdFiles = files.filter(function (f) { return /\.md$/.test(f.name); });
+                if (mdFiles.length === 0) {
+                    editSelect.innerHTML = '';
+                    editSelect.appendChild(new Option('No posts found', ''));
+                    return;
+                }
+                return Promise.all(mdFiles.map(function (f) {
+                    return fetch('https://api.github.com/repos/' + REPO + '/contents/' + f.path + '?ref=' + BRANCH,
+                        { headers: ghHeaders({ Accept: 'application/vnd.github.raw' }) })
+                        .then(function (res) { return res.text(); })
+                        .then(function (text) {
+                            return { name: f.name, path: f.path, sha: f.sha, title: parsePost(text).title || f.name };
+                        })
+                        .catch(function () {
+                            return { name: f.name, path: f.path, sha: f.sha, title: f.name };
+                        });
+                })).then(function (posts) {
+                    posts.sort(function (a, b) { return b.name.localeCompare(a.name); });
+                    loadedPosts = posts;
+                    editSelect.innerHTML = '';
+                    editSelect.appendChild(new Option('Select a post…', ''));
+                    posts.forEach(function (p, i) {
+                        editSelect.appendChild(new Option(p.title, String(i)));
+                    });
+                });
+            })
+            .catch(function (err) {
+                editSelect.innerHTML = '';
+                editSelect.appendChild(new Option('Failed to load', ''));
+                setStatus(err.message, 'error');
+            });
+    }
+
+    editSelect.addEventListener('change', function () {
+        var idx = editSelect.value;
+        if (idx === '' || !loadedPosts[idx]) { editingPost = null; return; }
+        var chosen = loadedPosts[idx];
+
+        setStatus('Loading post…', 'info');
+        fetch('https://api.github.com/repos/' + REPO + '/contents/' + chosen.path + '?ref=' + BRANCH,
+            { headers: ghHeaders({ Accept: 'application/vnd.github.raw' }) })
+            .then(function (res) {
+                if (!res.ok) throw new Error('Could not load that post (HTTP ' + res.status + ').');
+                return res.text();
+            })
+            .then(function (text) {
+                var parsed = parsePost(text);
+                titleInput.value = parsed.title;
+                tagsInput.value = parsed.tags;
+                bodyInput.value = parsed.body;
+                editingPost = { path: chosen.path, sha: chosen.sha };
+                setStatus('Loaded "' + parsed.title + '" for editing.', 'info');
+            })
+            .catch(function (err) {
+                setStatus(err.message, 'error');
+            });
+    });
 
     // Cache of the last slug we checked, so submit can skip a redundant
     // lookup if the live title-hint check already just ran for it.
@@ -255,6 +410,7 @@ noindex: true
 
     var titleHintTimer = null;
     titleInput.addEventListener('input', function () {
+        if (editingPost) { titleHint.textContent = ''; return; }
         clearTimeout(titleHintTimer);
         var slug = slugify(titleInput.value.trim());
         if (!slug) { titleHint.textContent = ''; return; }
@@ -274,12 +430,22 @@ noindex: true
         e.preventDefault();
 
         var title = titleInput.value.trim();
-        var tagsRaw = document.getElementById('post-tags').value.trim();
+        var tagsRaw = tagsInput.value.trim();
         var body = bodyInput.value;
 
         if (!authToken) { setStatus('Please sign in with a token first.', 'error'); return; }
         if (!title) { setStatus('Please enter a title.', 'error'); return; }
         if (!body) { setStatus('Please write some content.', 'error'); return; }
+
+        if (editingPost) {
+            if (!window.confirm('Save changes to "' + title + '"? This updates the live post immediately.')) {
+                setStatus('Save cancelled.', 'info');
+                return;
+            }
+            publishBtn.disabled = true;
+            savePost(title, tagsRaw, body, editingPost.path, editingPost.sha);
+            return;
+        }
 
         var slug = slugify(title);
         if (!slug) { setStatus('Title must contain at least one letter or number.', 'error'); return; }
@@ -306,12 +472,12 @@ noindex: true
                 return;
             }
 
-            publishPost(title, tagsRaw, body, path);
+            savePost(title, tagsRaw, body, path, null);
         });
     });
 
-    function publishPost(title, tagsRaw, body, path) {
-        var slug = slugify(title);
+    function savePost(title, tagsRaw, body, path, sha) {
+        var slug = sha ? slugFromPath(path) : slugify(title);
         var tags = tagsRaw ? tagsRaw.split(',').map(function (t) { return t.trim(); }).filter(Boolean) : [];
         var frontMatter = '---\ntitle: ' + JSON.stringify(title) + '\n';
         if (tags.length) {
@@ -320,7 +486,14 @@ noindex: true
         frontMatter += '---\n\n';
         var fullContent = frontMatter + body + '\n';
 
-        setStatus('Publishing…', 'info');
+        setStatus(sha ? 'Saving…' : 'Publishing…', 'info');
+
+        var requestBody = {
+            message: (sha ? 'Update post: ' : 'Add post: ') + title,
+            content: toBase64Utf8(fullContent),
+            branch: BRANCH
+        };
+        if (sha) requestBody.sha = sha;
 
         fetch('https://api.github.com/repos/' + REPO + '/contents/' + path, {
             method: 'PUT',
@@ -329,11 +502,7 @@ noindex: true
                 'Accept': 'application/vnd.github+json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                message: 'Add post: ' + title,
-                content: toBase64Utf8(fullContent),
-                branch: BRANCH
-            })
+            body: JSON.stringify(requestBody)
         }).then(function (res) {
             return res.json().catch(function () { return {}; }).then(function (data) {
                 return { ok: res.ok, status: res.status, data: data };
@@ -341,25 +510,19 @@ noindex: true
         }).then(function (result) {
             if (result.ok) {
                 var postUrl = '/blog/' + slug + '/';
-                setStatus('Published! It should be live at ' + postUrl + ' within a minute or two, once GitHub Pages rebuilds.', 'success');
-                form.reset();
-                titleHint.textContent = '';
-                lastCheckedSlug = null;
-                lastCheckedTaken = null;
-                previewEl.style.display = 'none';
-                bodyInput.style.display = '';
-                tabButtons[0].click();
+                setStatus((sha ? 'Saved! ' : 'Published! ') + 'It should be live at ' + postUrl + ' within a minute or two, once GitHub Pages rebuilds.', 'success');
+                setMode('new');
             } else if (result.status === 401) {
                 setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
             } else if (result.status === 404) {
                 setStatus('Repository not found or access lacks permission — check scopes/token access.', 'error');
             } else if (result.data.message && /sha/i.test(result.data.message)) {
-                setStatus('A post with this exact title already exists today — try a different title.', 'error');
+                setStatus(sha ? 'This post changed elsewhere since you loaded it — reload and try again.' : 'A post with this exact title already exists today — try a different title.', 'error');
             } else {
-                setStatus('Publish failed: ' + (result.data.message || 'HTTP ' + result.status), 'error');
+                setStatus((sha ? 'Save failed: ' : 'Publish failed: ') + (result.data.message || 'HTTP ' + result.status), 'error');
             }
         }).catch(function (err) {
-            setStatus('Network error while publishing: ' + err.message, 'error');
+            setStatus('Network error while saving: ' + err.message, 'error');
         }).finally(function () {
             publishBtn.disabled = false;
         });
