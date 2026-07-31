@@ -14,7 +14,11 @@
         document.documentElement.setAttribute('data-theme', theme);
     })();
     </script>
-    {%- assign page_desc = page.description | default: page.ph_sub | default: site.description -%}
+    {%- assign page_desc = page.description | default: page.ph_sub | default: page.excerpt | default: site.description -%}
+    {%- assign is_post = false -%}
+    {%- if page.layout == "post" -%}
+      {%- assign is_post = true -%}
+    {%- endif -%}
     <title>{{ page_title }}</title>
     <meta name="description" content="{{ page_desc | strip_html | strip_newlines | escape }}">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
@@ -23,12 +27,18 @@
     {%- endif %}
 
     <!-- Open Graph / social sharing -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="{% if is_post %}article{% else %}website{% endif %}">
     <meta property="og:site_name" content="{{ site.title }}">
     <meta property="og:title" content="{{ page_title }}">
     <meta property="og:description" content="{{ page_desc | strip_html | strip_newlines | escape }}">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:image" content="{{ '/resources/LoGoAvatar.jpg' | absolute_url }}">
+    {%- if is_post %}
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+    {%- for tag in page.tags %}
+    <meta property="article:tag" content="{{ tag }}">
+    {%- endfor %}
+    {%- endif %}
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="{{ page_title }}">
     <meta name="twitter:description" content="{{ page_desc | strip_html | strip_newlines | escape }}">
@@ -41,4 +51,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
     <link rel="icon" type="image/jpeg" href="{{ '/resources/LoGoAvatar.jpg' | relative_url }}">
+
+    {%- if site.google_analytics %}
+    <script>
+    (function () {
+        if (/^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)) return;
+        var gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}';
+        document.head.appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', '{{ site.google_analytics }}');
+    })();
+    </script>
+    {%- endif %}
 </head>

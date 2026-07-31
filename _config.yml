@@ -4,6 +4,7 @@ email: lokeshgovindu@gmail.com
 description: Curated productivity tips, shortcuts, and workflows for developers — Visual Studio, CMD Prompt, Windows, and more.
 url: "https://lokeshgovindu.github.io"
 baseurl: ""
+google_analytics: G-TZJ9YSVGCX
 
 # Build settings
 markdown: kramdown
