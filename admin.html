@@ -86,7 +86,10 @@ noindex: true
                             </div>
                         </div>
                     </div>
-                    <button type="submit" id="publish-btn" class="btn-github-profile"><i class="fa fa-cloud-arrow-up me-2"></i>Publish Post</button>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button type="submit" id="publish-btn" class="btn-github-profile"><i class="fa fa-cloud-arrow-up me-2"></i>Publish Post</button>
+                        <button type="button" id="delete-btn" class="btn btn-outline-danger" style="display: none;"><i class="fa fa-trash me-2"></i>Delete Post</button>
+                    </div>
                 </form>
             </div>
 
@@ -115,6 +118,7 @@ noindex: true
 
     var form = document.getElementById('post-form');
     var publishBtn = document.getElementById('publish-btn');
+    var deleteBtn = document.getElementById('delete-btn');
     var statusEl = document.getElementById('publish-status');
     var bodyInput = document.getElementById('post-body');
     var previewEl = document.getElementById('post-preview');
@@ -310,6 +314,7 @@ noindex: true
         modeTabs.forEach(function (b) { b.classList.toggle('active', b.dataset.mode === mode); });
         editPicker.style.display = mode === 'edit' ? '' : 'none';
         editingPost = null;
+        deleteBtn.style.display = 'none';
         form.reset();
         titleHint.textContent = '';
         previewEl.style.display = 'none';
@@ -372,7 +377,11 @@ noindex: true
 
     editSelect.addEventListener('change', function () {
         var idx = editSelect.value;
-        if (idx === '' || !loadedPosts[idx]) { editingPost = null; return; }
+        if (idx === '' || !loadedPosts[idx]) {
+            editingPost = null;
+            deleteBtn.style.display = 'none';
+            return;
+        }
         var chosen = loadedPosts[idx];
 
         setStatus('Loading post…', 'info');
@@ -388,6 +397,7 @@ noindex: true
                 tagsInput.value = parsed.tags;
                 bodyInput.value = parsed.body;
                 editingPost = { path: chosen.path, sha: chosen.sha };
+                deleteBtn.style.display = '';
                 setStatus('Loaded "' + parsed.title + '" for editing.', 'info');
             })
             .catch(function (err) {
@@ -527,5 +537,54 @@ noindex: true
             publishBtn.disabled = false;
         });
     }
+
+    deleteBtn.addEventListener('click', function () {
+        if (!editingPost) return;
+        var title = titleInput.value.trim() || 'this post';
+
+        if (!window.confirm('Delete "' + title + '"? This removes it from the live site immediately and can\'t be undone from here.')) {
+            return;
+        }
+
+        deleteBtn.disabled = true;
+        publishBtn.disabled = true;
+        setStatus('Deleting…', 'info');
+
+        fetch('https://api.github.com/repos/' + REPO + '/contents/' + editingPost.path, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + authToken,
+                'Accept': 'application/vnd.github+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Delete post: ' + title,
+                sha: editingPost.sha,
+                branch: BRANCH
+            })
+        }).then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (data) {
+                return { ok: res.ok, status: res.status, data: data };
+            });
+        }).then(function (result) {
+            if (result.ok) {
+                setStatus('Deleted. It will disappear from the site once GitHub Pages rebuilds, usually within a minute or two.', 'success');
+                setMode('new');
+            } else if (result.status === 401) {
+                setStatus('Authentication failed — your token may have expired or been revoked. Sign in again.', 'error');
+            } else if (result.status === 404) {
+                setStatus('That post could not be found — it may have already been deleted.', 'error');
+            } else if (result.data.message && /sha/i.test(result.data.message)) {
+                setStatus('This post changed elsewhere since you loaded it — reload and try again.', 'error');
+            } else {
+                setStatus('Delete failed: ' + (result.data.message || 'HTTP ' + result.status), 'error');
+            }
+        }).catch(function (err) {
+            setStatus('Network error while deleting: ' + err.message, 'error');
+        }).finally(function () {
+            deleteBtn.disabled = false;
+            publishBtn.disabled = false;
+        });
+    });
 })();
 </script>
