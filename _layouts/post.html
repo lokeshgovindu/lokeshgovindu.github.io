@@ -1,6 +1,21 @@
 ---
 layout: default
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "dateModified": {{ page.date | date_to_xmlschema | jsonify }},
+  "author": { "@type": "Person", "name": {{ site.author | jsonify }} },
+  "publisher": { "@type": "Person", "name": {{ site.author | jsonify }} },
+  "url": {{ page.url | absolute_url | jsonify }},
+  "mainEntityOfPage": {{ page.url | absolute_url | jsonify }},
+  "description": {{ page.excerpt | strip_html | strip_newlines | truncatewords: 30 | jsonify }}{% if page.tags.size > 0 %},
+  "keywords": {{ page.tags | join: ", " | jsonify }}{% endif %}
+}
+</script>
 <section class="blog-post-section">
     <div class="container">
         <a href="{{ '/blog/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to Blog</a>

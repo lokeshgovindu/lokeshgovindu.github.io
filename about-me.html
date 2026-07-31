@@ -5,6 +5,20 @@ ph_label: Who Am I
 heading: About Me
 ph_sub: A little bit about the person behind these tips — and how to get in touch.
 ---
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Lokesh Govindu",
+  "jobTitle": "Software Developer & Productivity Enthusiast",
+  "url": {{ page.url | absolute_url | jsonify }},
+  "email": "mailto:lokeshgovindu@gmail.com",
+  "sameAs": [
+    "https://github.com/lokeshgovindu",
+    "https://www.linkedin.com/in/lokeshgovindu/"
+  ]
+}
+</script>
 
 <!-- ───── ABOUT SECTION ───── -->
 <section class="about-section">
