@@ -4,7 +4,7 @@
     </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' | relative_url }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 <script src="{{ '/search-data.js' | relative_url }}"></script>
 <script>
@@ -47,33 +47,43 @@
     var resultEls = [];
     var activeIndex = -1;
 
+    function closeDropdown() {
+        dropdown.classList.remove('show');
+        input.setAttribute('aria-expanded', 'false');
+        input.removeAttribute('aria-activedescendant');
+    }
+
     function setActive(index) {
         resultEls.forEach(function (el) { el.classList.remove('active'); });
         if (index < 0 || index >= resultEls.length) {
             activeIndex = -1;
+            input.removeAttribute('aria-activedescendant');
             return;
         }
         activeIndex = index;
         var el = resultEls[activeIndex];
         el.classList.add('active');
         el.scrollIntoView({ block: 'nearest' });
+        input.setAttribute('aria-activedescendant', el.id);
     }
 
     function render(query) {
         var results = fuse.search(query).slice(0, 6).map(function (r) { return r.item; });
 
         if (results.length === 0) {
-            dropdown.innerHTML = '<div class="nav-search-empty">No results for &ldquo;' + escapeHtml(query) + '&rdquo;</div>';
+            dropdown.innerHTML = '<div class="nav-search-empty" role="status">No results for &ldquo;' + escapeHtml(query) + '&rdquo;</div>';
             dropdown.classList.add('show');
+            input.setAttribute('aria-expanded', 'true');
             resultEls = [];
             activeIndex = -1;
+            input.removeAttribute('aria-activedescendant');
             return;
         }
 
-        var html = results.map(function (item) {
+        var html = results.map(function (item, i) {
             var icon = sectionIconClass[item.section] || 'fa fa-file';
             return (
-                '<a href="' + item.url + '" class="nav-search-result">' +
+                '<a href="' + item.url + '" class="nav-search-result" role="option" id="nav-search-option-' + i + '">' +
                 '<span class="nav-search-result-icon"><i class="' + icon + '"></i></span>' +
                 '<span style="min-width:0; flex:1;">' +
                 '<span class="nav-search-result-title d-block">' + escapeHtml(item.title) + '</span>' +
@@ -83,19 +93,21 @@
             );
         }).join('');
 
-        html += '<a href="/search/?q=' + encodeURIComponent(query) + '" class="nav-search-seeall">See all results</a>';
+        html += '<a href="/search/?q=' + encodeURIComponent(query) + '" class="nav-search-seeall" role="option" id="nav-search-option-seeall">See all results</a>';
 
         dropdown.innerHTML = html;
         dropdown.classList.add('show');
+        input.setAttribute('aria-expanded', 'true');
         resultEls = Array.prototype.slice.call(dropdown.querySelectorAll('.nav-search-result, .nav-search-seeall'));
         activeIndex = -1;
+        input.removeAttribute('aria-activedescendant');
     }
 
     input.addEventListener('input', function () {
         var q = input.value.trim();
         clearBtn.classList.toggle('is-hidden', q.length === 0);
         if (q.length < 2) {
-            dropdown.classList.remove('show');
+            closeDropdown();
             return;
         }
         render(q);
@@ -103,7 +115,8 @@
 
     input.addEventListener('focus', function () {
         if (kbdHint) kbdHint.classList.add('is-hidden');
-        if (input.value.trim().length >= 2) dropdown.classList.add('show');
+        var q = input.value.trim();
+        if (q.length >= 2) render(q);
     });
 
     input.addEventListener('blur', function () {
@@ -128,7 +141,7 @@
     clearBtn.addEventListener('click', function () {
         input.value = '';
         clearBtn.classList.add('is-hidden');
-        dropdown.classList.remove('show');
+        closeDropdown();
         input.focus();
     });
 
@@ -140,12 +153,12 @@
 
     document.addEventListener('click', function (e) {
         if (!form.contains(e.target) && !dropdown.contains(e.target)) {
-            dropdown.classList.remove('show');
+            closeDropdown();
         }
     });
 
     document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') dropdown.classList.remove('show');
+        if (e.key === 'Escape') closeDropdown();
 
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
             e.preventDefault();
