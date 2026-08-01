@@ -246,7 +246,11 @@ noindex: true
             previewEl.textContent = 'Nothing to preview yet.';
             previewEl.classList.add('is-empty');
         } else {
-            previewEl.innerHTML = marked.parse(bodyInput.value);
+            // marked.js doesn't understand kramdown's {:...} Inline Attribute
+            // Lists (used for loading="lazy" on uploaded images) — strip them
+            // for the preview only; the saved Markdown keeps them intact.
+            var previewMarkdown = bodyInput.value.replace(/\)\{:[^}]*\}/g, ')');
+            previewEl.innerHTML = marked.parse(previewMarkdown);
             previewEl.classList.remove('is-empty');
             previewEl.querySelectorAll('pre code').forEach(function (block) {
                 hljs.highlightElement(block);
@@ -347,7 +351,7 @@ noindex: true
                 return;
             }
 
-            var markdown = '![' + altText + '](/' + path + ')';
+            var markdown = '![' + altText + '](/' + path + '){:loading="lazy"}';
             var start = bodyInput.selectionStart;
             var end = bodyInput.selectionEnd;
             bodyInput.value = bodyInput.value.slice(0, start) + markdown + bodyInput.value.slice(end);
