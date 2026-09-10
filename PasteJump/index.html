@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <!--
-    The project's website, served by GitHub Pages from this folder (Settings, Pages, master /docs).
+    The project's website. Generated nowhere - this file IS the page - but no longer served from this
+    repository: it is published from lokeshgovindu.github.io by script/sync-app-docs.ps1 there, and served
+    at lokeshgovindu.github.io/PasteJump/. It used to be this repository's own Pages site (Settings, Pages,
+    master /docs), which stopped working on 2026-09-08 when the repository went private, because Pages does
+    not serve a private repository. The URL a reader visits is the same either way.
+
+    Edit this file, then run that sync script - editing the published copy is what drifts.
 
     Hand-written and self-contained on purpose: no Jekyll theme, no CDN, no web fonts, no JavaScript. A page about a
     clipboard manager - a program people are right to be careful about - should not be asking three other servers for
@@ -219,10 +225,17 @@ footer a { color: var(--muted); text-decoration: underline; }
             <kbd>Ctrl</kbd> held <span>&rarr;</span> tap <kbd>V</kbd> to walk back <span>&rarr;</span> release to paste
         </p>
 
+        <!--
+            SourceForge, and no "Source on GitHub" button. The repository went private on 2026-09-08,
+            so both of those links answered 404 for every reader of this page - and a Download button
+            that 404s is the worst link on a website. The source button is gone rather than repointed:
+            PasteJump is free of charge and not open source, which the footer has always said, so a
+            button promising source was making a claim the project does not make.
+        -->
         <div class="buttons">
-            <a class="button primary" href="https://github.com/lokeshgovindu/PasteJump/releases">Download</a>
+            <a class="button primary" href="https://sourceforge.net/projects/pastejump/files/">Download</a>
             <a class="button ghost" href="help/overview.html">Read the manual</a>
-            <a class="button ghost" href="https://github.com/lokeshgovindu/PasteJump">Source on GitHub</a>
+            <a class="button ghost" href="release-notes/">What's new</a>
         </div>
 
         <p class="subtle">Windows 10 / 11, 64-bit &middot; free, no registration &middot; portable, nothing to install</p>
@@ -417,27 +430,40 @@ footer a { color: var(--muted); text-decoration: underline; }
 
 <section>
     <div class="wrap split">
+        <!--
+            This was "Build it yourself", with a git clone and four dotnet commands. It had to go, and
+            not only because the repository went private on 2026-09-08 and the clone answers "repository
+            not found": the footer of this same page says PasteJump is free of charge and NOT open
+            source, so a section inviting a reader to build it was contradicting the licence in the
+            page's own footer. Two statements about one project, and the one nobody could act on is the
+            one that left.
+
+            What replaces it is the question that section was really answering - what am I downloading -
+            which the manual can answer for a reader who has no source to read.
+        -->
         <div>
-            <h2>Build it yourself</h2>
+            <h2>What you download</h2>
             <p class="lede">
-                .NET 10 SDK, Windows, and one command. The tests and the UI smoke harness run on the same machine.
+                One ZIP holding a single self-contained <code>PasteJump.exe</code>, the manual as a
+                <code>.chm</code>, the licence and the third-party notices. No .NET runtime is needed, nothing is
+                installed, and nothing is written outside the folder you unpack it into and your own profile.
             </p>
-<pre>git clone https://github.com/lokeshgovindu/PasteJump
-cd PasteJump
-dotnet build
-dotnet test
-dotnet run --project src/PasteJump.App</pre>
+            <p class="lede">
+                Every archive is published with a SHA256 beside it, so what you download can be checked against what
+                was released.
+            </p>
             <p class="lede" style="margin-top: 20px;">
-                <a href="https://github.com/lokeshgovindu/PasteJump/blob/master/README.md">The README</a> covers the
-                release packaging, the data locations and how to coexist with another clipboard manager.
+                <a href="manual/">The manual</a> covers the data locations, the paste modes and how to coexist with
+                another clipboard manager.
             </p>
         </div>
         <div>
             <h2>Privacy, plainly</h2>
             <p class="lede">
                 It is a clipboard manager, so it sees what you copy. Everything stays in a SQLite database on your own
-                machine. There is no telemetry, no account, no network call except an optional check for a new release
-                on GitHub.
+                machine. There is no telemetry, no account, and no network call except an optional check for a new
+                release &mdash; one request for a small file listing the published versions, made only when you ask
+                for it.
             </p>
             <p class="lede">
                 Password managers are excluded by default, and you can add any program to that list &mdash; while it is
@@ -450,10 +476,16 @@ dotnet run --project src/PasteJump.App</pre>
 <footer>
     <div class="wrap">
         <p>
-            <a href="https://github.com/lokeshgovindu/PasteJump">GitHub</a> &middot;
-            <a href="https://github.com/lokeshgovindu/PasteJump/releases">Releases</a> &middot;
+            <!--
+                All three GitHub links answered 404 to a reader once the repository went private.
+                "Report a problem" is the one that mattered most: an issues page nobody can open is
+                worse than no link, because somebody with a real bug follows it and concludes the
+                project is abandoned. SourceForge's ticket tracker is open to anyone.
+            -->
+            <a href="https://sourceforge.net/projects/pastejump/">Project</a> &middot;
+            <a href="https://sourceforge.net/projects/pastejump/files/">Download</a> &middot;
             <a href="help/overview.html">Manual</a> &middot;
-            <a href="https://github.com/lokeshgovindu/PasteJump/issues">Report a problem</a>
+            <a href="https://sourceforge.net/p/pastejump/tickets/">Report a problem</a>
         </p>
         <p>
             Free of charge, not open source &middot; &copy; 2026 <a href="https://lokeshgovindu.github.io/">Lokesh Govindu</a><br>

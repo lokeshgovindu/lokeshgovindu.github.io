@@ -96,7 +96,7 @@ Windows 10/11, x64, free, portable single exe. The builds are not signed with a 
 SmartScreen will report an unknown publisher on first run - I publish a SHA256 for every file instead,
 because a signature that fails to validate looks worse than none at all.
 
-https://github.com/lokeshgovindu/PasteJump
+https://lokeshgovindu.github.io/PasteJump/
 ```
 
 ### First comment, posted by you immediately after
@@ -209,7 +209,7 @@ in 2016 - rebuilt in C# on .NET 10, and it keeps every clipboard format, so past
 arrives as it left. Portable: one executable, nothing installed.
 
 Site, with a 60-second animated tour: https://lokeshgovindu.github.io/PasteJump/
-Downloads and release notes: https://github.com/lokeshgovindu/PasteJump/releases
+Downloads and release notes: https://sourceforge.net/projects/pastejump/files/
 Manual: https://lokeshgovindu.github.io/PasteJump/help/overview.html
 
 Happy to answer anything. The builds are unsigned, so SmartScreen reports an unknown publisher on a first
