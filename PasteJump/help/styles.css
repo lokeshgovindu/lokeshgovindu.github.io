@@ -1,0 +1,185 @@
+/*
+    Styling for the compiled help.
+
+    Deliberately old-fashioned CSS. A .chm is rendered by the HTML Help viewer, which is the Internet
+    Explorer engine in a legacy document mode - flexbox, grid, CSS variables and media queries are
+    unavailable or unreliable there. Tables and floats are what work, so tables and floats are what this
+    uses. Nothing here should be "modernised" without opening the .chm afterwards to check.
+*/
+
+/*
+    These pages are read in two places at two very different widths: the .chm viewer, which is about
+    540px of content once its contents pane has taken its 220px, and GitHub Pages, where the same files
+    are the published manual on whatever monitor somebody has. Unconstrained, a line of text on a 1920px
+    screen ran the full width of the window and was reported as the manual "taking the entire page".
+
+    So the measure is capped and centred, at the same 1000px docs/index.html already uses - the help
+    pages were the one part of the site without a column. This is safe in the .chm rather than merely
+    tolerable: 540px never reaches a 1000px cap, so the rule cannot fire there, and in the quirks mode
+    the viewer sometimes chooses, an ignored max-width leaves exactly the full-width behaviour these
+    pages have always had. margin auto degrades the same way - it resolves to 0 when there is no room.
+*/
+body {
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    background: #ffffff;
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 18px 24px 32px 24px;
+}
+
+h1 {
+    font-size: 17pt;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #103a6b;
+}
+
+h2 {
+    font-size: 12.5pt;
+    font-weight: 600;
+    margin: 24px 0 6px 0;
+    color: #103a6b;
+    border-bottom: 1px solid #d8dee6;
+    padding-bottom: 3px;
+}
+
+h3 {
+    font-size: 10.5pt;
+    font-weight: 600;
+    margin: 18px 0 4px 0;
+}
+
+p.lead {
+    font-size: 10.5pt;
+    color: #3c4653;
+    margin: 0 0 18px 0;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 10px 0 14px 0;
+    width: 100%;
+}
+
+th {
+    text-align: left;
+    font-weight: 600;
+    background: #eef2f7;
+    border: 1px solid #d8dee6;
+    padding: 5px 8px;
+    vertical-align: top;
+}
+
+td {
+    border: 1px solid #d8dee6;
+    padding: 5px 8px;
+    vertical-align: top;
+}
+
+/* Key column: narrow, centred, monospaced so chords line up down the page. */
+td.key {
+    width: 116px;
+    white-space: nowrap;
+    font-family: Consolas, "Courier New", monospace;
+    background: #f7f9fc;
+}
+
+td.name {
+    width: 210px;
+    font-weight: 600;
+}
+
+code, kbd {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9.5pt;
+    background: #f2f4f8;
+    border: 1px solid #dde3ea;
+    padding: 0 3px;
+}
+
+pre {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 9pt;
+    background: #f7f9fc;
+    border: 1px solid #dde3ea;
+    padding: 8px 10px;
+    overflow: auto;
+}
+
+ul, ol {
+    margin: 8px 0 14px 0;
+    padding-left: 26px;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+/* A call-out. Border on one side only: a full box reads as an error dialog. */
+div.note {
+    background: #f4f8fd;
+    border-left: 4px solid #2f6fb5;
+    padding: 8px 12px;
+    margin: 12px 0 16px 0;
+}
+
+div.warn {
+    background: #fdf6f2;
+    border-left: 4px solid #c25a1c;
+    padding: 8px 12px;
+    margin: 12px 0 16px 0;
+}
+
+div.note p, div.warn p {
+    margin: 0;
+}
+
+/*
+    Figures. No <figure>/<figcaption>: the viewer's document mode predates them, so a div and a p is what
+    renders consistently. max-width rather than width so a shot narrower than the page is not stretched -
+    every image here is a real window capture, and enlarging one only blurs it.
+*/
+div.shot {
+    margin: 14px 0 18px 0;
+}
+
+div.shot img {
+    max-width: 100%;
+    border: 1px solid #c9d2dc;
+    background: #ffffff;
+}
+
+div.shot p {
+    margin: 5px 0 0 0;
+    font-size: 8.5pt;
+    color: #6b7683;
+}
+
+/* A small capture shown inline at its own size, for the overlay and the toast. */
+div.shot-inline img {
+    border: 1px solid #c9d2dc;
+}
+
+a { color: #1a5fb4; }
+a:hover { color: #103a6b; }
+
+p.footer {
+    margin-top: 28px;
+    padding-top: 8px;
+    border-top: 1px solid #e4e9ef;
+    color: #6b7683;
+    font-size: 8.5pt;
+}
+
+/* The version and build time, stamped into every page by tools/build-help.ps1 when the .chm is compiled. It is
+   not in the sources: a line that changed on every build would churn docs/manual, which is committed. */
+p.footer.stamp {
+    margin-top: 24px;
+    padding-top: 8px;
+    border-top: 1px solid #d8d8d8;
+    color: #777777;
+    font-size: 8pt;
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What KeyPressOSD does - KeyPressOSD</title>
+<meta name="description" content="KeyPressOSD shows what you press, on screen, at a size somebody can read from across a room.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html" aria-current="page">What KeyPressOSD does</a></li>
+<li><a href="display.html">Showing keystrokes</a></li>
+<li><a href="typing.html">Showing typed text</a></li>
+<li><a href="position.html">Where it appears</a></li>
+<li><a href="appearance.html">How it looks</a></li>
+<li><a href="symbols.html">Key names and symbols</a></li>
+<li><a href="hotkeys.html">Hotkeys</a></li>
+<li><a href="tray.html">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html">The settings file</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+<li><a href="limitations.html">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>What KeyPressOSD does</h1>
+<p>KeyPressOSD shows what you press, on screen, at a size somebody can read from across a room.</p>
+<p class="figure"><img src="images/osd-chord.png" alt="Ctrl + Shift + P shown as three key caps joined by plus signs"></p>
+<p><em>One chord, in keystrokes mode. Each named key is a cap of its own and the pluses say they were pressed together rather than one after another — the two things a viewer has to be able to tell apart.</em></p>
+<p>It exists for three situations:</p>
+<ul>
+<li><strong>Screencasts and presentations.</strong> A viewer cannot see your hands. Without something like this, every shortcut you use is invisible, and "now press Ctrl+Shift+P" has to be said out loud or captioned later.</li>
+<li><strong>Teaching and pair work.</strong> The same problem in a room instead of a recording.</li>
+<li><strong>Reading your own typing.</strong> If a text field is small, or far away, or the font is not one you can read comfortably, the display can show the line as you type it at whatever size suits you.</li>
+</ul>
+<p>It <strong>observes</strong> input. It never injects any, never modifies what you type, and never gets in the way of a click — the panel is click-through, so the mouse passes straight through it to whatever is underneath.</p>
+<h2>The two modes</h2>
+<p>There are two, and they answer different questions.</p>
+<p><strong>Keystrokes</strong> names each key as you press it: <code>Ctrl + S</code>, <code>Alt + Tab</code>, <code>F5</code>. This is the mode for a screencast, because it says <em>which keys</em> were pressed rather than what they produced. Special keys are drawn as little key caps and typed characters as plain text, which is what makes a line scannable at a glance.</p>
+<p class="figure"><img src="images/osd-flowing-line.png" alt="A line of keystrokes: several entries side by side ending in a repeat count"></p>
+<p><em>Keystrokes filling the line. The leading ellipsis is the marker for entries that have scrolled off the left, which is off by default — see <a href="display.html">Showing keystrokes</a>.</em></p>
+<p><strong>Typing</strong> shows the words instead, as one growing line. This is the mode for reading your own typing; it says nothing about which keys made the text.</p>
+<p class="figure"><img src="images/osd-typing.png" alt="A sentence of typed text on one line, with an ellipsis at the left"></p>
+<p><em>The same keyboard, in typing mode. No caps, no chords, no plus signs — just the words, which is the whole difference between the two modes.</em></p>
+<p>Switch between them from the tray menu, or with <code>Ctrl+Alt+K</code>.</p>
+<h2>What you see</h2>
+<p>The display is a rounded panel that appears when you press something and fades out a couple of seconds after you stop. By default it sits in the bottom-right corner of the screen.</p>
+<p>In keystrokes mode the entries fill one line, left to right, oldest first. When the line is as long as it is allowed to get, the oldest entries scroll off the left. The panel gets wider as you type and never taller — which is what stops it moving around while you work.</p>
+<h2>Getting started</h2>
+<p>There is nothing to configure to be useful. Start it, press something, and it appears.</p>
+<p>When you do want to change something, everything is in <strong>Settings</strong>, reached by right-clicking the tray icon or double-clicking it. The settings that most people change first are on the first two tabs: which mode, how long entries stay, and how big the text is.</p>
+<p class="figure"><img src="images/settings-display.png" alt="The settings window on the Display tab, with a search box above nine tabs"></p>
+<p><em>Settings, on the Display tab. The search box at the top matches labels and their hint text across all nine tabs, which is usually quicker than knowing which tab a setting lives on.</em></p>
+<h2>Where it keeps things</h2>
+<p>One file, <code>KeyPressOSD.json</code>, beside the executable. It is plain JSON and safe to edit by hand. See <a href="settings-file.html">The settings file</a>.</p>
+<p>Nothing else is written anywhere. No log, no history file, no registry keys beyond the one optional "start with Windows" entry. See <a href="privacy.html">Privacy</a> for the full list of what it does not do.</p>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=PasteJump.chm
+Contents file=toc.hhc
+Index file=index.hhk
+Default Window=main
+Default topic=overview.html
+Display compile progress=No
+Full-text search=Yes
+Language=0x409 English (United States)
+Title=PasteJump Help
+
+[WINDOWS]
+main="PasteJump Help","toc.hhc","index.hhk","overview.html","overview.html",,,,,0x63520,220,0x304e,[60,40,860,700],0xb0000,,,,,,0
+
+[FILES]
+overview.html
+gesture.html
+stores.html
+history-window.html
+settings.html
+themes.html
+importing.html
+coexisting.html
+troubleshooting.html
+limitations.html
+styles.css
+
+images\about.png
+images\clips-view.png
+images\history-window.png
+images\import-dialog.png
+images\remove-duplicates.png
+images\history-joining.png
+images\history-joined.png
+images\overlay-join-mark.png
+images\overlay-minimal.png
+images\overlay-tour.gif
+images\overlay.png
+images\overlay-delete-all.png
+images\overlay-kind-filter.png
+images\overlay-text-facts.png
+images\overlay-search.png
+images\settings-advanced.png
+images\settings-appearance.png
+images\settings-capture.png
+images\settings-excluded-apps.png
+images\settings-history.png
+images\settings-keys.png
+images\settings-paste-mode.png
+images\settings-custom-folder.png
+images\settings-system.png
+images\shortcut-help.png
+images\running-app-picker.png
+images\toast.png
+
+[INFOTYPES]

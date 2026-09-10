@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The settings file - KeyPressOSD</title>
+<meta name="description" content="One file, KeyPressOSD.json, kept beside the executable. The System tab shows its full path.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html">What KeyPressOSD does</a></li>
+<li><a href="display.html">Showing keystrokes</a></li>
+<li><a href="typing.html">Showing typed text</a></li>
+<li><a href="position.html">Where it appears</a></li>
+<li><a href="appearance.html">How it looks</a></li>
+<li><a href="symbols.html">Key names and symbols</a></li>
+<li><a href="hotkeys.html">Hotkeys</a></li>
+<li><a href="tray.html">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html" aria-current="page">The settings file</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+<li><a href="limitations.html">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>The settings file</h1>
+<p>One file, <code>KeyPressOSD.json</code>, kept beside the executable. The <strong>System</strong> tab shows its full path.</p>
+<p class="figure"><img src="images/settings-system.png" alt="The System tab, showing the settings file path and startup options"></p>
+<p><em>The System tab. The path is shown rather than merely described because the file lives beside the executable, and where that is depends on how the application was installed.</em></p>
+<p>It is plain JSON and safe to edit by hand. A file missing keys loads with the defaults for whatever is absent, so you can delete anything you have not deliberately changed — and a brand-new setting added by a later version takes its default rather than breaking the file.</p>
+<h2>When it is written</h2>
+<p>Only when you press <strong>Apply</strong> or <strong>OK</strong> in the settings window, or when you use a tray toggle.</p>
+<p>Every change you make in the settings window is applied to the running display immediately, so you can see what it does — but nothing reaches the file until you commit it. <strong>Cancel</strong> puts the settings back as they were.</p>
+<h2>The Advanced tab</h2>
+<p>Every setting in the file, with its current value beside its default, and a <strong>Reset</strong> on each row that differs.</p>
+<p class="figure"><img src="images/settings-advanced.png" alt="The Advanced tab: a grid of setting, type, value, default and Reset"></p>
+<p><em>The Advanced tab. It is generated from the settings themselves rather than written out by hand, so a setting added by a later version appears here without anyone having to remember to list it.</em></p>
+<p>The list is built by reading the settings type itself rather than being written out by hand, so it cannot fall behind the other tabs: anything added there appears here without being listed twice.</p>
+<p>It is read-only. The other tabs are the editors; what this page adds is <em>visibility</em> — what is set, what the default was, and which of the two you are looking at.</p>
+<h2>Undo and Reset Defaults</h2>
+<p>Both are at the bottom left of the settings window, where every tab can reach them.</p>
+<p><strong>Undo</strong> steps back through the changes made since the window was opened. A whole slider drag counts as one step, so undoing a drag returns you to where it began rather than one pixel back.</p>
+<p><strong>Reset Defaults</strong> puts every setting on every tab back to its factory value. Undo takes that back too. Neither writes to disk: that only happens on Apply or OK.</p>
+<p class="figure"><img src="images/confirm-reset.png" alt="A confirmation dialogue asking whether to reset every setting"></p>
+<p><em>Reset asks first. The dialogue is drawn by this application rather than by Windows, which is why it follows the theme — a system message box cannot be styled at all, and arrives in Windows' own chrome whatever palette you have chosen.</em></p>
+<blockquote><p><strong>Run at Startup</strong> is not reset, and neither is <strong>Always ask to run as administrator</strong>. Both live in the registry rather than in this file, and resetting a display preference should not silently unregister the application from starting with Windows or change whether it asks for administrator rights.</p></blockquote>
+<h2>Editing it by hand</h2>
+<p>Worth knowing before you do:</p>
+<ul>
+<li>A value out of range is <strong>clamped</strong>, not rejected. A font size of 0 would produce an invisible display and 5000 a panel larger than the screen, so both are pulled back to something usable.</li>
+<li>A colour that will not parse falls back to a sensible one rather than failing to start. An invisible display gives you nothing to work back from.</li>
+<li><strong>A deployed settings file outranks a changed default.</strong> If you are building from source and wondering why a default you edited has no effect, this is almost always why — the file already has a value for it.</li>
+</ul>
+<h2>A few defaults that look wrong and are not</h2>
+<p>Each of these has been chosen deliberately, and each is the kind of thing a well-meaning change reverses.</p>
+<ul>
+<li><strong>Modifiers show on their own.</strong> Filtering them looks tidier and is less useful in a screencast.</li>
+<li><strong>Keystrokes flow rather than being counted.</strong> A count of keystrokes is a poor guide to how wide the panel gets. See <a href="display.html">Showing keystrokes</a>.</li>
+<li><strong>The typing caret is off.</strong> It was on, and a bar blinking in the corner of the screen long after the text stopped changing is a distraction.</li>
+<li><strong>The truncation ellipsis is off.</strong> With one key on screen at a time it would be permanent and would say nothing.</li>
+<li><strong>The theme does not colour the overlay.</strong> The overlay sits over other people's windows; its colours are yours to set, with their own opacity.</li>
+<li><strong>Key caps are light with dark text while the body text is light.</strong> Two foreground colours, not one — a cap is a light shape on a dark panel, so its text has to run the other way.</li>
+</ul>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>

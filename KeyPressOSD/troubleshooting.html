@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Troubleshooting - KeyPressOSD</title>
+<meta name="description" content="Work through these in order.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html">What KeyPressOSD does</a></li>
+<li><a href="display.html">Showing keystrokes</a></li>
+<li><a href="typing.html">Showing typed text</a></li>
+<li><a href="position.html">Where it appears</a></li>
+<li><a href="appearance.html">How it looks</a></li>
+<li><a href="symbols.html">Key names and symbols</a></li>
+<li><a href="hotkeys.html">Hotkeys</a></li>
+<li><a href="tray.html">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html">The settings file</a></li>
+<li><a href="troubleshooting.html" aria-current="page">Troubleshooting</a></li>
+<li><a href="limitations.html">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>Troubleshooting</h1>
+<h2>Nothing appears when I press keys</h2>
+<p>Work through these in order.</p>
+<p><strong>Is it paused?</strong> The tray icon is grey while paused, and the menu's first command reads Resume Recording. <code>Ctrl+Alt+P</code> toggles it.</p>
+<p><strong>Is the program you are typing into on the exclusion list?</strong> Check the Privacy tab. A listed program produces no display at all.</p>
+<p><strong>Is the display somewhere you are not looking?</strong> If Monitor is set to a specific screen, the panel is on that screen and nowhere else. Set it to <em>Follow the window I am typing in</em> to find out.</p>
+<p>The quickest way to settle it is to open <strong>Settings</strong> and look at <strong>Show live preview on screen</strong> at the bottom of the window. Ticked — which it is by default — a sample sits on the real overlay for as long as the dialogue is open, and the line under the preview names the corner and the monitor it went to. On a two-monitor desk this is nearly always the answer: the panel is doing what it was told, on the screen you are not facing.</p>
+<p><strong>Has it ended up behind your other windows?</strong> The panel is always-on-top, and Windows can still lose that — a full-screen program is the usual culprit — after which the panel carries on working, correctly, out of sight underneath whatever is maximised. It looks identical to a display that has stopped. KeyPressOSD puts itself back every time it shows something, so pressing a key is the test: if the panel appears, that was it, and it has already fixed itself. If you would rather not wait for it, <strong>Restart KeyPressOSD</strong> from the tray menu starts a fresh copy.</p>
+<p><strong>Is the window you are typing into elevated?</strong> If it is, <strong>Always Run as Administrator</strong> in the tray menu fixes it — see <a href="limitations.html">Known limitations</a>. A non-elevated process does not receive input destined for a higher-integrity window — Windows does not deliver it. This is the one that catches people, because the display works everywhere except the one application they are trying to demonstrate. See <a href="limitations.html">Known limitations</a>.</p>
+<p><strong>Was KeyPressOSD started from a script or a terminal?</strong> A process launched from an automation shell can inherit a restricted context in which its global keyboard hook receives nothing real. It looks like it is running and doing nothing. Start it from Explorer, from the Start menu, or from a scheduled task.</p>
+<h2>It appeared and then stopped</h2>
+<p class="figure"><img src="images/settings-timing.png" alt="The Timing tab: how long entries stay, and the line lengths"></p>
+<p><em>The Timing tab, which is where most "it disappeared too quickly" answers are.</em></p>
+<p>Windows silently removes a low-level hook whose callback misses a deadline — 300 ms by default — and there is no error anywhere when it does. A machine under very heavy load can lose the hook this way.</p>
+<p>Exit and start KeyPressOSD again. If it happens repeatedly on a machine that is not otherwise struggling, that is worth reporting.</p>
+<h2>Alt+Tab shows no repeat count</h2>
+<p>It should. If it does not, the window Alt+Tab is switching <em>to</em> may be an elevated one — see above.</p>
+<p>Note that a third-party Alt+Tab replacement running elevated will take the whole chord out of reach for the same reason.</p>
+<h2>Alt+Tab shows nothing at all</h2>
+<p>Different from the section above, and the cause is a queue rather than a privilege.</p>
+<p>Another program with a keyboard hook can handle <code>Alt+Tab</code> and stop it there, so KeyPressOSD never learns the keys were pressed. A third-party Alt+Tab replacement is the usual one. Hooks are called in a chain, a new one goes to the front, and the program that started <strong>last</strong> is asked first — so restarting that program puts it ahead of KeyPressOSD.</p>
+<p><strong>Reclaim Keyboard Priority</strong>, in the tray menu, puts KeyPressOSD back at the front. It costs the other program nothing: KeyPressOSD never stops a keystroke, it only watches them go past.</p>
+<p><strong>Check the privilege before you reach for it, though</strong>, because the two faults look identical from the outside and only one of them has a menu item. Equal privilege is <em>necessary</em> — a program running higher than KeyPressOSD keeps its input out of reach entirely, whatever order the hooks are in — but it is not <em>sufficient</em>, because a hook that has already stopped a keystroke cannot be overruled by anything.</p>
+<p>Two things tell you which one you have. KeyPressOSD's own rights: hover the tray icon, which says "administrator" when this copy is elevated, or read the sentence at the top of the System tab. And the other program's: if Task Manager shows it and not its command line, it is running higher than you are. If it is higher than KeyPressOSD, reclaiming the queue will change nothing — use <strong>Restart as Administrator</strong> in the tray menu, or <strong>Always Run as Administrator</strong> if it is not set yet, and try again from there.</p>
+<p>The order of the two also matters, and it is not the order you might expect: reclaiming helps when the other program started <em>after</em> KeyPressOSD, and if it starts after you every time — a program that restarts itself, or one launched later at sign-in — the durable fix is to have KeyPressOSD's own sign-in task start last. A short delay on it in Task Scheduler does that.</p>
+<h2>Print Screen does not appear</h2>
+<p>Known and not resolved. See <a href="limitations.html">Known limitations</a>.</p>
+<h2>The panel is bigger or smaller than I want</h2>
+<p>Reach for <strong>Appearance → Spacing</strong> before the font size. Panel padding and key cap padding are what the panel's size is actually made of at a given font size, and changing them keeps the text readable.</p>
+<h2>The panel has no visible edge</h2>
+<p>Over dark chrome — a terminal, a maximised editor, a full-screen video — a dark translucent panel has no edge of its own. That is what <strong>Panel outline</strong> is for, on the Appearance tab. It is on by default; if you have turned it off, that is why.</p>
+<h2>The application icon looks soft</h2>
+<p>The display enlarges whatever icon Windows hands over. That is usually a 256-pixel image, and enlarging one of those looks fine — but some programs only offer 32 pixels, and enlarging that to the height of a key cap cannot look sharp.</p>
+<p>Reduce <strong>Application icon size</strong> on the Appearance tab, or turn the icon off.</p>
+<h2>The help file shows blank pages</h2>
+<p>Windows has marked the <code>.chm</code> as coming from the internet. Every page renders as "Navigation to the webpage was canceled", which looks like a corrupt file and is not.</p>
+<p>Right-click <code>KeyPressOSD.chm</code>, choose Properties, and tick <strong>Unblock</strong> at the bottom of the General tab.</p>
+<h2>A hotkey does nothing</h2>
+<p>Another program already owns the chord. Windows gives a hotkey to whoever registered it first, and the later registration simply fails. See <a href="hotkeys.html">Hotkeys</a>.</p>
+<h2>A setting I changed had no effect</h2>
+<p>Two likely causes.</p>
+<p><strong>You did not press Apply or OK.</strong> Changes are live on the display immediately but are not saved until you commit them; Cancel puts them back.</p>
+<p><strong>You edited a default in the source.</strong> A settings file that already has a value for something outranks a changed default — the file is loaded over the defaults, so editing the default does nothing for a copy that has already run once.</p>
+<h2>Reporting something</h2>
+<p><strong>About → Copy Details</strong> puts the version, build date, Windows build and runtime on the clipboard, so a report does not have to be transcribed from a screenshot.</p>
+<p>Please say which of the two modes you were in, and whether the window you were typing into was elevated. Those two answers between them explain most of what gets reported.</p>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>

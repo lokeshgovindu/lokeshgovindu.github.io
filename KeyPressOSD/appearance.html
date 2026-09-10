@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How it looks - KeyPressOSD</title>
+<meta name="description" content="The Appearance tab, with a live preview pinned at the top of it.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html">What KeyPressOSD does</a></li>
+<li><a href="display.html">Showing keystrokes</a></li>
+<li><a href="typing.html">Showing typed text</a></li>
+<li><a href="position.html">Where it appears</a></li>
+<li><a href="appearance.html" aria-current="page">How it looks</a></li>
+<li><a href="symbols.html">Key names and symbols</a></li>
+<li><a href="hotkeys.html">Hotkeys</a></li>
+<li><a href="tray.html">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html">The settings file</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+<li><a href="limitations.html">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>How it looks</h1>
+<p>The <strong>Appearance</strong> tab, with a live preview pinned at the top of it.</p>
+<p>The preview is the real display control bound to a real sample, so it cannot render differently from the thing it is previewing. It stays put while the settings scroll underneath, because this is the one tab where every setting is judged by looking rather than by reading a number.</p>
+<p>While the settings window is open, the <strong>actual</strong> overlay also holds a sample in its actual corner. The preview shows what the panel looks like; only the real one shows where it is and how big it is against your screen, which is what the position, size and opacity settings are really about. The same preview box is pinned to the top of the <strong>Display</strong> tab, because the shape settings live there — the mode, whether keys queue or stack, and the separator between them.</p>
+<p><strong>Show live preview on screen</strong>, at the bottom of the window beside Undo and Reset Defaults, controls that one. It is ticked when the window opens, and the sample stays on the real overlay until you untick it — through tab changes, through settings changes, and for as long as the dialogue is open.</p>
+<p>While it is ticked, keystrokes are <strong>held</strong>: nothing you type is recorded or displayed, so the sample you are judging cannot be replaced by your own typing. That is a pause in everything but name, and deliberately not the real one — pausing draws a PAUSED marker, which would cover up the very thing you are looking at. Unticking releases it, and so does closing the window.</p>
+<p>The line under the preview says which corner of which monitor to look at, and it is worth reading before concluding the overlay is missing. If Monitor is set to the primary screen and you are working on a second one, the panel is doing exactly as it was told, on a screen you are not facing.</p>
+<p class="figure"><img src="images/settings-appearance.png" alt="The Appearance tab with a live preview pinned above the settings"></p>
+<p><em>The preview is pinned, so it stays visible while the rows below it scroll. It is the real display control bound to a sample rather than a picture of one, which is why it cannot drift out of step with the overlay.</em></p>
+<h2>Theme</h2>
+<p>Twenty-one of them: System, Light, Dark, and eighteen more — Nord, Dracula, both Solarizeds, both Catppuccins, Tokyo Night, Gruvbox, Kanagawa and the rest. They apply as you pick them.</p>
+<p><strong>System</strong> follows the Windows light/dark setting and keeps following it. Anything else is a deliberate choice and stays put.</p>
+<p class="figure"><img src="images/settings-dark.png" alt="The settings window in a dark theme"></p>
+<p><em>The same window, dark. Every control here is templated by this application rather than inherited from Windows, which is what lets twenty-one themes work at all — an unstyled control would arrive as a white box on this background.</em></p>
+<blockquote><p>The theme colours the <strong>dialogues and the tray menu</strong>, not the overlay. Somebody picking "Nord" would reasonably expect the display to follow, and it deliberately does not: the overlay sits over other people's windows rather than being part of this application's chrome, so its colours are yours to set below, with their own opacity.</p></blockquote>
+<h2>Font and size</h2>
+<p><strong>Font</strong> is a family name. One that is not installed falls back rather than failing, so a typo shows up as the wrong typeface rather than as an error.</p>
+<p><strong>Size</strong> is the main lever on how big the display is. <strong>Bold</strong> is on by default — at a distance, weight carries further than size.</p>
+<p><strong>Opacity</strong> applies on top of the colours' own alpha, so a panel colour that is already translucent gets more so.</p>
+<h2>Rounding</h2>
+<p><strong>Panel rounding</strong> and <strong>Key cap rounding</strong> are separate, and the caps are kept smaller than the panel by default so they read as sitting inside it rather than repeating its outline.</p>
+<h2>Spacing</h2>
+<p>What the panel's size is actually made of at a given font size. If the overlay is bigger or smaller than you want, these are the numbers to reach for before the font.</p>
+<table><thead><tr><th>Setting</th><th>What it is</th></tr></thead><tbody>
+<tr><td>Panel padding</td><td>The margin inside the panel, horizontally and vertically</td></tr>
+<tr><td>Between chord keys</td><td>The separator drawn between the parts of a chord — <code>+</code> by default, empty for none</td></tr>
+<tr><td>Gap within an entry</td><td>Between one key cap and the next inside a single chord</td></tr>
+<tr><td>Gap between entries</td><td>Between one entry and the next along the line</td></tr>
+<tr><td>Key cap padding</td><td>A multiplier on the space inside each cap</td></tr>
+<tr><td>Application icon size</td><td>1.0 matches the height of a key cap</td></tr>
+<tr><td>Repeat count size</td><td>A fraction of the key's size; 1.0 matches it</td></tr>
+<tr><td>Repeat count format</td><td>How the number is written — <code>x{0}</code> gives <code>x3</code>, <code>({0})</code> gives <code>(3)</code></td></tr>
+</tbody></table>
+<p>Keep the gap <em>within</em> an entry smaller than the gap <em>between</em> entries, or a chord and a sequence of separate keystrokes look the same.</p>
+<p class="figure"><img src="images/osd-minimal.png" alt="A small panel with tight spacing and no outline"></p>
+<p><em>The spacing numbers turned down. Nothing here is a different setting from the defaults — same font, same colours, only the padding and the gaps.</em></p>
+<p>The application icon is enlarged from whatever Windows hands over, which is usually a 256-pixel image but is sometimes only 32 — a large multiplier on one of those will look soft, and that is the source rather than the drawing.</p>
+<h2>Colours</h2>
+<p>All written as <code>#AARRGGBB</code>. The first pair is opacity, which is what lets the panel sit translucent over other windows. The swatch beside each one opens a colour picker; the picker sets the colour and leaves the opacity as you typed it, because the Windows picker has no alpha channel.</p>
+<table><thead><tr><th>Colour</th><th>What it paints</th></tr></thead><tbody>
+<tr><td>Text colour</td><td>The body text — typed characters, the repeat count</td></tr>
+<tr><td>Panel colour</td><td>The panel behind everything</td></tr>
+<tr><td>Panel outline</td><td>A hairline round the panel</td></tr>
+<tr><td>Key cap fill</td><td>The face of a key cap</td></tr>
+<tr><td>Key cap border</td><td>Its edge</td></tr>
+<tr><td>Key cap text</td><td>The text on a cap</td></tr>
+<tr><td>Accent</td><td>The typing caret and the paused marker</td></tr>
+</tbody></table>
+<p>Key cap text is a separate colour from the body text, and it has to be: a cap is a light shape on a dark panel, so its text runs the other way. A single colour for both would give either invisible cap text or invisible body text, whichever palette you picked.</p>
+<p class="figure"><img src="images/osd-light-colours.png" alt="The panel drawn in a pale colour scheme"></p>
+<p><em>A light panel. Note that the cap text has had to go the other way with it — this is the pair of colours the paragraph above is about, and changing one without the other is how the display ends up with invisible text.</em></p>
+<h3>The panel outline</h3>
+<p>A hairline, faint white by default, and it is there for one specific reason: over dark chrome — a terminal, a maximised editor, a full-screen video — a dark translucent panel has no visible edge at all. The keys stay legible and the shape they sit on disappears, so the display reads as loose text on the desktop and the rounded corners do nothing.</p>
+<p>Set <strong>Outline thickness</strong> to 0, or the colour fully transparent, to remove it.</p>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>

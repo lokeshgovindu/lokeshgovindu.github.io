@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Showing keystrokes - KeyPressOSD</title>
+<meta name="description" content="Keystrokes mode names each key as you press it. This is the mode for a screencast, because it says which keys were pressed rather than what they produced.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html">What KeyPressOSD does</a></li>
+<li><a href="display.html" aria-current="page">Showing keystrokes</a></li>
+<li><a href="typing.html">Showing typed text</a></li>
+<li><a href="position.html">Where it appears</a></li>
+<li><a href="appearance.html">How it looks</a></li>
+<li><a href="symbols.html">Key names and symbols</a></li>
+<li><a href="hotkeys.html">Hotkeys</a></li>
+<li><a href="tray.html">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html">The settings file</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+<li><a href="limitations.html">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>Showing keystrokes</h1>
+<p>Keystrokes mode names each key as you press it. This is the mode for a screencast, because it says which keys were pressed rather than what they produced.</p>
+<p>All of the settings below are on the <strong>Display</strong> tab.</p>
+<p class="figure"><img src="images/settings-display.png" alt="The Display tab: mode, what to show, and the typed-character options"></p>
+<p><em>The Display tab. Everything in this topic is one of these rows.</em></p>
+<h2>How a chord is written</h2>
+<p>A combination is written the way it is written everywhere else — <code>Ctrl + Shift + P</code>, with a plus between the parts. That separator matters more than it looks: without it the parts are separated only by a gap, which reads as keys pressed one after another rather than together, and telling those two apart is most of what the display is for.</p>
+<p>The modifiers are always named in the same order — Win, Ctrl, Alt, Shift — whichever order you actually pressed them in. A chord is one thing, and it should look the same each time you use it.</p>
+<p>You can change or remove the separator on the <strong>Appearance</strong> tab, under Spacing.</p>
+<h2>Modifiers pressed on their own</h2>
+<p>Pressing Ctrl by itself produces a <code>Ctrl</code> entry. That is on by default and it is deliberate: in a screencast the viewer needs to see a modifier go down before the chord completes.</p>
+<p>Turn off <strong>Show Ctrl, Alt, Shift and Win pressed on their own</strong> if you find it noisy.</p>
+<p>Holding two together shows them as a chord: hold Ctrl and then Shift and you get one <code>Ctrl + Shift</code> entry, not two separate ones.</p>
+<h2>Repeat counts</h2>
+<p>Press the same thing twice quickly and it collapses into one entry with a count — <code>Alt + Tab x3</code> — rather than filling the line with copies. Two keystrokes count as the same one if they arrive within <strong>Group repeats within</strong>, on the Timing tab.</p>
+<p class="figure"><img src="images/osd-repeat-count.png" alt="Backspace drawn as a key cap with x7 after it"></p>
+<p><em>A held Backspace, collapsed. Without the count this line would be seven identical caps and the panel would be seven times as wide — the collapsing is as much about the width as about the reading.</em></p>
+<p>The count is the same size and weight as the key it belongs to, because when a repeat has been collapsed the number is the only thing on the panel the key name does not already say. You can make it smaller, or change how it is written, on the Appearance tab.</p>
+<h3>Held keys</h3>
+<p>Windows re-sends a held key for as long as you hold it, and <strong>A key held down</strong> on the Display tab decides what to do with that stream. Three answers.</p>
+<p><strong>Count up</strong> is the default: one entry with a climbing number, <code>Backspace x12</code>. It shows the most, and for a screencast the number is the only thing on the panel saying the key is still down — the entry itself looks identical either way.</p>
+<p><strong>Keep showing it, without a number</strong> leaves the entry on screen for as long as the key is held and draws no count. Choose it if you would rather see <em>what</em> is held than a figure that really measures how long you leaned on the key.</p>
+<p><strong>Show it once, then let it fade</strong> treats a held key exactly like a single press: every repeat is dropped, so the entry can disappear with the key still down. That is the point of it rather than a fault — it says what was pressed and declines to say anything about duration.</p>
+<p>All three apply to <strong>every</strong> key, letters included. That is worth saying because it used not to be true: holding a letter grew a run — <code>aaaaaaaaaaa</code> — whatever this setting said, while holding <code>F5</code> obeyed it. The cause was that merging consecutive typed characters was consulted first, and a repeat of the same letter is hard to tell from the same letter typed twice quickly. It is told apart now, so a held <code>a</code> reads <code>a x11</code> or stays put without a number, as you asked. <strong>Merge consecutive typed characters</strong> still does its own job: typing <code>letter</code> reads <code>letter</code>, because those are separate presses rather than one key being held.</p>
+<p>Held <em>modifiers</em> are a special case, and worth knowing about because both of the obvious behaviours are wrong in one case each:</p>
+<ul>
+<li>A modifier held <strong>on its own</strong> counts, like any other held key.</li>
+<li>A modifier held <strong>as part of a chord</strong> goes quiet and lets the chord do the counting. Without this, a held Alt+Tab produces <code>Alt</code>, <code>Alt+Tab</code>, <code>Alt</code>, <code>Alt+Tab</code> — never two equal entries in a row, so nothing collapses and Alt+Tab shows no count at all.</li>
+</ul>
+<p class="figure"><img src="images/osd-held-modifiers.png" alt="Alt + Tab shown as two key caps with a repeat count"></p>
+<p><em>Alt held while Tab is pressed repeatedly. The count belongs to the chord, not to Alt.</em></p>
+<p><strong>Count a modifier held down on its own</strong> turns the first of those off, if you would rather not see a number that really measures how long you leaned on the key. It applies only to <strong>Count up</strong>, and is greyed out for the other two — neither of them draws a number for it to suppress, so there is nothing for it to do. That is worth knowing if you remember it behaving otherwise: turning it off used to stop a held modifier being reported at all, which made <strong>Keep showing it</strong> lose the entry a few seconds after you pressed the key. The two settings looked complementary and were not.</p>
+<blockquote><p>Windows auto-repeats only the last key pressed. Hold Ctrl and then Shift and it is Shift that repeats — so the count you see on <code>Ctrl + Shift</code> is Shift's.</p></blockquote>
+<p>That last point has a consequence worth spelling out, because it looks like a fault. Hold Alt, then press Ctrl as well, then release Ctrl while still holding Alt: Windows now repeats <strong>nothing</strong>. Alt is still down and it has stopped saying so, permanently — releasing the later key does not hand the repeat back.</p>
+<p>KeyPressOSD works around this rather than waiting to be told. When you let one modifier go, the entry is redrawn as the ones still held, so the panel stops claiming a chord you have come out of; and the display then asks Windows directly which keys are down, so Alt goes on counting for as long as you hold it. Two things you will notice:</p>
+<ul>
+<li>The count <strong>pauses for about a second</strong> before it picks up again. That wait is deliberate: the delay before Windows starts repeating a key is itself adjustable, up to a second, and anything shorter would count every fresh press twice over.</li>
+<li>It then climbs more slowly than a normal held key, because the display is driving the count on its own clock rather than the keyboard's.</li>
+</ul>
+<p>Neither applies while a chord is in progress: coming off <code>Ctrl + Shift + P</code> shows nothing extra, because fingers leaving a finished chord are not something this display reports. And <strong>Show it once, then let it fade</strong> switches the whole behaviour off, since a fading entry is exactly what that setting asks for.</p>
+<h2>How much stays on screen</h2>
+<p><strong>Keys build up as</strong>, on the Display tab, has three answers. They differ in the shape the keystrokes take and in when they leave.</p>
+<p><strong>One line, cleared all at once</strong> is the default. Keystrokes fill the line until it reaches <strong>Keystroke line length</strong> — in characters, on the Timing tab — and then the oldest scroll off the left. Nothing goes to the clock: the lifetime is measured from the <strong>last</strong> key pressed, so while you are still typing the line keeps everything, and when you stop, all of it goes together.</p>
+<p><strong>One line, oldest fading as they age</strong> is the same line with each entry on its own clock instead, so during a quiet moment it shortens from the left a keystroke at a time. This was the default first and was changed after being reported: a sequence you have just pressed is never all there at once, because it starts decaying from the left while you are still reading it. Choose it if the display is there to follow your typing as it happens rather than to be read back.</p>
+<p>It is worth being precise about what it does not do. The line still has a length, and the oldest still scroll off the left when it is full. "Cleared all at once" means nothing disappears <em>to the clock</em> — not that the panel grows without limit, which would eventually cover the thing you were typing into.</p>
+<p><strong>A stack</strong> puts one keystroke per line, newest at the bottom, and is bounded by <strong>Keys shown at once</strong> rather than by a length. Whichever of those two bounds is not in use is greyed out rather than left looking live.</p>
+<p class="figure"><img src="images/osd-several-entries.png" alt="Four separate entries side by side on one line"></p>
+<p><em>Four entries on one line. Four is this wide today and much wider the moment one of them is a three-key chord, which is why the one-line shapes are bounded by length and the stack is not.</em></p>
+<p>A length beats a count for a line because a count of keystrokes is a poor guide to how wide the panel gets: four entries is <code>a b c d</code> one moment and <code>Ctrl+Shift+Home Alt+Tab x4 Backspace F5</code> the next. A stack does not have that problem, because the panel grows downwards instead — which is also the reason a stack is not the default: it gets taller the busier you are, which is when it is most in the way, and it puts consecutive keystrokes in the one direction nobody reads a sequence in.</p>
+<p><strong>Mark where older keystrokes scrolled off</strong> adds an ellipsis at the left when something has been dropped. It is off by default, and it is suppressed while only one entry is showing — with one key on screen at a time, every keystroke replaces the last, so the mark would be permanent and would say nothing.</p>
+<h2>Typed characters</h2>
+<p>Consecutive characters grow one entry, so typing <code>letter</code> reads as <code>letter</code> rather than as six entries. Turn off <strong>Merge consecutive typed characters</strong> and each character gets its own entry instead — and a repeated letter then collapses to a count rather than growing the word.</p>
+<p class="figure"><img src="images/osd-typed-word.png" alt="The words hello world as plain text on the panel"></p>
+<p><em>Merged characters in keystrokes mode. Plain text, no caps — this is a run of typing, and drawing each letter as a key would make it unreadable.</em></p>
+<p>Characters are drawn as plain text and named keys as key caps. That distinction is what makes a line scannable: <code>Ctrl</code> and <code>Shift</code> are objects you press, and drawing them as little keys says so, while the characters you typed are text and should look like text.</p>
+<h2>Telling one press from the next</h2>
+<p>Two separators, answering two different questions.</p>
+<p><strong>Between chord keys</strong> — a <code>+</code> by default — says <em>these keys went down together</em>: <code>Alt + Tab</code>.</p>
+<p><strong>Between separate presses</strong> — a <code>·</code> by default — says <em>these are two presses</em>. Without it a flowing line runs together, and <code>Ctrl+S</code> then <code>h</code> then <code>i</code> then <code>Alt+Tab</code> draws as <code>Ctrl + S h i Alt + Tab x4</code>, where nothing tells you which of those was a chord. With it: <code>Ctrl + S · h · i · Alt + Tab x4</code>.</p>
+<p>Both are on the Appearance tab, both take any text, and either can be emptied for no separator at all. The middot is drawn in the body colour at reduced opacity rather than as a key cap, because nobody pressed it — a cap would claim they had.</p>
+<h2>Shift and the shifted character</h2>
+<p>With only Shift held, <code>Shift+/</code> can be shown either as <code>Shift + /</code> or as <code>?</code>.</p>
+<p>The default is <code>Shift + /</code>, because that names the key you actually pressed — which is both how a shortcut is written down and what a screencast viewer needs in order to see that Shift was involved. Turn on <strong>With only Shift held, show the character instead of the chord</strong> for the other behaviour.</p>
+<p>It covers every key the same way, because it is not a table of pairs: KeyPressOSD asks Windows what your keyboard produced with Shift down and shows that. So <code>?</code> <code>:</code> <code>"</code> <code>|</code> <code>{</code> <code>~</code> <code>+</code> <code>&lt;</code> <code>&gt;</code> <code>_</code> and <code>!</code> all follow, and so do letters — <code>Shift+a</code> reads as <code>A</code>. On a layout where those keys sit elsewhere, or produce something else entirely, you get what your layout produces rather than what a US keyboard would have.</p>
+<p>Any other modifier present and Shift is spelled out regardless — <code>Ctrl+Shift+2</code> stays <code>Ctrl+Shift+2</code>, because <code>Ctrl+@</code> is not a shortcut anybody writes.</p>
+<h2>The mouse</h2>
+<p><strong>Show mouse clicks</strong> is on. Button presses only, not releases: showing both would double every entry for no extra information, which also means drags are not reported.</p>
+<p><strong>Show mouse wheel</strong> is off, and off is recommended. One turn of a wheel produces a great many events, and each would replace whatever key you had just pressed.</p>
+<p class="figure"><img src="images/osd-mouse.png" alt="A mouse click entry beside arrow-key entries"></p>
+<p><em>Clicks and arrow keys on the same line. Buttons are named rather than drawn, so a click reads as an event rather than as a key that was pressed.</em></p>
+<h2>The active application's icon</h2>
+<p><strong>Show the active application icon</strong> puts the icon of the program you are typing into at the left of the line. It is off by default.</p>
+<p>It earns its place in a screencast that moves between windows, where <code>Ctrl+S</code> in an editor and <code>Ctrl+S</code> in a browser are different acts and the keystroke alone cannot say which.</p>
+<p class="figure"><img src="images/osd-app-icon.png" alt="A small application icon at the left of the line, before the keys"></p>
+<p><em>The icon sits at the left, ahead of the keys, at the height of a line of key text. <strong>Application icon size</strong> on the Appearance tab scales it against that height rather than against a fixed number of pixels, so it stays in proportion when the font changes.</em></p>
+<p>Nothing is shown where the icon cannot be read — an elevated window will not tell KeyPressOSD anything about itself — and a program on the Privacy list produces no panel at all, so no icon either.</p>
+<h2>A count of keys pressed</h2>
+<p><strong>Show a count of keys pressed</strong> adds a running total for the session on a strip beneath the keys. Off by default, and it is never written to disk: closing KeyPressOSD forgets it.</p>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>

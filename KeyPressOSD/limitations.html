@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Known limitations - KeyPressOSD</title>
+<meta name="description" content="These are limits rather than bugs — things KeyPressOSD does not do, with the reason it does not. They are listed because a limitation you can read about is a gr">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html">What KeyPressOSD does</a></li>
+<li><a href="display.html">Showing keystrokes</a></li>
+<li><a href="typing.html">Showing typed text</a></li>
+<li><a href="position.html">Where it appears</a></li>
+<li><a href="appearance.html">How it looks</a></li>
+<li><a href="symbols.html">Key names and symbols</a></li>
+<li><a href="hotkeys.html">Hotkeys</a></li>
+<li><a href="tray.html">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html">The settings file</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+<li><a href="limitations.html" aria-current="page">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>Known limitations</h1>
+<p>These are limits rather than bugs — things KeyPressOSD does not do, with the reason it does not. They are listed because a limitation you can read about is a great deal less frustrating than one you have to discover.</p>
+<h2>Elevated windows show nothing</h2>
+<p>While the focused window belongs to a process running at higher integrity than KeyPressOSD — anything started as administrator — no keystrokes appear.</p>
+<p>This is Windows working correctly, not a fault. A low-level keyboard hook in a non-elevated process is not given input destined for an elevated window, because that is exactly how a keylogger would read an administrator's password.</p>
+<p>You will notice this most with:</p>
+<ul>
+<li>Task Manager, Registry Editor, and the elevated parts of Settings.</li>
+<li>An editor or terminal you opened as administrator.</li>
+<li>Third-party utilities that run elevated.</li>
+</ul>
+<p>The UAC prompt itself and the lock screen are further out of reach still: they run on a separate desktop, and no elevation reaches those.</p>
+<h3>Running KeyPressOSD as administrator</h3>
+<p>The fix is to put KeyPressOSD at the same level, and <strong>Always Run as Administrator</strong> in the tray menu is how. Windows asks for consent, the old instance stands down, and the new one takes over — the tray icon does not move and nothing is lost but whatever was on screen at the time.</p>
+<p>The row stays ticked afterwards, and it is worth being precise about what that tick means: the <strong>setting</strong> is on, not necessarily this copy. It is the sign-in task that starts an elevated copy, so a copy you launch yourself — from a shortcut, from Explorer, from a search box — comes up as an ordinary program with the row still ticked. To see what the copy in front of you actually is, hover the tray icon, which says "administrator" when it is, or read the first line of the System tab. When the two differ the menu offers <strong>Restart as Administrator</strong>, and that row is there only then.</p>
+<p>That one prompt also arranges every later start. The new instance registers a sign-in task set to run with the highest privileges, and Windows starts such a task without asking — which is the only way an elevated program can start silently at sign-in. A shortcut or a registry entry cannot: those prompt every single time, which is no way to start something automatically.</p>
+<p>Untick it to remove the task. That takes effect at your next sign-in rather than immediately, because a program cannot give up rights it already holds and Windows has no counterpart to "run as administrator" for going the other way. Exiting and starting KeyPressOSD again does it now.</p>
+<p>Two things about that second one are easy to be surprised by, so they are worth saying here:</p>
+<ul>
+<li><strong>It takes effect next time.</strong> Ticking it changes nothing about the instance you ticked it in. Use the tray menu if you want it now.</li>
+<li><strong>Windows asks every time.</strong> There is no way for an unprivileged program to arrange silent elevation, so if <strong>Start KeyPressOSD when I sign in</strong> is also on you will get a consent prompt at every sign-in. For occasional use — you are about to demonstrate something in Task Manager — the tray menu is the better answer, and it leaves nothing behind.</li>
+</ul>
+<p>This is a real trade rather than a free upgrade. The integrity check that hides elevated windows from KeyPressOSD is the same check that stops any ordinary program reading what you type into an administrator's console, and running elevated is giving that up for this application. Nothing else about it changes: an elevated instance still writes no keystroke to disk and still injects nothing. It is off by default, and most people never need it.</p>
+<h2>Print Screen does not appear</h2>
+<p>Pressing Print Screen produces no entry on the machines this has been tested on.</p>
+<p>What has been ruled out: the key is not remapped to the Snipping Tool, there is no scan-code remapping in the registry, the display path names the key correctly (it is <code>Print Screen</code>, and there are tests holding that), and an <em>injected</em> Print Screen produces both a key-down and a key-up at the hook — so the "only reports a release" theory is wrong at least for injected input.</p>
+<p>What has not been established is what a <strong>physical</strong> press produces on a given keyboard. If Print Screen matters to you, it is worth reporting what keyboard you have.</p>
+<h2>The overlay can drift on rapid alternation</h2>
+<p>In keystrokes mode, alternating a narrow entry and a wide one very quickly — holding <code>a</code> and then <code>Backspace</code> — can walk the panel sideways off the monitor.</p>
+<p>The panel sizes itself to its content and is anchored to an edge, so its position is recomputed on every size change. Under fast alternation those corrections appear to accumulate rather than cancel.</p>
+<p>Not yet diagnosed. If you hit it, <code>Ctrl+Alt+C</code> clears the display and it returns to its anchor.</p>
+<h2>One display, not one per monitor</h2>
+<p>There is a single panel. Set to follow the active window it moves between monitors with your focus, but it is never in two places at once.</p>
+<h2>Mouse movement and drags are not shown</h2>
+<p>Clicks are shown, releases are not — so a drag appears as its initial press. Showing both would double every entry for no extra information.</p>
+<p>Mouse <em>movement</em> is not shown at all, and would not be useful at this size.</p>
+<h2>No text-expansion, no remapping, no macros</h2>
+<p>KeyPressOSD observes input and never injects any. Anything that would require injecting — expanding an abbreviation, remapping a key, replaying a macro — is out of scope by design rather than by omission.</p>
+<p>That boundary is what lets the privacy statements in this manual be unconditional.</p>
+<h2>It does not update itself</h2>
+<p><strong>Check for Updates</strong> tells you a newer release exists and offers to open the page. It does not download or install anything.</p>
+<p>Replacing a running executable needs elevation for an installed copy and a signature to be worth trusting, and this application has neither.</p>
+<h2>No installer</h2>
+<p>Releases are ZIP archives. KeyPressOSD is portable — it keeps its settings beside the executable — so an installer would add a step and take away the property that makes it easy to try and easy to remove.</p>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>

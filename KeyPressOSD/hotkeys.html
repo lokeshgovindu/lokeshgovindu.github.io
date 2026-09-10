@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotkeys - KeyPressOSD</title>
+<meta name="description" content="Three, on the Hotkeys tab. All three can be changed, and any of them can be switched off by clearing the box.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html">What KeyPressOSD does</a></li>
+<li><a href="display.html">Showing keystrokes</a></li>
+<li><a href="typing.html">Showing typed text</a></li>
+<li><a href="position.html">Where it appears</a></li>
+<li><a href="appearance.html">How it looks</a></li>
+<li><a href="symbols.html">Key names and symbols</a></li>
+<li><a href="hotkeys.html" aria-current="page">Hotkeys</a></li>
+<li><a href="tray.html">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html">The settings file</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+<li><a href="limitations.html">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>Hotkeys</h1>
+<p>Three, on the <strong>Hotkeys</strong> tab. All three can be changed, and any of them can be switched off by clearing the box.</p>
+<p class="figure"><img src="images/settings-hotkeys.png" alt="The Hotkeys tab with three chord boxes"></p>
+<p><em>The Hotkeys tab. A chord another program has already claimed cannot be registered, and the warning line under these boxes is the only place that is reported.</em></p>
+<table><thead><tr><th>Default</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>Ctrl+Alt+P</code></td><td>Pause and resume recording</td></tr>
+<tr><td><code>Ctrl+Alt+C</code></td><td>Clear what is on screen now</td></tr>
+<tr><td><code>Ctrl+Alt+K</code></td><td>Switch between keystrokes and typing</td></tr>
+</tbody></table>
+<h2>Pause</h2>
+<p>Pausing stops recording and clears the display at once. Nothing is captured while paused — not held, not buffered, not shown later.</p>
+<p class="figure"><img src="images/osd-paused.png" alt="The panel showing KeyPressOSD's icon and a PAUSED marker on one line"></p>
+<p><em>Paused. The marker is the whole panel — there is nothing behind it being held back, because nothing is being captured. The icon is KeyPressOSD's own here, not the icon of whatever you were typing into: paused, the panel is telling you about itself, and that other icon would only go stale as you switched window.</em></p>
+<p>The tray icon turns grey while paused, and the tray menu's first command reads <strong>Resume Recording</strong> in bold. That bold is not decoration: the menu is opened by right-clicking the tray icon, so opening it covers up the icon that was telling you the state.</p>
+<p>Pause is the setting to reach for before typing a password, and it is faster than editing the exclusion list. For anything you do regularly, the exclusion list is better — see <a href="privacy.html">Privacy</a>.</p>
+<h2>Writing a hotkey</h2>
+<p>A modifier plus a key: <code>Ctrl+Alt+P</code>, <code>Ctrl+Shift+F9</code>, <code>Win+Alt+K</code>. The modifier names are <code>Ctrl</code>, <code>Alt</code>, <code>Shift</code> and <code>Win</code>, joined with <code>+</code>.</p>
+<p>At least one modifier is required. A bare key would be registered globally and would stop working everywhere else — a hotkey of <code>S</code> would take the letter away from every program on the machine.</p>
+<h2>When a hotkey does not work</h2>
+<p>These are registered with Windows, which means two things.</p>
+<p>The good one: Windows delivers the chord to KeyPressOSD and withholds it from whatever you were typing into, so the hotkey cannot leak into your document.</p>
+<p>The other one: <strong>another program may already own the chord</strong>, in which case the registration simply fails and the hotkey does nothing. Nothing on screen will tell you which program took it. If a hotkey does not respond, the quickest test is to set it to something obscure — <code>Ctrl+Alt+F12</code> — and see whether that works.</p>
+<p><code>Ctrl+Alt</code> with a letter is the range Windows itself leaves alone, which is why the defaults live there. Chords using <code>Win</code> are riskier: Windows claims a great many of them and takes them without asking.</p>
+<p>The Hotkeys tab reports a warning line when a registration fails, so a chord that could not be claimed is visible rather than silently dead.</p>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>

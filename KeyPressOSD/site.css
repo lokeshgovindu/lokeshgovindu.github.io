@@ -1,0 +1,213 @@
+/* KeyPressOSD website. Authored, not produced from markdown - see build-manual.py. */
+
+/* Both palettes from one set of tokens, so a colour is never written twice. The site follows the
+   reader's own light/dark setting; there is no toggle, because a docs site that disagrees with the rest
+   of the browser is the thing people complain about. */
+:root {
+  --page: #ffffff;
+  --ink: #1b1b1f;
+  --muted: #5b5b66;
+  --rule: #e2e2e8;
+  --accent: #1d4ed8;
+  --surface: #f7f7fa;
+  --cap-bg: #f2f2f5;
+  --cap-ink: #16161a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #16161a;
+    --ink: #ececf1;
+    --muted: #a0a0ad;
+    --rule: #2c2c34;
+    --accent: #8ab4ff;
+    --surface: #1d1d23;
+    --cap-bg: #26262e;
+    --cap-ink: #ececf1;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: "Segoe UI", -apple-system, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+a { color: var(--accent); }
+a:hover { text-decoration: underline; }
+
+/* --- the bar ------------------------------------------------------------- */
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.wordmark {
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.download {
+  font-size: 14px;
+  padding: 5px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* --- the hero ------------------------------------------------------------ */
+
+.hero {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 32px;
+  text-align: center;
+}
+
+.hero h1 { font-size: 40px; line-height: 1.15; margin: 0 0 12px; }
+.lede { font-size: 18px; color: var(--muted); margin: 0 auto 24px; }
+.cta { margin: 0 0 12px; }
+
+.button {
+  display: inline-block;
+  margin: 4px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--page);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.button.ghost {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+}
+
+.small { font-size: 14px; color: var(--muted); }
+
+/* --- the two-column shell ------------------------------------------------ */
+
+.shell {
+  display: flex;
+  gap: 40px;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.side { flex: 0 0 208px; }
+
+.sidehead {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 8px;
+}
+
+.side ul { list-style: none; margin: 0; padding: 0; }
+.side li { margin: 0 0 2px; }
+
+.side a {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.side a:hover { background: var(--surface); text-decoration: none; }
+
+.side a[aria-current="page"] {
+  background: var(--surface);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+main { flex: 1 1 auto; min-width: 0; }
+
+/* --- content ------------------------------------------------------------- */
+
+h1 { font-size: 30px; line-height: 1.2; margin: 0 0 20px; }
+h2 { font-size: 21px; margin: 36px 0 10px; }
+h3 { font-size: 17px; margin: 28px 0 8px; }
+
+p, ul, ol { margin: 0 0 14px; }
+li { margin: 0 0 6px; }
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.9em;
+  background: var(--cap-bg);
+  color: var(--cap-ink);
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 12px 14px;
+  overflow-x: auto;
+}
+
+pre code { background: none; padding: 0; }
+
+blockquote {
+  margin: 0 0 14px;
+  padding: 2px 16px;
+  border-left: 3px solid var(--rule);
+  color: var(--muted);
+}
+
+/* Figures scroll rather than overflowing the page, and never render wider than their own pixels - every
+   one of them is a screenshot scaled DOWN already, and scaling it back up is how a crisp capture becomes
+   a blurry one. */
+img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  display: block;
+  margin: 0 0 6px;
+}
+
+.shot { margin-bottom: 24px; }
+
+em { color: var(--muted); }
+img + p em { font-size: 14px; }
+
+table { border-collapse: collapse; width: 100%; margin: 0 0 14px; display: block; overflow-x: auto; }
+th, td { border: 1px solid var(--rule); padding: 6px 10px; text-align: left; }
+th { background: var(--surface); }
+
+hr { border: 0; border-top: 1px solid var(--rule); margin: 36px 0 16px; }
+
+.foot { font-size: 13px; color: var(--muted); }
+
+/* One breakpoint, and it moves the contents above the topic rather than hiding it behind a button. A
+   disclosure widget needs script and can be left shut; a list cannot. */
+@media (max-width: 760px) {
+  .shell { flex-direction: column; gap: 20px; padding-top: 20px; }
+  .side { flex: 1 1 auto; }
+  .side ul { display: flex; flex-wrap: wrap; gap: 4px; }
+  .hero { padding-top: 32px; }
+  .hero h1 { font-size: 32px; }
+}

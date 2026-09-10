@@ -1,0 +1,114 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>PasteJump</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<h1>PasteJump</h1>
+<p class="lead">A keyboard-driven multiple-clipboard manager for Windows.</p>
+
+<p>Hold <code>Ctrl</code>, tap <code>V</code> to step back through what you have copied, release to
+paste. No window, no mouse, no hands leaving the keyboard. That gesture &mdash; a jog wheel for your
+clipboard &mdash; is the whole point of the program; everything else exists to support it.</p>
+
+<h2>Where it lives</h2>
+
+<p>PasteJump has no main window. It sits in the notification area, next to the clock:</p>
+
+<table>
+<tr><td class="name">Left-click the icon</td><td>Opens the clipboard history window.</td></tr>
+<tr><td class="name">Right-click the icon</td><td>The menu: about, clipboard history, pause, settings, this
+manual, the paste-mode key list, check for updates, disable, restart and exit.</td></tr>
+</table>
+
+<p>The icon itself reports the state, by colour and by glyph so it still reads in greyscale:</p>
+
+<table>
+<tr><th>Icon</th><th>Meaning</th></tr>
+<tr><td class="name">Blue</td><td>Running normally: watching the clipboard, and the gesture works.</td></tr>
+<tr><td class="name">Amber, with pause bars</td><td>Capture is paused. Nothing new is recorded, but the
+gesture still pastes from the clips already held.</td></tr>
+<tr><td class="name">Grey</td><td>Disabled. The keyboard hook is uninstalled, so
+<code>Ctrl</code>+<code>V</code> passes straight through as if PasteJump were not running.</td></tr>
+</table>
+
+<div class="shot shot-inline">
+<img src="images/toast.png" alt="The brief notification shown after a copy">
+<p>The optional notification after each copy: the clip count and a preview. It never takes focus, and it
+can be switched off under <b>Settings, Appearance</b>.</p>
+</div>
+
+<div class="note">
+<p><b>Only one copy runs at a time, per signed-in user.</b> Starting PasteJump when it is already running
+shows a brief notification in the corner of the screen saying so, and points at the notification-area icon,
+rather than starting a second copy or appearing to do nothing. Two copies would fight over the clipboard and
+install two keyboard hooks. Another user signed in to the same computer is unaffected: they get their own.</p>
+</div>
+
+<div class="note">
+<p><b>Pause and Disable are not the same thing.</b> Pause stops recording and is remembered between
+runs, because it is a preference. Disable also releases <code>Ctrl</code>+<code>V</code> and is
+deliberately <i>not</i> remembered &mdash; a clipboard manager that quietly started up dead weeks later
+would look broken.</p>
+</div>
+
+<h2>Nothing to install</h2>
+
+<p>PasteJump ships as a single <code>PasteJump.exe</code> with nothing beside it and no .NET runtime
+required on the machine. It writes its data to a <code>data</code> folder next to the executable, so a
+copy on a USB stick carries its own history. See <a href="settings.html">Settings</a> if the program
+folder is not writable, which is what unzipping under <code>C:\Program Files</code> means in practice.</p>
+
+<h2>Checking for updates</h2>
+
+<p>Right-click the tray icon and choose <b>Check for Updates…</b>. PasteJump asks GitHub for the latest
+published release and tells you whether the copy you are running is newer, older or the same.</p>
+
+<p>It happens <b>only when you ask</b>. Nothing checks at start-up: a clipboard manager that contacts a
+server the moment you sign in is doing something you did not request, and it would put a network round trip
+in front of the tray icon appearing.</p>
+
+<p>It reports rather than installs. If a newer release exists you are offered the release page to download
+it from &mdash; replacing a running program needs administrator rights for an installed copy, and a
+signature worth trusting, so PasteJump does not attempt it.</p>
+
+<p><b>Which releases you are offered is a setting</b>, under <b>Settings, System, Update Channel</b>:</p>
+
+<table>
+<tr><th>Channel</th><th>What it offers</th></tr>
+<tr><td class="name">Stable</td><td>Published releases that are not marked as pre-releases. The default, and
+the right choice for almost everybody. If no stable release exists yet the check says so plainly and points at
+the Developer channel, rather than claiming nothing has been published.</td></tr>
+<tr><td class="name">Stable (delayed 1 week)</td><td>The same, but a release is withheld until it is seven days
+old &mdash; so that other people meet a bad one first.</td></tr>
+<tr><td class="name">Developer</td><td>Every published release, pre-releases included. Choose this to be
+told about a pre-release as soon as it appears, rather than waiting for the next stable one.</td></tr>
+</table>
+
+<div class="note"><p>Drafts are never offered on any channel: nobody but their author can download one.</p></div>
+
+<h2>Where to go next</h2>
+
+<table>
+<tr><td class="name"><a href="gesture.html">The gesture</a></td><td>Every key that works while
+<code>Ctrl</code> is held. The one page worth reading in full.</td></tr>
+<tr><td class="name"><a href="stores.html">Clips and history</a></td><td>PasteJump keeps what you copy
+in two places. Confusing them is the easiest mistake to make here.</td></tr>
+<tr><td class="name"><a href="history-window.html">The history window</a></td><td>Searching, copying
+back, deleting, and removing duplicates.</td></tr>
+<tr><td class="name"><a href="settings.html">Settings</a></td><td>Every option, tab by tab.</td></tr>
+<tr><td class="name"><a href="importing.html">Importing from Clipjump</a></td><td>Bringing an existing
+Clipjump history and clip stack across.</td></tr>
+<tr><td class="name"><a href="coexisting.html">Another clipboard manager</a></td><td>Read this if
+copying works and pasting silently does nothing.</td></tr>
+<tr><td class="name"><a href="troubleshooting.html">Troubleshooting</a></td><td>The symptoms that have
+actually been reported, and what each one means.</td></tr>
+</table>
+
+<p class="footer">PasteJump is a ground-up reimplementation of Clipjump by Avi Aryan, from observed
+behaviour. No Clipjump code was copied.</p>
+
+</body>
+</html>

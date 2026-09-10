@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Key names and symbols - KeyPressOSD</title>
+<meta name="description" content="What a key is called is worked out at the moment you press it, by asking the active keyboard layout what that key produces — not by looking the key up in a list">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html">What KeyPressOSD does</a></li>
+<li><a href="display.html">Showing keystrokes</a></li>
+<li><a href="typing.html">Showing typed text</a></li>
+<li><a href="position.html">Where it appears</a></li>
+<li><a href="appearance.html">How it looks</a></li>
+<li><a href="symbols.html" aria-current="page">Key names and symbols</a></li>
+<li><a href="hotkeys.html">Hotkeys</a></li>
+<li><a href="tray.html">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html">The settings file</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+<li><a href="limitations.html">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>Key names and symbols</h1>
+<h2>Names come from your keyboard, not from a table</h2>
+<p>What a key is called is worked out at the moment you press it, by asking the active keyboard layout what that key produces — not by looking the key up in a list.</p>
+<p>That matters if you use anything other than a US layout. A table mapping a key to <code>@</code> is right on one layout and wrong on the hundred-odd others Windows ships; asking the layout is right on all of them, including the dead-key and AltGr combinations no table would cover.</p>
+<p>Consequences worth knowing:</p>
+<ul>
+<li>The layout consulted is the one belonging to the <strong>window you are typing into</strong>, not this application's. On a machine with two layouts and per-window switching, that is the difference between showing what was typed and what would have been typed somewhere else.</li>
+<li><strong>AltGr</strong> combinations show the character, not the mechanism. On a layout where AltGr+E produces <code>€</code>, the display says <code>€</code> rather than <code>Ctrl + Alt + E</code>.</li>
+<li>Observing a dead key does not consume it. Pressing <code>'</code> then <code>e</code> still gives you <code>é</code> — running this application does not break accented typing.</li>
+</ul>
+<p>Keys that produce no character at all — Enter, the function keys, the arrows — do come from a table, because there is nothing to ask the layout about. A key in neither category falls back to its Windows name with the <code>Oem</code> prefix stripped, so an unusual key on a gaming keyboard shows something rather than nothing.</p>
+<h2>Symbols</h2>
+<p><strong>Keys are named by</strong>, on the Display tab, chooses between three answers. All three are offered because the middle one necessarily mixes glyphs and words, and whether that mixture is right depends on who is looking at the screen.</p>
+<p><strong>Words</strong> is the default: <code>Shift</code>, <code>Ctrl</code>, <code>Esc</code>, <code>Enter</code>. This is how a shortcut is written down everywhere else — in a menu, in documentation, or when you read it out to somebody — and nothing in it is ambiguous to anyone.</p>
+<p><strong>Symbols printed on a keyboard</strong> uses the four glyphs a Windows keyboard puts on its own keycaps: Shift's arrow <code>⇧</code>, Tab's arrow <code>⇥</code>, Enter's return <code>⏎</code>, and the Windows square <code>⊞</code>. Every other key keeps its word, because on a real keyboard <code>Ctrl</code>, <code>Alt</code> and <code>Esc</code> are spelled out too. So a chord can come out as a mixture — <code>⇧</code> beside <code>Ctrl</code> — and that is the honest cost of only using glyphs you have a legend for on the keyboard in front of you. If it bothers you, the other two settings are both consistent.</p>
+<p><strong>Symbols for every key</strong> is uniform, and the cost is worth stating plainly rather than discovering:</p>
+<ul>
+<li>Backspace <code>⌫</code> and Delete <code>⌦</code> draw as a box with a cross through it, which reads as a missing character rather than as a key.</li>
+<li>Esc <code>⎋</code> reads as a prohibition sign — "not allowed" rather than "escape".</li>
+<li>Space <code>␣</code> reads as very little at all.</li>
+<li>Ctrl <code>⌃</code> and Alt <code>⌥</code> are the <strong>Mac</strong> keyboard's glyphs. No Windows keyboard, menu or document writes a shortcut that way.</li>
+<li>None of them has a bold weight in Segoe UI, so they stay hairline while every other token on the panel is bold.</li>
+</ul>
+<p>It is offered anyway, for two reasons: a setting that could only ever half-apply was the worse problem, and for a personal display — where the glyphs are learned once and then read faster than words — every objection above is about an audience who is not there.</p>
+<p class="figure"><img src="images/osd-symbols.png" alt="A line of keys drawn as symbols rather than words"></p>
+<p><em>Symbols printed on a keyboard. Shift's arrow reads immediately; Ctrl beside it is a word, which is the mixture this style is.</em></p>
+<p>Keys with no established glyph keep their word under every style. There is no symbol for F5, Print Screen or Scroll Lock.</p>
+<h2>Choosing your own</h2>
+<p>The <strong>Symbols</strong> tab lets you replace any key's symbol individually, which is what keeps the choice from being all-or-nothing: you can have <code>^</code> for Ctrl while leaving everything else as words, or take the full glyph set and put <code>Backspace</code> back as a word.</p>
+<p>Each row shows what that key is currently drawn as, in grey behind an empty box — so the cues follow the style you picked on the Display tab and always show what the display is really doing. Type over a box to override it; clear it to go back. Any text is allowed, not only a single character.</p>
+<p class="figure"><img src="images/settings-symbols.png" alt="The Symbols tab: a row per key, each with a box showing its built-in symbol"></p>
+<p><em>The Symbols tab. The grey text behind each empty box is what that key is drawn as today, so an empty row still tells you what you would be replacing.</em></p>
+<p>The keys you can override are:</p>
+<p>Ctrl, Alt, Shift, Win, Enter, Tab, Backspace, Del, Esc, Caps Lock, Space, Page Up, Page Down, Home, End.</p>
+<p>An override beats the style for that one key, whichever style is chosen — with one exception. <strong>Words</strong> means words: an override is a symbol, and applying it there would make the style do nothing for any key you had customised.</p>
+<h2>Key caps</h2>
+<p>Named keys are drawn as key caps: a light, padded, rounded box with dark text. Typed characters are drawn as plain text.</p>
+<p>That is the single thing that makes a line readable at a glance rather than a wall of words, and it is why there are two foreground colours rather than one. See <a href="appearance.html">How it looks</a>.</p>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The tray menu - KeyPressOSD</title>
+<meta name="description" content="KeyPressOSD has no main window. The notification-area icon is the only way to reach it, so everything it can do is in that menu.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html">What KeyPressOSD does</a></li>
+<li><a href="display.html">Showing keystrokes</a></li>
+<li><a href="typing.html">Showing typed text</a></li>
+<li><a href="position.html">Where it appears</a></li>
+<li><a href="appearance.html">How it looks</a></li>
+<li><a href="symbols.html">Key names and symbols</a></li>
+<li><a href="hotkeys.html">Hotkeys</a></li>
+<li><a href="tray.html" aria-current="page">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html">The settings file</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+<li><a href="limitations.html">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>The tray menu</h1>
+<p>KeyPressOSD has no main window. The notification-area icon is the only way to reach it, so everything it can do is in that menu.</p>
+<p>Right-click the icon for the menu. Double-click it to open Settings.</p>
+<table><thead><tr><th>Item</th><th>What it does</th></tr></thead><tbody>
+<tr><td>About KeyPressOSD…</td><td>Version, build date, and the credits and licence</td></tr>
+<tr><td>Pause / Resume Recording</td><td>Stops or restarts capture. Shows its hotkey</td></tr>
+<tr><td>Clear the Display</td><td>Empties the panel now. Shows its hotkey</td></tr>
+<tr><td>Show Keystrokes</td><td>Names each key. Ticked when current</td></tr>
+<tr><td>Show Typed Text</td><td>Shows the words. Ticked when current</td></tr>
+<tr><td>Settings…</td><td>Everything else</td></tr>
+<tr><td>Help…</td><td>Opens this manual</td></tr>
+<tr><td>Run at Startup</td><td>Ticked when KeyPressOSD starts with Windows</td></tr>
+<tr><td>Always Run as Administrator</td><td>Ticked when KeyPressOSD is set to sign in elevated</td></tr>
+<tr><td>Restart as Administrator</td><td>Only there when that is set and <em>this</em> copy is not elevated</td></tr>
+<tr><td>Check for Updates…</td><td>Asks GitHub whether there is a newer release</td></tr>
+<tr><td>Reclaim Keyboard Priority</td><td>Puts this application's keyboard hook back at the front of the queue</td></tr>
+<tr><td>Restart KeyPressOSD</td><td>Starts a fresh copy and stands down</td></tr>
+<tr><td>Exit KeyPressOSD</td><td>Stops it</td></tr>
+</tbody></table>
+<p class="figure"><img src="images/tray-menu.png" alt="The tray menu, eleven items with glyphs and shortcut text"></p>
+<p><em>The menu. The hotkeys are shown beside the commands they belong to, so the chords are discoverable without opening Settings.</em></p>
+<p class="figure"><img src="images/about.png" alt="The About window: version, build date and three buttons"></p>
+<p><em>About, the first item. <strong>Copy Details</strong> puts the version, the build and the runtime on the clipboard, which is the whole reason it is there — a bug report should not have to be transcribed by hand.</em></p>
+<p class="figure"><img src="images/credits.png" alt="The credits window on its licence tab"></p>
+<p><em>Behind <strong>Credits</strong>: the credits, the MIT licence and the third-party notices, read from the files that ship beside the executable rather than pasted into the program. The text selects and copies.</em></p>
+<h2>What the icon tells you</h2>
+<p>The icon is fuchsia normally and <strong>grey while paused</strong>. Grey because "switched off" is exactly what paused means, and a greyed-out version of an icon is how Windows says that everywhere else.</p>
+<p>The grey is also lighter than the fuchsia, not merely less colourful — so the two are still distinguishable in a greyscale rendering and to anyone who cannot separate the two hues.</p>
+<p>Hovering the icon shows the version, and says "paused" when it is and "administrator" when this copy is elevated. That last one is the only place the <em>current</em> copy's rights are stated outside Settings, and it is worth knowing about: the menu's tick beside <strong>Always Run as Administrator</strong> is a setting rather than a status. See below.</p>
+<p class="figure"><img src="images/tray-menu-paused.png" alt="The tray menu while paused, the first item reading Resume Recording"></p>
+<p><em>Paused. The first command has changed to <strong>Resume Recording</strong> and is drawn bold, because right-clicking the icon covers up the grey icon that was telling you the state.</em></p>
+<h2>Ticks and bold</h2>
+<p>The ticks are the only thing in the menu that says what state the application is in: which mode is current, and whether it starts with Windows. A ticked item is drawn semi-bold as well as ticked, because a tick is small and easy to miss at a glance while the weight actually reads.</p>
+<p><strong>About</strong> is semi-bold too. That is presentational — in a context menu bold conventionally marks the item a double-click invokes, which here is Settings.</p>
+<p class="figure"><img src="images/tray-menu-typing.png" alt="The tray menu with Show Typed Text ticked instead of Show Keystrokes"></p>
+<p><em>The tick moved to <strong>Show Typed Text</strong>. The ticks live in the menu's image margin — the indent to the left of the labels — which is why that margin is kept even though reclaiming it would make the menu narrower.</em></p>
+<h2>Run at Startup</h2>
+<p>Ticked when KeyPressOSD is registered to start when you sign in.</p>
+<p>The tick is read back from the registry every time the menu opens, rather than remembered. It can be changed from outside this application — another copy of it, or somebody editing the Run key — and a tick that lies about it would be worse than no tick at all.</p>
+<h2>Always Run as Administrator</h2>
+<p>Elevated windows — Task Manager, regedit, an administrator's terminal — show nothing at all, because Windows does not deliver their input to a hook in an ordinary process. This puts KeyPressOSD at the same level so that it does, and keeps it there.</p>
+<p>Windows asks for consent once. Accepting it starts a new elevated instance, which waits for this one to close and then takes over, and that new instance registers a sign-in task so every later start is elevated too — with no further prompts, ever. Declining does nothing at all and says nothing, because a prompt is a question and "no" is an answer to it.</p>
+<p>A scheduled task is what makes the silence possible. Windows will not start a shortcut or a registry entry elevated without asking every single time; a task registered to run with the highest privileges starts without a word. Registering one needs administrator rights, which is exactly what the single prompt buys.</p>
+<p class="figure"><img src="images/tray-menu-elevated.png" alt="The tray menu with Always Run as Administrator ticked"></p>
+<p><em>Ticked. An ordinary toggle, with the same accent tick as Run at Startup above it — because this is a setting you can change, not a state you are stuck with.</em></p>
+<p>The tick reads the <strong>task</strong>, not whether this particular copy happens to be elevated. Those two differ more often than you would think — every copy you start by hand, from a shortcut, from Explorer or from a search box, comes up as an ordinary program however the tick is set, because only the sign-in task can start one elevated without asking.</p>
+<p>So the menu says both things. When the setting is on and the copy running is not elevated, a second row appears beneath it:</p>
+<p class="figure"><img src="images/tray-menu-elevation-pending.png" alt="The tray menu with Always Run as Administrator ticked and Restart as Administrator beneath it"></p>
+<p><em>The two disagreeing. <strong>Restart as Administrator</strong> brings this copy up to the rights the sign-in task would have given it — one consent prompt, and no task is registered because it already is. The row is not there at any other time, so seeing it means "not yet" and not seeing it means there is nothing to do.</em></p>
+<p>Hovering the tray icon answers the same question without opening the menu: it reads "administrator" when this copy is elevated. The System tab in Settings says it in a sentence.</p>
+<p>This matters most when keys are going missing rather than when nothing works at all. An elevated program keeps its input out of reach of an ordinary one entirely — so if another program's window shows nothing, or a chord it handles never appears, check this before anything else. <strong>Reclaim Keyboard Priority</strong> cannot help across that gap: it reorders the queue, and the queue is not what is stopping you.</p>
+<p>Unticking it removes the task, and that is where Windows draws a line: a program cannot give up rights it already has, and there is no counterpart to "run as administrator" for going the other way. So unticking takes effect at your next sign-in — or straight away if you exit KeyPressOSD and start it again. <strong>Restart KeyPressOSD</strong>, below, starts a fresh copy but comes back at the same level for the same reason.</p>
+<p>The same switch is on the System tab, where it can be turned <strong>off</strong> but not on: turning it on restarts KeyPressOSD, and doing that from inside the settings window would throw away any changes there you had not applied yet. See <a href="limitations.html">Known limitations</a>.</p>
+<h2>Check for Updates</h2>
+<p>Asks GitHub whether a newer release has been published, and reports what it said.</p>
+<p><strong>Nothing checks unasked.</strong> This runs only when you choose it from the menu, never at start-up and never on a timer. An application that observes your keyboard has to be careful about what it does without being asked, and contacting a server the moment you sign in is exactly the sort of thing somebody would be right to object to.</p>
+<p>It <strong>reports</strong> rather than installs. Replacing a running executable needs elevation for an installed copy and a signature to be worth trusting, and KeyPressOSD has neither — so the honest thing is to say that a version is out and offer to open the page.</p>
+<p>By default it offers only finished releases. <strong>Offer pre-release versions</strong>, on the System tab, includes builds GitHub marks as unfinished — which, until the first stable release, is the only kind there is.</p>
+<h2>Reclaim Keyboard Priority</h2>
+<p>For when another program is taking a chord before KeyPressOSD sees it. The usual culprit is a third-party Alt+Tab replacement: it handles <code>Alt+Tab</code> and stops the keystroke there, so nothing behind it in the queue ever learns the keys were pressed.</p>
+<p>Windows offers no way to ask for priority. Keyboard hooks are called in a chain, a new one goes to the <strong>front</strong>, and so the program that started <strong>last</strong> is asked first. That makes it a race rather than a setting — and restarting your Alt+Tab replacement is exactly the thing that loses it.</p>
+<p>This wins the race again without restarting anything: it takes KeyPressOSD's hook out and puts it straight back, which moves it to the front. Nothing on screen is lost, and there is no consent prompt.</p>
+<p>Two things worth knowing. KeyPressOSD <strong>never</strong> stops a keystroke — it passes every one along, on every code path — so being first costs the other program nothing and your Alt+Tab replacement keeps working exactly as before. And whoever installs last is first, so if you restart that program again, press this again. There is no timer doing it for you on purpose: two programs quietly fighting over the front of the queue would make the display work intermittently, which is far harder to understand than a menu item.</p>
+<p>If you would rather it were settled at sign-in, make KeyPressOSD's task start <em>after</em> the other program's — a short delay on it in Task Scheduler does that.</p>
+<h2>Restart KeyPressOSD</h2>
+<p>Starts a fresh copy and stands down. The new one waits for this one to close before it takes over, so the tray icon goes and comes back rather than briefly appearing twice.</p>
+<p>It is here because some changes need a fresh start, and without this row the answer would be "exit, then find the application again". Note what it does <strong>not</strong> do: it cannot come back with fewer rights than it has now. A program cannot lower its own, and every program Windows starts inherits them from whatever started it — so restarting an elevated copy gives you another elevated copy. To go the other way, use <strong>Exit KeyPressOSD</strong> and start it yourself, or simply sign in again.</p>
+<h2>Help</h2>
+<p>Opens <code>KeyPressOSD.chm</code>, the compiled manual, which ships in the release download beside the executable.</p>
+<p>Two things can go wrong, and the menu tells them apart because they need different responses:</p>
+<ul>
+<li><strong>The manual is not installed.</strong> A build made from source does not include it — the help is compiled separately by <code>tools/build-help.ps1</code> and is not a compile output.</li>
+<li><strong>Windows has blocked it.</strong> Files that came from the internet are marked, and the help viewer shows every page of a marked file as blank. That looks exactly like a corrupt help file. Right-click the <code>.chm</code>, choose Properties, and tick <strong>Unblock</strong> at the bottom of the General tab.</li>
+</ul>
+<p>KeyPressOSD does not remove that mark for you. It is a Windows security marker, and quietly stripping one on your behalf is not this application's business.</p>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Troubleshooting</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<h1>Troubleshooting</h1>
+<p class="lead">The symptoms that have actually been reported, and what each one means.</p>
+
+<h2>Copying works, pasting does nothing</h2>
+
+<p>Almost always another clipboard manager holding <code>Ctrl</code>+<code>V</code>. The asymmetry is the
+tell &mdash; capture watches the clipboard, so it keeps working while the injected paste is being
+swallowed. See <a href="coexisting.html">Running alongside another clipboard manager</a>.</p>
+
+<h2>Ctrl+Shift+V has stopped pasting in my terminal</h2>
+
+<p>It should not have, and it does not in this version. <code>Ctrl</code>+<code>Shift</code>+<code>V</code>
+is left alone on purpose: it belongs to terminals and to paste-as-plain-text in browsers and editors, so
+PasteJump declines to open the gesture when <code>Shift</code> is already held at the trigger. Paste
+popping is reached by pressing <code>Shift</code> <i>after</i> the overlay is up.</p>
+
+<h2>Ctrl+Alt+V or Ctrl+Win+V does nothing</h2>
+
+<p>Deliberate. Only <code>Ctrl</code>+<code>V</code> opens the gesture, and any extra modifier is left to
+whoever owns it &mdash; on many keyboard layouts <code>AltGr</code> <i>is</i> <code>Ctrl</code>+<code>Alt</code>,
+so claiming that chord would swallow a keystroke you were using to type a character. See
+<a href="gesture.html">The gesture</a>.</p>
+
+<h2>The gesture does nothing in one particular window</h2>
+
+<p>Three likely causes:</p>
+
+<ul>
+<li><b>The window is running as administrator.</b> A non-elevated keyboard hook cannot see keystrokes in
+elevated windows, so the gesture cannot start there. This is a Windows security boundary, not a
+setting.</li>
+<li><b>Another program's hook is ahead of ours.</b> As above.</li>
+<li><b>Security policy is intercepting that application's keyboard.</b> See the next section.</li>
+</ul>
+
+<h2>Ctrl+V does nothing in one application, usually a browser</h2>
+
+<p>Everything else works. Copying in that application still works. Only the gesture is dead, and only
+there. On a managed machine this is usually not PasteJump at all.</p>
+
+<p>Endpoint data-loss-prevention policy can route one application's keyboard input through a component
+running with more privilege than PasteJump has. Windows then excludes PasteJump's keyboard hook from that
+input &mdash; deliberately, as a security boundary &mdash; so the trigger key never arrives and no overlay
+can appear. Copying is unaffected because capture watches for clipboard changes instead of keystrokes,
+and no policy suppresses those. That asymmetry is what makes it look like a fault in PasteJump.</p>
+
+<div class="note">
+<p>PasteJump notices this and says so, once per application per run, naming the application. If you would
+rather it stayed quiet, turn off <b>Tell Me When PasteJump Cannot See The Keyboard In A Program</b> on the
+Paste Mode tab of Settings.</p>
+</div>
+
+<p><b>The fix is to run PasteJump as administrator.</b> Right-click the tray icon and tick <b>Always Run
+as Administrator</b>. PasteJump asks Windows for permission once, registers a logon task so it starts
+elevated from then on, and restarts itself. The tick is also how you tell at a glance whether it is
+running elevated now.</p>
+
+<p>If you would rather not run it elevated, the clipboard history window is unaffected: open it from the
+tray, select the clip you want, press <b>Copy</b>, then paste with your own Ctrl+V in the application. Your
+own keystrokes still reach it &mdash; it is only PasteJump that is prevented from seeing them.</p>
+
+<p>Two things worth knowing before assuming this is the cause. It can come and go: the same application
+may work for an hour and then stop, because the policy is evaluated on the fly. And it is not confined to
+one program &mdash; a second clipboard manager, or any tool driven by a keyboard hook, fails in exactly
+the same application at the same time, which is the quickest way to confirm what you are looking at.</p>
+
+<h2>An application pastes the previous clip</h2>
+
+<p>Raise <b>Pause Before Pasting</b> under <b>Settings, System</b>. Office, Electron-based apps and
+remote-desktop clients cache the clipboard, and a paste keystroke arriving too early is served from that
+stale cache. 25 ms is the default; try 60&ndash;100.</p>
+
+<h2>An image reports a size far larger than the file it came from</h2>
+
+<p>That figure is correct. The clipboard carries images uncompressed, so a 146 KB PNG arrives as several
+megabytes of raw pixels, and the size column reports what the clipboard actually handed over. What is
+stored on disk is a small fraction of it &mdash; duplicate encodings of the same image are dropped at
+capture and everything stored is compressed.</p>
+
+<p>Comparing the figure against Clipjump's is misleading: Clipjump shows the size of the lossy JPEG
+thumbnail it generates, not of the clip.</p>
+
+<h2>My history is several times too long</h2>
+
+<p>An import from Clipjump run more than once, before imports became idempotent. Use <b>Remove
+Duplicates</b> in the <a href="history-window.html">history window</a>.</p>
+
+<h2>Thousands of imported entries vanished overnight</h2>
+
+<p>History retention. It means "do not keep history older than N days" and runs at every start-up, so an
+imported history spanning years is mostly deleted at the next launch. Set <b>Days of History to Keep</b>
+to <code>0</code>. PasteJump offers this after an import for exactly this reason.</p>
+
+<h2>The history window shows fewer entries than exist</h2>
+
+<p>It says so in the status line when it is showing a subset. Raise <b>Rows the History Window Loads</b>
+under <b>Settings, History</b>.</p>
+
+<h2>One copy became two clips</h2>
+
+<p>Some applications publish a copy <b>twice</b> &mdash; the plain text first, then the same text again a fraction
+of a second later with the formatted versions added. Windows Terminal running a busy console application does this,
+and each publish raises its own clipboard notification.</p>
+
+<p>PasteJump treats the second one as the same copy: within one second, an identical copy carrying <i>more</i> than
+what was stored replaces the stored clip in place, so you get one entry and the richer formats. Two knobs govern it,
+both in <b>Settings, Advanced</b> and both fine to leave alone:</p>
+
+<table>
+<tr><th>Setting</th><th>What it does</th></tr>
+<tr><td class="name">ClipboardSettleMs</td><td>How long to let the clipboard stop changing before reading it, in
+milliseconds. 120 by default, measured rather than chosen. <code>0</code> reads on every notification, which is what
+PasteJump did before.</td></tr>
+<tr><td class="name">ClipboardRepublishMs</td><td>How long after storing a clip a second publish of the same content
+counts as that same copy rather than a repeat. 1000 by default; <code>0</code> switches the behaviour off.</td></tr>
+</table>
+
+<h2>&quot;Same as the last copy&quot; on a copy you made once</h2>
+
+<p>Fixed in <b>2026.1.0.167</b>. It was the second publish described above being recognised as a repeat. If you see
+it on a build at least that new, the capture log below will say what happened.</p>
+
+<h2>Reading the capture log</h2>
+
+<p>PasteJump keeps a one-line-per-decision account of what capture did, in <code>logs\capture.log</code> beside the
+clip database &mdash; <b>Settings, Advanced</b> shows where that is. It looks like this:</p>
+
+<table>
+<tr><th>Line</th><th>Meaning</th></tr>
+<tr><td class="name">notify seq=&hellip; read scheduled</td><td>A clipboard change arrived; the read waits for it to
+settle.</td></tr>
+<tr><td class="name">notify &hellip; coalesced</td><td>Another notification for the same copy; the wait starts
+again.</td></tr>
+<tr><td class="name">read &hellip; kind=&hellip; bytes=&hellip;</td><td>What was actually on the clipboard.</td></tr>
+<tr><td class="name">STORED clip &hellip;</td><td>A new clip was added.</td></tr>
+<tr><td class="name">ENRICHED clip &hellip;</td><td>The same copy was published again with more formats, so the clip
+was upgraded in place.</td></tr>
+<tr><td class="name">SUPPRESSED as a repeat</td><td>You copied the same thing twice; this is what shows the
+&quot;Same as the last copy&quot; notice.</td></tr>
+<tr><td class="name">skipped: &hellip;</td><td>An excluded application, our own write, or a failed read.</td></tr>
+</table>
+
+<div class="note"><b>What it does not contain</b> Nothing you copied. It records kinds, byte and format counts, the
+source program, and for text a length and a short hash &mdash; never the text itself.</div>
+
+<h2>A clip says <code>[binary: something]</code></h2>
+
+<p>That is a clip which is not text, an image or files, and the name is the clipboard format it holds. A common one
+is <code>System.Drawing.Bitmap</code>, which means the program put a .NET object on the clipboard instead of a
+picture &mdash; PasteJump stored faithfully what it was given, and the format name is there so the reason is visible
+on the row rather than only in the database.</p>
+
+<h2>A copy was not recorded</h2>
+
+<p>The clipboard is a machine-wide lock, and another process can hold it. PasteJump retries with backoff
+and then twice more on a delay, but if a program holds the clipboard longer than that the copy is dropped.
+This is inherent to the Win32 clipboard rather than fixable &mdash; only made rarer.</p>
+
+<h2>The history hotkey does nothing</h2>
+
+<p>Another process already owns that chord; a registration that is refused is reported when it happens.
+Pick a different combination under <b>Settings, Paste Mode, Open History With</b>.</p>
+
+<h2>PasteJump will not start, or seems to start and vanish</h2>
+
+<p>An instance is already running &mdash; check the notification area. A second copy would install a
+second keyboard hook and fight the first over the clipboard, so it exits quietly instead.</p>
+
+<h2>Nothing is being recorded at all</h2>
+
+<p>Check the tray icon. Amber with pause bars means capture is paused; grey means PasteJump is disabled.
+Also check <b>Watch the Clipboard</b> under <b>Settings, Capture</b>, and whether the application you are
+copying from is on the <b>Excluded Apps</b> list.</p>
+
+<h2>This manual opens with every page blank</h2>
+
+<p>Windows has marked the file as downloaded from the internet, and blocks compiled help files from that
+source: every topic shows "Navigation to the webpage was canceled" and nothing else. Right-click
+<code>PasteJump.chm</code> in the PasteJump folder, choose <b>Properties</b>, tick <b>Unblock</b> at the
+bottom of the General tab, and press OK. PasteJump warns about this before opening the file, but only when it
+can tell &mdash; the mark is on the file, so unzipping the download without unblocking it first is the usual
+way to get here.</p>
+
+<h2>Help on the tray menu does nothing</h2>
+
+<p><code>PasteJump.chm</code> is not beside the executable. It ships in the release download; a copy built
+from source does not include it, because the manual is compiled separately. The key list under <b>Paste-mode
+keys</b> is built into the program and always available.</p>
+
+<h2>Where the data is</h2>
+
+<p><code>data\pastejump.db</code> and <code>data\blobs</code>, beside the executable by default, or under
+<code>%LOCALAPPDATA%\PasteJump</code> if you moved them. The settings are <code>PasteJump.json</code> in
+whichever location <b>Store Settings In</b> names; the two pointers themselves live in
+<code>data-location.json</code> beside the executable. The Advanced tab shows all of these
+resolved.</p>
+
+</body>
+</html>

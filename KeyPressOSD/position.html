@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where it appears - KeyPressOSD</title>
+<meta name="description" content="Everything here is on the Position tab.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html">What KeyPressOSD does</a></li>
+<li><a href="display.html">Showing keystrokes</a></li>
+<li><a href="typing.html">Showing typed text</a></li>
+<li><a href="position.html" aria-current="page">Where it appears</a></li>
+<li><a href="appearance.html">How it looks</a></li>
+<li><a href="symbols.html">Key names and symbols</a></li>
+<li><a href="hotkeys.html">Hotkeys</a></li>
+<li><a href="tray.html">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html">The settings file</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+<li><a href="limitations.html">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>Where it appears</h1>
+<p>Everything here is on the <strong>Position</strong> tab.</p>
+<p class="figure"><img src="images/settings-position.png" alt="The Position tab: position, monitor, margin and the pointer setting"></p>
+<p><em>The Position tab. One list for the monitor, holding both the follow-the-focus mode and each attached screen by name.</em></p>
+<h2>Position</h2>
+<p>The panel is anchored to a corner or an edge of the screen. Bottom-right is the default.</p>
+<p>A corner or an edge stays put as the panel resizes, and the panel resizes on almost every keystroke — <code>Ctrl + Shift + Home</code> is a great deal wider than <code>a</code>. A <strong>centred</strong> position has to re-centre every time that happens, which reads as the display jumping about while you type.</p>
+<p>That is not a reason never to choose one, but it is the reason the default is a corner.</p>
+<h2>Monitor</h2>
+<p>One list, holding both the mode and the monitors:</p>
+<ul>
+<li><strong>Follow the window I am typing in</strong> moves the display between monitors with your focus. This is what you want while working.</li>
+<li><strong>Primary monitor</strong>, or any monitor by name, pins it to one screen. This is what you want while presenting — a display that follows your focus onto the screen the audience cannot see is worse than no display.</li>
+</ul>
+<p>A monitor that is no longer attached falls back to following the active window, which is the common case after a laptop is undocked.</p>
+<h2>Margin from edge</h2>
+<p>The gap from the anchored edges, in device-independent pixels — so it looks the same size whatever the display scaling is.</p>
+<h2>Fade out when the pointer is over the display</h2>
+<p>On. The panel is dimmed to a ghost rather than hidden.</p>
+<p>Dimmed rather than hidden because the panel is click-through: it is never in the way of a click, so the only problem it can cause is covering something you are trying to read, and a ghost still says "something is here" while letting that something be read.</p>
+<h2>Multiple monitors and DPI</h2>
+<p>Positions are computed in physical pixels and applied directly to the window, which is what makes a mixed-DPI setup work — a 150% laptop screen beside a 100% external one puts the panel in the right place on both.</p>
+<p>The margin is the one value that is scaled, because a 16-pixel gap should look like the same gap on both screens rather than being visibly smaller on the denser one.</p>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>

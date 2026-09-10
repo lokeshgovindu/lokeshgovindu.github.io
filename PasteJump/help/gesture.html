@@ -1,0 +1,545 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The gesture</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<h1>The gesture</h1>
+<p class="lead">Press <code>Ctrl</code>+<code>V</code> and keep <code>Ctrl</code> held. An overlay
+appears near the text caret. Release <code>Ctrl</code> to commit whatever it is showing.</p>
+
+<div class="shot shot-inline">
+<img src="images/overlay.png" alt="The paste overlay showing clip 3 of 41">
+<p>Clip 3 of 41. The chips read: pinned, its tags, the application it was copied from, POP because
+<code>Shift</code> is held, and the current paste format.</p>
+</div>
+
+<p>Every key below works while <code>Ctrl</code> is still down. You never have to look at the overlay to
+use it &mdash; it is there so you can, not because you must.</p>
+
+<h2>What it looks like</h2>
+
+<div class="shot">
+<img src="images/overlay-tour.gif" alt="The overlay stepping through a text clip, an image, a search, a kind filter, marked clips and DELETE ALL">
+<p>The overlay through seven of its states, as stepping, searching, filtering, marking and the <code>X</code> cycle
+would show them. Everything here happens while <code>Ctrl</code> is still held.</p>
+</div>
+
+<p>There is also a <b>narrated tour of every window</b> as a video, which a help file cannot play: this viewer is the
+old Internet&nbsp;Explorer engine, with no support for HTML5 video. It is published beside the manual instead &mdash;
+<a href="https://lokeshgovindu.github.io/PasteJump/">on the PasteJump website</a> &mdash; and attached to each
+release on GitHub.</p>
+
+<h2>Moving through clips</h2>
+
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td class="key">V<br>&darr; &rarr;</td><td>Step to an older clip. Tap again to keep going back.</td></tr>
+<tr><td class="key">C<br>&uarr; &larr;</td><td>Step back towards a newer clip.</td></tr>
+<tr><td class="key">A<br>Home</td><td>Jump straight back to the newest clip. This is the way out of "I have
+tapped <code>V</code> two hundred times and cannot get back" &mdash; one key, however deep you are.</td></tr>
+<tr><td class="key">End</td><td>Jump to the oldest clip in the stack.</td></tr>
+<tr><td class="key">1 &ndash; 9</td><td>Jump that many clips at once. The numpad digits work too.</td></tr>
+<tr><td class="key">&minus;</td><td>Reverse the direction the number keys jump in. Numpad minus works too.</td></tr>
+</table>
+
+<p>The arrow keys and <code>Home</code> are alternatives, not replacements: the letters are the original
+Clipjump layout and they are not going anywhere. Use whichever your hand reaches for. The same applies to
+<code>P</code> beside <code>Space</code> and <code>M</code> beside <code>Q</code> further down.</p>
+
+<p><code>H</code> is the one key whose meaning changed. In Clipjump it opened the clip in an editor, which
+reads as "help" to almost everybody; it now opens the history window, and the editor answers to
+<code>O</code>.</p>
+
+<h2>Pasting</h2>
+
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td class="key">release Ctrl</td><td>Paste the clip being shown.</td></tr>
+<tr><td class="key">Enter</td><td>Paste and stay open, for pasting several clips in a row.</td></tr>
+<tr><td class="key">+ Shift</td><td>Press <code>Shift</code> <i>after</i> the overlay is already open,
+then release, to delete the clip once it has been pasted. This is called paste popping.</td></tr>
+<tr><td class="key">Z</td><td>Cycle the paste format: Original, Plain text, Collapse whitespace,
+Sentence case, Unindent.</td></tr>
+<tr><td class="key">S</td><td>Put the clip on the Windows clipboard <i>without</i> pasting it.</td></tr>
+</table>
+
+<h2>Pasting several clips as one</h2>
+
+<div class="note">
+<p><b>Switched off until you ask for it.</b> Marking clips during the gesture has <b>no key</b> out of the box, so
+nothing below happens and the overlay says nothing about it. Give it one in <a href="settings.html">Settings,
+Keys</a> &mdash; the row is <i>Mark the clip to be pasted joined with the others</i>, and <code>J</code> is free.
+Joining without a key is still there in the <a href="history-window.html">history window</a>, where selecting
+several rows turns Copy into <b>Copy Joined</b>.</p>
+</div>
+
+<p>Once it has a key &mdash; <code>J</code> below &mdash; that key marks the clip being shown. Mark as many as you
+like &mdash; stepping and searching in between &mdash; and releasing <code>Ctrl</code> pastes them all as <b>one</b>
+clip, their text run together.</p>
+
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td class="key">J</td><td>Mark or unmark this clip. The cursor does not move, so
+<code>J</code>&nbsp;<code>V</code>&nbsp;<code>J</code> marks two clips in a row.</td></tr>
+<tr><td class="key">release Ctrl</td><td>With anything marked, pastes the marked clips joined &mdash; wherever the
+cursor happens to be.</td></tr>
+</table>
+
+<div class="shot">
+<img src="images/overlay-join-mark.png" alt="The overlay showing JOIN 3 with a tick">
+<p><b>JOIN&nbsp;3</b> is how many clips will be pasted. The tick means the clip on show is one of them, so you can
+tell whether pressing <code>J</code> again would add it or remove it.</p>
+</div>
+
+<p><b>This is not the same as <code>Enter</code>.</b> <code>Enter</code> pastes clips one after another as separate
+pastes, which leaves the application to decide what happens between them &mdash; in a spreadsheet, separate cells.
+Joining produces a single clip, so it lands as a single paste.</p>
+
+<table>
+<tr><td class="name">Order</td>
+<td>The order you marked them in, not the order they sit in the stack. Marking a clip that is already marked moves
+it to the <i>end</i>, which is how you correct a sequence without starting again.</td></tr>
+
+<tr><td class="name">What goes between</td>
+<td>A new line by default. Change it in <a href="settings.html">Settings, History</a> &mdash; a space, a comma, a
+tab, or any text you like.</td></tr>
+
+<tr><td class="name">Images</td>
+<td>Left out, because two pictures cannot be concatenated into one. They still count towards
+<b>JOIN&nbsp;<i>n</i></b> while marked, so the number always says how many clips you chose.</td></tr>
+
+<tr><td class="name">Marks last one gesture</td>
+<td>They are cleared when the gesture ends, however it ends. A mark surviving into the next
+<code>Ctrl</code>+<code>V</code> would make an ordinary paste produce something you assembled minutes earlier.</td></tr>
+
+<tr><td class="name">With Shift</td>
+<td>Paste popping deletes <i>every</i> marked clip, since it deletes what was pasted.</td></tr>
+</table>
+
+<p>The same thing is available without the gesture: select several rows in the
+<a href="history-window.html">history window</a> and press Copy.</p>
+
+<div class="warn">
+<p><b>Only <code>Ctrl</code>+<code>V</code> starts the gesture &mdash; nothing else.</b> Any additional
+modifier is left entirely alone, because each one belongs to somebody:</p>
+<ul>
+<li><code>Ctrl</code>+<code>Shift</code>+<code>V</code> is how every terminal pastes, and how browsers and
+editors paste as plain text. With no overlay open it passes straight through, so the terminal still gets it.
+Paste popping is unaffected, because it is armed by holding <code>Shift</code> and <em>releasing</em>
+<code>Ctrl</code> &mdash; not by pressing a key while <code>Shift</code> is down.</li>
+<li><code>Ctrl</code>+<code>Alt</code>+<code>V</code> is <code>AltGr</code>+<code>V</code> on many keyboard
+layouts, which is how people type a character.</li>
+<li><code>Ctrl</code>+<code>Win</code>+<code>V</code> belongs to the shell, which uses
+<code>Win</code>+<code>V</code> for Windows' own clipboard history.</li>
+</ul>
+</div>
+
+<h2>Organising</h2>
+
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td class="key">P<br>Space</td><td>Pin or unpin. Pinned clips sort first and survive Delete All.</td></tr>
+<tr><td class="key">M<br>Q</td><td>Move this clip to the front of the stack, so it is what the next
+<code>Ctrl</code>+<code>V</code> offers first.</td></tr>
+<tr><td class="key">T</td><td>Edit tags. Tags are searchable during the gesture.</td></tr>
+<tr><td class="key">O</td><td>Open the clip in an external editor. Text and images use separate editors,
+both set under <a href="settings.html">Settings, System</a>.</td></tr>
+<tr><td class="key">E</td><td>Export the clip to a file.</td></tr>
+<tr><td class="key">H</td><td>Open the <a href="history-window.html">clipboard history window</a>. This
+<b>ends the gesture</b>, for the same reason <code>F1</code> does &mdash; and more so, since that window has a
+search box of its own.</td></tr>
+<tr><td class="key">F1</td><td>Show the key list in a window. This <b>ends the gesture</b> &mdash; see
+below.</td></tr>
+</table>
+
+<div class="shot">
+<img src="images/shortcut-help.png" alt="The paste-mode key list window">
+<p><code>F1</code> during the gesture, or Paste-mode keys on the tray menu. It names the trigger letter
+you have configured rather than assuming <code>V</code>, and it has a button through to this manual.</p>
+</div>
+
+<p><code>F1</code> closes the overlay and restores the clipboard before the list appears. It has to: the
+list is a real window that takes the keyboard, and while the overlay is up the gesture is swallowing keys
+&mdash; including the ones the list is busy explaining. So read it, close it, and press
+<code>Ctrl</code>+<code>V</code> again.</p>
+
+<h2>Showing only one kind of clip</h2>
+
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td class="key">K</td><td>Narrow the stack: all clips, then text only, images only, files only, and back to
+all.</td></tr>
+</table>
+
+<div class="shot shot-inline">
+<img src="images/overlay-kind-filter.png" alt="The overlay with the stack narrowed to images">
+<p>A chip names the filter, and the count changes with it &mdash; <i>clip 2 of 5</i> rather than <i>of 41</i>.</p>
+</div>
+
+<p>This is what to reach for when you want the screenshot from twenty minutes ago and there are forty text clips
+in the way. Images are the clips most worth looking at before pasting, and the rarest in a stack, so stepping to
+one is the slowest thing the gesture does.</p>
+
+<p>Two things are deliberate. <b>The filter resets every time the gesture opens</b>, because a filter that
+survived would show you a stack with most of it missing and only a small chip to explain why. And <b>a filter
+that matches nothing is allowed</b> &mdash; it shows an empty overlay rather than being skipped, so four taps of
+<code>K</code> always brings you back to seeing everything.</p>
+
+<p>It combines with search: narrow to images, then <code>F</code> and type to search within them.</p>
+
+<div class="note">
+<p>If <b>Store Images</b> is off under <a href="settings.html">Settings, Capture</a>, the images filter will
+always be empty &mdash; nothing is recording them.</p>
+</div>
+
+<h2>Search</h2>
+
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td class="key">F</td><td>Open search. <code>Ctrl</code> may then be released &mdash; just type to
+filter by clip content or by tag.</td></tr>
+<tr><td class="key">Ctrl+F</td><td>Close search and go back to browsing.</td></tr>
+<tr><td class="key">Down / Up</td><td>Move between matches. Right and Left do the same.</td></tr>
+<tr><td class="key">Backspace</td><td>Delete a character from the query.</td></tr>
+<tr><td class="key">Enter</td><td>Paste the match.</td></tr>
+<tr><td class="key">Esc</td><td>Cancel.</td></tr>
+</table>
+
+<div class="note">
+<p><b>While the search box is open, every letter and digit is part of the query.</b> None of the lettered
+actions fires &mdash; so typing <i>output</i> searches for &quot;output&quot; rather than opening the clip in an
+editor and pinning it on the way past. Press <code>Ctrl</code>+<code>F</code> to close the search first if you
+want one of those keys. The arrows are the only way to step through matches, because they are the one pair that
+can never be part of what you are typing.</p>
+</div>
+
+<div class="shot shot-inline">
+<img src="images/overlay-search.png" alt="The overlay in search mode, showing the query and a match count">
+<p>Search mode adds a row above the preview: the query, and how many clips match it.</p>
+</div>
+
+<p>Search is the exception to "keep <code>Ctrl</code> held": releasing it while searching does not
+commit, so you can type a query at your own pace &mdash; <b>let go and type with both hands</b>. The footer says
+what applies while the box is open: <code>&uarr;&darr;</code> steps the matches, <code>Enter</code> pastes,
+<code>Esc</code> cancels and <code>Ctrl</code>+<code>F</code> closes the box. The lettered keys are deliberately
+absent there, because every letter is part of your query.</p>
+
+<h2>Working without holding Ctrl</h2>
+
+<p>Search is not the only way to put <code>Ctrl</code> down. <code>L</code> <b>locks the overlay open</b>: the
+overlay says <b>LOCKED</b>, releasing <code>Ctrl</code> no longer pastes anything, and every key goes on working
+with both hands free. It is the answer to browsing a long stack, reading a preview properly, or tagging a clip
+without keeping a finger on a modifier.</p>
+
+<div class="shot shot-inline">
+<img src="images/overlay-locked.png" alt="The overlay with a LOCKED chip, and a footer offering Enter to paste and Esc to close">
+<p>Locked: the chip says so, and the footer swaps to the two keys that now end the session.</p>
+</div>
+
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td class="key">L</td><td>Lock the overlay open. Press it again <b>while holding <code>Ctrl</code></b> to
+unlock.<br><br>Unlocking is refused while <code>Ctrl</code> is up, and deliberately so: a session that is neither
+locked nor held open by <code>Ctrl</code> would accept no key but <code>Esc</code> while still swallowing every
+one of them.</td></tr>
+<tr><td class="key">Enter</td><td>Paste, and leave the overlay up for the next one. This is what it has always
+done; locking is what makes pasting several clips in a row comfortable, since it no longer needs
+<code>Ctrl</code> held throughout.</td></tr>
+<tr><td class="key">Esc</td><td>Close the overlay and put the previous clipboard back.</td></tr>
+</table>
+
+<div class="note">
+<p>A locked session ends the way a search does &mdash; with <code>Enter</code> or <code>Esc</code>, not by letting
+go. The footer swaps to say so while the lock is on, because "release <code>Ctrl</code> to paste" stops being
+true.</p>
+</div>
+
+<h2>Typing a clip out instead of pasting it</h2>
+
+<p>Some fields refuse a paste: a bank's card-number box that blocks <code>Ctrl</code>+<code>V</code> in script,
+an installer that wants a licence key typed, a console or remote-desktop client that ignores the clipboard.
+Typing the clip out as individual keystrokes is the way in.</p>
+
+<div class="warn">
+<p><b>This ships switched off, and where it works is now known precisely.</b> Typed into an ordinary Windows
+dialog or text box &mdash; the kind an installer, a licence prompt or a remote-desktop client puts in front of you,
+which is exactly where a paste is refused &mdash; a six-line clip arrives <b>exactly</b>, measured over repeated
+runs. Typed into <b>Windows 11 Notepad or VS Code</b> it loses characters, however slowly it is fed: those two
+draw their own text with an asynchronous input pipeline that discards injected keystrokes while it redraws, and no
+pacing fixes it.</p>
+
+<p>So the letter is unassigned rather than the feature removed. Give <b>Type the clip out</b> a letter on the
+<b>Keys</b> tab if the places you need it are ordinary dialogs, and do not judge it by trying it in Notepad &mdash;
+that is the one target it is known to mangle.</p>
+</div>
+
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td class="key">Y</td><td>The default letter, once you have switched the action on. Types the clip's text
+into the window one keystroke at a time. Text clips only
+&mdash; a picture cannot be typed.<br><br><b>The clipboard is never touched.</b> Nothing of the clip is put on
+it and the previous contents are left alone, so this is also the way to hand over something you would rather not
+leave lying around for the next application to read.</td></tr>
+</table>
+
+<div class="warn">
+<p><b>It cannot rescue a window that ignores our keystrokes altogether.</b> Typing uses the same mechanism as the
+paste keystroke, so where Windows is discarding synthetic input &mdash; a window running as administrator, or one
+whose input is being filtered by endpoint security &mdash; nothing arrives either way. That is what
+<b>Always Run as Administrator</b> in the tray menu is for.</p>
+</div>
+
+<h3>How long it takes, and how to stop it</h3>
+
+<p><b>Typing is roughly a thousand times slower per character than pasting.</b> Every character is a pair of
+keyboard events, and each one is delivered to every keyboard hook on the machine as well as to the window you are
+typing into. A clip that pastes in an instant can take minutes to type, with nothing on screen saying so.</p>
+
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td class="key">Esc</td><td><b>Stops typing in progress.</b> What has already been typed stays &mdash; those
+keystrokes are in the window's queue and cannot be recalled &mdash; so PasteJump says how far it got: <i>Stopped
+after 1,200 of 40,000 characters</i>.</td></tr>
+</table>
+
+<p>Above about two thousand characters, PasteJump says how much it is about to type and reminds you that
+<code>Esc</code> stops it.</p>
+
+<p><b>Longest Clip To Type Out</b> on the Paste Mode tab is the ceiling, 10,000 characters by default. A longer
+clip is <b>refused rather than half-typed</b>, naming its length and the limit: typing the first ten thousand
+characters of a longer clip and stopping would look like success while quietly losing the rest. Raise it if you
+have a use for it &mdash; it goes up to a million, and <code>Esc</code> is always there.</p>
+
+<div class="note">
+<p>If a window drops characters because they arrive faster than a person could type them, set
+<code>typeOutCharDelayMs</code> in <code>PasteJump.json</code> &mdash; milliseconds of pause between batches of
+twenty characters. It is not on a tab because it is a repair for one stubborn application rather than a
+preference.</p>
+</div>
+
+<h2>Every key, without leaving the overlay</h2>
+
+<p><code>?</code> lists every key at the bottom of the overlay. <code>/</code> does the same thing, since the
+question mark is the shifted version of that key.</p>
+
+<div class="shot">
+<img src="images/overlay-key-list.png" alt="The overlay listing every paste-mode key in two columns beneath the preview">
+<p>Every key, in the overlay, without ending the session. The list is built from your own bindings, so a letter
+you have moved shows where you moved it - and an action you have switched off is left out.</p>
+</div>
+
+<p>Unlike <code>F1</code>, which opens a window and therefore has to end the session first, this leaves the
+session exactly as it was &mdash; so the keys it lists can be tried as they are read. Press it again to hide the
+list. It is not remembered between gestures.</p>
+
+<h2>Deleting</h2>
+
+<table>
+<tr><th>Key</th><th>Action</th></tr>
+<tr><td class="key">Delete</td><td>Delete the clip being shown, straight away, and carry on browsing. Nothing
+is pasted and the overlay stays up, so a run of presses walks forward through the stack clearing as it
+goes.<br><br>The overlay says <b>DELETED</b> for about a second, and afterwards <b>releasing <code>Ctrl</code>
+pastes nothing</b> &mdash; deleting a clip is not a request to paste the one that moved up into its place. Step to
+another clip and releasing pastes again, so &quot;delete this one, paste that one&quot; still works in one gesture.
+How long that chip stays, or whether it appears at all, is <code>overlayDeletedFlashMs</code> in
+<code>PasteJump.json</code>: milliseconds, and <code>0</code> never shows it.</td></tr>
+<tr><td class="key">X</td><td>Cycle what releasing <code>Ctrl</code> will do: Cancel, then Delete this
+clip, then Delete All. A coloured banner shows the current mode. Pressing <code>X</code> repeatedly
+cycles those three and never returns to pasting.</td></tr>
+<tr><td class="key">Esc</td><td>Cancel immediately and restore the previous clipboard.</td></tr>
+</table>
+
+<p><code>Delete</code> and <code>X</code> are different in kind. <code>Delete</code> acts at once;
+<code>X</code> only <i>arms</i> something for the moment you release <code>Ctrl</code>. Pressing
+<code>Delete</code> leaves what releasing <code>Ctrl</code> does entirely alone, so it will still paste
+whatever the overlay has moved on to.</p>
+
+<div class="shot shot-inline">
+<img src="images/overlay-delete-all.png" alt="The overlay with the DELETE ALL banner showing">
+<p>After three taps of <code>X</code>. The banner is red, and it names what releasing <code>Ctrl</code>
+will now do &mdash; which is not pasting.</p>
+</div>
+
+<div class="warn">
+<p><b>Delete All asks first.</b> Three taps of <code>X</code> reaches it, and releasing <code>Ctrl</code>
+commits whatever mode you are in, so it is reachable by accident. It is the only irreversible thing the
+gesture can do, and it is the only one that prompts. Pinned clips survive it.</p>
+</div>
+
+<h2>Moving the gesture off Ctrl+V</h2>
+
+<p><code>V</code> is only the default in principle. <b>Settings, Paste Mode, Hold Ctrl and Tap This Key</b>
+would move the gesture to any letter not already used above, which would be the cleanest fix when
+something else on the machine owns <code>Ctrl</code>+<code>V</code> &mdash; but that control is
+<b>disabled in this release</b> pending more work, so the gesture is <code>Ctrl</code>+<code>V</code> for
+now. See <a href="coexisting.html">Running alongside another clipboard manager</a>.</p>
+
+<p>Letters already bound to an action would not be offered, because the trigger key doubles as "step to an
+older clip" and would otherwise shadow that action for ever.</p>
+
+<h2>Where the overlay appears</h2>
+
+<p class="lead">Beside the text caret &mdash; where you are already looking.</p>
+
+<p>That is the point of it: a clipboard picker in a fixed corner of the screen makes you glance away from the very
+place you are about to paste into, and glance back. PasteJump asks Windows where the caret is and puts the overlay
+just below and to the right of it, so the clip you are choosing appears next to the line you are choosing it for.
+Near the bottom of the screen it flips above the caret instead, rather than covering the line you are typing on.</p>
+
+<p><b>Not every application tells Windows where its caret is</b>, and there is no way for PasteJump to ask more
+politely. A caret that Windows knows about belongs to the edit controls it draws itself; an application that paints
+its own caret &mdash; which is most of the modern ones &mdash; reports none at all. This is not a guess about what
+they do internally, it is simply what the operating system will answer when asked.</p>
+
+<table>
+<tr><th>Application</th><th>Where the overlay appears</th></tr>
+<tr><td class="name">Notepad, including the Windows&nbsp;11 one</td><td>Beside the caret</td></tr>
+<tr><td class="name">The Run dialog, and dialogs like it</td><td>Beside the caret</td></tr>
+<tr><td class="name">ConEmu, Cmder</td><td>Beside the caret</td></tr>
+<tr><td class="name">Most older Win32 programs</td><td>Beside the caret</td></tr>
+<tr><td class="name">Microsoft Edge, Chrome, any Chromium browser</td><td>Centred on the window</td></tr>
+<tr><td class="name">Visual Studio Code, and Electron applications generally</td><td>Centred on the window</td></tr>
+<tr><td class="name">Visual Studio</td><td>Centred on the window</td></tr>
+<tr><td class="name">Windows Terminal</td><td>Centred on the window</td></tr>
+<tr><td class="name">The new Outlook, Microsoft Teams</td><td>Centred on the window</td></tr>
+<tr><td class="name">Fork, xplorer&sup2;</td><td>Centred on the window</td></tr>
+<tr><td class="name">The Start menu, and anything always-on-top</td><td>A corner of the screen</td></tr>
+</table>
+
+<p>Note that this does not divide neatly into old and new: <b>ConEmu exposes a caret and Windows Terminal does
+not</b>, though both are console hosts. It depends on how the text is drawn, not on how modern the program is.</p>
+
+<p><b>Where there is no caret, the overlay centres itself on the window you are pasting into.</b> That cannot be on
+the wrong monitor and cannot be behind the window you are working in, which are the two ways a clipboard picker
+becomes useless. It is a deliberate second choice rather than a failure: the mouse pointer was tried first and is
+worse, because it sits wherever you last left it &mdash; often in a toolbar at the top of the window, and on a
+multi-monitor desktop frequently on another screen entirely.</p>
+
+<div class="note">
+<p><b>The Start menu is a third case.</b> Windows draws it above every ordinary window, PasteJump's overlay
+included, so there is no position on top of it that you could see. The overlay steps aside to a corner of the
+screen instead. The same applies to anything else Windows keeps above other windows, and to an application you
+have pinned always-on-top &mdash; PasteJump would rather sit beside a window you deliberately pinned than cover
+it.</p>
+</div>
+
+<p><b>All of that is the default, and you can choose differently.</b> <a href="settings.html">Settings,
+Appearance, Where the Overlay Appears</a> offers six answers: automatically as described above; at the caret
+with the <i>pointer</i> as the fallback, which is what PasteJump did before; always at the pointer; always
+centred on the window; in the bottom-right corner, where Windows puts its own notifications; or pinned to a
+fixed position of your own. Only the pinned position and the corner override the Start menu rule, on the grounds
+that somebody who names a place has said what they want.</p>
+
+<p><b>The copy notification uses the same mechanism</b>, chosen separately under <a href="settings.html">Settings,
+Appearance, Show a Brief Notification</a>. It stays at the mouse pointer by default, which is a sound default in
+its own right &mdash; a copy is often made with the mouse, so the pointer is where you were looking &mdash; but
+the same problem applies to a copy made from the keyboard, and now the same answers do too.</p>
+
+<h2>What the overlay shows</h2>
+
+<div class="shot shot-inline">
+<img src="images/overlay-text-facts.png" alt="The overlay showing a text clip with its line and character counts">
+<p>The row under the preview reads left to right as <b>what the clip is, the facts about it, and when it was
+copied</b>: <code>Text &middot; 6 lines, 119 characters</code> with the date and time at the far right. A picture
+says <code>Image</code> and gives its resolution, a file copy says <code>Files</code>. Those are the same words the
+Clipboard History window uses, so one clip never reads two ways &mdash; and the date is local time, which is often
+the quickest way to tell two similar clips apart.</p>
+
+<p>Each part is yours to switch off on the Appearance tab: <b>What Kind of Clip It Is</b>, the per-kind details and
+sizes, and <b>When It Was Copied</b>. The row survives on its own if you switch the others off. A clip PasteJump
+cannot describe is left unlabelled rather than called &quot;Other&quot;, since its preview already says
+<code>[binary data]</code>.</p>
+</div>
+
+<p><b>A copied text file shows its contents too.</b> The path stays on top, the first lines of the file appear
+beneath it in a muted colour, and the facts row gives the line count and the file's size on disk &mdash; the same
+treatment a copied image file gets, where a thumbnail appears instead. Only the first file of a copy is read, only
+the first few kilobytes of it, never a file on a network share, and only for extensions that are plainly text: the
+overlay is redrawn on every tap of the trigger key, so nothing here may be slow. What a paste puts on the
+clipboard is still the path, which is why the contents are dimmed.</p>
+
+<p>For text, the counts are of what PasteJump <b>stored</b> rather than of what it is showing you &mdash; the
+preview on screen is elided to fit. If the clip was longer than <b>Characters Kept per Entry</b> allows, both
+numbers carry a <code>+</code>: what you copied is bigger than anything that was kept, and saying so beats a
+confident wrong count.</p>
+
+<ul>
+<li>The position in the stack, as <i>clip 3 of 41</i>.</li>
+<li>A preview: the text, or the picture for an image clip, or the file names for a file copy.</li>
+<li>Chips for the current paste format, whether the clip is pinned, whether <code>Shift</code> is
+holding a pop, how many clips are marked to be joined, its tags, and which application it was copied from.</li>
+<li>The two chips that show something you can <i>cycle</i> &mdash; the paste format and the kind filter &mdash;
+name the key that changes them, as <b>Original&nbsp;(Z)</b> and <b>images&nbsp;only&nbsp;(K)</b>. It is your
+letter, not the default, and it disappears along with the key reminders if you switch those off.</li>
+<li>A banner when <code>X</code> has put you in Cancel, Delete or Delete All.</li>
+<li>A row of key reminders along the bottom, which names the keys <i>you</i> have bound rather than the defaults.
+An action you switch off is left out of it.</li>
+</ul>
+
+<h2>Showing less of it</h2>
+
+<p>Most of that is description, and it is all optional. <b>Settings, Appearance, What the Overlay Shows</b> has a
+switch for each: the position in the stack, the paste format, tags, the source application, the <code>PINNED</code>
+marker and the key reminder. Everything is on to begin with.</p>
+
+<p>The row under the preview is chosen <b>per kind of clip</b>, because the three do not report the same thing &mdash;
+text gives lines and characters, an image its resolution in pixels, a copied file its line count. A small grid pairs
+<i>details</i> and <i>size</i> against <i>Text</i>, <i>Image</i> and <i>File</i>, so you can keep resolutions for
+pictures and drop character counts for text. Anything that is neither text nor an image follows the File column.</p>
+
+<div class="shot shot-inline">
+<img src="images/overlay-minimal.png" alt="The overlay with every optional part switched off">
+<p>Everything optional switched off: the clip, and the <b>JOIN</b> count &mdash; which no setting can hide.</p>
+</div>
+
+<div class="warn">
+<p><b>Four things cannot be switched off, and that is deliberate.</b> The <code>POP</code> chip, the
+<b>JOIN</b> count, the kind filter, and the Cancel / Delete / Delete All banner all change <i>what releasing
+<code>Ctrl</code> will do</i>. Hiding one of those would not make the overlay tidier &mdash; it would arm a deletion
+you cannot see, which is the one thing this overlay exists to prevent. The preview is not optional either: an
+overlay that says nothing about the clip is not quieter, it is broken.</p>
+</div>
+
+<p>Switching off both the details and the size removes the row under the preview entirely, rather than leaving an
+empty strip. Turning off the position still leaves <b>No matching clips</b> when a search finds nothing, since in
+that case it is the only thing there is to say.</p>
+
+<h2>Other keys are held back while the overlay is open</h2>
+
+<p>Any key that has no meaning above is <b>swallowed</b> for as long as the overlay is up, rather than
+reaching the application underneath. That is deliberate: you are holding <code>Ctrl</code>, and almost
+every <code>Ctrl</code>+key is a command somewhere &mdash; <code>Ctrl</code>+<code>0</code> and
+<code>Ctrl</code>+<code>=</code> zoom an editor, <code>Ctrl</code>+<code>W</code> closes a tab,
+<code>Ctrl</code>+<code>S</code> saves. Without this, tapping around while choosing a clip would quietly
+zoom, save or close whatever was behind the overlay.</p>
+
+<p>Two things are always let through:</p>
+
+<ul>
+<li><b>The modifiers themselves.</b> The application is tracking them, and eating a release would leave it
+believing <code>Ctrl</code> is still held.</li>
+<li><b>Anything with <code>Alt</code> or the Windows key held</b>, so <code>Alt</code>+<code>Tab</code> and
+the shell's own shortcuts keep working. Switching away abandons the gesture, which also makes this the way
+out if the overlay ever seems stuck.</li>
+</ul>
+
+<p>Releasing <code>Ctrl</code> ends the session, so the keyboard is never held for longer than you hold the
+key yourself.</p>
+
+<p>Along the bottom is a muted reminder of the keys worth knowing when you have lost your place:
+<code>A</code> back to the newest, stepping, delete, locking the overlay open, cancel, and <code>?</code> for the
+full list. Turn it off under <b>Settings, Appearance</b> once the gesture is in your fingers.</p>
+
+<p><code>F1</code> is deliberately not in that row any more. It still opens the key card, and the card and the
+<code>?</code> list both name it &mdash; but <code>?</code> answers the same question better, without opening a
+window or ending the session, so it takes the slot.</p>
+
+<p>The overlay never takes focus, so your typing target is untouched. How large an image preview may be, how
+much text is shown, and whether the overlay follows the caret or sits at a fixed position are all under
+<b>Settings, Appearance</b>.</p>
+
+</body>
+</html>

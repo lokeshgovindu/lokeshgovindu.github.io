@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Showing typed text - KeyPressOSD</title>
+<meta name="description" content="Typing mode shows the words you type as one growing line, rather than naming the keys that made them.">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="bar">
+<a class="wordmark" href="index.html">KeyPressOSD</a>
+<a class="download" href="https://github.com/lokeshgovindu/KeyPressOSD/releases">Download</a>
+</header>
+<div class="shell">
+<nav class="side" aria-label="Manual contents">
+<p class="sidehead">Manual</p>
+<ul><li><a href="overview.html">What KeyPressOSD does</a></li>
+<li><a href="display.html">Showing keystrokes</a></li>
+<li><a href="typing.html" aria-current="page">Showing typed text</a></li>
+<li><a href="position.html">Where it appears</a></li>
+<li><a href="appearance.html">How it looks</a></li>
+<li><a href="symbols.html">Key names and symbols</a></li>
+<li><a href="hotkeys.html">Hotkeys</a></li>
+<li><a href="tray.html">The tray menu</a></li>
+<li><a href="privacy.html">Privacy</a></li>
+<li><a href="settings-file.html">The settings file</a></li>
+<li><a href="troubleshooting.html">Troubleshooting</a></li>
+<li><a href="limitations.html">Known limitations</a></li></ul>
+</nav>
+<main>
+<h1>Showing typed text</h1>
+<p>Typing mode shows the words you type as one growing line, rather than naming the keys that made them.</p>
+<p>Switch to it from the tray menu, from <strong>Mode</strong> on the Display tab, or with <code>Ctrl+Alt+K</code>.</p>
+<h2>What it is for</h2>
+<p>Reading your own typing. If the field you are typing into is small, or on a second monitor, or the application's font is not one you can read comfortably, this puts the same text somewhere you choose at a size you choose.</p>
+<p>It is not the mode for a screencast. It says nothing about which keys produced the text, so a viewer sees what you wrote but not how — no shortcuts, no navigation, no corrections beyond their effect.</p>
+<h2>The line never wraps</h2>
+<p>The line is bounded to a window of characters that follows the cursor, and it never wraps onto a second line. <strong>Typed line length</strong>, on the Timing tab, is how much of it is shown at once.</p>
+<p>An ellipsis at either end means the text continues that way. Those markers are worth having: text that simply stops reads as the application having lost it, where a leading ellipsis says the line is longer than the window — a different and true claim.</p>
+<p class="figure"><img src="images/osd-typing.png" alt="A line of typed text with a leading ellipsis"></p>
+<p><em>The window of text follows the cursor. The ellipsis on the left is the sentence continuing off the edge, not the end of what was captured.</em></p>
+<p>Not wrapping is deliberate. The panel sizes itself to its content, so a long sentence would first widen the display to the edge of the screen and then grow it downwards a line at a time, ending up covering the thing being typed into.</p>
+<h2>Editing</h2>
+<p>Backspace and Delete remove characters, and the arrow keys, Home and End move the cursor, so the line follows what you are actually doing rather than being an append-only transcript. <code>Ctrl</code> with Backspace or Delete removes a word.</p>
+<p>Pressing Enter, or switching to another window, starts a fresh line. There is nothing to be gained from carrying a sentence across a window change, and quite a lot to be lost — the old text would still be on screen while you typed somewhere else.</p>
+<h2>The caret</h2>
+<p><strong>Show a blinking caret in typing mode</strong> is off.</p>
+<p>The reason is that a blinking bar is right in a text field, where nothing else on screen is moving, and wrong on a transient overlay in the corner of the screen — where it is the only thing moving and keeps blinking long after the text has stopped changing.</p>
+<p>Turn it on if you use the display to read your own typing and want to see where the insertion point is. With it off, text inserted mid-line gives no clue where the cursor sits.</p>
+<h2>What typing mode does not show</h2>
+<p>Modifier keys, function keys, and shortcuts do not appear: they produce no characters, so there is nothing for this mode to show. Mouse clicks are not shown either.</p>
+<p>If you want both — the words and the keys — the honest answer is that this application shows one at a time, and <code>Ctrl+Alt+K</code> switches quickly.</p>
+<hr>
+<p class="foot"><a href="https://github.com/lokeshgovindu/KeyPressOSD">Project on GitHub</a> &middot; MIT licence &middot;
+This manual is generated from <code>docs/manual</code>.</p>
+</main>
+</div>
+</body>
+</html>
