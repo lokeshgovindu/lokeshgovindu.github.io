@@ -83,10 +83,19 @@ comments: true
                             </div>
                         </div>
                         <div class="project-sidebar-links">
-                            <a href="https://github.com/lokeshgovindu/AltTab" target="_blank" rel="noopener noreferrer" class="btn-github">
-                                <i class="fab fa-github"></i> View on GitHub
+                            <!--
+                                Both links used to point at places a visitor cannot reach. The
+                                repository went private on 2026-08-23, so "View on GitHub" was a 404
+                                for everybody but its owner, and AltTab's own Pages site went off with
+                                it - lokeshgovindu.github.io/AltTab/ answers 404 for the same reason.
+                                AltTab's public home is SourceForge: the site is generated from
+                                docs/*.md by Scripts/build_site.py, and the file area is what its
+                                update check reads to decide whether a newer version exists.
+                            -->
+                            <a href="https://sourceforge.net/projects/alttab/files/" target="_blank" rel="noopener noreferrer" class="btn-github">
+                                <i class="fa fa-download"></i> Download
                             </a>
-                            <a href="https://lokeshgovindu.github.io/AltTab/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                            <a href="https://alttab.sourceforge.io/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
                                 <i class="fa fa-external-link-alt"></i> Project Site
                             </a>
                         </div>
