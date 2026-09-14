@@ -86,6 +86,50 @@ $Applications = @{
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
 
+<#
+.SYNOPSIS
+    Whether an asset URL can be fetched by somebody with no credentials.
+
+.DESCRIPTION
+    Asked rather than assumed, because publishing a URL that only the owner can fetch is worse than
+    publishing none: the application offers an Update button when an asset carries both a URL and a
+    digest, so an unreachable URL turns a working "here is the download page" prompt into a button that
+    can only ever fail.
+
+    `gh` is authenticated as the owner, so it is NO USE for this - it can read a private repository's
+    assets perfectly well. This deliberately makes a plain, credential-free request, which is exactly
+    what a copy of the application in somebody else's hands makes.
+
+    A redirect counts as reachable: GitHub answers an asset URL with a 302 to
+    release-assets.githubusercontent.com, and following it is the client's job.
+
+    Failing closed on any error is the safe direction - a network blip omits the URL for this run and
+    the next run puts it back, whereas a wrong "yes" ships a broken button.
+#>
+function Test-PubliclyDownloadable {
+    param([Parameter(Mandatory)] [string] $Url)
+
+    try {
+        $request = [System.Net.Http.HttpRequestMessage]::new([System.Net.Http.HttpMethod]::Head, $Url)
+        $handler = [System.Net.Http.HttpClientHandler]::new()
+        $handler.AllowAutoRedirect = $true
+
+        $client = [System.Net.Http.HttpClient]::new($handler)
+        $client.Timeout = [TimeSpan]::FromSeconds(20)
+
+        try {
+            $response = $client.SendAsync($request).GetAwaiter().GetResult()
+            return $response.IsSuccessStatusCode
+        }
+        finally {
+            $client.Dispose()
+        }
+    }
+    catch {
+        return $false
+    }
+}
+
 function Get-Manifest {
     param(
         [Parameter(Mandatory)] [string] $Name,
@@ -110,6 +154,26 @@ function Get-Manifest {
 
     $stableOnly = $StableOnly -or $Settings.StableOnly
 
+    # Probed once, from the newest release that actually has an asset, and the answer is reused for every
+    # asset below. Reported out loud either way, because "the Update button is off" is otherwise an
+    # absence nobody would notice until somebody asked why it never appears.
+    $assetsArePublic = $false
+    $probe = $releases |
+        Where-Object { -not $_.draft -and $_.assets.Count -gt 0 } |
+        Select-Object -First 1 -ExpandProperty assets |
+        Select-Object -First 1
+
+    if ($probe) {
+        $assetsArePublic = Test-PubliclyDownloadable -Url $probe.browser_download_url
+
+        if ($assetsArePublic) {
+            Write-Host "        $Name assets are public - in-app updates enabled" -ForegroundColor Green
+        }
+        else {
+            Write-Host "        $Name assets are NOT public - manifest omits download URLs, so the app offers the download page instead" -ForegroundColor Yellow
+        }
+    }
+
     # A List rather than the output of a foreach, because a foreach that iterates nothing assigns $null,
     # and @($null) is an array of length ONE holding a null - which is how PerchBar's empty manifest came
     # out as "[[]]" on the first attempt. A list is empty when nothing was added, and says so.
@@ -132,14 +196,49 @@ function Get-Manifest {
             # they can actually get it.
             html_url     = $Settings.DownloadPage
 
-            # Only the names, and only because PasteJump reads the version out of one: its tags are
-            # "2026.1-pre6", which parses to 2026.1.0.0, so a copy running 2026.1.0.226 would compare
-            # as newer than every release ever made and the check would say "up to date" for ever. The
-            # archive name carries the revision. Sizes, download counts and URLs are all dropped - the
-            # applications read none of them.
+            # THREE fields per asset, each carrying its weight, and all three are GitHub's own field
+            # names - which is the whole reason this file is written in GitHub's shape. The applications
+            # parse one document, not two.
+            #
+            #   name                  PasteJump reads the VERSION out of it. Its tags are "2026.1-pre6",
+            #                         which parses to 2026.1.0.0, so a copy running 2026.1.0.226 would
+            #                         compare as newer than every release ever made and the check would
+            #                         say "up to date" for ever. The archive name carries the revision.
+            #                         The suffix also says which deployment shape the archive holds.
+            #   browser_download_url  Where the bytes are, for the in-app Update button. Passed through
+            #                         from the API rather than rewritten, UNLIKE html_url above: an asset
+            #                         URL has to be the one a program can fetch unattended, and a release
+            #                         page has to be one a person can open. Those are different hosts
+            #                         while the repository is private, and only the second has a public
+            #                         substitute.
+            #   digest                "sha256:<hex>", straight from the API. The application refuses to
+            #                         install an archive whose bytes do not match, and refuses to offer
+            #                         the Update button at all when there is no digest to check - so
+            #                         dropping this field silently turns the feature off rather than
+            #                         making it unsafe.
+            #
+            # Sizes and download counts are still dropped; nothing reads them.
+            #
+            # NOTE while the repository is private these URLs are not anonymously downloadable, so the
+            # applications correctly fall back to offering the download page. SourceForge cannot be
+            # substituted here: its download endpoint is behind a Cloudflare bot challenge, so an
+            # unattended GET receives an HTML interstitial rather than the archive (measured
+            # 2026-09-14 - HTTP 403, "Just a moment...", from both the project URL and every mirror).
+            # The Update button therefore lights up when the releases themselves become public, which is
+            # what the public releases repository in PasteJump's TASKS.md is for.
             assets       = @(
                 foreach ($asset in $release.assets) {
-                    [ordered] @{ name = $asset.name }
+                    [ordered] @{
+                        name                 = $asset.name
+
+                        # Empty when the assets are not anonymously reachable, which is what stops the
+                        # application offering a button that could only fail. Probed once per run, not
+                        # once per asset: every asset of every release lives behind the same repository
+                        # visibility, so one answer settles it and 20 HEAD requests would settle it no
+                        # better.
+                        browser_download_url = $assetsArePublic ? $asset.browser_download_url : ''
+                        digest               = $asset.digest
+                    }
                 }
             )
         })

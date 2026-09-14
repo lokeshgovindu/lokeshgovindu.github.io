@@ -7,10 +7,14 @@
     "html_url": "https://sourceforge.net/projects/pastejump/files/",
     "assets": [
       {
-        "name": "PasteJump-2026.3.0.268-win-x64-net10.zip"
+        "name": "PasteJump-2026.3.0.268-win-x64-net10.zip",
+        "browser_download_url": "",
+        "digest": "sha256:1c0ab37e9fa3a4ef2be374b7a39d274d53253252bfa3d550e3f7276dabe423cd"
       },
       {
-        "name": "PasteJump-2026.3.0.268-win-x64-unpacked.zip"
+        "name": "PasteJump-2026.3.0.268-win-x64-unpacked.zip",
+        "browser_download_url": "",
+        "digest": "sha256:ffa7afa178348718b2d6ef1235480d6ada8f6a436009ce5531c218cc847e5378"
       }
     ]
   },
@@ -22,13 +26,19 @@
     "html_url": "https://sourceforge.net/projects/pastejump/files/",
     "assets": [
       {
-        "name": "PasteJump-2026.2.0.249-win-x64-net10.zip"
+        "name": "PasteJump-2026.2.0.249-win-x64-net10.zip",
+        "browser_download_url": "",
+        "digest": "sha256:eff66624fa743b00e4dbadaf3a5fdc8e8cf66956801292229ce1e7ac4e07cdf6"
       },
       {
-        "name": "PasteJump-2026.2.0.249-win-x64-unpacked.zip"
+        "name": "PasteJump-2026.2.0.249-win-x64-unpacked.zip",
+        "browser_download_url": "",
+        "digest": "sha256:c488eb56c8043a5331a0f08e3f6a534cb78a8fd2861b79363cf08b11a9a95ab5"
       },
       {
-        "name": "PasteJump-2026.2.0.249-win-x64.zip"
+        "name": "PasteJump-2026.2.0.249-win-x64.zip",
+        "browser_download_url": "",
+        "digest": "sha256:2a2780f0f4855331b0dce7b1a21574a478dae19134a7879cb8fe8ea7bbe4838b"
       }
     ]
   }
