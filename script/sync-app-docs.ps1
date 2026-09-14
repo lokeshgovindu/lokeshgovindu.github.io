@@ -67,10 +67,23 @@ if (-not $SourceRoot) {
 # and neither is a page anybody should land on. help/ carries the .hhp/.hhc/.hhk the .chm is compiled
 # from alongside the same topics the web serves; those three are inert over HTTP and a few kilobytes,
 # so they ride along rather than earning an exclude list that would have to track the .chm build.
+#
+# launch/README.md was NOT on this list and should have been from the start. It is the drafted Show HN
+# title, body and first comment, the AlternativeTo copy and the press list - and it was live at
+# lokeshgovindu.github.io/PasteJump/launch/README.md, answering 200, found on 2026-09-14. Nothing
+# terrible is in it, but a launch post is worth less once it can be read before it is posted, and
+# nobody chose to publish it.
+#
+# THE LESSON THIS LIST TEACHES IS THAT IT IS THE WRONG SHAPE: an exclude list publishes anything
+# added to docs/ by default and has to be remembered for each new file. An include list would fail
+# the other way, which is the safe direction for something that decides what becomes public. Left as
+# an exclude list because changing it means enumerating every page of two sites and getting that
+# wrong is a site with holes in it - but a new working note under docs/ must be added here.
 $Applications = @{
     PasteJump   = @{
         Source  = 'docs'
-        Exclude = @('sourceforge-files-readme.md', 'sourceforge-page.md', 'video-script.md')
+        Exclude = @('sourceforge-files-readme.md', 'sourceforge-page.md', 'video-script.md',
+                    'launch/README.md')
     }
     KeyPressOSD = @{
         Source  = 'docs/site'
