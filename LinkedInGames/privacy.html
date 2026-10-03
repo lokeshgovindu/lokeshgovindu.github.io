@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy - Results for LinkedIn Games</title>
+<meta name="description" content="Privacy policy for the Results for LinkedIn Games browser extension: nothing leaves your browser.">
+<style>
+  :root { --ink: #1b1b1b; --muted: #5f5f5f; --line: #e2e0dc; --bg: #ffffff; --accent: #1f6f8b; }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #ececec; --muted: #a8a8a8; --line: #3a3a3a; --bg: #161616; --accent: #6cc3d9; }
+  }
+  html { background: var(--bg); }
+  body {
+    margin: 0 auto; max-width: 720px; padding: 32px 16px 64px;
+    font: 16px/1.6 "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--ink); background: var(--bg);
+  }
+  h1 { font-size: 28px; line-height: 1.25; margin: 0 0 4px; }
+  h2 { font-size: 19px; margin: 28px 0 6px; padding-top: 14px; border-top: 1px solid var(--line); }
+  .updated { color: var(--muted); margin: 0 0 24px; }
+  a { color: var(--accent); }
+  code { font: 14px ui-monospace, Consolas, monospace; }
+  strong.lead { font-size: 18px; }
+</style>
+</head>
+<body>
+<h1>Privacy policy — Results for LinkedIn Games</h1>
+<p class="updated">Last updated: 3 October 2026</p>
+
+<p>Results for LinkedIn Games is a browser extension that shows where you placed among
+your connections on each LinkedIn game's leaderboard. This page describes exactly
+what it reads, where that goes, and what it keeps.</p>
+
+<h2>The short version</h2>
+<p><strong class="lead">Nothing leaves your browser.</strong> The extension has no server,
+sends no data to its author or to anyone else, and contains no analytics, tracking,
+advertising or third-party code.</p>
+
+<h2>What it reads</h2>
+<p>When you press <strong>Refresh</strong> (or ↻ on one game), the extension opens each
+game's connections leaderboard on <code>www.linkedin.com</code> — the same page you would
+open yourself — and reads from it:</p>
+<ul>
+  <li>your placing, time or score, and the chips LinkedIn shows on your row (for example
+    “No hints!”);</li>
+  <li>the same for the other rows on that leaderboard: each connection's displayed name,
+    placing, time or score, and chips;</li>
+  <li>the address of the LinkedIn data request the leaderboard page makes, so the next read
+    can find the board faster.</li>
+</ul>
+<p>If you switch <strong>Screenshots on</strong>, it also takes a picture of each
+leaderboard as it appears on screen. That needs the optional permission to read page
+pixels, which is asked for only when you switch the feature on.</p>
+<p>It reads LinkedIn pages only when you ask it to, and only the games' leaderboard pages.</p>
+
+<h2>Where it is kept</h2>
+<p>Everything above is stored <strong>only in your browser</strong>, in the extension's own
+local storage (<code>chrome.storage.local</code>). It is not synced to your account and not
+copied anywhere else. Only today's and yesterday's boards are kept; older ones are replaced
+as the days roll over.</p>
+
+<h2>Removing it</h2>
+<p>Uninstalling the extension deletes everything it stored. You can also clear it at any
+time from your browser's extension settings.</p>
+
+<h2>Sharing</h2>
+<p>None. No data is sold, shared, transferred or used for any purpose other than showing
+you the results in the extension's own popup and full-board page.</p>
+
+<h2>Not affiliated</h2>
+<p>This extension is an independent project. It is not made, endorsed or supported by
+LinkedIn Corporation. “LinkedIn” is a trademark of LinkedIn Corporation.</p>
+
+<h2>Contact</h2>
+<p>Questions or concerns: <a href="mailto:lokeshgovindu@gmail.com">lokeshgovindu@gmail.com</a>.</p>
+</body>
+</html>
