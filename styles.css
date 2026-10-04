@@ -739,6 +739,7 @@ footer a:hover { color: #ffffff; }
 
 .project-card-accent.cpp    { background: linear-gradient(to right, #1d4ed8, #60a5fa); }
 .project-card-accent.csharp { background: linear-gradient(to right, #7c3aed, #a78bfa); }
+.project-card-accent.dotnet { background: linear-gradient(to right, #0f766e, #2dd4bf); }
 
 /* ── Card body ── */
 .project-card-body {
@@ -764,6 +765,35 @@ footer a:hover { color: #ffffff; }
     justify-content: space-between;
     gap: 1.5rem;
     width: 100%;
+}
+
+/* The sidebar's light gradient had no dark counterpart, so it glared out of every dark page. */
+:root[data-theme="dark"] .project-card-sidebar {
+    background: linear-gradient(160deg, #161e36 0%, #1b2140 100%);
+}
+
+/* ── A real screenshot in the sidebar ── */
+.project-shot-figure {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.project-shot {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(30, 27, 75, 0.18);
+}
+
+.project-shot-figure figcaption {
+    font-size: 0.8rem;
+    color: var(--muted-text);
+    margin-top: 0.65rem;
+    line-height: 1.5;
 }
 
 /* ── Mock AltTab switcher graphic ── */

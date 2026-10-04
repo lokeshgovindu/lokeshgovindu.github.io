@@ -1,0 +1,89 @@
+---
+title: PerchBar
+nav: my-work
+ph_label: Windows Application
+heading: PerchBar
+ph_sub: One taskbar button for several apps, including the ones already running, however you started them.
+comments: true
+---
+
+<section class="projects-section">
+    <div class="container">
+        <a href="{{ '/my-work/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to My Work</a>
+
+        <div class="project-card project-card-featured">
+            <div class="project-card-accent cpp"></div>
+            <div class="row g-0">
+                <div class="col-lg-7 project-card-body">
+                    <span class="project-type-badge windows-app">
+                        <i class="fab fa-windows"></i> Windows Application
+                    </span>
+                    <h3 class="project-title">
+                        <i class="fa fa-layer-group me-2" style="color: #3b82f6;"></i>PerchBar
+                    </h3>
+                    <p class="project-description">
+                        PerchBar groups Windows taskbar buttons. You define a group, and PerchBar gives
+                        it an icon and a shortcut you pin to the taskbar. Clicking the pin opens the
+                        group: every member listed, running or not, with the right action for each.
+                        It <strong>switches</strong> to what is open and <strong>launches</strong>
+                        what is not.
+                    </p>
+                    <p class="project-description">
+                        The part nothing else does is the next one. Any member you start
+                        <em>some other way</em>, from the Start menu, the desktop or another
+                        application, is pulled into the group's button automatically. Launchers can
+                        start apps into a group, but an app you started yourself keeps its own button
+                        and the group's pin sits empty. PerchBar writes the group's identity onto the
+                        window itself, so the shell does the merging: it applies instantly, with no
+                        flicker, and survives an Explorer restart.
+                    </p>
+                    <ul class="project-features">
+                        <li>One taskbar button for a group of applications</li>
+                        <li>Adopts members that are already running, however they were started</li>
+                        <li>A group view to switch to or launch any member from the keyboard</li>
+                        <li>Pins follow the executable, so moving or rebuilding it breaks nothing</li>
+                        <li>Self-contained: one executable, no installer, no service, nothing to uninstall</li>
+                        <li>Windows 10 and 11, x64</li>
+                    </ul>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag"><i class="fa fa-code me-1"></i>C++20</span>
+                        <span class="tech-tag">Win32 API</span>
+                        <span class="tech-tag">AppUserModelID</span>
+                        <span class="tech-tag">Windows Shell</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fa fa-download"></i> Free download</span>
+                        <span><i class="fa fa-scale-balanced"></i> MIT licence</span>
+                        <span><i class="fa fa-lock"></i> Source not public</span>
+                    </div>
+                </div>
+                <div class="col-lg-5 project-card-sidebar">
+                    <div class="project-sidebar-inner">
+                        <figure class="project-shot-figure">
+                            <img class="project-shot" src="{{ '/assets/images/my-work/perchbar-group-view.png' | relative_url }}"
+                                 width="322" height="172" loading="lazy"
+                                 alt="The view of a group called System tools: Character Map and System Information are open, Registry Editor is not running">
+                            <figcaption>A group's view: what is open, and what is one keystroke from being open.</figcaption>
+                        </figure>
+                        <div class="project-sidebar-links">
+                            <!--
+                                The repository went private on 2026-09-08. PerchBar's public home is
+                                SourceForge: the site is generated from the help by Scripts/MakeSite.py.
+                                lokeshgovindu.github.io/PerchBar/ holds only the update manifest.
+                            -->
+                            <a href="https://sourceforge.net/projects/perchbar/files/" target="_blank" rel="noopener noreferrer" class="btn-github">
+                                <i class="fa fa-download"></i> Download
+                            </a>
+                            <a href="https://perchbar.sourceforge.io/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fa fa-book"></i> Help &amp; Project Site
+                            </a>
+                            <a href="https://sourceforge.net/p/perchbar/tickets/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fa fa-circle-exclamation"></i> Report a Problem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -3,7 +3,7 @@ title: AltTab
 nav: my-work
 ph_label: Windows Application
 heading: AltTab
-ph_sub: A lightweight C++/Win32 window switcher with fuzzy search, per-app cycling, and process management.
+ph_sub: A lightweight C++/Win32 replacement for the Windows task switcher, with fuzzy search, per-app cycling, themes and process management.
 comments: true
 ---
 
@@ -22,81 +22,71 @@ comments: true
                         <i class="fa fa-window-restore me-2" style="color: #3b82f6;"></i>AltTab
                     </h3>
                     <p class="project-description">
-                        AltTab is a powerful, lightweight Windows application written in C++ and the Win32 API
-                        that completely reimagines how you switch between open windows. The native Windows task
-                        switcher is functional, but limited — AltTab puts you fully in control. Filter through
-                        every open window in real time using a fuzzy search algorithm that intelligently matches
-                        even approximate input, so you can land on the right window without memorising exact titles.
+                        AltTab replaces the Windows task switcher. Hold <strong>Alt</strong> and tap
+                        <strong>Tab</strong> to see every open window, then type to filter the list by
+                        title or by application. The match is fuzzy, so an approximate search string
+                        is enough: you land on the right window without remembering its exact title.
                     </p>
                     <p class="project-description">
-                        A dedicated <strong>Alt + `</strong> shortcut lets you cycle exclusively through windows
-                        belonging to the same application, making it effortless to hop between multiple instances
-                        of your editor, browser, or terminal. Right-click context menus put powerful process
-                        management at your fingertips — terminate processes, hide windows, or bring them back
-                        — without ever leaving the keyboard. Fine-tune the experience to your taste with a rich
-                        settings UI that controls font style, background colour, window transparency, and dimensions.
+                        <strong>Alt + `</strong> (the key above Tab) cycles only the windows of the
+                        application you are in, which makes it easy to hop between several editors,
+                        browsers or terminals. From the list you can close a window, or terminate its
+                        process normally or forcefully, one at a time or all of them, and hide or
+                        un-hide windows, all without leaving the keyboard. A settings dialog with a
+                        live preview controls the size, position, transparency, fonts and colours.
                     </p>
                     <ul class="project-features">
-                        <li>Fuzzy search filtering across all open windows — no exact title needed</li>
-                        <li>Alt + ` shortcut to cycle windows of the same application</li>
-                        <li>Terminate or hide processes with keyboard shortcuts via context menu</li>
-                        <li>Fully configurable font, colour, transparency, and window size</li>
-                        <li>Lightweight C++ / Win32 — minimal footprint, maximum speed</li>
+                        <li>Fuzzy search across every open window, by title or by application</li>
+                        <li>Alt + ` to cycle the windows of the same application</li>
+                        <li>Close, terminate, hide and un-hide from the keyboard, one window or all of them</li>
+                        <li>Thirty-one built-in themes, with every font and colour configurable</li>
+                        <li>All three hotkeys can be re-recorded</li>
+                        <li>Full help built in: F1 opens it, and the same pages are on the project site</li>
+                        <li>Native C++ / Win32: small, fast, and no runtime to install</li>
                     </ul>
                     <div class="project-tech-tags">
                         <span class="tech-tag"><i class="fa fa-code me-1"></i>C++</span>
                         <span class="tech-tag">Win32 API</span>
-                        <span class="tech-tag">Windows</span>
+                        <span class="tech-tag">Windows 10 / 11</span>
                         <span class="tech-tag">Fuzzy Search</span>
                     </div>
+                    <!--
+                        These used to be GitHub's numbers (28 stars, 6 forks, 7 releases). The
+                        repository went private on 2026-08-23, so nobody but its owner can see
+                        those numbers any more, and they would never change again. What stays true
+                        for a visitor is shown here instead.
+                    -->
                     <div class="project-stats">
-                        <span><i class="fa fa-star"></i> 28 Stars</span>
-                        <span><i class="fa fa-code-fork"></i> 6 Forks</span>
-                        <span><i class="fa fa-download"></i> 7 Releases</span>
+                        <span><i class="fa fa-download"></i> Free download</span>
+                        <span><i class="fa fa-scale-balanced"></i> MIT licence</span>
+                        <span><i class="fa fa-lock"></i> Source not public</span>
                     </div>
                 </div>
                 <div class="col-lg-5 project-card-sidebar">
                     <div class="project-sidebar-inner">
-                        <div class="project-sidebar-graphic alttab-graphic">
-                            <div class="mock-switcher">
-                                <div class="mock-switcher-search">
-                                    <i class="fa fa-search me-2" style="opacity:0.5;"></i>
-                                    <span class="mock-typing">code_</span>
-                                </div>
-                                <div class="mock-switcher-item active">
-                                    <i class="fa fa-file-code me-2"></i> Visual Studio Code
-                                </div>
-                                <div class="mock-switcher-item">
-                                    <i class="fa fa-terminal me-2"></i> Windows Terminal
-                                </div>
-                                <div class="mock-switcher-item">
-                                    <i class="fa fa-globe me-2"></i> Chrome
-                                </div>
-                                <div class="mock-switcher-item">
-                                    <i class="fa fa-folder me-2"></i> File Explorer
-                                </div>
-                            </div>
-                            <div class="mock-kbd-row">
-                                <span class="mock-kbd">Alt</span>
-                                <span class="mock-kbd-plus">+</span>
-                                <span class="mock-kbd">Tab</span>
-                            </div>
-                        </div>
+                        <figure class="project-shot-figure">
+                            <img class="project-shot" src="{{ '/assets/images/my-work/alttab-switcher.png' | relative_url }}"
+                                 width="864" height="469" loading="lazy"
+                                 alt="The AltTab switcher filtering its window list for &quot;pai&quot;, with the matched letters highlighted in each title and process name">
+                            <figcaption>Typing <code>pai</code> finds Paint, and the Visual Studio Code workspace whose name contains those letters.</figcaption>
+                        </figure>
                         <div class="project-sidebar-links">
                             <!--
-                                Both links used to point at places a visitor cannot reach. The
-                                repository went private on 2026-08-23, so "View on GitHub" was a 404
-                                for everybody but its owner, and AltTab's own Pages site went off with
-                                it - lokeshgovindu.github.io/AltTab/ answers 404 for the same reason.
+                                The repository went private on 2026-08-23, so "View on GitHub" was a
+                                404 for everybody but its owner, and AltTab's own Pages site went with
+                                it: lokeshgovindu.github.io/AltTab/ answers 404 for the same reason.
                                 AltTab's public home is SourceForge: the site is generated from
-                                docs/*.md by Scripts/build_site.py, and the file area is what its
-                                update check reads to decide whether a newer version exists.
+                                docs/*.md by Scripts/build_site.py, and its update check reads the
+                                file area to decide whether a newer version exists.
                             -->
                             <a href="https://sourceforge.net/projects/alttab/files/" target="_blank" rel="noopener noreferrer" class="btn-github">
                                 <i class="fa fa-download"></i> Download
                             </a>
                             <a href="https://alttab.sourceforge.io/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
-                                <i class="fa fa-external-link-alt"></i> Project Site
+                                <i class="fa fa-book"></i> Help &amp; Project Site
+                            </a>
+                            <a href="https://sourceforge.net/p/alttab/tickets/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fa fa-circle-exclamation"></i> Report a Problem
                             </a>
                         </div>
                     </div>

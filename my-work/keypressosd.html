@@ -1,0 +1,87 @@
+---
+title: KeyPressOSD
+nav: my-work
+ph_label: Windows Application
+heading: KeyPressOSD
+ph_sub: An on-screen display for keys and mouse buttons, for screencasts and presentations, readable across a room.
+comments: true
+---
+
+<section class="projects-section">
+    <div class="container">
+        <a href="{{ '/my-work/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to My Work</a>
+
+        <div class="project-card project-card-featured">
+            <div class="project-card-accent dotnet"></div>
+            <div class="row g-0">
+                <div class="col-lg-7 project-card-body">
+                    <span class="project-type-badge windows-app">
+                        <i class="fab fa-windows"></i> Windows Application
+                    </span>
+                    <h3 class="project-title">
+                        <i class="fa fa-keyboard me-2" style="color: #0f766e;"></i>KeyPressOSD
+                    </h3>
+                    <p class="project-description">
+                        KeyPressOSD shows what you press at a size you can actually read. It is meant
+                        for screencasts and presentations, and for anyone who would rather not squint
+                        at a text field to see what they just typed. Pressable things are drawn as key
+                        caps and typed text as plain text. That one distinction makes the display
+                        readable at a glance, and the high contrast stays sharp on a projector and
+                        through a compressed screen recording.
+                    </p>
+                    <p class="project-description">
+                        There are two modes. <strong>Keystrokes</strong> names each key as it is
+                        pressed: <code>Ctrl+Shift+P</code>, <code>F5</code>, <code>Left Click</code>.
+                        <strong>Typing</strong> shows the words instead, on one line that never wraps,
+                        with a caret that follows your arrow keys. It is correct on any keyboard
+                        layout, because key names come from the layout of the window you are typing
+                        into, so AltGr, dead keys and non-US layouts all read correctly.
+                    </p>
+                    <ul class="project-features">
+                        <li>Chords read the way Windows writes them, with modifiers in a fixed order</li>
+                        <li>Repeats collapse into a count: <code>Backspace x7</code>, <code>Alt+Tab x3</code></li>
+                        <li>Key names as words, keycap symbols, or symbols for every key</li>
+                        <li>Follows the foreground monitor, and stays correct across mixed-DPI displays</li>
+                        <li>Click-through: never takes focus, absent from Alt+Tab and the taskbar</li>
+                        <li>Nothing you type is written to disk or sent anywhere</li>
+                    </ul>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                        <span class="tech-tag">.NET 10</span>
+                        <span class="tech-tag">WPF</span>
+                        <span class="tech-tag">Windows 10 / 11</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fa fa-flask"></i> Beta</span>
+                        <span><i class="fa fa-scale-balanced"></i> MIT licence</span>
+                        <span><i class="fa fa-lock"></i> Source not public</span>
+                    </div>
+                </div>
+                <div class="col-lg-5 project-card-sidebar">
+                    <div class="project-sidebar-inner">
+                        <figure class="project-shot-figure">
+                            <img class="project-shot" src="{{ '/KeyPressOSD/images/osd-chord.png' | relative_url }}"
+                                 width="443" height="115" loading="lazy"
+                                 alt="Ctrl + Shift + P on the KeyPressOSD overlay, the two modifiers drawn as light key caps">
+                            <figcaption>Keystrokes mode: Ctrl + Shift + P, the modifiers drawn as key caps.</figcaption>
+                        </figure>
+                        <div class="project-sidebar-links">
+                            <!--
+                                The repository went private on 2026-09-08. Its website moved here, to
+                                /KeyPressOSD/, synced by script/sync-app-docs.ps1. No "Report a
+                                problem" button: the SourceForge project has no ticket tracker, and
+                                /p/keypressosd/tickets/ only redirects to the project page.
+                            -->
+                            <a href="https://sourceforge.net/projects/keypressosd/files/" target="_blank" rel="noopener noreferrer" class="btn-github">
+                                <i class="fa fa-download"></i> Download (Beta)
+                            </a>
+                            <a href="{{ '/KeyPressOSD/' | relative_url }}" class="btn-project-site">
+                                <i class="fa fa-book"></i> Manual &amp; Project Site
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

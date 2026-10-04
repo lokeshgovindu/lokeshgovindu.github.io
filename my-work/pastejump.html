@@ -1,0 +1,91 @@
+---
+title: PasteJump
+nav: my-work
+ph_label: Windows Application
+heading: PasteJump
+ph_sub: A jog wheel for your clipboard. Hold Ctrl, tap V to walk back through what you copied, and let go to paste it.
+comments: true
+---
+
+<section class="projects-section">
+    <div class="container">
+        <a href="{{ '/my-work/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>Back to My Work</a>
+
+        <div class="project-card project-card-featured">
+            <div class="project-card-accent dotnet"></div>
+            <div class="row g-0">
+                <div class="col-lg-7 project-card-body">
+                    <span class="project-type-badge windows-app">
+                        <i class="fab fa-windows"></i> Windows Application
+                    </span>
+                    <h3 class="project-title">
+                        <i class="fa fa-paste me-2" style="color: #0f766e;"></i>PasteJump
+                    </h3>
+                    <p class="project-description">
+                        Every clipboard manager can show you a list. The point of PasteJump is that you
+                        never have to look at one: hold <strong>Ctrl</strong>, tap <strong>V</strong>
+                        until the clip you want appears beside the caret, and let go. Your hand never
+                        leaves the keyboard and nothing steals focus. The overlay is there so you can
+                        look, not because you must.
+                    </p>
+                    <p class="project-description">
+                        It reimplements the gesture of Avi Aryan's
+                        <a href="https://clipjump.sourceforge.net/" target="_blank" rel="noopener noreferrer">Clipjump</a>,
+                        an AutoHotkey utility last released in 2016, from its observed behaviour, in
+                        .NET 10 and WPF, and adds the parts that were missing. A stack of clips holds
+                        every clipboard format for the gesture to paste from, and a separate searchable
+                        history keeps a record of everything you copied.
+                    </p>
+                    <ul class="project-features">
+                        <li>The overlay appears beside the text caret, or centred on the window you are pasting into</li>
+                        <li>Search mid-paste, filter by kind, lock the overlay open, delete a clip</li>
+                        <li>Join several clips into a single paste, with a separator of your choosing</li>
+                        <li>A history window with search, and import from Clipjump's own store</li>
+                        <li>Themes, configurable keys, excluded applications, and a full settings reference</li>
+                        <li>Portable: unzip and run, no installer and no registration</li>
+                    </ul>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                        <span class="tech-tag">.NET 10</span>
+                        <span class="tech-tag">WPF</span>
+                        <span class="tech-tag">Windows 10 / 11</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fa fa-download"></i> Free download</span>
+                        <span><i class="fa fa-scale-balanced"></i> Freeware</span>
+                        <span><i class="fa fa-lock"></i> Source not public</span>
+                    </div>
+                </div>
+                <div class="col-lg-5 project-card-sidebar">
+                    <div class="project-sidebar-inner">
+                        <figure class="project-shot-figure">
+                            <img class="project-shot" src="{{ '/PasteJump/help/images/overlay.png' | relative_url }}"
+                                 width="512" height="134" loading="lazy"
+                                 alt="The PasteJump overlay showing clip 3 of 41, a pinned SQL query copied from Visual Studio, with its key hints underneath">
+                            <figcaption>Clip 3 of 41 during the gesture. The line underneath lists the keys that work right now.</figcaption>
+                        </figure>
+                        <div class="project-sidebar-links">
+                            <!--
+                                The repository went private on 2026-09-08. Its website moved here,
+                                to /PasteJump/, synced from the application repository by
+                                script/sync-app-docs.ps1, and its downloads are on SourceForge.
+                            -->
+                            <a href="https://sourceforge.net/projects/pastejump/files/" target="_blank" rel="noopener noreferrer" class="btn-github">
+                                <i class="fa fa-download"></i> Download
+                            </a>
+                            <a href="{{ '/PasteJump/' | relative_url }}" class="btn-project-site">
+                                <i class="fa fa-external-link-alt"></i> Project Site &amp; Tour
+                            </a>
+                            <a href="{{ '/PasteJump/help/overview.html' | relative_url }}" class="btn-project-site">
+                                <i class="fa fa-book"></i> Manual
+                            </a>
+                            <a href="https://sourceforge.net/p/pastejump/tickets/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fa fa-circle-exclamation"></i> Report a Problem
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

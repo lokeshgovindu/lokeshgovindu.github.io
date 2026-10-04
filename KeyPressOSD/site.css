@@ -189,7 +189,7 @@ img {
   margin: 0 0 6px;
 }
 
-.shot { margin-bottom: 24px; }
+.shot { margin-bottom: 24px; max-width: 100%; height: auto; }
 
 em { color: var(--muted); }
 img + p em { font-size: 14px; }
