@@ -1,213 +1,91 @@
-/* KeyPressOSD website. Authored, not produced from markdown - see build-manual.py. */
-
-/* Both palettes from one set of tokens, so a colour is never written twice. The site follows the
-   reader's own light/dark setting; there is no toggle, because a docs site that disagrees with the rest
-   of the browser is the thing people complain about. */
+/* KeyPressOSD website. Authored, not produced from markdown - see build-manual.py.
+   The layout is shared with alttab.sourceforge.io and pastejump.sourceforge.io on purpose. */
 :root {
-  --page: #ffffff;
-  --ink: #1b1b1f;
-  --muted: #5b5b66;
-  --rule: #e2e2e8;
-  --accent: #1d4ed8;
-  --surface: #f7f7fa;
-  --cap-bg: #f2f2f5;
-  --cap-ink: #16161a;
+  color-scheme: light dark;
+  --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --line: #d1d9e0;
+  --accent: #0969da; --code-bg: #f6f8fa; --quote: #59636e; --sidebar: #f6f8fa;
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
-    --page: #16161a;
-    --ink: #ececf1;
-    --muted: #a0a0ad;
-    --rule: #2c2c34;
-    --accent: #8ab4ff;
-    --surface: #1d1d23;
-    --cap-bg: #26262e;
-    --cap-ink: #ececf1;
+    --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --line: #3d444d;
+    --accent: #4493f8; --code-bg: #161b22; --quote: #9198a1; --sidebar: #161b22;
   }
 }
-
 * { box-sizing: border-box; }
-
+html, body { margin: 0; background: var(--bg); color: var(--fg); }
+/* The WHOLE shell is centred - contents sidebar and text together - not just the text within its column.
+   `1fr` for the second track would make it eat every spare pixel and pin the sidebar to the left edge
+   however wide the monitor is; capping that track and letting justify-content centre the pair is what
+   moves the block. minmax(0, ...) rather than a bare 58rem so the track can shrink between 60rem and
+   75rem instead of overflowing. Below 60rem the media query at the foot collapses to one column. */
 body {
-  margin: 0;
-  background: var(--page);
-  color: var(--ink);
-  font-family: "Segoe UI", -apple-system, system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
+  font: 16px/1.65 -apple-system, "Segoe UI", system-ui, sans-serif;
+  display: grid; grid-template-columns: 17rem minmax(0, 58rem);
+  justify-content: center; min-height: 100vh;
 }
+/* The sidebar is the contents, which is TOPICS - the same reading order as the .chm's tree. */
+nav.toc {
+  background: var(--sidebar); border-right: 1px solid var(--line);
+  padding: 1.5rem 1.25rem; position: sticky; top: 0; align-self: start; max-height: 100vh;
+  overflow-y: auto;
+}
+/* The SHIPPING application's own icon beside the name, and the .ico rather than a PNG scaled from the
+   256px art: the file carries 16, 32 and 48 pixel frames, so a browser asked for 32 draws that frame
+   1:1 with no resampling. One asset serves the favicon and this.
+   Flex rather than an inline image so the icon centres against the two lines of text instead of sitting
+   on the first one's baseline; the <b> keeps the name and the tagline stacked, since as a flex item it
+   is blockified and the span inside it is already display:block. */
+nav.toc .brand {
+  display: flex; align-items: center; gap: .6rem;
+  font-size: 1.3rem; font-weight: 700; text-decoration: none; color: var(--fg);
+}
+nav.toc .brand img { flex: none; width: 32px; height: 32px; border: 0; border-radius: 0; }
+nav.toc .brand b { font-weight: inherit; }
+nav.toc .brand span { display: block; font-size: .8rem; font-weight: 400; color: var(--muted); }
+nav.toc ol { list-style: none; margin: 1.25rem 0 0; padding: 0; }
+nav.toc li { margin: .1rem 0; }
+nav.toc a {
+  display: block; padding: .35rem .6rem; border-radius: 6px;
+  color: var(--fg); text-decoration: none; font-size: .95rem;
+}
+nav.toc a:hover { background: var(--bg); }
+nav.toc a[aria-current="page"] { background: var(--accent); color: #fff; font-weight: 600; }
+nav.toc .away { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+nav.toc .away a { color: var(--accent); font-size: .9rem; padding-left: 0; }
 
+/* The measure is the grid track's, so no max-width here: capping it in both places centres the text
+   inside a column that is itself hard against the left edge. */
+main { padding: 2.5rem 3rem 4rem; min-width: 0; }
+h1, h2, h3 { line-height: 1.25; margin: 2rem 0 .75rem; }
+h1 { font-size: 2rem; margin-top: 0; letter-spacing: -.02em; }
+h2 { font-size: 1.45rem; padding-bottom: .3rem; border-bottom: 1px solid var(--line); }
+h3 { font-size: 1.15rem; }
+p, ul, ol, table, blockquote, pre { margin: 0 0 1rem; }
 a { color: var(--accent); }
-a:hover { text-decoration: underline; }
-
-/* --- the bar ------------------------------------------------------------- */
-
-.bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 12px 24px;
-  border-bottom: 1px solid var(--rule);
-  background: var(--surface);
-}
-
-.wordmark {
-  font-weight: 600;
-  font-size: 17px;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.download {
-  font-size: 14px;
-  padding: 5px 12px;
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  text-decoration: none;
-}
-
-/* --- the hero ------------------------------------------------------------ */
-
-.hero {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 56px 24px 32px;
-  text-align: center;
-}
-
-.hero h1 { font-size: 40px; line-height: 1.15; margin: 0 0 12px; }
-.lede { font-size: 18px; color: var(--muted); margin: 0 auto 24px; }
-.cta { margin: 0 0 12px; }
-
-.button {
-  display: inline-block;
-  margin: 4px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  background: var(--accent);
-  color: var(--page);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.button.ghost {
-  background: transparent;
-  color: var(--accent);
-  border: 1px solid var(--rule);
-}
-
-.small { font-size: 14px; color: var(--muted); }
-
-/* --- the two-column shell ------------------------------------------------ */
-
-.shell {
-  display: flex;
-  gap: 40px;
-  max-width: 1060px;
-  margin: 0 auto;
-  padding: 32px 24px 64px;
-}
-
-.side { flex: 0 0 208px; }
-
-.sidehead {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 8px;
-}
-
-.side ul { list-style: none; margin: 0; padding: 0; }
-.side li { margin: 0 0 2px; }
-
-.side a {
-  display: block;
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-size: 14px;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.side a:hover { background: var(--surface); text-decoration: none; }
-
-.side a[aria-current="page"] {
-  background: var(--surface);
-  color: var(--accent);
-  font-weight: 600;
-}
-
-main { flex: 1 1 auto; min-width: 0; }
-
-/* --- content ------------------------------------------------------------- */
-
-h1 { font-size: 30px; line-height: 1.2; margin: 0 0 20px; }
-h2 { font-size: 21px; margin: 36px 0 10px; }
-h3 { font-size: 17px; margin: 28px 0 8px; }
-
-p, ul, ol { margin: 0 0 14px; }
-li { margin: 0 0 6px; }
-
-code {
-  font-family: Consolas, "Courier New", monospace;
-  font-size: 0.9em;
-  background: var(--cap-bg);
-  color: var(--cap-ink);
-  padding: 1px 5px;
-  border-radius: 4px;
-}
-
-pre {
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  padding: 12px 14px;
-  overflow-x: auto;
-}
-
+/* Images are pictures of a window or of the panel: shown at their own size, never stretched past it. */
+img { max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px; }
+/* KeyPressOSD's own: the tour is a <video>, which needs the same two rules an image gets or it renders
+   at its intrinsic size and overflows the column on a phone. */
+video.shot { max-width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px;
+             display: block; margin: 0 0 1rem; }
+/* KeyPressOSD's own: a figure's caption is the italic paragraph the manual writes under it, and it
+   should read as a caption rather than as body text. */
+main p > em:only-child { color: var(--muted); font-size: .92rem; }
+code { background: var(--code-bg); padding: .15em .35em; border-radius: 4px; font-size: .9em;
+       font-family: ui-monospace, Consolas, monospace; }
+pre { background: var(--code-bg); padding: .9rem 1rem; border-radius: 6px; overflow-x: auto; }
 pre code { background: none; padding: 0; }
+blockquote { margin-left: 0; padding: .1rem 1rem; border-left: 3px solid var(--line); color: var(--quote); }
+/* Wide tables scroll inside themselves rather than making the page scroll sideways. */
+.table-wrap { overflow-x: auto; margin: 0 0 1rem; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { border: 1px solid var(--line); padding: .45rem .7rem; text-align: left; vertical-align: top; }
+th { background: var(--code-bg); }
+footer.stamp { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line);
+               color: var(--muted); font-size: .85rem; }
 
-blockquote {
-  margin: 0 0 14px;
-  padding: 2px 16px;
-  border-left: 3px solid var(--rule);
-  color: var(--muted);
-}
-
-/* Figures scroll rather than overflowing the page, and never render wider than their own pixels - every
-   one of them is a screenshot scaled DOWN already, and scaling it back up is how a crisp capture becomes
-   a blurry one. */
-img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  display: block;
-  margin: 0 0 6px;
-}
-
-.shot { margin-bottom: 24px; max-width: 100%; height: auto; }
-
-em { color: var(--muted); }
-img + p em { font-size: 14px; }
-
-table { border-collapse: collapse; width: 100%; margin: 0 0 14px; display: block; overflow-x: auto; }
-th, td { border: 1px solid var(--rule); padding: 6px 10px; text-align: left; }
-th { background: var(--surface); }
-
-hr { border: 0; border-top: 1px solid var(--rule); margin: 36px 0 16px; }
-
-.foot { font-size: 13px; color: var(--muted); }
-
-/* One breakpoint, and it moves the contents above the topic rather than hiding it behind a button. A
-   disclosure widget needs script and can be left shut; a list cannot. */
-@media (max-width: 760px) {
-  .shell { flex-direction: column; gap: 20px; padding-top: 20px; }
-  .side { flex: 1 1 auto; }
-  .side ul { display: flex; flex-wrap: wrap; gap: 4px; }
-  .hero { padding-top: 32px; }
-  .hero h1 { font-size: 32px; }
+@media (max-width: 60rem) {
+  body { grid-template-columns: 1fr; }
+  nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); }
+  main { padding: 1.75rem 1.25rem 3rem; }
 }
