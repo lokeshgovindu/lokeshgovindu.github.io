@@ -4,7 +4,7 @@
 
 # Importing from Clipjump
 
-**PasteJump can bring an existing Clipjump 12.x installation across: both its history archive and its clip stack.**
+**PasteJump can bring an existing [Clipjump](https://clipjump.sourceforge.net/) 12.x installation across: both its history archive and its clip stack.**
 
 On first run PasteJump looks for a Clipjump installation and offers to import. You can also start it later from **Settings, History, Import Clipjump History**, and browse to the folder if the guess is wrong.
 
