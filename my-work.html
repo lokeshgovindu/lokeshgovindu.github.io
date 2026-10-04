@@ -18,7 +18,7 @@ comments: true
                     Over the years I've channelled countless hours of curiosity and frustration into tools
                     that actually solve real problems. Every project here began as a personal itch — something
                     missing from my daily workflow — and grew into a polished, shareable solution.
-                    Browse the highlights below. Some are open source on GitHub; others, AltTab among them,
+                    Browse the highlights below. Some are open source on GitHub; others, the four Windows applications among them,
                     are free to download but keep their source private.
                 </p>
                 <div class="section-divider"></div>
@@ -48,6 +48,14 @@ comments: true
             </div>
         </div>
 
+        <!--
+            Each card shows a real screenshot rather than a mock, and facts a visitor can
+            check rather than GitHub's star and fork counts: all four repositories are private
+            (AltTab since 2026-08-23, the other three since 2026-09-08), so those counts are
+            visible to nobody but their owner and will never change again.
+        -->
+        <div class="d-flex flex-column gap-4">
+
         <!-- ── AltTab ── -->
         <a href="{{ '/my-work/alttab/' | relative_url }}" class="project-card project-card-featured">
             <div class="project-card-accent cpp"></div>
@@ -60,59 +68,171 @@ comments: true
                         <i class="fa fa-window-restore me-2" style="color: #3b82f6;"></i>AltTab
                     </h3>
                     <p class="project-description">
-                        A lightweight Windows application written in C++ and the Win32 API that reimagines
-                        window switching — fuzzy search filtering, per-application cycling, and right-click
-                        process management, all without leaving the keyboard.
+                        A lightweight replacement for the Windows task switcher, written in C++ and the
+                        Win32 API. Hold Alt, tap Tab, and type to filter every open window with fuzzy
+                        matching, then switch, close or terminate without leaving the keyboard.
                     </p>
                     <ul class="project-features">
-                        <li>Fuzzy search filtering across all open windows — no exact title needed</li>
-                        <li>Alt + ` shortcut to cycle windows of the same application</li>
-                        <li>Terminate or hide processes with keyboard shortcuts via context menu</li>
+                        <li>Fuzzy search filtering across all open windows, no exact title needed</li>
+                        <li>Alt + ` to cycle the windows of the same application</li>
+                        <li>Thirty-one built-in themes, and every hotkey can be re-recorded</li>
                     </ul>
                     <div class="project-tech-tags">
                         <span class="tech-tag"><i class="fa fa-code me-1"></i>C++</span>
                         <span class="tech-tag">Win32 API</span>
-                        <span class="tech-tag">Windows</span>
                         <span class="tech-tag">Fuzzy Search</span>
                     </div>
                     <div class="project-stats">
-                        <span><i class="fa fa-star"></i> 28 Stars</span>
-                        <span><i class="fa fa-code-fork"></i> 6 Forks</span>
-                        <span><i class="fa fa-download"></i> 7 Releases</span>
+                        <span><i class="fa fa-download"></i> Free download</span>
+                        <span><i class="fa fa-scale-balanced"></i> MIT licence</span>
                     </div>
                     <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
                 </div>
                 <div class="col-lg-5 project-card-sidebar">
-                    <div class="project-sidebar-inner">
-                        <div class="project-sidebar-graphic alttab-graphic">
-                            <div class="mock-switcher">
-                                <div class="mock-switcher-search">
-                                    <i class="fa fa-search me-2" style="opacity:0.5;"></i>
-                                    <span class="mock-typing">code_</span>
-                                </div>
-                                <div class="mock-switcher-item active">
-                                    <i class="fa fa-file-code me-2"></i> Visual Studio Code
-                                </div>
-                                <div class="mock-switcher-item">
-                                    <i class="fa fa-terminal me-2"></i> Windows Terminal
-                                </div>
-                                <div class="mock-switcher-item">
-                                    <i class="fa fa-globe me-2"></i> Chrome
-                                </div>
-                                <div class="mock-switcher-item">
-                                    <i class="fa fa-folder me-2"></i> File Explorer
-                                </div>
-                            </div>
-                            <div class="mock-kbd-row">
-                                <span class="mock-kbd">Alt</span>
-                                <span class="mock-kbd-plus">+</span>
-                                <span class="mock-kbd">Tab</span>
-                            </div>
-                        </div>
+                    <div class="project-sidebar-inner justify-content-center">
+                        <figure class="project-shot-figure mb-0">
+                            <img class="project-shot" src="{{ '/assets/images/my-work/alttab-switcher.png' | relative_url }}"
+                                 width="864" height="469" loading="lazy"
+                                 alt="The AltTab switcher filtering its window list as you type">
+                        </figure>
                     </div>
                 </div>
             </div>
         </a>
+
+        <!-- ── PasteJump ── -->
+        <a href="{{ '/my-work/pastejump/' | relative_url }}" class="project-card project-card-featured">
+            <div class="project-card-accent dotnet"></div>
+            <div class="row g-0">
+                <div class="col-lg-7 project-card-body">
+                    <span class="project-type-badge windows-app">
+                        <i class="fab fa-windows"></i> Windows Application
+                    </span>
+                    <h3 class="project-title">
+                        <i class="fa fa-paste me-2" style="color: #0f766e;"></i>PasteJump
+                    </h3>
+                    <p class="project-description">
+                        A jog wheel for your clipboard. Hold Ctrl, tap V to walk back through what you
+                        copied, and let go to paste it. The clip appears beside the caret, so your hand
+                        never leaves the keyboard and nothing steals focus.
+                    </p>
+                    <ul class="project-features">
+                        <li>The Clipjump gesture, reimplemented and extended</li>
+                        <li>A clip stack for pasting and a searchable history, kept apart</li>
+                        <li>Join several clips into a single paste</li>
+                    </ul>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                        <span class="tech-tag">.NET 10</span>
+                        <span class="tech-tag">WPF</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fa fa-download"></i> Free download</span>
+                        <span><i class="fa fa-scale-balanced"></i> Freeware</span>
+                    </div>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </div>
+                <div class="col-lg-5 project-card-sidebar">
+                    <div class="project-sidebar-inner justify-content-center">
+                        <figure class="project-shot-figure mb-0">
+                            <img class="project-shot" src="{{ '/PasteJump/help/images/overlay.png' | relative_url }}"
+                                 width="512" height="134" loading="lazy"
+                                 alt="The PasteJump overlay during the gesture, showing clip 3 of 41">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- ── PerchBar ── -->
+        <a href="{{ '/my-work/perchbar/' | relative_url }}" class="project-card project-card-featured">
+            <div class="project-card-accent cpp"></div>
+            <div class="row g-0">
+                <div class="col-lg-7 project-card-body">
+                    <span class="project-type-badge windows-app">
+                        <i class="fab fa-windows"></i> Windows Application
+                    </span>
+                    <h3 class="project-title">
+                        <i class="fa fa-layer-group me-2" style="color: #3b82f6;"></i>PerchBar
+                    </h3>
+                    <p class="project-description">
+                        One taskbar button for several apps, including the ones already running,
+                        however you started them. Pin a group, click it to switch to or launch any
+                        member, and anything you start some other way joins the group's button by itself.
+                    </p>
+                    <ul class="project-features">
+                        <li>Adopts windows that are already running, which launchers cannot do</li>
+                        <li>Instant, flicker-free, and it survives an Explorer restart</li>
+                        <li>One executable, with no installer and no service</li>
+                    </ul>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag"><i class="fa fa-code me-1"></i>C++20</span>
+                        <span class="tech-tag">Win32 API</span>
+                        <span class="tech-tag">Windows Shell</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fa fa-download"></i> Free download</span>
+                        <span><i class="fa fa-scale-balanced"></i> MIT licence</span>
+                    </div>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </div>
+                <div class="col-lg-5 project-card-sidebar">
+                    <div class="project-sidebar-inner justify-content-center">
+                        <figure class="project-shot-figure mb-0" style="max-width: 300px;">
+                            <img class="project-shot" src="{{ '/assets/images/my-work/perchbar-group-view.png' | relative_url }}"
+                                 width="322" height="172" loading="lazy"
+                                 alt="A PerchBar group's view, listing which members are open and which are not running">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!-- ── KeyPressOSD ── -->
+        <a href="{{ '/my-work/keypressosd/' | relative_url }}" class="project-card project-card-featured">
+            <div class="project-card-accent dotnet"></div>
+            <div class="row g-0">
+                <div class="col-lg-7 project-card-body">
+                    <span class="project-type-badge windows-app">
+                        <i class="fab fa-windows"></i> Windows Application
+                    </span>
+                    <h3 class="project-title">
+                        <i class="fa fa-keyboard me-2" style="color: #0f766e;"></i>KeyPressOSD
+                    </h3>
+                    <p class="project-description">
+                        An on-screen display for keys and mouse buttons, at a size you can read across
+                        a room. It is built for screencasts and presentations, and is correct on any
+                        keyboard layout.
+                    </p>
+                    <ul class="project-features">
+                        <li>Keystrokes mode names each chord; Typing mode shows the words on one line</li>
+                        <li>Repeats collapse into a count, such as <code>Alt+Tab x3</code></li>
+                        <li>Click-through, never takes focus, and writes nothing you type to disk</li>
+                    </ul>
+                    <div class="project-tech-tags">
+                        <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                        <span class="tech-tag">.NET 10</span>
+                        <span class="tech-tag">WPF</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fa fa-flask"></i> Beta</span>
+                        <span><i class="fa fa-scale-balanced"></i> MIT licence</span>
+                    </div>
+                    <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                </div>
+                <div class="col-lg-5 project-card-sidebar">
+                    <div class="project-sidebar-inner justify-content-center">
+                        <figure class="project-shot-figure mb-0">
+                            <img class="project-shot" src="{{ '/KeyPressOSD/images/osd-chord.png' | relative_url }}"
+                                 width="443" height="115" loading="lazy"
+                                 alt="Ctrl + Shift + P on the KeyPressOSD overlay">
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        </div>
 
     </div>
 </section>
@@ -338,8 +458,8 @@ comments: true
                     <p style="color:rgba(255,255,255,0.82); margin-bottom:0; line-height:1.75;">
                         These are just the highlights. My GitHub profile has the repositories that are
                         public, where you can browse the source, open issues, or contribute. AltTab,
-                        PasteJump and PerchBar are not among them: they are free downloads, but their
-                        source is private.
+                        PasteJump, PerchBar and KeyPressOSD are not among them: they are free downloads,
+                        but their source is private.
                     </p>
                 </div>
                 <div class="col-lg-4 text-lg-end">
