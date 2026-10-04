@@ -88,15 +88,41 @@
     }
   }
 
-  document.addEventListener("click", function (event) {
-    var image = event.target;
+  /* Which images open, and why it is not a list of container classes.
 
-    if (image.tagName !== "IMG" || !image.closest(".shot, .shots")) {
+     The first version asked for .shot or .shots, which are the help pages' wrappers - and so it missed
+     every image on the LANDING page, which uses .gallery, .split and figure.demo-gif and is the page
+     most people see first. Reported as exactly that. A longer list of classes would miss the next one.
+
+     So the test is the reason a reader wants this at all: the image is being DRAWN SMALLER THAN IT WAS
+     CAPTURED, and it is content rather than decoration. An image with no alt text is decoration by
+     definition - the hero mark is alt="" - and the 1px rule is there because a browser can report a
+     fractional width for an image at its natural size. */
+  function openable(image) {
+    if (image.tagName !== "IMG" || !image.alt) {
+      return false;
+    }
+
+    if (image.classList.contains("mark")) {
+      return false;
+    }
+
+    // A shot inside the manual always opens, even where the column happens to fit it: those are
+    // windows, and a reader who clicks one wants its pixels whatever the arithmetic says.
+    if (image.closest(".shot, .shots")) {
+      return true;
+    }
+
+    return image.naturalWidth > image.clientWidth + 1;
+  }
+
+  document.addEventListener("click", function (event) {
+    if (!openable(event.target)) {
       return;
     }
 
     event.preventDefault();
-    show(image);
+    show(event.target);
   });
 
   document.addEventListener("keydown", function (event) {
@@ -105,11 +131,22 @@
     }
   });
 
-  // Reachable without a mouse: every shot becomes focusable and answers Enter and Space.
-  document.addEventListener("DOMContentLoaded", function () {
-    var shots = document.querySelectorAll(".shot img, .shots img");
+  /* Reachable without a mouse: every openable shot becomes focusable and answers Enter and Space.
+
+     On "load", NOT "DOMContentLoaded": openable() asks for naturalWidth and clientWidth, and at
+     DOMContentLoaded the images have not been fetched or laid out, so both are 0 and nothing would be
+     marked. The click handler is unaffected either way, since it evaluates when the click happens. */
+  window.addEventListener("load", function () {
+    var shots = document.querySelectorAll("img");
 
     Array.prototype.forEach.call(shots, function (image) {
+      if (!openable(image)) {
+        return;
+      }
+
+      // zoom-in is set here rather than in the stylesheet, because whether an image is openable
+      // depends on how big it ended up being drawn, which CSS cannot ask about.
+      image.style.cursor = "zoom-in";
       image.tabIndex = 0;
 
       if (!image.title) {

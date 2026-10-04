@@ -421,7 +421,7 @@ footer {
 
   <figure>
     <div class="plate">
-      <img src="images/arch-layers.svg" alt="PasteJump project dependencies: App depends on Interop, Import and Core; Interop and Import depend on Core; Core depends on nothing, and the boundary is crossed only by IClipboardAccess, IPasteSender, IForegroundWindowInfo and IClock.">
+      <img src="images/arch-layers.svg?v=32ef8f53" alt="PasteJump project dependencies: App depends on Interop, Import and Core; Interop and Import depend on Core; Core depends on nothing, and the boundary is crossed only by IClipboardAccess, IPasteSender, IForegroundWindowInfo and IClock.">
     </div>
     <figcaption><b>Dependencies point down, never up.</b> Interop implements what Core declares, so the
     same state machine runs against a real clipboard in the app and a scripted one in tests. Build output
@@ -975,7 +975,7 @@ erDiagram
 
   <figure>
     <div class="plate">
-      <img src="images/arch-threads.svg" alt="The hook thread translates the key, runs the recognizer and controller, queues its side effects and returns inside the LowLevelHooksTimeout budget; the UI thread then shows the overlay, writes the clipboard, waits the settle delay and calls SendInput.">
+      <img src="images/arch-threads.svg?v=dd6e2406" alt="The hook thread translates the key, runs the recognizer and controller, queues its side effects and returns inside the LowLevelHooksTimeout budget; the UI thread then shows the overlay, writes the clipboard, waits the settle delay and calls SendInput.">
     </div>
     <figcaption><b>The hook decides; the Dispatcher does.</b> A watchdog on a 250&nbsp;ms timer covers the
     case where Windows drops the hook anyway &mdash; and it cannot ask <code>IsInstalled</code>, because a

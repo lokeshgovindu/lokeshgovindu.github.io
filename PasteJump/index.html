@@ -258,7 +258,7 @@ footer a { color: var(--muted); text-decoration: underline; }
 <body>
 <nav class="site-toc">
   <a class="brand" href="index.html">
-    <img src="pastejump-256.png" alt="" width="32" height="32">
+    <img src="pastejump-256.png?v=58065af9" alt="" width="32" height="32">
     <b>PasteJump<span>Clipboard manager</span></b>
   </a>
   <ol>
@@ -289,7 +289,7 @@ footer a { color: var(--muted); text-decoration: underline; }
 <header>
     <div class="wrap">
         <div class="hero-title">
-            <img class="mark" src="pastejump-256.png" alt="">
+            <img class="mark" src="pastejump-256.png?v=58065af9" alt="">
             <h1>PasteJump</h1>
         </div>
         <p class="tagline">A jog wheel for your clipboard.</p>
@@ -338,7 +338,7 @@ footer a { color: var(--muted); text-decoration: underline; }
             mark and the name, which directly below the hero made the page look as if it had repeated itself.
         -->
         <figure class="demo-gif">
-            <img src="tour.gif" alt="The overlay stepping back through clips while Ctrl is held, then pasting on release">
+            <img src="tour.gif?v=b18bf077" alt="The overlay stepping back through clips while Ctrl is held, then pasting on release">
             <figcaption>Hold <kbd>Ctrl</kbd>, tap <kbd>V</kbd> to walk back, release to paste. The overlay is
             there so you <em>can</em> look, not because you must.</figcaption>
         </figure>
@@ -367,8 +367,8 @@ footer a { color: var(--muted); text-decoration: underline; }
             settings. Generated from the program itself rather than recorded, so what you see is what it does.
         </p>
         <figure class="demo-video">
-            <video controls preload="metadata" poster="help/images/history-window.png" width="960">
-                <source src="PasteJump-tour.mp4" type="video/mp4">
+            <video controls preload="metadata" poster="help/images/history-window.png?v=adb2f832" width="960">
+                <source src="PasteJump-tour.mp4?v=5cbe8793" type="video/mp4">
                 <p>Your browser cannot play this video.
                    <a href="PasteJump-tour.mp4">Download it instead</a> (1.1 MB, MP4).</p>
             </video>
@@ -446,7 +446,7 @@ footer a { color: var(--muted); text-decoration: underline; }
 <section>
     <div class="wrap split">
         <figure>
-            <img src="help/images/history-window.png" alt="The history window, showing the searchable archive with a preview pane">
+            <img src="help/images/history-window.png?v=adb2f832" alt="The history window, showing the searchable archive with a preview pane">
             <figcaption>The archive: search, preview, copy back, remove duplicates.</figcaption>
         </figure>
         <div>
@@ -473,19 +473,19 @@ footer a { color: var(--muted); text-decoration: underline; }
 
         <div class="gallery">
             <figure>
-                <img src="help/images/theme-catppuccin-mocha.png" alt="PasteJump under the Catppuccin Mocha theme">
+                <img src="help/images/theme-catppuccin-mocha.png?v=64e33c20" alt="PasteJump under the Catppuccin Mocha theme">
                 <figcaption>Catppuccin Mocha</figcaption>
             </figure>
             <figure>
-                <img src="help/images/theme-monokai.png" alt="PasteJump under the Monokai theme">
+                <img src="help/images/theme-monokai.png?v=d094bff9" alt="PasteJump under the Monokai theme">
                 <figcaption>Monokai</figcaption>
             </figure>
             <figure>
-                <img src="help/images/theme-sepia.png" alt="PasteJump under the Sepia theme">
+                <img src="help/images/theme-sepia.png?v=edf84ea0" alt="PasteJump under the Sepia theme">
                 <figcaption>Sepia</figcaption>
             </figure>
             <figure>
-                <img src="help/images/theme-github-light.png" alt="PasteJump under the GitHub Light theme">
+                <img src="help/images/theme-github-light.png?v=e30e85ca" alt="PasteJump under the GitHub Light theme">
                 <figcaption>GitHub Light</figcaption>
             </figure>
         </div>
@@ -566,6 +566,26 @@ footer a { color: var(--muted); text-decoration: underline; }
             <p class="lede" style="margin-top: 20px;">
                 <a href="help/overview.html">The manual</a> covers the data locations, the paste modes and how to coexist with
                 another clipboard manager.
+            </p>
+        </div>
+        <div>
+            <h2>How it differs</h2>
+            <p class="lede">
+                Windows has kept a clipboard history since 2018, and <b>Ditto</b> and <b>CopyQ</b> are both
+                excellent, open source, and do things this does not &mdash; Ditto syncs several machines over
+                the network, CopyQ has tabs and a scripting language. If any of those suits you, use it.
+            </p>
+            <p class="lede">
+                What they share is the answer to &ldquo;paste something older&rdquo;: a window. You leave what
+                you were typing, look at a list, pick, and come back. <b>PasteJump answers it with the chord
+                your hand is already on</b> &mdash; and the only other program that worked this way was
+                <a href="https://clipjump.sourceforge.net/">Clipjump</a>, whose last release was April 2016.
+            </p>
+            <p class="lede">
+                Two differences that show up in a day's use: every clipboard format a copy carried is stored
+                and replayed, so a spreadsheet range pastes back as cells rather than as text; and the
+                overlay never takes focus, so searching your history does not move the caret you were typing
+                at. Windows' own history keeps 25 items and text, HTML or bitmaps only.
             </p>
         </div>
         <div>
