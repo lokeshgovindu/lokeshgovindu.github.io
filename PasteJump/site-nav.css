@@ -68,3 +68,35 @@ nav.site-toc a[aria-current="page"] { background: #2f6feb; color: #fff; font-wei
   }
   main { padding: 1.25rem 1.25rem 3rem; }
 }
+
+/* Shots at full size on click.
+
+   The screenshots are 1260px wide and the column is 1000px, and the theme gallery puts two of them
+   side by side at about 440px - so a window shot is downscaled to a third of its size and its text
+   becomes mush. Reported as "not much clear... and not able to open as well". The page cannot be
+   widened to 1260px without ruining the measure for reading, so the answer is to let a reader open
+   one at 1:1 instead. SITE ONLY: none of this reaches docs/help, so the .chm is untouched. */
+.shot img, .shots img { cursor: zoom-in; }
+
+#shotbox {
+  position: fixed; inset: 0; z-index: 50; display: none;
+  background: rgba(13, 17, 23, .88);
+  overflow: auto; padding: 2rem; text-align: center;
+}
+#shotbox.open { display: block; }
+#shotbox img {
+  /* No max-width: the whole point is the pixels as captured. The container scrolls when the image
+     is larger than the window, which is what a 1260px shot needs on a small screen. */
+  max-width: none; background: #fff;
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, .5);
+}
+#shotbox figcaption {
+  color: #e6edf3; font-size: .95rem; margin: .9rem auto 0; max-width: 60rem;
+}
+#shotbox .hint { color: #8b949e; font-size: .85rem; margin-top: .35rem; }
+#shotbox button {
+  position: fixed; top: .75rem; right: 1rem;
+  background: #21262d; color: #e6edf3; border: 1px solid #484f58;
+  border-radius: .35rem; padding: .35rem .7rem; font: inherit; cursor: pointer;
+}
+body.shotbox-open { overflow: hidden; }
