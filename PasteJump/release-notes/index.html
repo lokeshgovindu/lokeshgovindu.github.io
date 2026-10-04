@@ -1,0 +1,147 @@
+---
+layout: default
+title: What's new in PasteJump
+nav: my-work
+ph_label: PasteJump &middot; Release notes
+heading: What's new
+ph_sub: Every PasteJump release, newest first. What changed, what was fixed, and which download to take.
+description: Release notes for every version of PasteJump, the keyboard-first clipboard manager for Windows, newest first.
+---
+{%- comment -%}
+    OWNED BY THIS REPOSITORY, not synced: script/sync-app-docs.ps1 lists it under Preserve, so a sync
+    neither overwrites nor deletes it. Everything else in this folder is the application repository's
+    docs/release-notes/<tag>.md, which _config.yml gives the pastejump-release layout.
+
+    "What's new" on PasteJump's own website links here, which is why this page exists: until
+    2026-10-04 that link opened the folder's README, the pipeline's note on how it reads these files.
+
+    Order is by version, built as a sort key per file because a plain sort of the names puts 2026.3.1
+    before 2026.3 ("1" sorts before "m" of ".md"). Each part of the version is padded to four digits,
+    and a final release sorts after its own pre-releases: 2026.1-pre6 < 2026.1 < 2026.3 < 2026.3.1.
+    The notes are read with include_relative, so they are rendered from the file itself rather than
+    from another page's content, whose state depends on the order Jekyll happens to render pages in.
+{%- endcomment -%}
+{%- assign keys = "" | split: "" -%}
+{%- for p in site.pages -%}
+  {%- if p.dir == page.dir and p.ext == ".md" and p.name != "README.md" -%}
+    {%- assign v = p.name | remove: ".md" -%}
+    {%- assign split = v | split: "-pre" -%}
+    {%- assign nums = split[0] | split: "." -%}
+    {%- assign key = "" -%}
+    {%- for i in (0..2) -%}
+      {%- assign n = nums[i] | default: "0" | prepend: "0000" | slice: -4, 4 -%}
+      {%- assign key = key | append: n | append: "." -%}
+    {%- endfor -%}
+    {%- if split.size > 1 -%}
+      {%- assign pre = split[1] | prepend: "0000" | slice: -4, 4 -%}
+      {%- assign key = key | append: "0-" | append: pre -%}
+    {%- else -%}
+      {%- assign key = key | append: "1-0000" -%}
+    {%- endif -%}
+    {%- assign key = key | append: "|" | append: p.name -%}
+    {%- assign keys = keys | push: key -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign keys = keys | sort | reverse -%}
+
+{%- assign stable = "" | split: "" -%}
+{%- assign previews = "" | split: "" -%}
+{%- for k in keys -%}
+  {%- assign name = k | split: "|" | last -%}
+  {%- if name contains "-pre" -%}{%- assign previews = previews | push: name -%}{%- else -%}{%- assign stable = stable | push: name -%}{%- endif -%}
+{%- endfor -%}
+
+<section class="release-section">
+    <div class="container">
+        <a href="{{ '/my-work/pastejump/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>About PasteJump</a>
+
+        <div class="release-layout">
+            <nav class="release-toc" aria-label="Releases">
+                <div class="release-toc-title">Releases</div>
+                <ol>
+                    {%- for name in stable %}
+                    {%- assign v = name | remove: ".md" %}
+                    <li><a href="#v{{ v }}">{{ v }}</a>{% if forloop.first %} <span class="release-badge release-badge-latest">Latest</span>{% endif %}</li>
+                    {%- endfor %}
+                </ol>
+                {%- if previews.size > 0 %}
+                <div class="release-toc-title mt-3">Pre-releases</div>
+                <ol>
+                    {%- for name in previews %}
+                    {%- assign v = name | remove: ".md" %}
+                    <li><a href="#v{{ v }}">{{ v }}</a></li>
+                    {%- endfor %}
+                </ol>
+                {%- endif %}
+                <div class="release-toc-links">
+                    <a class="btn-github" href="https://sourceforge.net/projects/pastejump/files/latest/download" target="_blank" rel="noopener noreferrer"><i class="fa fa-download"></i> Download the latest</a>
+                    <a class="btn-project-site" href="https://pastejump.sourceforge.io/" target="_blank" rel="noopener noreferrer"><i class="fa fa-external-link-alt"></i> Website</a>
+                </div>
+            </nav>
+
+            <div class="release-list">
+                {%- for name in stable %}
+                {%- assign v = name | remove: ".md" %}
+                {%- capture notes %}{% include_relative {{ name }} %}{% endcapture %}
+                <article class="release-card" id="v{{ v }}" data-version="{{ v }}">
+                    <details{% if forloop.first %} open{% endif %}>
+                        <summary class="release-card-header">
+                            <h2 class="release-card-title">PasteJump {{ v }}</h2>
+                            {%- if forloop.first %}<span class="release-badge release-badge-latest">Latest</span>{% endif %}
+                            <span class="release-date" hidden></span>
+                            <i class="fa fa-chevron-down release-chevron" aria-hidden="true"></i>
+                        </summary>
+                        <div class="blog-post-content release-content">
+                            {{ notes | markdownify }}
+                        </div>
+                        <footer class="release-card-footer">
+                            <a class="btn-github release-download" href="https://sourceforge.net/projects/pastejump/files/" target="_blank" rel="noopener noreferrer"><i class="fa fa-download"></i> Download PasteJump</a>
+                            <a class="btn-project-site" href="{{ '/PasteJump/release-notes/' | append: v | append: '/' | relative_url }}"><i class="fa fa-link"></i> Page for {{ v }}</a>
+                        </footer>
+                    </details>
+                </article>
+                {%- endfor %}
+
+                {%- if previews.size > 0 %}
+                <h2 class="release-group-title" id="pre-releases">Pre-releases</h2>
+                <p class="release-group-sub">The builds before the first stable release, kept for the record. They are no longer offered for download.</p>
+                {%- for name in previews %}
+                {%- assign v = name | remove: ".md" %}
+                {%- capture notes %}{% include_relative {{ name }} %}{% endcapture %}
+                <article class="release-card release-card-pre" id="v{{ v }}" data-version="{{ v }}">
+                    <details>
+                        <summary class="release-card-header">
+                            <h2 class="release-card-title">PasteJump {{ v }}</h2>
+                            <span class="release-badge release-badge-pre">Pre-release</span>
+                            <i class="fa fa-chevron-down release-chevron" aria-hidden="true"></i>
+                        </summary>
+                        <div class="blog-post-content release-content">
+                            {{ notes | markdownify }}
+                        </div>
+                        <footer class="release-card-footer">
+                            <a class="btn-project-site" href="{{ '/PasteJump/release-notes/' | append: v | append: '/' | relative_url }}"><i class="fa fa-link"></i> Page for {{ v }}</a>
+                        </footer>
+                    </details>
+                </article>
+                {%- endfor %}
+                {%- endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+/* A link to #v2026.3 should open that release, not land on its folded-up heading. */
+(function () {
+    function openTarget() {
+        if (!location.hash) return;
+        var el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        var d = el && el.querySelector('details');
+        if (d) { d.open = true; el.scrollIntoView(); }
+    }
+    window.addEventListener('hashchange', openTarget);
+    openTarget();
+})();
+</script>
+
+{% include pastejump-release-dates.html %}

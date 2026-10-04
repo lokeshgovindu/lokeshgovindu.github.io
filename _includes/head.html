@@ -1,5 +1,14 @@
 {%- assign page_title = page.title | default: site.title -%}
-{%- if page.title and page.url != "/" -%}
+{%- comment -%}
+    PasteJump's release notes are synced Markdown with no front matter, so their title and description
+    come from the file name and the notes themselves: 2026.3.1.md is "PasteJump 2026.3.1 release notes".
+{%- endcomment -%}
+{%- if page.layout == "pastejump-release" and page.title == nil -%}
+  {%- assign release_version = page.name | remove: ".md" -%}
+  {%- assign page_title = "PasteJump " | append: release_version | append: " release notes | Dev Tips & Tricks" -%}
+  {%- assign release_desc = page.content | strip_html | strip_newlines | truncatewords: 30 -%}
+  {%- assign page_desc_override = "PasteJump " | append: release_version | append: ": " | append: release_desc -%}
+{%- elsif page.title and page.url != "/" -%}
   {%- assign page_title = page.title | append: " | Dev Tips & Tricks" -%}
 {%- else -%}
   {%- assign page_title = "Dev Tips & Tricks | Lokesh Govindu" -%}
@@ -14,7 +23,7 @@
         document.documentElement.setAttribute('data-theme', theme);
     })();
     </script>
-    {%- assign page_desc = page.description | default: page.ph_sub | default: page.excerpt | default: site.description -%}
+    {%- assign page_desc = page.description | default: page_desc_override | default: page.ph_sub | default: page.excerpt | default: site.description -%}
     {%- assign is_post = false -%}
     {%- if page.layout == "post" -%}
       {%- assign is_post = true -%}

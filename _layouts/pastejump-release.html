@@ -1,0 +1,43 @@
+---
+layout: default
+---
+{%- comment -%}
+    One PasteJump release's notes. The notes are Markdown synced from the application repository
+    (docs/release-notes/<tag>.md) with no front matter, so everything here is derived from the file
+    name: 2026.3.1.md is the notes for the tag 2026.3.1. The version, the title in <head> and the
+    description all come from the same place - see _includes/head.html.
+{%- endcomment -%}
+{%- assign version = page.name | remove: ".md" -%}
+{%- assign prerelease = false -%}
+{%- if version contains "-pre" -%}{%- assign prerelease = true -%}{%- endif -%}
+<div class="page-header">
+    <div class="container">
+        <div class="ph-label">PasteJump &middot; Release notes</div>
+        <h1>PasteJump {{ version }}</h1>
+        <p>{% if prerelease %}A pre-release, for trying rather than relying on.{% else %}What changed in this release, and which download to take.{% endif %}</p>
+    </div>
+</div>
+
+<section class="release-section">
+    <div class="container">
+        <a href="{{ '/PasteJump/release-notes/' | relative_url }}" class="back-link mb-4 d-inline-block"><i class="fa fa-arrow-left me-2"></i>All release notes</a>
+
+        <article class="release-card" id="v{{ version }}" data-version="{{ version }}">
+            <header class="release-card-header">
+                <h2 class="release-card-title">PasteJump {{ version }}</h2>
+                {%- if prerelease %}<span class="release-badge release-badge-pre">Pre-release</span>{% endif %}
+                <span class="release-date" hidden></span>
+            </header>
+            <div class="blog-post-content release-content">
+                {{ content }}
+            </div>
+            <footer class="release-card-footer">
+                <a class="btn-github release-download" href="https://sourceforge.net/projects/pastejump/files/" target="_blank" rel="noopener noreferrer"><i class="fa fa-download"></i> Download PasteJump</a>
+                <a class="btn-project-site" href="https://pastejump.sourceforge.io/" target="_blank" rel="noopener noreferrer"><i class="fa fa-external-link-alt"></i> Website</a>
+                <a class="btn-project-site" href="https://pastejump.sourceforge.io/help/overview.html" target="_blank" rel="noopener noreferrer"><i class="fa fa-book"></i> Documentation</a>
+            </footer>
+        </article>
+    </div>
+</section>
+
+{% include pastejump-release-dates.html %}

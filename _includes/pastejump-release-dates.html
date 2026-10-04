@@ -1,0 +1,42 @@
+<script>
+/*
+    Dates and per-release downloads for PasteJump's release notes, from the update manifest beside them
+    (/PasteJump/version.json, written by script/write-version-manifest.ps1). The notes files carry
+    neither, and the manifest is the one place both are recorded - so it is read here rather than copied
+    into a second list that could drift.
+
+    Only releases mirrored to SourceForge are in the manifest, and only they have a folder there to
+    download from. Older ones keep the general Download link, and show no date rather than a guessed one.
+    Without JavaScript nothing changes: the page reads the same, minus the dates.
+*/
+(function () {
+    var cards = document.querySelectorAll('[data-version]');
+    if (!cards.length || !window.fetch) return;
+
+    fetch('{{ "/PasteJump/version.json" | relative_url }}', { cache: 'no-cache' })
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (releases) {
+            var byTag = {};
+            (releases || []).forEach(function (rel) { byTag[rel.tag_name] = rel; });
+
+            cards.forEach(function (card) {
+                var rel = byTag[card.getAttribute('data-version')];
+                if (!rel) return;
+
+                var when = new Date(rel.published_at);
+                var date = card.querySelector('.release-date');
+                if (date && !isNaN(when)) {
+                    date.textContent = 'Released ' + when.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                    date.hidden = false;
+                }
+
+                var link = card.querySelector('.release-download');
+                if (link) {
+                    link.href = 'https://sourceforge.net/projects/pastejump/files/' + encodeURIComponent(rel.tag_name) + '/';
+                    link.lastChild.textContent = ' Download ' + rel.tag_name;
+                }
+            });
+        })
+        .catch(function () { /* the page is complete without dates */ });
+})();
+</script>

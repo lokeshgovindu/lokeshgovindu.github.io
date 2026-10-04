@@ -2533,3 +2533,223 @@ section:target {
         font-size: 0.8rem;
     }
 }
+
+/* ================================================================
+   PasteJump release notes - /PasteJump/release-notes/
+   The notes are Markdown synced from the application repository, so
+   everything here styles what kramdown produces: tables, <kbd>, code.
+   ================================================================ */
+
+.release-section {
+    padding: 3rem 0 var(--section-py);
+}
+
+.release-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+}
+
+.release-toc {
+    position: sticky;
+    top: 90px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.1rem 1.1rem 1.25rem;
+}
+
+.release-toc-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-text);
+    margin-bottom: 0.5rem;
+}
+
+.release-toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.release-toc li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 0;
+}
+
+.release-toc li a {
+    color: var(--dark-text);
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+}
+
+.release-toc li a:hover { color: var(--primary); }
+
+.release-toc-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 1.1rem;
+}
+
+.release-toc-links a { justify-content: center; }
+
+.release-list { min-width: 0; }
+
+.release-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+    scroll-margin-top: 90px;
+}
+
+.release-card > details > summary,
+.release-card > .release-card-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 1.1rem 1.5rem;
+    list-style: none;
+}
+
+.release-card > details > summary { cursor: pointer; }
+.release-card > details > summary::-webkit-details-marker { display: none; }
+.release-card > details > summary:hover .release-card-title { color: var(--primary); }
+
+.release-card > details[open] > summary,
+.release-card > .release-card-header {
+    border-bottom: 1px solid var(--border);
+}
+
+.release-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin: 0;
+    transition: color 0.15s;
+}
+
+.release-date {
+    color: var(--muted-text);
+    font-size: 0.85rem;
+}
+
+.release-chevron {
+    margin-left: auto;
+    color: var(--muted-text);
+    transition: transform 0.2s;
+}
+
+details[open] > summary .release-chevron { transform: rotate(180deg); }
+
+.release-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 2px 9px;
+    border-radius: 50px;
+}
+
+.release-badge-latest { background: #dcfce7; color: #15803d; }
+.release-badge-pre    { background: #fef3c7; color: #b45309; }
+
+:root[data-theme="dark"] .release-badge-latest { background: rgba(34, 197, 94, 0.16); color: #86efac; }
+:root[data-theme="dark"] .release-badge-pre    { background: rgba(245, 158, 11, 0.16); color: #fcd34d; }
+
+.release-content {
+    padding: 1.4rem 1.5rem 0.25rem;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.release-content > :first-child { margin-top: 0; }
+.release-content h2 { font-size: 1.25rem; margin: 1.75rem 0 0.75rem; }
+.release-content h3 { font-size: 1.08rem; margin: 1.5rem 0 0.6rem; }
+
+.release-card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0.5rem 1.5rem 1.4rem;
+}
+
+.release-group-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin: 2.25rem 0 0.25rem;
+}
+
+.release-group-sub {
+    color: var(--muted-text);
+    font-size: 0.92rem;
+    margin-bottom: 1rem;
+}
+
+.release-card-pre .release-card-title { font-size: 1.05rem; }
+
+/* Tables and keys, which posts never had but release notes are full of. */
+.blog-post-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1.5rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    display: block;
+    overflow-x: auto;
+}
+
+.blog-post-content th,
+.blog-post-content td {
+    border: 1px solid var(--border);
+    padding: 0.6rem 0.8rem;
+    vertical-align: top;
+    text-align: left;
+}
+
+.blog-post-content th {
+    background: var(--tint-bg);
+    color: var(--dark-text);
+    font-weight: 700;
+}
+
+.blog-post-content td code { white-space: nowrap; }
+
+.blog-post-content kbd {
+    display: inline-block;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.82em;
+    line-height: 1.3;
+    padding: 1px 6px;
+    color: var(--dark-text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-bottom-width: 2px;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+@media (max-width: 991.98px) {
+    .release-layout { grid-template-columns: minmax(0, 1fr); }
+    .release-toc { position: static; }
+    .release-toc ol { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+    .release-toc-links { flex-direction: row; flex-wrap: wrap; }
+}
+
+@media (max-width: 575.98px) {
+    .release-card > details > summary,
+    .release-card > .release-card-header,
+    .release-content,
+    .release-card-footer { padding-left: 1rem; padding-right: 1rem; }
+}

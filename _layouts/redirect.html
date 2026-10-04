@@ -1,0 +1,30 @@
+{%- comment -%}
+    A page that only sends the reader on. Used for copies that should not be served as pages of their
+    own but whose addresses are already published: see the defaults in _config.yml.
+
+    redirect_target  where to send the reader, as a site path.
+    redirect_help    instead, derive it from a PasteJump manual page's name: manual/X.md is a copy of
+                     help/X.html, and manual/README.md is the manual's front page, help/overview.html.
+{%- endcomment -%}
+{%- if page.redirect_help -%}
+  {%- assign topic = page.name | remove: ".md" -%}
+  {%- if topic == "README" or topic == "index" -%}{%- assign topic = "overview" -%}{%- endif -%}
+  {%- assign target = "/PasteJump/help/" | append: topic | append: ".html" -%}
+{%- else -%}
+  {%- assign target = page.redirect_target -%}
+{%- endif -%}
+{%- assign target = target | relative_url -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moved</title>
+    <link rel="canonical" href="{{ target | absolute_url }}">
+    <meta name="robots" content="noindex">
+    <meta http-equiv="refresh" content="0; url={{ target }}">
+    <script>location.replace({{ target | jsonify }} + location.hash);</script>
+</head>
+<body>
+    <p>This page has moved to <a href="{{ target }}">{{ target | absolute_url }}</a>.</p>
+</body>
+</html>

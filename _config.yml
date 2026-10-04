@@ -15,11 +15,18 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 
+# GitHub Pages turns EVERY Markdown file into a page, front matter or not (jekyll-optional-front-matter),
+# which is how /CLAUDE/ came to be a public page until 2026-10-04. Anything here is neither built nor
+# copied to the site.
 exclude:
   - README.md
+  - CLAUDE.md
   - Gemfile
   - Gemfile.lock
   - vendor
+  - script
+  - start-website.bat
+  - PasteJump/launch
 
 # Every page uses the shared layout by default
 defaults:
@@ -33,3 +40,27 @@ defaults:
       layout: post
       permalink: /blog/:title/
       nav: blog
+  # PasteJump's release notes are Markdown synced from its repository, with no front matter of their
+  # own. This gives them a page that looks like the rest of the site; index.html in that folder lists
+  # them all.
+  - scope:
+      path: "PasteJump/release-notes"
+    values:
+      layout: pastejump-release
+      nav: my-work
+  # The Markdown manual and architecture.md are copies made for GitHub to render, and every page of
+  # them duplicates an HTML page beside them. They are not deleted, because published release notes
+  # link /PasteJump/manual/ and /PasteJump/manual/troubleshooting/; each one now redirects to the page
+  # it copies, and stays out of the sitemap.
+  - scope:
+      path: "PasteJump/manual"
+    values:
+      layout: redirect
+      redirect_help: true
+      sitemap: false
+  - scope:
+      path: "PasteJump/architecture.md"
+    values:
+      layout: redirect
+      redirect_target: /PasteJump/architecture.html
+      sitemap: false

@@ -30,7 +30,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PasteJump — a jog wheel for your clipboard</title>
 <meta name="description" content="A keyboard-driven multiple-clipboard manager for Windows. Hold Ctrl, tap V to walk back through everything you have copied, release to paste. Free, portable, no registration.">
-<link rel="icon" href="pastejump-256.png" type="image/png">
+<link rel="icon" href="pastejump.ico" sizes="16x16 32x32 48x48">
 
 <meta property="og:title" content="PasteJump">
 <meta property="og:description" content="Hold Ctrl, tap V to walk back through everything you have copied, release to paste. No window, no mouse.">
@@ -252,8 +252,38 @@ footer a { color: var(--muted); text-decoration: underline; }
     section { padding: 48px 0; }
 }
 </style>
+<link rel="stylesheet" type="text/css" href="site-nav.css">
 </head>
 <body>
+<nav class="site-toc">
+  <a class="brand" href="index.html">
+    <img src="pastejump-256.png" alt="" width="32" height="32">
+    <b>PasteJump<span>Clipboard manager</span></b>
+  </a>
+  <ol>
+      <li><a href="help/overview.html">PasteJump</a></li>
+      <li><a href="help/getting-started.html">Getting started</a></li>
+      <li><a href="help/gesture.html">The gesture</a></li>
+      <li><a href="help/stores.html">Clips and history</a></li>
+      <li><a href="help/history-window.html">The history window</a></li>
+      <li><a href="help/themes.html">Themes</a></li>
+      <li><a href="help/settings.html">Settings</a></li>
+      <li><a href="help/tray-icon.html">The tray icon</a></li>
+      <li><a href="help/settings-reference.html">Settings reference</a></li>
+      <li><a href="help/importing.html">Importing from Clipjump</a></li>
+      <li><a href="help/coexisting.html">Another clipboard manager</a></li>
+      <li><a href="help/troubleshooting.html">Troubleshooting</a></li>
+      <li><a href="help/limitations.html">Limits and omissions</a></li>
+  </ol>
+  <div class="away">
+    <a href="about.html">About &amp; contact</a>
+    <a href="https://sourceforge.net/projects/pastejump/files/latest/download" target="_blank" rel="noopener">Download the latest release</a>
+    <a href="https://sourceforge.net/projects/pastejump/files/" target="_blank" rel="noopener">All files and checksums</a>
+    <a href="https://sourceforge.net/projects/pastejump/" target="_blank" rel="noopener">The project on SourceForge</a>
+    <a href="https://sourceforge.net/p/pastejump/tickets/" target="_blank" rel="noopener">Report a problem</a>
+  </div>
+</nav>
+<main class="landing">
 
 <header>
     <div class="wrap">
@@ -277,7 +307,7 @@ footer a { color: var(--muted); text-decoration: underline; }
         <div class="buttons">
             <a class="button primary" href="https://sourceforge.net/projects/pastejump/files/">Download</a>
             <a class="button ghost" href="help/overview.html">Read the manual</a>
-            <a class="button ghost" href="release-notes/">What's new</a>
+            <a class="button ghost" href="https://lokeshgovindu.github.io/PasteJump/release-notes/">What's new</a>
         </div>
 
         <p class="subtle">Windows 10 / 11, 64-bit &middot; free, no registration &middot; portable, nothing to install</p>
@@ -533,7 +563,7 @@ footer a { color: var(--muted); text-decoration: underline; }
                 was released.
             </p>
             <p class="lede" style="margin-top: 20px;">
-                <a href="manual/">The manual</a> covers the data locations, the paste modes and how to coexist with
+                <a href="help/overview.html">The manual</a> covers the data locations, the paste modes and how to coexist with
                 another clipboard manager.
             </p>
         </div>
@@ -574,5 +604,6 @@ footer a { color: var(--muted); text-decoration: underline; }
     </div>
 </footer>
 
+</main>
 </body>
 </html>

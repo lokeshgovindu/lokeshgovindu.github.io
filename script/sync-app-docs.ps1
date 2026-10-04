@@ -80,10 +80,31 @@ if (-not $SourceRoot) {
 # an exclude list because changing it means enumerating every page of two sites and getting that
 # wrong is a site with holes in it - but a new working note under docs/ must be added here.
 $Applications = @{
+    # PasteJump's website is STAGED by tools/build-site.py into artifacts/site: docs/help is the source
+    # of the .chm, so the navigation sidebar is added to a copy, never to docs/. Mirroring docs/ itself,
+    # as this did until 2026-10-04, served the manual here with no sidebar at all while
+    # pastejump.sourceforge.io had one. The staged site leaves out the release notes and the Markdown
+    # manual (a plain web host cannot render them), and this site renders both, so they come from
+    # docs/ directly.
     PasteJump   = @{
-        Source  = 'docs'
+        Source    = 'artifacts/site'
+        BuiltFrom = @('docs/help', 'docs/images', 'docs/index.html', 'docs/architecture.html', 'tools/build-site.py')
+        Generator = 'py tools/build-site.py, in the PasteJump repository'
+        Also      = @(
+            @{ From = 'docs/release-notes'; To = 'release-notes' },
+            @{ From = 'docs/manual'; To = 'manual' },
+            @{ From = 'docs/architecture.md'; To = 'architecture.md' },
+            @{ From = 'docs/download-stats.csv'; To = 'download-stats.csv' }
+        )
+        # release-notes/README.md is the repository's note on how the release pipeline reads that
+        # folder. GitHub Pages renders a folder's README as its index, so it was what "What's new"
+        # opened, on the application's own website and here, until 2026-10-04.
         Exclude = @('sourceforge-files-readme.md', 'sourceforge-page.md', 'video-script.md',
-                    'launch/README.md')
+                    'launch/README.md', 'release-notes/README.md')
+        # Pages this repository owns inside the application's folder: the release-notes index is a
+        # Jekyll page that renders every notes file, newest first, and the application repository
+        # has no such page to mirror.
+        Preserve = @('release-notes/index.html')
     }
     KeyPressOSD = @{
         Source  = 'docs/site'
@@ -134,11 +155,45 @@ foreach ($name in $App) {
         throw "No generated site at '$source'. Pass -SourceRoot with where the repositories are."
     }
 
-    $wanted = @(Get-RelativeFiles -Root $source | Where-Object { $settings.Exclude -notcontains $_ })
+    # A staged site is only as current as the last time its generator ran. Refuse one older than the
+    # sources it was built from, rather than publishing yesterday's manual and calling it synced.
+    if ($settings.ContainsKey('BuiltFrom')) {
+        $built = (Get-Item -LiteralPath (Join-Path $source 'index.html')).LastWriteTimeUtc
+        $newer = $settings.BuiltFrom |
+            ForEach-Object { Get-ChildItem -LiteralPath (Join-Path $SourceRoot (Join-Path $name $_)) -Recurse -File } |
+            Where-Object { $_.LastWriteTimeUtc -gt $built } | Select-Object -First 1
+        if ($newer) {
+            throw "$name's staged site is older than $($newer.FullName). Run its generator first: $($settings.Generator)"
+        }
+    }
+
+    # Every file to publish, by its path in the published folder, mapped to where it comes from: the
+    # staged site, then any folders or files taken straight from the repository beside it (Also).
+    $map = [ordered]@{}
+    foreach ($relative in Get-RelativeFiles -Root $source) {
+        $map[$relative] = Join-Path $source $relative
+    }
+    foreach ($extra in @($(if ($settings.ContainsKey('Also')) { $settings.Also }))) {
+        $from = Join-Path $SourceRoot (Join-Path $name $extra.From)
+        if (-not (Test-Path -LiteralPath $from)) {
+            throw "No '$from' to publish as $name/$($extra.To)."
+        }
+        if (Test-Path -LiteralPath $from -PathType Leaf) {
+            $map[$extra.To] = $from
+        }
+        else {
+            foreach ($relative in Get-RelativeFiles -Root $from) {
+                $map["$($extra.To)/$relative"] = Join-Path $from $relative
+            }
+        }
+    }
+
+    $wanted = @($map.Keys | Where-Object { $settings.Exclude -notcontains $_ })
 
     $present = @()
     if (Test-Path -LiteralPath $destination) {
-        $present = @(Get-RelativeFiles -Root $destination | Where-Object { $Preserve -notcontains $_ })
+        $keep = @($Preserve) + @($(if ($settings.ContainsKey('Preserve')) { $settings.Preserve }))
+        $present = @(Get-RelativeFiles -Root $destination | Where-Object { $keep -notcontains $_ })
     }
 
     $copied = 0
@@ -146,7 +201,7 @@ foreach ($name in $App) {
     $same = 0
 
     foreach ($relative in $wanted) {
-        $from = Join-Path $source $relative
+        $from = $map[$relative]
         $to = Join-Path $destination $relative
 
         if (Test-SameFile -A $from -B $to) {
