@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hotkeys - KeyPressOSD</title>
 <meta name="description" content="Three, on the Hotkeys tab. All three can be changed, and any of them can be switched off by clearing the box.">
+<link rel="canonical" href="https://keypressosd.sourceforge.io/hotkeys.html">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
@@ -38,16 +39,16 @@
 <tr><td><code>Ctrl+Alt+C</code></td><td>Clear what is on screen now</td></tr>
 <tr><td><code>Ctrl+Alt+K</code></td><td>Switch between keystrokes and typing</td></tr>
 </tbody></table>
-<h2>Pause</h2>
+<h2 id="pause">Pause</h2>
 <p>Pausing stops recording and clears the display at once. Nothing is captured while paused — not held, not buffered, not shown later.</p>
 <p class="figure"><img src="images/osd-paused.png" alt="The panel showing KeyPressOSD's icon and a PAUSED marker on one line"></p>
 <p><em>Paused. The marker is the whole panel — there is nothing behind it being held back, because nothing is being captured. The icon is KeyPressOSD's own here, not the icon of whatever you were typing into: paused, the panel is telling you about itself, and that other icon would only go stale as you switched window.</em></p>
 <p>The tray icon turns grey while paused, and the tray menu's first command reads <strong>Resume Recording</strong> in bold. That bold is not decoration: the menu is opened by right-clicking the tray icon, so opening it covers up the icon that was telling you the state.</p>
 <p>Pause is the setting to reach for before typing a password, and it is faster than editing the exclusion list. For anything you do regularly, the exclusion list is better — see <a href="privacy.html">Privacy</a>.</p>
-<h2>Writing a hotkey</h2>
+<h2 id="writing-a-hotkey">Writing a hotkey</h2>
 <p>A modifier plus a key: <code>Ctrl+Alt+P</code>, <code>Ctrl+Shift+F9</code>, <code>Win+Alt+K</code>. The modifier names are <code>Ctrl</code>, <code>Alt</code>, <code>Shift</code> and <code>Win</code>, joined with <code>+</code>.</p>
 <p>At least one modifier is required. A bare key would be registered globally and would stop working everywhere else — a hotkey of <code>S</code> would take the letter away from every program on the machine.</p>
-<h2>When a hotkey does not work</h2>
+<h2 id="when-a-hotkey-does-not-work">When a hotkey does not work</h2>
 <p>These are registered with Windows, which means two things.</p>
 <p>The good one: Windows delivers the chord to KeyPressOSD and withholds it from whatever you were typing into, so the hotkey cannot leak into your document.</p>
 <p>The other one: <strong>another program may already own the chord</strong>, in which case the registration simply fails and the hotkey does nothing. Nothing on screen will tell you which program took it. If a hotkey does not respond, the quickest test is to set it to something obscure — <code>Ctrl+Alt+F12</code> — and see whether that works.</p>

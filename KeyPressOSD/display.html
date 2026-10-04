@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Showing keystrokes - KeyPressOSD</title>
 <meta name="description" content="Keystrokes mode names each key as you press it. This is the mode for a screencast, because it says which keys were pressed rather than what they produced.">
+<link rel="canonical" href="https://keypressosd.sourceforge.io/display.html">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
@@ -34,20 +35,20 @@
 <p>All of the settings below are on the <strong>Display</strong> tab.</p>
 <p class="figure"><img src="images/settings-display.png" alt="The Display tab: mode, what to show, and the typed-character options"></p>
 <p><em>The Display tab. Everything in this topic is one of these rows.</em></p>
-<h2>How a chord is written</h2>
+<h2 id="how-a-chord-is-written">How a chord is written</h2>
 <p>A combination is written the way it is written everywhere else — <code>Ctrl + Shift + P</code>, with a plus between the parts. That separator matters more than it looks: without it the parts are separated only by a gap, which reads as keys pressed one after another rather than together, and telling those two apart is most of what the display is for.</p>
 <p>The modifiers are always named in the same order — Win, Ctrl, Alt, Shift — whichever order you actually pressed them in. A chord is one thing, and it should look the same each time you use it.</p>
 <p>You can change or remove the separator on the <strong>Appearance</strong> tab, under Spacing.</p>
-<h2>Modifiers pressed on their own</h2>
+<h2 id="modifiers-pressed-on-their-own">Modifiers pressed on their own</h2>
 <p>Pressing Ctrl by itself produces a <code>Ctrl</code> entry. That is on by default and it is deliberate: in a screencast the viewer needs to see a modifier go down before the chord completes.</p>
 <p>Turn off <strong>Show Ctrl, Alt, Shift and Win pressed on their own</strong> if you find it noisy.</p>
 <p>Holding two together shows them as a chord: hold Ctrl and then Shift and you get one <code>Ctrl + Shift</code> entry, not two separate ones.</p>
-<h2>Repeat counts</h2>
+<h2 id="repeat-counts">Repeat counts</h2>
 <p>Press the same thing twice quickly and it collapses into one entry with a count — <code>Alt + Tab x3</code> — rather than filling the line with copies. Two keystrokes count as the same one if they arrive within <strong>Group repeats within</strong>, on the Timing tab.</p>
 <p class="figure"><img src="images/osd-repeat-count.png" alt="Backspace drawn as a key cap with x7 after it"></p>
 <p><em>A held Backspace, collapsed. Without the count this line would be seven identical caps and the panel would be seven times as wide — the collapsing is as much about the width as about the reading.</em></p>
 <p>The count is the same size and weight as the key it belongs to, because when a repeat has been collapsed the number is the only thing on the panel the key name does not already say. You can make it smaller, or change how it is written, on the Appearance tab.</p>
-<h3>Held keys</h3>
+<h3 id="held-keys">Held keys</h3>
 <p>Windows re-sends a held key for as long as you hold it, and <strong>A key held down</strong> on the Display tab decides what to do with that stream. Three answers.</p>
 <p><strong>Count up</strong> is the default: one entry with a climbing number, <code>Backspace x12</code>. It shows the most, and for a screencast the number is the only thing on the panel saying the key is still down — the entry itself looks identical either way.</p>
 <p><strong>Keep showing it, without a number</strong> leaves the entry on screen for as long as the key is held and draws no count. Choose it if you would rather see <em>what</em> is held than a figure that really measures how long you leaned on the key.</p>
@@ -69,43 +70,52 @@
 <li>It then climbs more slowly than a normal held key, because the display is driving the count on its own clock rather than the keyboard's.</li>
 </ul>
 <p>Neither applies while a chord is in progress: coming off <code>Ctrl + Shift + P</code> shows nothing extra, because fingers leaving a finished chord are not something this display reports. And <strong>Show it once, then let it fade</strong> switches the whole behaviour off, since a fading entry is exactly what that setting asks for.</p>
-<h2>How much stays on screen</h2>
+<h2 id="how-much-stays-on-screen">How much stays on screen</h2>
 <p><strong>Keys build up as</strong>, on the Display tab, has three answers. They differ in the shape the keystrokes take and in when they leave.</p>
 <p><strong>One line, cleared all at once</strong> is the default. Keystrokes fill the line until it reaches <strong>Keystroke line length</strong> — in characters, on the Timing tab — and then the oldest scroll off the left. Nothing goes to the clock: the lifetime is measured from the <strong>last</strong> key pressed, so while you are still typing the line keeps everything, and when you stop, all of it goes together.</p>
 <p><strong>One line, oldest fading as they age</strong> is the same line with each entry on its own clock instead, so during a quiet moment it shortens from the left a keystroke at a time. This was the default first and was changed after being reported: a sequence you have just pressed is never all there at once, because it starts decaying from the left while you are still reading it. Choose it if the display is there to follow your typing as it happens rather than to be read back.</p>
 <p>It is worth being precise about what it does not do. The line still has a length, and the oldest still scroll off the left when it is full. "Cleared all at once" means nothing disappears <em>to the clock</em> — not that the panel grows without limit, which would eventually cover the thing you were typing into.</p>
 <p><strong>A stack</strong> puts one keystroke per line, newest at the bottom, and is bounded by <strong>Keys shown at once</strong> rather than by a length. Whichever of those two bounds is not in use is greyed out rather than left looking live.</p>
+<p class="figure"><img src="images/osd-stack.png" alt="Four keystrokes stacked one per line, newest at the bottom, with an ellipsis above the oldest"></p>
+<p><em>A stack. One press per line and the panel grows downwards, so a three-key chord costs height rather than width — which is the trade the one-line shapes make the other way.</em></p>
 <p class="figure"><img src="images/osd-several-entries.png" alt="Four separate entries side by side on one line"></p>
 <p><em>Four entries on one line. Four is this wide today and much wider the moment one of them is a three-key chord, which is why the one-line shapes are bounded by length and the stack is not.</em></p>
 <p>A length beats a count for a line because a count of keystrokes is a poor guide to how wide the panel gets: four entries is <code>a b c d</code> one moment and <code>Ctrl+Shift+Home Alt+Tab x4 Backspace F5</code> the next. A stack does not have that problem, because the panel grows downwards instead — which is also the reason a stack is not the default: it gets taller the busier you are, which is when it is most in the way, and it puts consecutive keystrokes in the one direction nobody reads a sequence in.</p>
 <p><strong>Mark where older keystrokes scrolled off</strong> adds an ellipsis at the left when something has been dropped. It is off by default, and it is suppressed while only one entry is showing — with one key on screen at a time, every keystroke replaces the last, so the mark would be permanent and would say nothing.</p>
-<h2>Typed characters</h2>
+<h2 id="typed-characters">Typed characters</h2>
 <p>Consecutive characters grow one entry, so typing <code>letter</code> reads as <code>letter</code> rather than as six entries. Turn off <strong>Merge consecutive typed characters</strong> and each character gets its own entry instead — and a repeated letter then collapses to a count rather than growing the word.</p>
 <p class="figure"><img src="images/osd-typed-word.png" alt="The words hello world as plain text on the panel"></p>
 <p><em>Merged characters in keystrokes mode. Plain text, no caps — this is a run of typing, and drawing each letter as a key would make it unreadable.</em></p>
 <p>Characters are drawn as plain text and named keys as key caps. That distinction is what makes a line scannable: <code>Ctrl</code> and <code>Shift</code> are objects you press, and drawing them as little keys says so, while the characters you typed are text and should look like text.</p>
-<h2>Telling one press from the next</h2>
+<h2 id="telling-one-press-from-the-next">Telling one press from the next</h2>
 <p>Two separators, answering two different questions.</p>
 <p><strong>Between chord keys</strong> — a <code>+</code> by default — says <em>these keys went down together</em>: <code>Alt + Tab</code>.</p>
 <p><strong>Between separate presses</strong> — a <code>·</code> by default — says <em>these are two presses</em>. Without it a flowing line runs together, and <code>Ctrl+S</code> then <code>h</code> then <code>i</code> then <code>Alt+Tab</code> draws as <code>Ctrl + S h i Alt + Tab x4</code>, where nothing tells you which of those was a chord. With it: <code>Ctrl + S · h · i · Alt + Tab x4</code>.</p>
+<p>That is the one claim on this page worth seeing rather than reading. Here is the same sequence three times:</p>
+<p class="figure"><img src="images/osd-separator-middot.png" alt="The sequence with a middot between presses"></p>
+<p><em>The default middot. Four presses, and it is obvious which keys went down together.</em></p>
+<p class="figure"><img src="images/osd-separator-none.png" alt="The same sequence with no separator between presses"></p>
+<p><em>No separator. <code>S h i Alt</code> runs together as though it were one chord — and the <code>Alt</code> cap is the only hint that it is not.</em></p>
+<p class="figure"><img src="images/osd-separator-bar.png" alt="The same sequence with a vertical bar between presses"></p>
+<p><em>A vertical bar instead, for anyone who finds the middot too faint. Any text is allowed here.</em></p>
 <p>Both are on the Appearance tab, both take any text, and either can be emptied for no separator at all. The middot is drawn in the body colour at reduced opacity rather than as a key cap, because nobody pressed it — a cap would claim they had.</p>
-<h2>Shift and the shifted character</h2>
+<h2 id="shift-and-the-shifted-character">Shift and the shifted character</h2>
 <p>With only Shift held, <code>Shift+/</code> can be shown either as <code>Shift + /</code> or as <code>?</code>.</p>
 <p>The default is <code>Shift + /</code>, because that names the key you actually pressed — which is both how a shortcut is written down and what a screencast viewer needs in order to see that Shift was involved. Turn on <strong>With only Shift held, show the character instead of the chord</strong> for the other behaviour.</p>
 <p>It covers every key the same way, because it is not a table of pairs: KeyPressOSD asks Windows what your keyboard produced with Shift down and shows that. So <code>?</code> <code>:</code> <code>"</code> <code>|</code> <code>{</code> <code>~</code> <code>+</code> <code>&lt;</code> <code>&gt;</code> <code>_</code> and <code>!</code> all follow, and so do letters — <code>Shift+a</code> reads as <code>A</code>. On a layout where those keys sit elsewhere, or produce something else entirely, you get what your layout produces rather than what a US keyboard would have.</p>
 <p>Any other modifier present and Shift is spelled out regardless — <code>Ctrl+Shift+2</code> stays <code>Ctrl+Shift+2</code>, because <code>Ctrl+@</code> is not a shortcut anybody writes.</p>
-<h2>The mouse</h2>
+<h2 id="the-mouse">The mouse</h2>
 <p><strong>Show mouse clicks</strong> is on. Button presses only, not releases: showing both would double every entry for no extra information, which also means drags are not reported.</p>
 <p><strong>Show mouse wheel</strong> is off, and off is recommended. One turn of a wheel produces a great many events, and each would replace whatever key you had just pressed.</p>
 <p class="figure"><img src="images/osd-mouse.png" alt="A mouse click entry beside arrow-key entries"></p>
 <p><em>Clicks and arrow keys on the same line. Buttons are named rather than drawn, so a click reads as an event rather than as a key that was pressed.</em></p>
-<h2>The active application's icon</h2>
+<h2 id="the-active-application-s-icon">The active application's icon</h2>
 <p><strong>Show the active application icon</strong> puts the icon of the program you are typing into at the left of the line. It is off by default.</p>
 <p>It earns its place in a screencast that moves between windows, where <code>Ctrl+S</code> in an editor and <code>Ctrl+S</code> in a browser are different acts and the keystroke alone cannot say which.</p>
 <p class="figure"><img src="images/osd-app-icon.png" alt="A small application icon at the left of the line, before the keys"></p>
 <p><em>The icon sits at the left, ahead of the keys, at the height of a line of key text. <strong>Application icon size</strong> on the Appearance tab scales it against that height rather than against a fixed number of pixels, so it stays in proportion when the font changes.</em></p>
 <p>Nothing is shown where the icon cannot be read — an elevated window will not tell KeyPressOSD anything about itself — and a program on the Privacy list produces no panel at all, so no icon either.</p>
-<h2>A count of keys pressed</h2>
+<h2 id="a-count-of-keys-pressed">A count of keys pressed</h2>
 <p><strong>Show a count of keys pressed</strong> adds a running total for the session on a strip beneath the keys. Off by default, and it is never written to disk: closing KeyPressOSD forgets it.</p>
 <hr>
 <p class="foot"><a href="https://sourceforge.net/projects/keypressosd/">Project on SourceForge</a> &middot;

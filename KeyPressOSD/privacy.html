@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy - KeyPressOSD</title>
 <meta name="description" content="KeyPressOSD watches your keyboard. That is the whole point of it, and it is also exactly why the limits below are worth stating precisely rather than in general">
+<link rel="canonical" href="https://keypressosd.sourceforge.io/privacy.html">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
@@ -31,34 +32,38 @@
 <main>
 <h1>Privacy</h1>
 <p>KeyPressOSD watches your keyboard. That is the whole point of it, and it is also exactly why the limits below are worth stating precisely rather than in general terms.</p>
-<h2>What it never does</h2>
+<h2 id="what-it-never-does">What it never does</h2>
 <ul>
-<li><strong>It never writes a keystroke to disk.</strong> No log, no history file, no crash dump containing one, no cache. What is on screen is in memory and nowhere else, and it is gone when it fades.</li>
+<li><strong>It never writes a keystroke to disk.</strong> No history file, no cache, and nothing captured in the one log it does keep — see <a href="#the-files-it-writes">The files it writes</a> below, which lists both of them and what is in them. What is on screen is in memory and nowhere else, and it is gone when it fades.</li>
 <li><strong>It never sends anything over the network</strong>, with one exception: choosing <strong>Check for Updates</strong> from the tray menu asks GitHub for the list of releases. That happens only when you choose it, and the request carries nothing but a version number in a User-Agent header. Nothing checks at start-up or on a timer.</li>
 <li><strong>It never asks for administrator rights on its own.</strong> Its manifest requests none, so it starts as an ordinary program every time unless <em>you</em> choose otherwise — from <strong>Always Run as Administrator</strong> in the tray menu, or the same switch on the System tab. It is off to begin with, and it cannot be turned on without the Windows consent prompt.</li>
 <li><strong>It installs no service.</strong> Turning that switch on does register one scheduled task, which starts KeyPressOSD elevated when you sign in — that is what lets it start elevated without prompting you every time, and it is the only thing this application ever registers. It is named <em>KeyPressOSD (elevated)</em> in Task Scheduler so you can see and remove it there as well as from the menu. Nothing runs with administrator rights when KeyPressOSD is not running, and nothing can elevate it without asking. An elevated instance is a process you started and can close.</li>
 <li><strong>It never injects input.</strong> It observes. Text expansion and clipboard rewriting are out of scope for that reason, not because they would be hard.</li>
 <li><strong>It never modifies what you type.</strong> The hook returns every keystroke to the system untouched. A bug that started eating keystrokes would be indistinguishable from a broken keyboard, so the code has no path that can consume one.</li>
 </ul>
-<h2>Excluded programs</h2>
+<h2 id="excluded-programs">Excluded programs</h2>
 <p>The <strong>Privacy</strong> tab holds a list of programs whose input is never shown. One name per line, no <code>.exe</code> needed.</p>
 <p class="figure"><img src="images/settings-privacy.png" alt="The Privacy tab with a multi-line box for excluded programs"></p>
 <p><em>The exclusion list. One process name per line — the name, not a path, so it applies wherever the program was started from.</em></p>
 <p>This is for a password manager, or anything else where the keystrokes matter more than the demonstration. A program on this list produces no entries at all — so no panel, and no application icon either.</p>
 <p>It is a blunt instrument, and deliberately so. A per-control check for password <em>fields</em> would be better and is not reliably possible from outside a process: UI Automation answers for some frameworks and not others, and a heuristic that is right most of the time is precisely the wrong shape here — it would put a password on screen on the occasion it guessed wrong. A named process is a promise that can be kept.</p>
-<h2>What Windows already protects</h2>
+<h2 id="what-windows-already-protects">What Windows already protects</h2>
 <p>Some things need no entry on that list, because a low-level keyboard hook never sees them at all:</p>
 <ul>
 <li><strong>The UAC consent dialogue</strong> and <strong>the lock screen</strong> run on a separate desktop that this process cannot reach.</li>
 <li><strong>Anything in a window running at higher integrity than KeyPressOSD.</strong> Windows does not deliver input destined for an elevated window to a hook in a non-elevated process. That protects you from this application, and it is also the reason for a limitation described elsewhere.</li>
 </ul>
 <p>This one is the protection you can give up. An elevated KeyPressOSD is at the same level as those windows and does see them — which is the point of running it elevated, and the reason to leave it off unless you need it. It is worth knowing which of the protections on this page is the one that changes: the others do not. An elevated instance still writes no keystroke to disk, still injects nothing, and still cannot reach the UAC prompt or the lock screen, because those are on another desktop rather than behind an integrity check.</p>
-<h2>Pausing</h2>
+<h2 id="pausing">Pausing</h2>
 <p><code>Ctrl+Alt+P</code> stops recording and clears the display immediately. Nothing is captured while paused.</p>
 <p>For something you do occasionally, pause is faster than editing the list. For something you do regularly, the list is better — it cannot be forgotten.</p>
-<h2>The settings file</h2>
-<p><code>KeyPressOSD.json</code> holds settings only. It contains no captured input, and the excluded-programs list is the only thing in it that names anything outside this application.</p>
-<h2>Startup</h2>
+<h2 id="the-files-it-writes">The files it writes</h2>
+<p>Two, both beside the executable, and the <strong>System</strong> tab shows the folder.</p>
+<p><strong><code>KeyPressOSD.json</code></strong> holds settings only. It contains no captured input, and the excluded-programs list is the only thing in it that names anything outside this application.</p>
+<p><strong><code>KeyPressOSD-crash.log</code></strong> is written only when something goes wrong, and most copies never have one. It records the failure itself — the error, where in the program it happened, how long the copy had been running, whether it was elevated, and how many drawing handles it held. That is all deliberately <em>about this application</em>, not about you: there is no keystroke in it, no typed text, no window title and no process name. It exists because a copy once ended with no explanation at all, and reconstructing why took a crash dump and two event logs.</p>
+<p>It is a plain text file, you can read it, and deleting it is safe. It is capped in size, and once it reaches the cap the oldest half is dropped rather than the whole file, so a first occurrence is not thrown away in favour of a hundredth. See <a href="troubleshooting.html">Troubleshooting</a> for what an entry looks like.</p>
+<p>Nothing else is written anywhere, with the single exception under <strong>Startup</strong> below.</p>
+<h2 id="startup">Startup</h2>
 <p><strong>Run at Startup</strong> writes one value to the per-user <code>Run</code> key in the registry. That is the only thing this application writes outside its own folder, it is optional, and unticking it removes the value.</p>
 <hr>
 <p class="foot"><a href="https://sourceforge.net/projects/keypressosd/">Project on SourceForge</a> &middot;

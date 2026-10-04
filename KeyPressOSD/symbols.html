@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Key names and symbols - KeyPressOSD</title>
 <meta name="description" content="What a key is called is worked out at the moment you press it, by asking the active keyboard layout what that key produces — not by looking the key up in a list">
+<link rel="canonical" href="https://keypressosd.sourceforge.io/symbols.html">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
@@ -30,7 +31,7 @@
 </nav>
 <main>
 <h1>Key names and symbols</h1>
-<h2>Names come from your keyboard, not from a table</h2>
+<h2 id="names-come-from-your-keyboard-not-from-a-table">Names come from your keyboard, not from a table</h2>
 <p>What a key is called is worked out at the moment you press it, by asking the active keyboard layout what that key produces — not by looking the key up in a list.</p>
 <p>That matters if you use anything other than a US layout. A table mapping a key to <code>@</code> is right on one layout and wrong on the hundred-odd others Windows ships; asking the layout is right on all of them, including the dead-key and AltGr combinations no table would cover.</p>
 <p>Consequences worth knowing:</p>
@@ -40,23 +41,28 @@
 <li>Observing a dead key does not consume it. Pressing <code>'</code> then <code>e</code> still gives you <code>é</code> — running this application does not break accented typing.</li>
 </ul>
 <p>Keys that produce no character at all — Enter, the function keys, the arrows — do come from a table, because there is nothing to ask the layout about. A key in neither category falls back to its Windows name with the <code>Oem</code> prefix stripped, so an unusual key on a gaming keyboard shows something rather than nothing.</p>
-<h2>Symbols</h2>
+<h2 id="symbols">Symbols</h2>
 <p><strong>Keys are named by</strong>, on the Display tab, chooses between three answers. All three are offered because the middle one necessarily mixes glyphs and words, and whether that mixture is right depends on who is looking at the screen.</p>
+<p>The three figures below are the <strong>same six presses</strong> under each style, so the choice can be made by looking rather than by imagining.</p>
 <p><strong>Words</strong> is the default: <code>Shift</code>, <code>Ctrl</code>, <code>Esc</code>, <code>Enter</code>. This is how a shortcut is written down everywhere else — in a menu, in documentation, or when you read it out to somebody — and nothing in it is ambiguous to anyone.</p>
+<p class="figure"><img src="images/osd-symbols-words.png" alt="The same six presses drawn as words: Ctrl plus Shift plus P, Enter, Alt plus Tab, Backspace, Esc, Win plus Caps Lock"></p>
+<p><em>Words, the default. Every key spelled out, and nothing on the line needs a legend.</em></p>
 <p><strong>Symbols printed on a keyboard</strong> uses the four glyphs a Windows keyboard puts on its own keycaps: Shift's arrow <code>⇧</code>, Tab's arrow <code>⇥</code>, Enter's return <code>⏎</code>, and the Windows square <code>⊞</code>. Every other key keeps its word, because on a real keyboard <code>Ctrl</code>, <code>Alt</code> and <code>Esc</code> are spelled out too. So a chord can come out as a mixture — <code>⇧</code> beside <code>Ctrl</code> — and that is the honest cost of only using glyphs you have a legend for on the keyboard in front of you. If it bothers you, the other two settings are both consistent.</p>
-<p><strong>Symbols for every key</strong> is uniform, and the cost is worth stating plainly rather than discovering:</p>
+<p class="figure"><img src="images/osd-symbols.png" alt="The same six presses with four keys as glyphs and the rest as words"></p>
+<p><em>Symbols printed on a keyboard. Shift's arrow reads immediately; Ctrl beside it is a word, which is the mixture this style is.</em></p>
+<p><strong>Symbols for every key</strong> is uniform, and the cost is worth stating plainly rather than discovering — the figure under this list is there so you can see each of these rather than take it on trust:</p>
 <ul>
 <li>Backspace <code>⌫</code> and Delete <code>⌦</code> draw as a box with a cross through it, which reads as a missing character rather than as a key.</li>
 <li>Esc <code>⎋</code> reads as a prohibition sign — "not allowed" rather than "escape".</li>
 <li>Space <code>␣</code> reads as very little at all.</li>
 <li>Ctrl <code>⌃</code> and Alt <code>⌥</code> are the <strong>Mac</strong> keyboard's glyphs. No Windows keyboard, menu or document writes a shortcut that way.</li>
-<li>None of them has a bold weight in Segoe UI, so they stay hairline while every other token on the panel is bold.</li>
+<li>Several of them come from a fallback font rather than from Segoe UI, so their stroke weight does not always match the rest of the line.</li>
 </ul>
+<p class="figure"><img src="images/osd-symbols-all.png" alt="The same six presses with every key drawn as a glyph, including a crossed box for Backspace and a prohibition sign for Esc"></p>
+<p><em>Symbols for every key, on the same six presses. Backspace is the crossed box, fourth from the right, and Esc the circled arrow beside it — neither says "key" to anyone who has not learned them.</em></p>
 <p>It is offered anyway, for two reasons: a setting that could only ever half-apply was the worse problem, and for a personal display — where the glyphs are learned once and then read faster than words — every objection above is about an audience who is not there.</p>
-<p class="figure"><img src="images/osd-symbols.png" alt="A line of keys drawn as symbols rather than words"></p>
-<p><em>Symbols printed on a keyboard. Shift's arrow reads immediately; Ctrl beside it is a word, which is the mixture this style is.</em></p>
 <p>Keys with no established glyph keep their word under every style. There is no symbol for F5, Print Screen or Scroll Lock.</p>
-<h2>Choosing your own</h2>
+<h2 id="choosing-your-own">Choosing your own</h2>
 <p>The <strong>Symbols</strong> tab lets you replace any key's symbol individually, which is what keeps the choice from being all-or-nothing: you can have <code>^</code> for Ctrl while leaving everything else as words, or take the full glyph set and put <code>Backspace</code> back as a word.</p>
 <p>Each row shows what that key is currently drawn as, in grey behind an empty box — so the cues follow the style you picked on the Display tab and always show what the display is really doing. Type over a box to override it; clear it to go back. Any text is allowed, not only a single character.</p>
 <p class="figure"><img src="images/settings-symbols.png" alt="The Symbols tab: a row per key, each with a box showing its built-in symbol"></p>
@@ -64,7 +70,7 @@
 <p>The keys you can override are:</p>
 <p>Ctrl, Alt, Shift, Win, Enter, Tab, Backspace, Del, Esc, Caps Lock, Space, Page Up, Page Down, Home, End.</p>
 <p>An override beats the style for that one key, whichever style is chosen — with one exception. <strong>Words</strong> means words: an override is a symbol, and applying it there would make the style do nothing for any key you had customised.</p>
-<h2>Key caps</h2>
+<h2 id="key-caps">Key caps</h2>
 <p>Named keys are drawn as key caps: a light, padded, rounded box with dark text. Typed characters are drawn as plain text.</p>
 <p>That is the single thing that makes a line readable at a glance rather than a wall of words, and it is why there are two foreground colours rather than one. See <a href="appearance.html">How it looks</a>.</p>
 <hr>
