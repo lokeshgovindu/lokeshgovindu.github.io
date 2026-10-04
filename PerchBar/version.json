@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "tag_name": "2026.1.0",
+    "draft": false,
+    "prerelease": false,
+    "published_at": "2026-10-04T11:18:29Z",
+    "html_url": "https://sourceforge.net/projects/perchbar/files/",
+    "assets": [
+      {
+        "name": "PerchBar_2026.1.0.112_x64.zip",
+        "browser_download_url": "",
+        "digest": "sha256:3d74603b2b961b544c9a586f775a5d6ce72cfe5b26505889981045e7fd6aa263"
+      }
+    ]
+  }
+]
