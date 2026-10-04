@@ -2771,3 +2771,90 @@ details[open] > summary .release-chevron { transform: rotate(180deg); }
     font-size: 0.95rem;
     margin-bottom: 1.25rem;
 }
+
+/* ── Home: the site's own software ── */
+.home-apps-section {
+    padding: var(--section-py) 0;
+    background: var(--sky-pale);
+}
+
+.home-app-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+
+.home-app-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(99, 102, 241, 0.16);
+    border-color: var(--primary);
+    color: inherit;
+}
+
+.home-app-shot {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: linear-gradient(160deg, #f8faff 0%, #eef2ff 100%);
+    border-bottom: 1px solid var(--border);
+}
+
+:root[data-theme="dark"] .home-app-shot {
+    background: linear-gradient(160deg, #161e36 0%, #1b2140 100%);
+}
+
+.home-app-shot img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(30, 27, 75, 0.18);
+}
+
+.home-app-body {
+    padding: 1.1rem 1.25rem 1.3rem;
+}
+
+.home-app-body h5 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 0.4rem;
+}
+
+.home-app-body h5 i {
+    color: var(--primary);
+    margin-right: 6px;
+}
+
+.home-app-body p {
+    color: var(--muted-text);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.home-apps-more {
+    text-align: center;
+    color: var(--mid-text);
+    margin: 2.25rem 0 0;
+}
+
+.home-apps-more a { color: var(--primary); font-weight: 600; }
+
+.home-apps-all {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.75rem;
+    white-space: nowrap;
+}
