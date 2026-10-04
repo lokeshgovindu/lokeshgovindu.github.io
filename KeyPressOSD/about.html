@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About KeyPressOSD - KeyPressOSD</title>
+<meta name="description" content="KeyPressOSD shows what you press, on screen, at a size somebody can read from across a room. In keystrokes mode it names each key as you press it — Ctrl + Shift">
+<link rel="canonical" href="https://keypressosd.sourceforge.io/about.html">
+<link rel="icon" href="images/keypressosd.ico" sizes="16x16 32x32 48x48">
+<link rel="stylesheet" href="site.css">
+<script src="site-shots.js" defer></script>
+</head>
+<body>
+<nav class="toc">
+<a class="brand" href="index.html"><img src="images/keypressosd.ico" alt="" width="32" height="32"><b>KeyPressOSD<span>See what you press</span></b></a>
+<ol>
+  <li><a href="index.html">KeyPressOSD help</a></li>
+  <li><a href="overview.html">What KeyPressOSD does</a></li>
+  <li><a href="display.html">Showing keystrokes</a></li>
+  <li><a href="typing.html">Showing typed text</a></li>
+  <li><a href="position.html">Where it appears</a></li>
+  <li><a href="appearance.html">How it looks</a></li>
+  <li><a href="symbols.html">Key names and symbols</a></li>
+  <li><a href="hotkeys.html">Hotkeys</a></li>
+  <li><a href="tray.html">The tray menu</a></li>
+  <li><a href="privacy.html">Privacy</a></li>
+  <li><a href="settings-file.html">The settings file</a></li>
+  <li><a href="troubleshooting.html">Troubleshooting</a></li>
+  <li><a href="limitations.html">Known limitations</a></li>
+  <li><a href="about.html" aria-current="page">About KeyPressOSD</a></li>
+  <li><a href="contact.html">Contact</a></li>
+</ol>
+<div class="away">
+<a href="https://sourceforge.net/projects/keypressosd/files/latest/download">Download the latest release</a>
+<a href="https://sourceforge.net/projects/keypressosd/files/">All files and checksums</a>
+<a href="https://sourceforge.net/projects/keypressosd/">The project on SourceForge</a>
+<a href="https://sourceforge.net/p/keypressosd/tickets/">Report a problem</a>
+</div>
+</nav>
+<main>
+<h1>About KeyPressOSD</h1>
+<p>KeyPressOSD shows what you press, on screen, at a size somebody can read from across a room. In <em>keystrokes</em> mode it names each key as you press it — <code>Ctrl + Shift + P</code>, <code>Alt + Tab x3</code>, <code>F5</code>. In <em>typing</em> mode it shows the words instead, as one line that never wraps.</p>
+<p>It is one executable. Nothing is installed, no service is registered, and nothing starts unless you start it — see <a href="privacy.html">Privacy</a> for the full account of what it does and does not do.</p>
+<h2 id="what-it-needs">What it needs</h2>
+<table><tbody>
+<tr><td><strong>Windows</strong></td><td>Windows 10 or 11, <strong>64-bit</strong>.</td></tr>
+<tr><td><strong>Runtime</strong></td><td>None. The published build is self-contained and a single file, so no .NET runtime has to be installed.</td></tr>
+<tr><td><strong>Installation</strong></td><td>None. Unpack the ZIP and run <code>KeyPressOSD.exe</code>.</td></tr>
+<tr><td><strong>Settings</strong></td><td>One JSON file, <code>KeyPressOSD.json</code>, beside the executable if that folder is writable and in <code>%APPDATA%\KeyPressOSD</code> otherwise. Nothing is written to the registry except the optional <em>Run at Startup</em> value.</td></tr>
+</tbody></table>
+<p>Being portable is the reason there is no installer: an installer would add a step and take away the property that makes the application easy to try and easy to remove. See <a href="limitations.html">Known limitations</a>.</p>
+<h2 id="which-build-you-are-running">Which build you are running</h2>
+<p><strong>About KeyPressOSD</strong> in the tray menu.</p>
+<p class="figure"><img src="images/about.png" alt="The About dialogue: the name, the version, the build date and the licence"></p>
+<p><em>The About dialogue. The version, when it was built, and the licence named rather than hidden one click away — "may I use this at work" is a question an About box is opened to answer.</em></p>
+<p>The version reads <code>2026.1.0.&lt;build&gt;</code>, and the last number is the count of commits the build was made from, so every build has a version of its own and no two share one.</p>
+<p>A line reading <strong>Running as administrator</strong> appears above the description when it applies, and only then. It is worth stating because elevation changes what the application can see, and because the tray menu — the only other place that says so — is not somewhere you can point at in a report. See <a href="limitations.html">Known limitations</a>.</p>
+<p><strong>Copy Details</strong> puts five lines on the clipboard:</p>
+<pre><code>KeyPressOSD 2026.1.0.80
+Built     2026-10-04 15:52
+Windows   Microsoft Windows NT 10.0.26200.0
+Runtime   .NET 10.0.0
+Process   64-bit</code></pre>
+<p>That is deliberately short and deliberately dull. It carries the version, the build, the operating system and the runtime, and nothing about what is on screen, nothing from the settings, and nothing that could contain a keystroke — this application does not put those in a file and does not put them on the clipboard either.</p>
+<h2 id="updates">Updates</h2>
+<p><strong>Check for Updates</strong> in the tray menu asks for a small version file over HTTPS, says whether a newer release exists, and offers to open the download page. It uploads nothing about you, and nothing checks at start-up or on a timer — see <a href="privacy.html">Privacy</a>.</p>
+<p>It does not download or install anything. Replacing a running executable needs elevation for an installed copy and a signature to be worth trusting, and this application has neither.</p>
+<h2 id="licence">Licence</h2>
+<p><strong>MIT.</strong> Use it, change it, ship it inside something else; keep the copyright notice. The full text is <code>LICENSE.txt</code> in the release archive, and <strong>About → Credits</strong> shows it without needing a text editor.</p>
+<p class="figure"><img src="images/credits.png" alt="The Credits dialogue, with tabs for credits, the licence and third-party notices"></p>
+<p><em>Credits, Licence and Third-party notices, each reading the file that ships beside the executable rather than a copy pasted into the application.</em></p>
+<p>The application references <strong>no NuGet packages at all</strong>: everything is written against .NET and the Windows API directly, so there is nothing else whose terms you have to read. <code>THIRD-PARTY-NOTICES.txt</code> records that, and names the one thing worth naming — the tray menu's glyphs are codepoints in fonts that ship with Windows, referenced by name and not embedded.</p>
+<p>The source is not available at present. The repository is private, so there is nothing to clone; the licence is unchanged and still ships beside the executable.</p>
+<h2 id="who-wrote-it">Who wrote it</h2>
+<p>Lokesh Govindu — <a href="https://lokeshgovindu.github.io/">lokeshgovindu.github.io</a>.</p>
+<h2 id="where-things-are">Where things are</h2>
+<table><tbody>
+<tr><td><strong>Home</strong></td><td><a href="https://keypressosd.sourceforge.io/">keypressosd.sourceforge.io</a> — this documentation, generated from the same files as the CHM.</td></tr>
+<tr><td><strong>Project</strong></td><td><a href="https://sourceforge.net/projects/keypressosd/">The project on SourceForge</a> — the description, screenshots and reviews.</td></tr>
+<tr><td><strong>Downloads</strong></td><td><a href="https://sourceforge.net/projects/keypressosd/files/">All files and checksums</a> — every release.</td></tr>
+<tr><td><strong>Problems</strong></td><td><a href="https://sourceforge.net/p/keypressosd/tickets/">Tickets</a> — see <a href="contact.html">Contact</a> for what to put in one.</td></tr>
+</tbody></table>
+<p>Current releases are <strong>pre-releases</strong>. They work and are in daily use, but on one machine and one keyboard layout — so a report about different hardware, more than two monitors, mixed DPI or another keyboard layout is the most useful thing you can send.</p>
+<footer class="stamp">KeyPressOSD 2026.1 documentation</footer>
+</main>
+</body>
+</html>

@@ -89,3 +89,34 @@ footer.stamp { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--
   nav.toc { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); }
   main { padding: 1.75rem 1.25rem 3rem; }
 }
+
+/* Figures at full size on click - the same lightbox, ids and classes as pastejump.sourceforge.io.
+
+   The manual's figures are sized for the .chm's help window and the column here is 58rem, so a figure
+   can be drawn smaller than it was captured, and the settings windows' text goes soft when it is. The
+   page cannot be widened without ruining the measure for reading, so a reader opens one at 1:1 instead.
+   SITE ONLY: site.css and site-shots.js never reach docs/help, so the .chm is untouched. */
+p.figure img { cursor: zoom-in; }
+
+#shotbox {
+  position: fixed; inset: 0; z-index: 50; display: none;
+  background: rgba(13, 17, 23, .88);
+  overflow: auto; padding: 2rem; text-align: center;
+}
+#shotbox.open { display: block; }
+#shotbox img {
+  /* No max-width: the whole point is the pixels as captured. The container scrolls when the image
+     is larger than the window. */
+  max-width: none; background: #fff;
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, .5);
+}
+#shotbox figcaption {
+  color: #e6edf3; font-size: .95rem; margin: .9rem auto 0; max-width: 60rem;
+}
+#shotbox .hint { color: #8b949e; font-size: .85rem; margin-top: .35rem; }
+#shotbox button {
+  position: fixed; top: .75rem; right: 1rem;
+  background: #21262d; color: #e6edf3; border: 1px solid #484f58;
+  border-radius: .35rem; padding: .35rem .7rem; font: inherit; cursor: pointer;
+}
+body.shotbox-open { overflow: hidden; }

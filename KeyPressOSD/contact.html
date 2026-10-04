@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact - KeyPressOSD</title>
+<meta name="description" content="Tickets: sourceforge.net/p/keypressosd/tickets/">
+<link rel="canonical" href="https://keypressosd.sourceforge.io/contact.html">
+<link rel="icon" href="images/keypressosd.ico" sizes="16x16 32x32 48x48">
+<link rel="stylesheet" href="site.css">
+<script src="site-shots.js" defer></script>
+</head>
+<body>
+<nav class="toc">
+<a class="brand" href="index.html"><img src="images/keypressosd.ico" alt="" width="32" height="32"><b>KeyPressOSD<span>See what you press</span></b></a>
+<ol>
+  <li><a href="index.html">KeyPressOSD help</a></li>
+  <li><a href="overview.html">What KeyPressOSD does</a></li>
+  <li><a href="display.html">Showing keystrokes</a></li>
+  <li><a href="typing.html">Showing typed text</a></li>
+  <li><a href="position.html">Where it appears</a></li>
+  <li><a href="appearance.html">How it looks</a></li>
+  <li><a href="symbols.html">Key names and symbols</a></li>
+  <li><a href="hotkeys.html">Hotkeys</a></li>
+  <li><a href="tray.html">The tray menu</a></li>
+  <li><a href="privacy.html">Privacy</a></li>
+  <li><a href="settings-file.html">The settings file</a></li>
+  <li><a href="troubleshooting.html">Troubleshooting</a></li>
+  <li><a href="limitations.html">Known limitations</a></li>
+  <li><a href="about.html">About KeyPressOSD</a></li>
+  <li><a href="contact.html" aria-current="page">Contact</a></li>
+</ol>
+<div class="away">
+<a href="https://sourceforge.net/projects/keypressosd/files/latest/download">Download the latest release</a>
+<a href="https://sourceforge.net/projects/keypressosd/files/">All files and checksums</a>
+<a href="https://sourceforge.net/projects/keypressosd/">The project on SourceForge</a>
+<a href="https://sourceforge.net/p/keypressosd/tickets/">Report a problem</a>
+</div>
+</nav>
+<main>
+<h1>Contact</h1>
+<h2 id="reporting-a-problem">Reporting a problem</h2>
+<p><strong>Tickets: <a href="https://sourceforge.net/p/keypressosd/tickets/">sourceforge.net/p/keypressosd/tickets/</a></strong></p>
+<p>That is the right place for anything reproducible — a key that produces no entry, a panel on the wrong monitor, a hotkey that does nothing, a setting that appears to be ignored, a copy that disappeared. It is public, so the next person with the same problem can find it.</p>
+<h3 id="what-to-put-in-it">What to put in it</h3>
+<p><strong>About → Copy Details</strong>, then paste. That is the version, the build, the Windows build and the runtime, all on the clipboard — the first question anyone reading a report has to answer is <em>which build is this</em>, and those five lines answer it. See <a href="about.html">About KeyPressOSD</a>.</p>
+<p>Then whichever of these apply:</p>
+<table><tbody>
+<tr><td><strong>Which mode you were in</strong></td><td><em>Keystrokes</em> or <em>typing</em>. The two share almost no display code, so this narrows a report more than anything else in this table.</td></tr>
+<tr><td><strong>Whether the window was elevated</strong></td><td>Task Manager, an installer, an editor opened as administrator. A copy of KeyPressOSD that is not elevated is shown nothing at all by one that is, and that accounts for most of what gets reported.</td></tr>
+<tr><td><strong>Whether KeyPressOSD is elevated</strong></td><td>The About dialogue says so, and only when it is. The tray tooltip says so too.</td></tr>
+<tr><td><strong>The exact keys</strong></td><td>"Held Ctrl, pressed A, released Ctrl" says far more than "the overlay disappeared".</td></tr>
+<tr><td><strong><code>KeyPressOSD.json</code></strong></td><td>For anything about appearance, position, timing or which windows are watched. It holds settings only — no captured input.</td></tr>
+<tr><td><strong><code>KeyPressOSD-crash.log</code></strong></td><td>Only if the tray icon vanished. See below.</td></tr>
+</tbody></table>
+<p>Those two answers — which mode, and whether the window was elevated — explain most of what gets reported, which is why they are first.</p>
+<h3 id="if-it-disappeared">If it disappeared</h3>
+<p>If the tray icon has gone, the process ended, and there may be a file saying why: <strong><code>KeyPressOSD-crash.log</code></strong>, beside <code>KeyPressOSD.json</code>. The <strong>System</strong> tab shows that folder.</p>
+<p>It exists only when something has failed, so its absence is itself an answer — the copy was closed rather than lost. Send the last entry. It contains no keystrokes, no typed text, no window titles and no process names: it records the failure, how long the copy had been running, whether it was elevated, and how many drawing handles it held. See <a href="troubleshooting.html">Troubleshooting</a> for what an entry looks like, and <a href="privacy.html">Privacy</a> for what is and is not in it.</p>
+<h3 id="print-screen">Print Screen</h3>
+<p>If Print Screen produces no entry for you, that is <a href="limitations.html">a known limitation</a> and the one thing that would help most is <strong>which keyboard you have</strong>. What a physical press produces differs between keyboards, and that is exactly the part that has never been established.</p>
+<h2 id="ideas-and-questions">Ideas and questions</h2>
+<p>The <a href="https://sourceforge.net/p/keypressosd/tickets/">tickets</a> are as good for "could it do this?" as for "this is broken". Several of the settings exist because the behaviour without them was reported.</p>
+<p>Two things are out of scope by design rather than by omission, so they are worth knowing before asking: <strong>text expansion, key remapping and macros</strong>, because this application observes input and never injects any — which is what lets the privacy statements in this manual be unconditional. See <a href="limitations.html">Known limitations</a>.</p>
+<p>If you are asking for something another on-screen display does, saying what you use it <em>for</em> helps more than the feature's name: the useful part is usually the situation, not the label.</p>
+<h2 id="by-email">By email</h2>
+<p><strong><a href="mailto:lokeshgovindu@gmail.com">lokeshgovindu@gmail.com</a></strong></p>
+<p>For anything that should not be on a public ticket:</p>
+<ul>
+<li>a screenshot or a settings file holding a process name you would rather not publish;</li>
+<li>something you believe is a security problem — please say what it lets an attacker do, and allow a little time for a fix before publishing it anywhere.</li>
+</ul>
+<h2 id="privacy-in-one-line">Privacy, in one line</h2>
+<p>KeyPressOSD never writes a keystroke to disk and sends nothing anywhere except the update check, which fetches a version file over HTTPS when you choose it and uploads nothing about you. <a href="privacy.html">Privacy</a> is the full account, including the two files it does write.</p>
+<h2 id="before-you-write">Before you write</h2>
+<p><a href="troubleshooting.html">Troubleshooting</a> covers the commonest reports, and each has a specific cause worth ruling out first:</p>
+<ul>
+<li><strong>nothing appears</strong> — usually paused, an excluded program, an elevated window in front, or the panel sitting on a monitor you are not facing. Open <strong>Settings</strong> and watch the live preview: the line under it names the corner and the monitor the panel went to.</li>
+<li><strong><code>Alt+Tab</code> shows nothing</strong> — another program's keyboard hook got there first. <em>Reclaim Keyboard Priority</em> in the tray menu fixes that one, but only when the other program is not elevated, and the two faults look identical from outside.</li>
+<li><strong>a setting had no effect</strong> — either Apply was not pressed, or a value already in the settings file outranks a changed default.</li>
+</ul>
+<footer class="stamp">KeyPressOSD 2026.1 documentation</footer>
+</main>
+</body>
+</html>
