@@ -205,7 +205,7 @@ keyboard.</p>
 
 <div class="shot">
 <img src="images/running-app-picker.png" alt="The picker listing programs that currently have a window">
-<p><b>Add from running programs…</b> lists everything with a window open, so you can pick a program without
+<p><b>Add from running programs&hellip;</b> lists everything with a window open, so you can pick a program without
 knowing where it is installed. Only the file name is added, so the exclusion applies whenever that program
 runs &mdash; not just to the copy running now.</p>
 </div>
@@ -227,7 +227,7 @@ running windows, or by typing the executable name.</p>
 others, or one you write yourself. <b>It applies as you move through the list</b>, so you can judge it; Cancel puts
 the old one back. See <a href="themes.html">Themes</a>. Note the tray icon does not follow this &mdash; it follows
 the Windows <i>taskbar</i> colour, which is a separate Windows setting.</td></tr>
-<tr><td class="name">Edit… / Duplicate… / Reload / Folder</td><td>For working on themes: open this one's file,
+<tr><td class="name">Edit&hellip; / Duplicate&hellip; / Reload / Folder</td><td>For working on themes: open this one's file,
 start a new one from the colours on screen, re-read the folder after saving an edit, or open the folder itself.
 Again, <a href="themes.html">Themes</a> has the detail.</td></tr>
 <tr><td class="name">Overlay Font</td><td>The font the paste overlay draws in. <b>(default)</b> is the built-in
@@ -317,7 +317,7 @@ release back for a week so somebody else meets a bad one first. Nothing is ever 
 you; the check reports and opens the release page. See <a href="overview.html">Overview</a>.</td></tr>
 <tr><td class="name">Longer for particular programs</td><td>Per-application overrides for the pause below. The delay
 is a property of the program you are pasting <i>into</i> rather than of PasteJump, so raising the global value to
-cure one application slowed every paste everywhere. Add a program with <b>Add from running programs…</b> and edit
+cure one application slowed every paste everywhere. Add a program with <b>Add from running programs&hellip;</b> and edit
 its number in place; anything not listed uses the global delay. Matched on the executable name, so it applies
 wherever that program runs.
 <p><b>Add known slow programs</b> fills the table with the usual suspects &mdash; Word, Excel, PowerPoint, Outlook,
@@ -334,7 +334,7 @@ settings, because Notepad opening a bitmap is useless.</td></tr>
 <tr><td class="name">Store Clips In</td><td>Where the database and the image blobs live. Three choices: the
 PasteJump folder (the default, and what keeps a portable copy self-contained), your user profile &mdash; move
 it there when the program folder is not writable, which unzipping under <code>C:\Program Files</code> is the
-usual way to discover &mdash; or <b>A folder I choose…</b>, for a second drive or somewhere with room for
+usual way to discover &mdash; or <b>A folder I choose&hellip;</b>, for a second drive or somewhere with room for
 years of images. That last one reveals a box and a Browse button; the folder is created and tested for writing
 before the change is accepted, so a path that cannot be used is refused rather than leaving PasteJump unable
 to open its database after the restart.</td></tr>
@@ -351,7 +351,7 @@ settings file, because one of them decides where that file is &mdash; they are i
 
 <div class="shot">
 <img src="images/settings-custom-folder.png" alt="The System tab with both halves set to a folder of your own">
-<p>Choosing <b>A folder I choose…</b> reveals the path and a Browse button. Each half is independent, so the
+<p>Choosing <b>A folder I choose&hellip;</b> reveals the path and a Browse button. Each half is independent, so the
 clips can live on another drive while the settings stay beside the program.</p>
 </div>
 
@@ -404,11 +404,11 @@ about what is valid. Change them on the tab named in <b>Where</b>, or in <code>P
 PasteJump is closed. Two things can be done from this page:</p>
 
 <ul>
-<li><b>Export…</b> writes every setting to a JSON file you choose, for moving a configuration to another machine
+<li><b>Export&hellip;</b> writes every setting to a JSON file you choose, for moving a configuration to another machine
 or keeping a copy before experimenting. It exports what the dialog currently shows, so an edit you have not
 applied yet is included &mdash; which also means a value the dialog would refuse stops the export, with the same
 message OK would give.</li>
-<li><b>Import…</b> reads such a file back. Nothing is saved until you press OK or Apply, so Cancel still abandons
+<li><b>Import&hellip;</b> reads such a file back. Nothing is saved until you press OK or Apply, so Cancel still abandons
 an import and trying one is safe. Every imported value goes through the same checks as a typed one, so anything
 out of range is brought back into it.</li>
 <li><b>Reset</b> on a changed row puts that one setting back to its default.</li>
