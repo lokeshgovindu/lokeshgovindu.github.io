@@ -2753,3 +2753,21 @@ details[open] > summary .release-chevron { transform: rotate(180deg); }
     .release-content,
     .release-card-footer { padding-left: 1rem; padding-right: 1rem; }
 }
+
+/* ── My Work: a titled group of cards inside a section (the Visual Studio ports) ── */
+.project-subsection {
+    margin-top: 3rem;
+}
+
+.project-subsection-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--dark-text);
+    margin-bottom: 0.3rem;
+}
+
+.project-subsection-sub {
+    color: var(--muted-text);
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+}

@@ -18,8 +18,8 @@ comments: true
                     Over the years I've channelled countless hours of curiosity and frustration into tools
                     that actually solve real problems. Every project here began as a personal itch — something
                     missing from my daily workflow — and grew into a polished, shareable solution.
-                    Browse the highlights below. Some are open source on GitHub; others, the four Windows applications among them,
-                    are free to download but keep their source private.
+                    Browse the highlights below. Everything here is free. A few are open source on GitHub;
+                    the rest are free downloads whose source is private.
                 </p>
                 <div class="section-divider"></div>
                 <div class="mt-4">
@@ -239,6 +239,9 @@ comments: true
 
 <!-- ═══════════════════════════════════════════════
      SECTION: Visual Studio Extensions
+     Ordered by Marketplace installs. The figures are rounded DOWN, so they stay true as the
+     counts grow; exact values on 2026-10-04 are beside each one. They replace GitHub's star
+     and fork counts, which nobody else can see for the three private repositories.
 ═══════════════════════════════════════════════ -->
 <section class="projects-section projects-section-alt" id="vs-extensions">
     <div class="container">
@@ -255,46 +258,7 @@ comments: true
 
         <div class="row g-4">
 
-            <!-- ── PresentationAssistant ── -->
-            <div class="col-lg-6">
-                <a href="{{ '/my-work/presentationassistant/' | relative_url }}" class="project-card h-100">
-                    <div class="project-card-accent csharp"></div>
-                    <div class="project-card-body">
-                        <span class="project-type-badge vs-extension">
-                            <i class="fa fa-puzzle-piece"></i> VS Extension
-                        </span>
-                        <h4 class="project-title">
-                            <i class="fa fa-chalkboard-teacher me-2" style="color: #7c3aed;"></i>PresentationAssistant
-                        </h4>
-                        <p class="project-description">
-                            Displays every command and shortcut you invoke as a real-time on-screen overlay —
-                            perfect for live coding sessions, workshops, and technical demos where your audience
-                            needs to follow along.
-                        </p>
-                        <ul class="project-features">
-                            <li>Real-time overlay of keyboard shortcuts during live sessions</li>
-                            <li>Configurable display duration and visual style</li>
-                            <li>Action blocklist to suppress sensitive or internal shortcuts</li>
-                        </ul>
-                        <div class="project-tech-tags">
-                            <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
-                            <span class="tech-tag">VSIX</span>
-                            <span class="tech-tag">WPF / XAML</span>
-                            <span class="tech-tag">Visual Studio SDK</span>
-                        </div>
-                        <div class="project-stats">
-                            <span><i class="fa fa-star"></i> 2 Stars</span>
-                            <span><i class="fa fa-code-fork"></i> 1 Fork</span>
-                            <span><i class="fa fa-tag"></i> 2 Releases</span>
-                        </div>
-                    </div>
-                    <div class="project-card-footer">
-                        <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
-                    </div>
-                </a>
-            </div>
-
-            <!-- ── DependencyGraph ── -->
+            <!-- ── DependencyGraph (5,606 installs) ── -->
             <div class="col-lg-6">
                 <a href="{{ '/my-work/dependencygraph/' | relative_url }}" class="project-card h-100">
                     <div class="project-card-accent csharp"></div>
@@ -306,26 +270,23 @@ comments: true
                             <i class="fa fa-project-diagram me-2" style="color: #7c3aed;"></i>DependencyGraph
                         </h4>
                         <p class="project-description">
-                            Generates a clean, interactive visual graph of all project dependencies within
-                            your Visual Studio solution, with export to DGML and Graphviz DOT for design
-                            documents and architecture reviews.
+                            Your solution's project-to-project reference graph, laid out properly in a
+                            dockable window, in any edition of Visual Studio. No Enterprise licence,
+                            no Graphviz and no DGML editor needed.
                         </p>
                         <ul class="project-features">
-                            <li>Interactive dependency graph directly inside Visual Studio</li>
-                            <li>Multiple view modes: deepest, all, or project-only references</li>
-                            <li>Export to DGML and Graphviz DOT formats</li>
+                            <li>Five views, including everything that depends on a project</li>
+                            <li>Circular references drawn in red, naming the projects involved</li>
+                            <li>Export to PNG, DGML or Graphviz DOT</li>
                         </ul>
                         <div class="project-tech-tags">
                             <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
                             <span class="tech-tag">VSIX</span>
-                            <span class="tech-tag">DGML</span>
-                            <span class="tech-tag">Graphviz DOT</span>
-                            <span class="tech-tag">Visual Studio SDK</span>
+                            <span class="tech-tag">VS 2022 &amp; 2026</span>
                         </div>
                         <div class="project-stats">
-                            <span><i class="fa fa-star"></i> 3 Stars</span>
-                            <span><i class="fa fa-code-fork"></i> 2 Forks</span>
-                            <span><i class="fa fa-tag"></i> 2 Releases</span>
+                            <span><i class="fa fa-download"></i> 5,600+ installs</span>
+                            <span><i class="fa fa-tag"></i> Free</span>
                         </div>
                     </div>
                     <div class="project-card-footer">
@@ -334,7 +295,7 @@ comments: true
                 </a>
             </div>
 
-            <!-- ── CommandPalette ── -->
+            <!-- ── CommandPalette (374 installs) ── -->
             <div class="col-lg-6">
                 <a href="{{ '/my-work/commandpalette/' | relative_url }}" class="project-card h-100">
                     <div class="project-card-accent csharp"></div>
@@ -346,7 +307,7 @@ comments: true
                             <i class="fa fa-terminal me-2" style="color: #7c3aed;"></i>CommandPalette
                         </h4>
                         <p class="project-description">
-                            Brings the VS Code-style Command Palette experience to Visual Studio — invoke it
+                            Brings the VS Code-style Command Palette experience to Visual Studio. Invoke it
                             with a single shortcut, then fuzzy-match your way to any command instantly.
                         </p>
                         <ul class="project-features">
@@ -358,12 +319,10 @@ comments: true
                             <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
                             <span class="tech-tag">VSIX</span>
                             <span class="tech-tag">WPF / XAML</span>
-                            <span class="tech-tag">MVVM</span>
-                            <span class="tech-tag">Visual Studio SDK</span>
                         </div>
                         <div class="project-stats">
-                            <span><i class="fa fa-star"></i> 1 Star</span>
-                            <span><i class="fa fa-code-fork"></i> 0 Forks</span>
+                            <span><i class="fa fa-download"></i> 370+ installs</span>
+                            <span><i class="fa fa-tag"></i> Free</span>
                         </div>
                     </div>
                     <div class="project-card-footer">
@@ -372,37 +331,35 @@ comments: true
                 </a>
             </div>
 
-            <!-- ── GoToRecentFile ── -->
+            <!-- ── PresentationAssistant (256 installs) ── -->
             <div class="col-lg-6">
-                <a href="{{ '/my-work/gotorecentfile/' | relative_url }}" class="project-card h-100">
+                <a href="{{ '/my-work/presentationassistant/' | relative_url }}" class="project-card h-100">
                     <div class="project-card-accent csharp"></div>
                     <div class="project-card-body">
                         <span class="project-type-badge vs-extension">
                             <i class="fa fa-puzzle-piece"></i> VS Extension
                         </span>
                         <h4 class="project-title">
-                            <i class="fa fa-history me-2" style="color: #7c3aed;"></i>GoToRecentFile
+                            <i class="fa fa-chalkboard-teacher me-2" style="color: #7c3aed;"></i>PresentationAssistant
                         </h4>
                         <p class="project-description">
-                            A fast, searchable interface to jump directly to any recently opened file without
-                            lifting your hands from the keyboard — with a theme-aware UI that respects
-                            Visual Studio's light and dark themes.
+                            Announces the command you just ran, and the shortcut that runs it, in a small
+                            overlay above the status bar. Made for screen sharing, demos, pairing and
+                            teaching.
                         </p>
                         <ul class="project-features">
-                            <li>Searchable recent files list accessible via a keyboard shortcut</li>
-                            <li>Respects Visual Studio's light and dark colour themes</li>
-                            <li>Deduplication — no repeated entries for the same file</li>
+                            <li>Repeats collapse into one line with a count, such as x9</li>
+                            <li>Follows your IDE theme, or pick one of nineteen palettes</li>
+                            <li>Exclude the commands that are only noise</li>
                         </ul>
                         <div class="project-tech-tags">
                             <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
                             <span class="tech-tag">VSIX</span>
-                            <span class="tech-tag">WPF / XAML</span>
-                            <span class="tech-tag">Visual Studio SDK</span>
+                            <span class="tech-tag">VS 2022 &amp; 2026</span>
                         </div>
                         <div class="project-stats">
-                            <span><i class="fa fa-star"></i> 0 Stars</span>
-                            <span><i class="fa fa-code-fork"></i> 0 Forks</span>
-                            <span><i class="fa fa-tag"></i> Recently Released</span>
+                            <span><i class="fa fa-download"></i> 250+ installs</span>
+                            <span><i class="fa fa-tag"></i> Free</span>
                         </div>
                     </div>
                     <div class="project-card-footer">
@@ -411,7 +368,7 @@ comments: true
                 </a>
             </div>
 
-            <!-- ── OpenFileInSolution ── -->
+            <!-- ── OpenFileInSolution (56 installs) ── -->
             <div class="col-lg-6">
                 <a href="{{ '/my-work/openfileinsolution/' | relative_url }}" class="project-card h-100">
                     <div class="project-card-accent csharp"></div>
@@ -423,18 +380,53 @@ comments: true
                             <i class="fa fa-folder-open me-2" style="color: #7c3aed;"></i>OpenFileInSolution
                         </h4>
                         <p class="project-description">
-                            Quickly open any file in the solution.
+                            Quickly open any file in the solution, from one searchable list, without
+                            digging through Solution Explorer.
                         </p>
                         <div class="project-tech-tags">
                             <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
                             <span class="tech-tag">VSIX</span>
                             <span class="tech-tag">WPF / XAML</span>
-                            <span class="tech-tag">Visual Studio SDK</span>
                         </div>
                         <div class="project-stats">
-                            <span><i class="fa fa-star"></i> 0 Stars</span>
-                            <span><i class="fa fa-code-fork"></i> 0 Forks</span>
-                            <span><i class="fa fa-tag"></i> Recently Released</span>
+                            <span><i class="fa fa-download"></i> 50+ installs</span>
+                            <span><i class="fa fa-scale-balanced"></i> MIT licence</span>
+                        </div>
+                    </div>
+                    <div class="project-card-footer">
+                        <span class="ext-link ext-link-hint">Read more <i class="fa fa-arrow-right ms-1"></i></span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- ── GoToRecentFile (36 installs) ── -->
+            <div class="col-lg-6">
+                <a href="{{ '/my-work/gotorecentfile/' | relative_url }}" class="project-card h-100">
+                    <div class="project-card-accent csharp"></div>
+                    <div class="project-card-body">
+                        <span class="project-type-badge vs-extension">
+                            <i class="fa fa-puzzle-piece"></i> VS Extension
+                        </span>
+                        <h4 class="project-title">
+                            <i class="fa fa-history me-2" style="color: #7c3aed;"></i>GoToRecentFile
+                        </h4>
+                        <p class="project-description">
+                            A fast, searchable list of recently opened files, a keystroke away, with a
+                            theme-aware UI that respects Visual Studio's light and dark themes.
+                        </p>
+                        <ul class="project-features">
+                            <li>Searchable recent files list accessible via a keyboard shortcut</li>
+                            <li>Respects Visual Studio's light and dark colour themes</li>
+                            <li>Deduplication: no repeated entries for the same file</li>
+                        </ul>
+                        <div class="project-tech-tags">
+                            <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                            <span class="tech-tag">VSIX</span>
+                            <span class="tech-tag">WPF / XAML</span>
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fa fa-download"></i> 30+ installs</span>
+                            <span><i class="fa fa-scale-balanced"></i> MIT licence</span>
                         </div>
                     </div>
                     <div class="project-card-footer">
@@ -444,6 +436,98 @@ comments: true
             </div>
 
         </div><!-- /row -->
+
+        <!--
+            Ports: extensions other people wrote, carried forward to newer Visual Studio versions and
+            published under this account. They are credited to their authors here, as they are in
+            their own listings, and link out rather than to pages of their own.
+        -->
+        <div class="project-subsection">
+            <h3 class="project-subsection-title"><i class="fa fa-code-branch me-2"></i>Ports: good extensions kept alive</h3>
+            <p class="project-subsection-sub">Extensions written by others for older Visual Studio versions, ported and published for current ones.</p>
+
+            <div class="row g-4">
+
+                <!-- ── IntelliCommand (1,970 installs) ── -->
+                <div class="col-lg-6">
+                    <div class="project-card h-100">
+                        <div class="project-card-accent csharp"></div>
+                        <div class="project-card-body">
+                            <span class="project-type-badge vs-extension">
+                                <i class="fa fa-code-branch"></i> VS 2022 Port
+                            </span>
+                            <h4 class="project-title">
+                                <i class="fa fa-keyboard me-2" style="color: #7c3aed;"></i>IntelliCommand
+                            </h4>
+                            <p class="project-description">
+                                Hold Ctrl, Shift or Alt, or any combination, for two seconds and it lists
+                                every shortcut that starts that way. Press the first half of a chord,
+                                such as Ctrl+K, and it shows what can follow. Originally by Den Gladkikh
+                                and colleagues on the Visual Studio team, for VS 2010 to 2013.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                                <span class="tech-tag">VSIX</span>
+                                <span class="tech-tag">VS 2022</span>
+                            </div>
+                            <div class="project-stats">
+                                <span><i class="fa fa-download"></i> 1,900+ installs</span>
+                                <span><i class="fa fa-scale-balanced"></i> MS-PL</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer d-flex flex-wrap gap-2">
+                            <a href="https://marketplace.visualstudio.com/items?itemName=LokeshGovindu.IntelliCommand" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fab fa-microsoft"></i> Marketplace
+                            </a>
+                            <a href="https://github.com/lokeshgovindu/IntelliCommand" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fab fa-github"></i> Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── GradientSelection (209 + 40 installs) ── -->
+                <div class="col-lg-6">
+                    <div class="project-card h-100">
+                        <div class="project-card-accent csharp"></div>
+                        <div class="project-card-body">
+                            <span class="project-type-badge vs-extension">
+                                <i class="fa fa-code-branch"></i> VS 2019 &amp; 2022 Port
+                            </span>
+                            <h4 class="project-title">
+                                <i class="fa fa-i-cursor me-2" style="color: #7c3aed;"></i>GradientSelection
+                            </h4>
+                            <p class="project-description">
+                                Draws the editor's text selection with a gradient brush, the way it
+                                looked in Visual Studio 2010 Beta 1. Originally by Noah Richards, for
+                                Visual Studio 2015 and earlier.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="tech-tag"><i class="fa fa-code me-1"></i>C#</span>
+                                <span class="tech-tag">VSIX</span>
+                                <span class="tech-tag">VS 2019 &amp; 2022</span>
+                            </div>
+                            <div class="project-stats">
+                                <span><i class="fa fa-download"></i> 240+ installs</span>
+                                <span><i class="fa fa-tag"></i> Free</span>
+                            </div>
+                        </div>
+                        <div class="project-card-footer d-flex flex-wrap gap-2">
+                            <a href="https://marketplace.visualstudio.com/items?itemName=LokeshGovindu.GradientSelectionVS2022" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fab fa-microsoft"></i> VS 2022
+                            </a>
+                            <a href="https://marketplace.visualstudio.com/items?itemName=LokeshGovindu.GradientSelectionVS2019" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fab fa-microsoft"></i> VS 2019
+                            </a>
+                            <a href="https://github.com/lokeshgovindu/GradientSelection" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fab fa-github"></i> Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </section>
 
@@ -457,9 +541,10 @@ comments: true
                     <h3 style="color:#ffffff; font-weight:700; margin-bottom:0.5rem;">Want to see more?</h3>
                     <p style="color:rgba(255,255,255,0.82); margin-bottom:0; line-height:1.75;">
                         These are just the highlights. My GitHub profile has the repositories that are
-                        public, where you can browse the source, open issues, or contribute. AltTab,
-                        PasteJump, PerchBar and KeyPressOSD are not among them: they are free downloads,
-                        but their source is private.
+                        public, such as GoToRecentFile, OpenFileInSolution and the two ports, where you
+                        can browse the source, open issues, or contribute. The four Windows
+                        applications, DependencyGraph, PresentationAssistant and CommandPalette are
+                        not among them: they are free downloads, but their source is private.
                     </p>
                 </div>
                 <div class="col-lg-4 text-lg-end">
