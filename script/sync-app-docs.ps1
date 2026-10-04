@@ -28,6 +28,10 @@
     Where the application repositories are checked out. Defaults to this repository's parent, which is
     where they are: they are siblings of this one.
 
+.PARAMETER AllowUncommitted
+    Sync even though the application repository has uncommitted changes in what is published. Without
+    it the script refuses, so a page somebody is still editing cannot go live by accident.
+
 .PARAMETER Check
     Do not write. Report what differs and fail if anything does - so a run before a commit, or after
     regenerating a manual, says whether what is published is current.
@@ -48,7 +52,10 @@ param(
 
     [string] $SourceRoot,
 
-    [switch] $Check
+    [switch] $Check,
+
+    # Publish from an application repository with uncommitted changes in the folders this reads.
+    [switch] $AllowUncommitted
 )
 
 Set-StrictMode -Version Latest
@@ -152,6 +159,21 @@ foreach ($name in $App) {
 
     if (-not (Test-Path -LiteralPath (Join-Path $SourceRoot $name))) {
         throw "No $name repository at '$(Join-Path $SourceRoot $name)'. Pass -SourceRoot with where the repositories are."
+    }
+
+    # What is published has to be what the application repository has committed. A sync reads the
+    # working tree, so an edit somebody is in the middle of - found on 2026-10-04, when a help page
+    # being fixed in PasteJump turned up as a difference here - would otherwise go live before its
+    # author had finished it, or decided to keep it.
+    if (-not $AllowUncommitted) {
+        $watched = @($settings.Source) + @($(if ($settings.ContainsKey('Also')) { $settings.Also | ForEach-Object { $_.From } }))
+        $watched = $watched | Where-Object { $_ -notlike 'artifacts/*' }
+        if ($settings.ContainsKey('Generate')) { $watched += @('docs', 'tools') }
+        $dirty = & git -C (Join-Path $SourceRoot $name) status --porcelain -- @($watched | Select-Object -Unique)
+        if ($dirty) {
+            $dirty | ForEach-Object { Write-Host "  $_" }
+            throw "$name has uncommitted changes in what this publishes. Commit them there first, or pass -AllowUncommitted."
+        }
     }
 
     # A staged site is build output, untracked, and rebuilt whenever its author likes - several times an

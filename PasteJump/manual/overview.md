@@ -20,7 +20,7 @@ What the gesture shows while `Ctrl` is held: the clip about to be pasted, where 
 
 ## Nothing to install
 
-PasteJump is portable: unzip it and run it. The single-file download is `PasteJump.exe` plus the manual, the licence and a readme, and it needs no .NET runtime on the machine. It writes its data to a `data` folder next to the executable, so a copy on a USB stick carries its own history. [Getting started](getting-started.md) covers the three downloads and the first run.
+PasteJump is portable: unzip it and run it. The download to take carries the .NET runtime with it, so nothing has to be installed first; there is a smaller one for machines that already have .NET 10. Either way it writes its data to a `data` folder next to the executable, so a copy on a USB stick carries its own history. [Getting started](getting-started.md) covers both downloads and the first run.
 
 ## Where to go next
 
