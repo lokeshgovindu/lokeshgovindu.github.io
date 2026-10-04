@@ -66,18 +66,23 @@ comments: true
                         </figure>
                         <div class="project-sidebar-links">
                             <!--
-                                The repository went private on 2026-09-08. Its website moved here,
-                                to /PasteJump/, synced from the application repository by
-                                script/sync-app-docs.ps1, and its downloads are on SourceForge.
+                                Every application page links the application's OWN website and its
+                                documentation there, which is the copy the project maintains:
+                                pastejump.sourceforge.io. /PasteJump/ on this site is a mirror kept
+                                only because the shipped .chm and older READMEs link to it.
+                                "What's new" goes where PasteJump's own site sends it.
                             -->
                             <a href="https://sourceforge.net/projects/pastejump/files/" target="_blank" rel="noopener noreferrer" class="btn-github">
                                 <i class="fa fa-download"></i> Download
                             </a>
-                            <a href="{{ '/PasteJump/' | relative_url }}" class="btn-project-site">
-                                <i class="fa fa-external-link-alt"></i> Project Site &amp; Tour
+                            <a href="https://pastejump.sourceforge.io/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fa fa-external-link-alt"></i> Website
                             </a>
-                            <a href="{{ '/PasteJump/help/overview.html' | relative_url }}" class="btn-project-site">
-                                <i class="fa fa-book"></i> Manual
+                            <a href="https://pastejump.sourceforge.io/help/overview.html" target="_blank" rel="noopener noreferrer" class="btn-project-site">
+                                <i class="fa fa-book"></i> Documentation
+                            </a>
+                            <a href="{{ '/PasteJump/release-notes/' | relative_url }}" class="btn-project-site">
+                                <i class="fa fa-list-ul"></i> What's New
                             </a>
                             <a href="https://sourceforge.net/p/pastejump/tickets/" target="_blank" rel="noopener noreferrer" class="btn-project-site">
                                 <i class="fa fa-circle-exclamation"></i> Report a Problem
