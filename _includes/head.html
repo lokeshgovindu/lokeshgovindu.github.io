@@ -6,7 +6,8 @@
 {%- if page.layout == "pastejump-release" and page.title == nil -%}
   {%- assign release_version = page.name | remove: ".md" -%}
   {%- assign page_title = "PasteJump " | append: release_version | append: " release notes | Dev Tips & Tricks" -%}
-  {%- assign release_desc = page.content | strip_html | strip_newlines | truncatewords: 30 -%}
+  {%- comment -%} page.content is still Markdown when <head> is rendered, hence markdownify first. {%- endcomment -%}
+  {%- assign release_desc = page.content | markdownify | strip_html | strip_newlines | truncatewords: 30 -%}
   {%- assign page_desc_override = "PasteJump " | append: release_version | append: ": " | append: release_desc -%}
 {%- elsif page.title and page.url != "/" -%}
   {%- assign page_title = page.title | append: " | Dev Tips & Tricks" -%}

@@ -23,7 +23,9 @@ description: Release notes for every version of PasteJump, the keyboard-first cl
 {%- endcomment -%}
 {%- assign keys = "" | split: "" -%}
 {%- for p in site.pages -%}
-  {%- if p.dir == page.dir and p.ext == ".md" and p.name != "README.md" -%}
+  {%- comment -%} By source path: with pretty permalinks a page's dir is its URL, /PasteJump/release-notes/2026.3.1/. {%- endcomment -%}
+  {%- assign p_folder = p.path | split: "/" | pop | join: "/" -%}
+  {%- if p_folder == "PasteJump/release-notes" and p.ext == ".md" and p.name != "README.md" -%}
     {%- assign v = p.name | remove: ".md" -%}
     {%- assign split = v | split: "-pre" -%}
     {%- assign nums = split[0] | split: "." -%}

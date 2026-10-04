@@ -88,8 +88,7 @@ $Applications = @{
     # docs/ directly.
     PasteJump   = @{
         Source    = 'artifacts/site'
-        BuiltFrom = @('docs/help', 'docs/images', 'docs/index.html', 'docs/architecture.html', 'tools/build-site.py')
-        Generator = 'py tools/build-site.py, in the PasteJump repository'
+        Generate  = @('py', '-3', 'tools/build-site.py')
         Also      = @(
             @{ From = 'docs/release-notes'; To = 'release-notes' },
             @{ From = 'docs/manual'; To = 'manual' },
@@ -151,20 +150,32 @@ foreach ($name in $App) {
     $source = Join-Path $SourceRoot (Join-Path $name $settings.Source)
     $destination = Join-Path $repoRoot $name
 
-    if (-not (Test-Path -LiteralPath $source)) {
-        throw "No generated site at '$source'. Pass -SourceRoot with where the repositories are."
+    if (-not (Test-Path -LiteralPath (Join-Path $SourceRoot $name))) {
+        throw "No $name repository at '$(Join-Path $SourceRoot $name)'. Pass -SourceRoot with where the repositories are."
     }
 
-    # A staged site is only as current as the last time its generator ran. Refuse one older than the
-    # sources it was built from, rather than publishing yesterday's manual and calling it synced.
-    if ($settings.ContainsKey('BuiltFrom')) {
-        $built = (Get-Item -LiteralPath (Join-Path $source 'index.html')).LastWriteTimeUtc
-        $newer = $settings.BuiltFrom |
-            ForEach-Object { Get-ChildItem -LiteralPath (Join-Path $SourceRoot (Join-Path $name $_)) -Recurse -File } |
-            Where-Object { $_.LastWriteTimeUtc -gt $built } | Select-Object -First 1
-        if ($newer) {
-            throw "$name's staged site is older than $($newer.FullName). Run its generator first: $($settings.Generator)"
+    # A staged site is build output, untracked, and rebuilt whenever its author likes - several times an
+    # hour while working. So it is regenerated HERE, immediately before it is read: trusting whatever
+    # is on disk would publish whoever ran the generator last, or a tree caught half-written.
+    if ($settings.ContainsKey('Generate')) {
+        $appRoot = Join-Path $SourceRoot $name
+        Push-Location $appRoot
+        try {
+            $output = & $settings.Generate[0] $settings.Generate[1..($settings.Generate.Count - 1)] 2>&1
+            $code = $LASTEXITCODE
         }
+        finally {
+            Pop-Location
+        }
+        if ($code -ne 0) {
+            $output | ForEach-Object { Write-Host "  $_" }
+            throw "$name's site generator failed ($($settings.Generate -join ' '), exit $code)."
+        }
+        Write-Host "staged  $name : $($settings.Generate -join ' ')"
+    }
+
+    if (-not (Test-Path -LiteralPath $source)) {
+        throw "No generated site at '$source'. Generate the application's site first."
     }
 
     # Every file to publish, by its path in the published folder, mapped to where it comes from: the
