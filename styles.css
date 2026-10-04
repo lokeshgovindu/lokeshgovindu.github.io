@@ -2858,3 +2858,14 @@ details[open] > summary .release-chevron { transform: rotate(180deg); }
     margin-left: 0.75rem;
     white-space: nowrap;
 }
+
+/* On a phone a release's file names (PasteJump-2026.3.1.300-win-x64-unpacked.zip) are wider than the
+   whole table can spare, and unbreakable they crushed the description column to a word per line. */
+@media (max-width: 767.98px) {
+    .blog-post-content td code {
+        white-space: normal;
+        word-break: break-all;
+    }
+    .blog-post-content th,
+    .blog-post-content td { padding: 0.5rem 0.6rem; }
+}
