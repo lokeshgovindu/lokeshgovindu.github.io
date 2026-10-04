@@ -20,6 +20,8 @@ Copying is unaffected the whole time, because capture watches the clipboard rath
 >
 > **Close the other clipboard manager.** That is the answer, and in this release it is the only one. Two clipboard managers cannot share `Ctrl`+`V`.
 
+**Settings, Paste Mode.** The two settings below are here: what PasteJump listens for, and what it sends.
+
 Two settings exist that would give each program a chord of its own, and they fix opposite halves of the problem — but both are **disabled in this release** pending more work, and you will find them greyed out under **Settings, Paste Mode**:
 
 | Setting | Would change |

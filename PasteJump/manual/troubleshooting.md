@@ -113,6 +113,18 @@ An instance is already running — check the notification area. A second copy wo
 
 Check the tray icon. Amber with pause bars means capture is paused; grey means PasteJump is disabled. Also check **Watch the Clipboard** under **Settings, Capture**, and whether the application you are copying from is on the **Excluded Apps** list.
 
+**Pausing survives a restart**, which is the easiest way to be caught out by this — so the notice shown at start-up says so rather than simply reporting that PasteJump is running:
+
+![The start-up notice reporting that capture is paused](../help/images/startup-notice-paused.png)
+
+And if the whole program was switched off, it says that instead, naming what it means for the chord:
+
+![The start-up notice reporting that PasteJump is disabled](../help/images/startup-notice-disabled.png)
+
+Both are undone from the tray menu, where the row that switches the state back on is shown in bold:
+
+![The tray menu, showing Pause Capture and Disable PasteJump](../help/images/tray-menu.png)
+
 ## This manual opens with every page blank
 
 Windows has marked the file as downloaded from the internet, and blocks compiled help files from that source: every topic shows "Navigation to the webpage was canceled" and nothing else. Right-click `PasteJump.chm` in the PasteJump folder, choose **Properties**, tick **Unblock** at the bottom of the General tab, and press OK. PasteJump warns about this before opening the file, but only when it can tell — the mark is on the file, so unzipping the download without unblocking it first is the usual way to get here.

@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <!--
-    The project's website. Generated nowhere - this file IS the page - but no longer served from this
-    repository: it is published from lokeshgovindu.github.io by script/sync-app-docs.ps1 there, and served
-    at lokeshgovindu.github.io/PasteJump/. It used to be this repository's own Pages site (Settings, Pages,
-    master /docs), which stopped working on 2026-09-08 when the repository went private, because Pages does
-    not serve a private repository. The URL a reader visits is the same either way.
+    The project's website. Generated nowhere - this file IS the page - and published to TWO places:
 
-    Edit this file, then run that sync script - editing the published copy is what drifts.
+      pastejump.sourceforge.io   THE CANONICAL SITE, and what every user-visible link now names - the
+                                 About window, the README, the Scoop manifest, the SourceForge page copy.
+                                 Built and uploaded by tools/build-site.py, which stages a curated copy of
+                                 docs/ and injects the navigation sidebar; it is on the same host as the
+                                 downloads and does not depend on any Pages arrangement.
+      lokeshgovindu.github.io    Still published, by script/sync-app-docs.ps1 in that repository, and still
+                                 the home of version.json - the update manifest, which has to be a static
+                                 file a program can fetch without credentials. It also renders
+                                 release-notes/, which SourceForge cannot, those being Markdown.
+
+    It used to be this repository's own Pages site (Settings, Pages, master /docs), which stopped working on
+    2026-09-08 when the repository went private, because Pages does not serve a private repository.
+
+    Edit this file, then publish - editing either published copy is what drifts.
 
     Hand-written and self-contained on purpose: no Jekyll theme, no CDN, no web fonts, no JavaScript. A page about a
     clipboard manager - a program people are right to be careful about - should not be asking three other servers for
@@ -25,8 +34,8 @@
 
 <meta property="og:title" content="PasteJump">
 <meta property="og:description" content="Hold Ctrl, tap V to walk back through everything you have copied, release to paste. No window, no mouse.">
-<meta property="og:image" content="https://lokeshgovindu.github.io/PasteJump/pastejump-256.png">
-<meta property="og:url" content="https://lokeshgovindu.github.io/PasteJump/">
+<meta property="og:image" content="https://pastejump.sourceforge.io/pastejump-256.png">
+<meta property="og:url" content="https://pastejump.sourceforge.io/">
 <meta name="twitter:card" content="summary">
 
 <style>
@@ -92,24 +101,38 @@ kbd {
 
 /* ---------------------------------------------------------------- hero */
 
+/*
+    The hero is deliberately SHORT. It used to be 72px of padding above a 96px mark, a 3.4rem title and
+    three buttons, which filled a 1080p viewport on its own - so a first-time reader scrolled past a logo
+    to reach anything about the program. Reported 2026-10-02 with a screenshot of exactly that. Every
+    measurement here is about half what it was, and the mark sits beside the title rather than above it.
+*/
 header {
     background: var(--hero-bg);
     color: #eef0ff;
-    padding: 72px 0 64px;
+    padding: 34px 0 30px;
     text-align: center;
     border-bottom: 1px solid var(--border);
 }
 
-header img.mark { width: 96px; height: 96px; }
+/* Mark and title on one line: the row costs the height of the title instead of the height of both. */
+.hero-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+header img.mark { width: 52px; height: 52px; }
 
 h1 {
-    font-size: clamp(2.4rem, 6vw, 3.4rem);
-    margin: 18px 0 6px;
+    font-size: clamp(1.9rem, 4.4vw, 2.6rem);
+    margin: 0;
     letter-spacing: -.02em;
 }
 
-.tagline { font-size: clamp(1.05rem, 2.6vw, 1.3rem); color: #c3c8e8; margin: 0 auto 6px; max-width: 40ch; }
-.subtle { color: #9aa0c8; font-size: .95rem; margin-top: 18px; }
+.tagline { font-size: clamp(1rem, 2.2vw, 1.15rem); color: #c3c8e8; margin: 8px auto 4px; max-width: 40ch; }
+.subtle { color: #9aa0c8; font-size: .9rem; margin-top: 12px; }
 
 .gesture {
     display: inline-flex;
@@ -117,14 +140,31 @@ h1 {
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 26px 0 6px;
-    font-size: 1.05rem;
+    margin: 14px 0 4px;
+    font-size: 1rem;
     color: #dfe3ff;
 }
 
 .gesture kbd { background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .25); color: #fff; }
 
-.buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+.demo-gif { margin: 0; text-align: center; }
+.demo-gif img {
+    max-width: min(100%, 820px);
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.demo-video { margin: 0; text-align: center; }
+.demo-video video {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #000;
+}
+
+.buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 18px; }
 
 .button {
     display: inline-block;
@@ -217,8 +257,10 @@ footer a { color: var(--muted); text-decoration: underline; }
 
 <header>
     <div class="wrap">
-        <img class="mark" src="pastejump-256.png" alt="">
-        <h1>PasteJump</h1>
+        <div class="hero-title">
+            <img class="mark" src="pastejump-256.png" alt="">
+            <h1>PasteJump</h1>
+        </div>
         <p class="tagline">A jog wheel for your clipboard.</p>
 
         <p class="gesture">
@@ -242,6 +284,7 @@ footer a { color: var(--muted); text-decoration: underline; }
     </div>
 </header>
 
+
 <section>
     <div class="wrap split">
         <div>
@@ -256,9 +299,52 @@ footer a { color: var(--muted); text-decoration: underline; }
                 fingers you will stop reading it &mdash; and then you can turn most of it off.
             </p>
         </div>
-        <figure>
-            <img src="help/images/overlay.png" alt="The paste overlay, showing clip 3 of 41 with its tags and source application">
-            <figcaption>Clip 3 of 41, with its tags, the application it came from, and the paste format.</figcaption>
+        <!--
+            The GIF rather than a still of the overlay, and NOT directly under the hero: this page carried no
+            motion at all until 2026-10-02, while a tour.gif and a 1.1 MB PasteJump-tour.mp4 were both being
+            published and neither was linked from anywhere. For a program whose premise is a gesture, a
+            screenshot cannot do the work. It sits here because tour.gif opens on a title card showing the
+            mark and the name, which directly below the hero made the page look as if it had repeated itself.
+        -->
+        <figure class="demo-gif">
+            <img src="tour.gif" alt="The overlay stepping back through clips while Ctrl is held, then pasting on release">
+            <figcaption>Hold <kbd>Ctrl</kbd>, tap <kbd>V</kbd> to walk back, release to paste. The overlay is
+            there so you <em>can</em> look, not because you must.</figcaption>
+        </figure>
+    </div>
+</section>
+
+<!--
+    The poster is the history window, not the overlay: the overlay still is 439px wide and stretched
+    into a 960px frame it looked soft and cropped, while 1260x770 is close enough to the video's own
+    aspect to sit in the box cleanly.
+
+    preload="metadata", not "auto": the file is 1.1 MB and most readers will not play it, so fetching it on
+    every visit would be the heaviest thing on the page for no benefit. The poster is a frame-like still
+    that already ships, so the section does not look empty before a click.
+
+    The video is GENERATED by tools/make-feature-video.ps1 - it renders every window through the smoke
+    harness and encodes captioned frames - so it cannot drift from the application. It does need ffmpeg,
+    which is why the date below matters: regenerate it with the release rather than letting it describe an
+    older build.
+-->
+<section>
+    <div class="wrap">
+        <h2>The full tour, in a minute</h2>
+        <p class="lede">
+            Every window, captioned: the gesture, searching mid-paste, the history window, the themes and the
+            settings. Generated from the program itself rather than recorded, so what you see is what it does.
+        </p>
+        <figure class="demo-video">
+            <video controls preload="metadata" poster="help/images/history-window.png" width="960">
+                <source src="PasteJump-tour.mp4" type="video/mp4">
+                <p>Your browser cannot play this video.
+                   <a href="PasteJump-tour.mp4">Download it instead</a> (1.1 MB, MP4).</p>
+            </video>
+            <figcaption>
+                About a minute, no sound. <a href="PasteJump-tour.mp4">Download the MP4</a> if you would rather
+                keep it.
+            </figcaption>
         </figure>
     </div>
 </section>
@@ -397,21 +483,15 @@ footer a { color: var(--muted); text-decoration: underline; }
                     <th>Needs</th>
                 </tr>
                 <tr>
-                    <td class="name">…-win-x64.zip</td>
-                    <td>One <code>PasteJump.exe</code>. Portable &mdash; put it on a USB stick and its data goes with it.</td>
-                    <td>60&nbsp;MB</td>
-                    <td>Nothing</td>
-                </tr>
-                <tr>
                     <td class="name">…-win-x64-unpacked.zip</td>
-                    <td>The same build with the runtime already unpacked, 257 files. Starts about four times faster.</td>
-                    <td>59&nbsp;MB</td>
+                    <td>The whole program, 254 files, nothing to install. Portable &mdash; put the folder on a USB stick and its data goes with it. <strong>Take this one</strong> unless you have a reason not to.</td>
+                    <td>60&nbsp;MB</td>
                     <td>Nothing</td>
                 </tr>
                 <tr>
                     <td class="name">…-win-x64-net10.zip</td>
                     <td>PasteJump's own files only, 15 of them.</td>
-                    <td>2.6&nbsp;MB</td>
+                    <td>3.3&nbsp;MB</td>
                     <td>.NET 10 Desktop Runtime</td>
                 </tr>
             </table>

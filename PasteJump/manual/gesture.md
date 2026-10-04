@@ -14,7 +14,7 @@ Every key below works while `Ctrl` is still down. You never have to look at the 
 
 The overlay through seven of its states, as stepping, searching, filtering, marking and the `X` cycle would show them. Everything here happens while `Ctrl` is still held.
 
-There is also a **narrated tour of every window** as a video, which a help file cannot play: this viewer is the old Internet Explorer engine, with no support for HTML5 video. It is published beside the manual instead — [on the PasteJump website](https://lokeshgovindu.github.io/PasteJump/) — and attached to each release on GitHub.
+There is also a **narrated tour of every window** as a video, which a help file cannot play: this viewer is the old Internet Explorer engine, with no support for HTML5 video. It is published beside the manual instead — [on the PasteJump website](https://pastejump.sourceforge.io/) — and attached to each release on GitHub.
 
 ## Moving through clips
 

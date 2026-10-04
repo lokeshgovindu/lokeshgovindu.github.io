@@ -13,6 +13,10 @@
         <param name="Local" value="overview.html">
         </OBJECT>
     <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Getting started">
+        <param name="Local" value="getting-started.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
         <param name="Name" value="The gesture">
         <param name="Local" value="gesture.html">
         </OBJECT>
@@ -25,12 +29,20 @@
         <param name="Local" value="history-window.html">
         </OBJECT>
     <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Themes">
+        <param name="Local" value="themes.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
         <param name="Name" value="Settings">
         <param name="Local" value="settings.html">
         </OBJECT>
     <LI> <OBJECT type="text/sitemap">
-        <param name="Name" value="Themes">
-        <param name="Local" value="themes.html">
+        <param name="Name" value="The tray icon">
+        <param name="Local" value="tray-icon.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Settings reference">
+        <param name="Local" value="settings-reference.html">
         </OBJECT>
     <LI> <OBJECT type="text/sitemap">
         <param name="Name" value="Importing from Clipjump">

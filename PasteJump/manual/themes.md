@@ -15,6 +15,16 @@
 - **Light-based** — Sepia, Solarized Light, Catppuccin Latte, GitHub Light.
 - **Dark-based** — Midnight, Solarized Dark, Catppuccin Mocha, Tokyo Night, One Dark, Monokai, Nord, Dracula, Rose Pine, Everforest Dark, Kanagawa, Gruvbox Dark, Zenburn, GitHub Dark.
 
+**Four of them, in the history window.** The shipped themes are not variations on an accent colour: each one repaints every surface, every border and the selection, so the differences are easiest to judge side by side rather than from a list of names.
+
+**GitHub Light** — light-based, and the one to try first if Light looks too plain.
+
+**Sepia** — light-based, warm rather than white.
+
+**Catppuccin Mocha** — dark-based, low contrast.
+
+**Monokai** — dark-based, high contrast.
+
 **The theme applies as you move through the list**, including with the arrow keys, so you can see it rather than imagine it. Nothing is saved until you press OK or Apply — Cancel, `Esc` and the close button all put the previous theme back.
 
 Every window follows at once, including any open history window. The **notification-area icon does not**: it follows the Windows taskbar colour, which is a separate Windows setting.

@@ -15,10 +15,13 @@ main="PasteJump Help","toc.hhc","index.hhk","overview.html","overview.html",,,,,
 
 [FILES]
 overview.html
+getting-started.html
 gesture.html
 stores.html
 history-window.html
 settings.html
+tray-icon.html
+settings-reference.html
 themes.html
 importing.html
 coexisting.html
@@ -27,6 +30,11 @@ limitations.html
 styles.css
 
 images\about.png
+images\credits.png
+images\theme-catppuccin-mocha.png
+images\theme-github-light.png
+images\theme-monokai.png
+images\theme-sepia.png
 images\clips-view.png
 images\history-window.png
 images\import-dialog.png
@@ -53,5 +61,12 @@ images\settings-system.png
 images\shortcut-help.png
 images\running-app-picker.png
 images\toast.png
+images\startup-notice.png
+images\startup-notice-paused.png
+images\startup-notice-disabled.png
+images\tray-menu.png
+images\history-filtered.png
+images\overlay-key-list.png
+images\overlay-locked.png
 
 [INFOTYPES]

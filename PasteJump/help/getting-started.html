@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Getting started</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<h1>Getting started</h1>
+<p class="lead">Download, unzip, run. There is nothing to install and nothing to configure first.</p>
+
+<h2>Which download to take</h2>
+
+<p>Every release offers the same program in two shapes. They differ only in whether the .NET runtime
+travels with it:</p>
+
+<table>
+<tr><th>File</th><th>What is in it</th><th>Needs</th></tr>
+<tr><td class="name">…<code>-win-x64-unpacked.zip</code></td>
+<td><b>Take this one</b> unless you have a reason not to. The whole program with the .NET runtime beside it,
+plus the manual, the licence and a readme. Nothing to install.</td>
+<td>Nothing</td></tr>
+<tr><td class="name">…<code>-win-x64-net10.zip</code></td>
+<td>PasteJump's own files only, 15 of them, about 3 MB. The shape where a .NET security update reaches
+PasteJump from Windows rather than from a new release.</td>
+<td>The .NET&nbsp;10 Desktop Runtime</td></tr>
+</table>
+
+<div class="note">
+<p><b>There used to be a single-file <code>…-win-x64.zip</code>, and it was retired deliberately.</b> One
+<code>PasteJump.exe</code> was the nicer thing to download, and it spent about a second of <i>every</i> warm
+launch unpacking itself before any of PasteJump's own code ran &mdash; roughly 1.3 s against 0.3 s &mdash; on
+a program that starts when you sign in and then runs all day. It was not even smaller, since a single-file
+bundle is already compressed. If you still have one, unzip the archive above over it or beside it; your
+<code>data</code> folder is untouched either way.</p>
+</div>
+
+<p>Windows 10 or 11, 64-bit. There is no 32-bit build and no installer.</p>
+
+<h2>First run</h2>
+
+<p><b>Unzip it wherever you like and run <code>PasteJump.exe</code>.</b> Nothing is written outside the
+folder you unzipped into, unless you move the data location yourself.</p>
+
+<div class="note">
+<p><b>Windows will warn you the first time.</b> The builds are not signed with a paid certificate, so
+SmartScreen reports an unknown publisher: choose <b>More info</b>, then <b>Run anyway</b>. Every release
+publishes a SHA256 for each file if you want to check what you downloaded against it.</p>
+</div>
+
+<p><b>There is no main window, and that is not a failure to start.</b> It says so instead, briefly, in the
+corner:</p>
+
+<div class="shot shot-inline">
+<img src="images/startup-notice.png" alt="The notice shown when PasteJump starts">
+<p>The version you are running and the chord to paste with. It never takes focus, so it cannot interrupt what
+you are typing. How often it appears is yours to choose &mdash; see <a href="tray-icon.html">The tray
+icon</a>.</p>
+</div>
+
+<p>PasteJump then puts an icon in the notification area next to the clock and waits. If you cannot see it, Windows has probably hidden it behind
+the <i>Show hidden icons</i> arrow &mdash; drag it out onto the taskbar once and it stays.
+See <a href="tray-icon.html">The tray icon</a>.</p>
+
+<h2>The first thing to try</h2>
+
+<ol>
+<li>Copy two or three different things, in the ordinary way &mdash; <code>Ctrl</code>+<code>C</code> in any
+program.</li>
+<li>Click into somewhere you can type.</li>
+<li><b>Hold <code>Ctrl</code> and tap <code>V</code> twice.</b> An overlay appears showing the clip one back
+from the newest.</li>
+<li><b>Keep <code>Ctrl</code> held and tap <code>V</code> again</b> to walk further back.</li>
+<li><b>Release <code>Ctrl</code>.</b> That clip is pasted.</li>
+</ol>
+
+<div class="shot">
+<img src="images/overlay.png" alt="The paste overlay showing a text clip and its position in the stack">
+<p>What you see at step 3: the clip about to be pasted, where it sits in the stack, and the keys available
+while <code>Ctrl</code> is still held.</p>
+</div>
+
+<p>One tap of <code>V</code> with <code>Ctrl</code> held is an ordinary paste, exactly as before, so the
+chord you already use has not changed meaning. The overlay only appears from the second tap onwards.</p>
+
+<p><code>Esc</code> cancels while the overlay is up and pastes nothing.
+<a href="gesture.html">The gesture</a> is the one page worth reading in full &mdash; everything else in this
+manual supports what is on it.</p>
+
+<h2>Where your clips are kept</h2>
+
+<p>In a <code>data</code> folder <b>beside the executable</b>, so a copy on a USB stick carries its own
+history, and deleting the folder PasteJump lives in takes the history with it. If the program folder is not
+writable &mdash; which is what unzipping under <code>C:\Program Files</code> means in practice &mdash; choose
+a different location under <b>Settings, System</b>. <a href="stores.html">Clips and history</a> explains the
+two places what you copy is kept, which is the easiest thing here to confuse.</p>
+
+<h2>Starting it with Windows</h2>
+
+<p><b>Use the tray menu's <i>Run at Startup</i></b> rather than putting a shortcut in the Startup folder. It
+registers a scheduled task, and that is also what makes <i>Always Run as Administrator</i> possible without a
+UAC prompt at every sign-in. Both are ticked items in the menu, so they answer the question as well as setting
+it &mdash; see <a href="tray-icon.html">The tray icon</a>.</p>
+
+<h2>Coming from Clipjump</h2>
+
+<p>PasteJump can bring an existing Clipjump history and clip stack across, and it offers to do that on a first
+run if it finds an installation. It can also be done later, from <b>Settings, History</b>.
+See <a href="importing.html">Importing from Clipjump</a>.</p>
+
+</body>
+</html>

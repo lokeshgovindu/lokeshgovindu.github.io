@@ -5,7 +5,7 @@ session state, the store, and the thread budget that shapes all of it.
 
 > **There are two copies of this document and they must be edited together.** This Markdown is what GitHub
 > renders (mermaid diagrams and all); `architecture.html` is the same content styled for the website, where it
-> reads as [one designed page](https://lokeshgovindu.github.io/PasteJump/architecture.html), and the two
+> reads as [one designed page](https://pastejump.sourceforge.io/architecture.html), and the two
 > hand-drawn figures in `docs/images/` are shared by both. Prose changes belong in both files in the same
 > commit — unlike `docs/manual`, nothing generates one from the other.
 >

@@ -7,11 +7,14 @@ The same manual that ships with the program, in a form GitHub can render. It is 
 are built from - so edit the HTML there, not the Markdown here.
 
 - [PasteJump](overview.md)
+- [Getting started](getting-started.md)
 - [The gesture](gesture.md)
 - [Clips and history](stores.md)
 - [The history window](history-window.md)
-- [Settings](settings.md)
 - [Themes](themes.md)
+- [Settings](settings.md)
+- [The tray icon](tray-icon.md)
+- [Settings reference](settings-reference.md)
 - [Importing from Clipjump](importing.md)
 - [Another clipboard manager](coexisting.md)
 - [Troubleshooting](troubleshooting.md)

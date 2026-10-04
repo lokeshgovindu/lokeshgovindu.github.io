@@ -39,4 +39,4 @@ The number reads `year.release.0.build`. The last part counts changes to the sou
 
 The interaction design is Avi Aryan's. **Clipjump** is an excellent AutoHotkey v1 utility whose last release was in 2016; PasteJump is an independent reimplementation of its observed behaviour and carries none of its code.
 
-PasteJump is MIT-licensed. Copyright © 2026 Lokesh Govindu.
+**PasteJump is free of charge but not open source.** You may use it for anything, for as long as you like, on as many machines as you like, without paying and without registering; the source is not published, and "free" here means free of charge and nothing more. The full terms ship beside the program as `LICENSE.txt`. Releases before `2026.2.0.249` were published under the MIT licence, and that grant stands for those copies. Copyright © 2026 Lokesh Govindu.
