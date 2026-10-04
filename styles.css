@@ -900,6 +900,11 @@ footer a:hover { color: #ffffff; }
     margin-bottom: 0.9rem;
 }
 
+/* Inside a card body, which is a flex column, an inline-flex badge stretched the full width. */
+.project-card-body > .project-type-badge {
+    align-self: flex-start;
+}
+
 .project-type-badge.windows-app  { background: #dbeafe; color: #1d4ed8; }
 .project-type-badge.vs-extension { background: #ede9fe; color: #7c3aed; }
 
@@ -1009,6 +1014,15 @@ footer a:hover { color: #ffffff; }
     background: var(--primary-dark);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* In the dark theme --dark-text is near-white, so white text on it was unreadable. */
+:root[data-theme="dark"] .btn-github {
+    color: #0b1020 !important;
+}
+
+:root[data-theme="dark"] .btn-github:hover {
+    color: #ffffff !important;
 }
 
 .btn-project-site {
