@@ -31,13 +31,17 @@ Windows 10 or 11, 64-bit. There is no 32-bit build and no installer.
 
 **There is no main window, and that is not a failure to start.** It says so instead, briefly, in the corner:
 
-The version you are running and the chord to paste with. It never takes focus, so it cannot interrupt what you are typing. How often it appears is yours to choose — see [The tray icon](tray-icon.md).
+![The notice shown when PasteJump starts](../help/images/startup-notice.png)
+
+*The version you are running and the chord to paste with. It never takes focus, so it cannot interrupt what you are typing. How often it appears is yours to choose — see [The tray icon](tray-icon.md).*
 
 PasteJump then puts an icon in the notification area next to the clock and waits. If you cannot see it, Windows has probably hidden it behind the *Show hidden icons* arrow — drag it out onto the taskbar once and it stays. See [The tray icon](tray-icon.md).
 
 ## The first thing to try
 
-What you see at step 3: the clip about to be pasted, where it sits in the stack, and the keys available while `Ctrl` is still held.
+![The paste overlay showing a text clip and its position in the stack](../help/images/overlay.png)
+
+*What you see at step 3: the clip about to be pasted, where it sits in the stack, and the keys available while `Ctrl` is still held.*
 
 One tap of `V` with `Ctrl` held is an ordinary paste, exactly as before, so the chord you already use has not changed meaning. The overlay only appears from the second tap onwards.
 

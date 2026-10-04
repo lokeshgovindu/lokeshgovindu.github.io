@@ -38,6 +38,8 @@ History stores a flattened record of the same copy — the text, or one image �
 
 Both live in one SQLite database, `data\pastejump.db`, beside the executable by default, as the `clip` and `history` tables. Payloads too large to sit in a row go to `data\blobs`, content-addressed and compressed — so copying the same screenshot five times costs one file.
 
-**Settings, System** — *Where Data Is Kept*. The two are set separately, and the resolved path is shown under each so you can see where it has actually landed. Changing either takes effect on the next start: PasteJump copies the data across and leaves the old copy behind for you to delete once you are satisfied.
+![Where Data Is Kept, on the System tab, with the clip store pointed at a folder of its own](../help/images/settings-custom-folder.png)
+
+***Settings, System** — *Where Data Is Kept*. The two are set separately, and the resolved path is shown under each so you can see where it has actually landed. Changing either takes effect on the next start: PasteJump copies the data across and leaves the old copy behind for you to delete once you are satisfied.*
 
 The two locations are configurable and independent; see [Settings, System](settings.md).

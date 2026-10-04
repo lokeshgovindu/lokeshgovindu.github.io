@@ -8,7 +8,9 @@
 
 On first run PasteJump looks for a Clipjump installation and offers to import. You can also start it later from **Settings, History, Import Clipjump History**, and browse to the folder if the guess is wrong.
 
-The import dialog. It validates the folder before enabling Import — shown here with a path that does not exist, which is the state that explains itself rather than failing later.
+![The import dialog, with a folder that does not exist](../help/images/import-dialog.png)
+
+*The import dialog. It validates the folder before enabling Import — shown here with a path that does not exist, which is the state that explains itself rather than failing later.*
 
 ## What comes across
 

@@ -6,7 +6,9 @@
 
 **Left-click the tray icon to open it. One window shows both stores — the switch at the top-left chooses which.**
 
-The History view. The row selected here is a copy of an image file, so the preview pane shows the picture below the path, and the line above names its resolution.
+![The history window, History view](../help/images/history-window.png)
+
+*The History view. The row selected here is a copy of an image file, so the preview pane shows the picture below the path, and the line above names its resolution.*
 
 ## The two views
 
@@ -14,7 +16,9 @@ The combo box on the left switches between **Clips** and **History**. Both use t
 
 Clips view adds a **Pin** button and renames **Clear History** to **Clear Clips**, so the button always names what it will actually empty.
 
-The Clips view: the same columns over the other store, with Pin added. The status line counts what the gesture can reach rather than what has been logged.
+![The same window switched to the Clips view](../help/images/clips-view.png)
+
+*The Clips view: the same columns over the other store, with Pin added. The status line counts what the gesture can reach rather than what has been logged.*
 
 ## The buttons
 
@@ -30,9 +34,13 @@ The Clips view: the same columns over the other store, with Pin added. The statu
 
 Select several rows — `Ctrl`+click, or `Shift`+click for a run — and Copy changes to **Copy Joined**. Pressing it produces a **single** clip containing all their text, so it pastes once rather than several times. `Enter` does the same.
 
-Three rows selected. The button says what it will do; nothing else on screen hints that joining exists.
+![Three rows selected, with the button reading Copy Joined](../help/images/history-joining.png)
 
-Afterwards the status line accounts for every row you selected, including any it could not use.
+*Three rows selected. The button says what it will do; nothing else on screen hints that joining exists.*
+
+![The status line after joining, reporting what was left out](../help/images/history-joined.png)
+
+*Afterwards the status line accounts for every row you selected, including any it could not use.*
 
 - **Order** — **Top to bottom as shown**, not the order you clicked. A grid cannot report the order rows were picked in — a `Shift`+click has no order at all — so this is the only rule you can predict before pressing the button. During the gesture, where the sequence *is* knowable, the order you marked in is used instead.
 - **What goes between** — A new line by default; set **Separator When Joining Clips** under [Settings, History](settings.md). Invisible characters are written as `\n`, `\t` and `\r\n`; anything else is used literally, so `", "` works as typed.
@@ -53,7 +61,9 @@ The second control in the toolbar narrows the list to one kind: **All kinds**, *
 
 It combines with the search box — **Images** plus a search term finds pictures copied from a page whose name you remember — and the status line names the filter while one is on, so a short list is never left looking like a history that has lost entries.
 
-The list narrowed to **Images**. The status line names the filter while one is on.
+![The history list narrowed to images, with the status line naming the filter](../help/images/history-filtered.png)
+
+*The list narrowed to **Images**. The status line names the filter while one is on.*
 
 ## The row menu
 
@@ -108,7 +118,9 @@ Importing from Clipjump was not idempotent before this version: the dialog said 
 - **In History** — An entry is judged by its timestamp, its kind, its text *and* its image. Two screenshots taken in the same second are therefore not mistaken for one another, even though both preview as `[image]`. The oldest of each set is kept, because a history entry is a record of when something was copied.
 - **In Clips** — A clip is judged by its content, which is the same test the gesture uses to recognise a re-copy. The newest of each set is kept, and a pinned clip always wins — its position in the stack is what you navigate by, and a pin is a deliberate act.
 
-The confirmation for the History view. The option that widens the sweep is part of the question rather than a setting elsewhere, so the consequence can be spelled out beside it.
+![The Remove Duplicates confirmation, with the Ignore time option](../help/images/remove-duplicates.png)
+
+*The confirmation for the History view. The option that widens the sweep is part of the question rather than a setting elsewhere, so the consequence can be spelled out beside it.*
 
 **Ignore the time it was copied**, in the confirmation itself, widens what counts as a duplicate: with it ticked an entry is judged by its kind, its text and its image alone, so the same thing copied on Monday and again today counts as one and **the most recent is kept**. Without it the timestamp is part of the match, so those two are left alone and the oldest of each set survives. The two keep opposite rows on purpose — when every copy in a group happened at the same instant they are interchangeable, and when they did not, the recent one is the one whose date tells you something true.
 

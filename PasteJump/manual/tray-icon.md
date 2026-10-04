@@ -29,7 +29,9 @@ The icon reports the state by colour *and* by glyph, so it still reads in greysc
 
 ## The menu
 
-Right-click the icon. The two ticked items are states rather than actions — the tick is read from the machine each time the menu opens, not from a saved preference, so it tells you what is really set up.
+![The tray menu, with Run at Startup and Always Run as Administrator ticked](../help/images/tray-menu.png)
+
+*Right-click the icon. The two ticked items are states rather than actions — the tick is read from the machine each time the menu opens, not from a saved preference, so it tells you what is really set up.*
 
 ## The menu
 
@@ -54,7 +56,9 @@ Right-click the icon. The two ticked items are states rather than actions — th
 
 PasteJump has no window, so when Windows signs you in there is nothing on screen to say it is there. It announces itself instead, briefly, in the corner:
 
-The version you are running and the chord to paste with. It never takes focus, so it cannot interrupt whatever you happen to be typing as you sign in.
+![The notice shown when PasteJump starts, naming the version and the paste chord](../help/images/startup-notice.png)
+
+*The version you are running and the chord to paste with. It never takes focus, so it cannot interrupt whatever you happen to be typing as you sign in.*
 
 Under **Settings, System**, **Say So When PasteJump Starts** offers three answers:
 
@@ -68,7 +72,9 @@ Under **Settings, System**, **Say So When PasteJump Starts** offers three answer
 
 ## The notification after a copy
 
-The clip count and a preview of what was copied. It never takes focus, and it can be switched off under **Settings, Appearance** — as can where on the screen it appears.
+![The brief notification shown after a copy](../help/images/toast.png)
+
+*The clip count and a preview of what was copied. It never takes focus, and it can be switched off under **Settings, Appearance** — as can where on the screen it appears.*
 
 ## Checking for updates
 

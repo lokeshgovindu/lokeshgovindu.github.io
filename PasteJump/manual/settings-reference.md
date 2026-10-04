@@ -132,3 +132,5 @@
 | **`ClipboardRepublishMs`** | int | `1000` | How long after storing a clip a second publish of the same content counts as the same copy, in milliseconds. |
 | **`OverlayDeletedFlashMs`** | int | `1200` | How long the overlay shows `DELETED` after the `Delete` key, in milliseconds. `0` never shows it. |
 | **`TypeOutCharDelayMs`** | int | *type default* | Pause between batches of characters when a clip is typed out by the unbound type-out action, in milliseconds. |
+
+*This table is generated from the source by `tools/generate-settings-reference.py`, so it cannot drift from the program. Edit the doc comment on the property, not this page.*

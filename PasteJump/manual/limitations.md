@@ -29,9 +29,13 @@ Clipjump had these. They were audited and dropped rather than missed:
 
 ## Version
 
-Right-click the tray icon and choose About. **Copy Details** puts the version, the build stamp and the environment on the clipboard, which is what to paste into a bug report. **Credits** opens the credits and the third-party notices — what PasteJump is made of, and the licences that travel with it.
+![The About window](../help/images/about.png)
 
-Credits, with the third-party notices the build embeds.
+*Right-click the tray icon and choose About. **Copy Details** puts the version, the build stamp and the environment on the clipboard, which is what to paste into a bug report. **Credits** opens the credits and the third-party notices — what PasteJump is made of, and the licences that travel with it.*
+
+![The Credits window, listing the third-party notices embedded in the build](../help/images/credits.png)
+
+*Credits, with the third-party notices the build embeds.*
 
 The number reads `year.release.0.build`. The last part counts changes to the source, so it climbs by more than one between releases and is the part worth quoting when two copies of the same release behave differently.
 

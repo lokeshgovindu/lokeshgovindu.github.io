@@ -28,7 +28,9 @@ Matches whose *label* contains what you typed are listed first, so searching `th
 
 ## Capture
 
-Recording, and how many clips the gesture can reach.
+![The Capture tab of the Settings dialog](../help/images/settings-capture.png)
+
+*Recording, and how many clips the gesture can reach.*
 
 | Setting | What it does |
 | --- | --- |
@@ -39,7 +41,9 @@ Recording, and how many clips the gesture can reach.
 
 ## History
 
-The archive: how long entries are kept, how much of each one, and the Clipjump import.
+![The History tab of the Settings dialog](../help/images/settings-history.png)
+
+*The archive: how long entries are kept, how much of each one, and the Clipjump import.*
 
 | Setting | What it does |
 | --- | --- |
@@ -55,7 +59,9 @@ The archive: how long entries are kept, how much of each one, and the Clipjump i
 
 ## Paste Mode
 
-How the gesture behaves. The two controls at the top are greyed out — they are disabled in this release.
+![The Paste Mode tab of the Settings dialog](../help/images/settings-paste-mode.png)
+
+*How the gesture behaves. The two controls at the top are greyed out — they are disabled in this release.*
 
 | Setting | What it does |
 | --- | --- |
@@ -70,7 +76,9 @@ How the gesture behaves. The two controls at the top are greyed out — they are
 
 ## Keys
 
-Which letter fires each action during the gesture, and which actions are switched off.
+![The Keys tab of the Settings dialog](../help/images/settings-keys.png)
+
+*Which letter fires each action during the gesture, and which actions are switched off.*
 
 Pick a letter for any action, or **(off)** to switch it off. Two actions cannot share a letter and none can take the letter that opens paste mode — both are refused when you press OK, with the clash named, rather than being resolved for you. Swapping two letters over is fine: the check runs once at the end, not as you type.
 
@@ -113,15 +121,21 @@ Scroll to the foot of the tab for **every** key that no set of bindings can take
 
 ## Excluded Apps
 
-Processes whose copies are never recorded. Browse to one, or pick it from the running windows.
+![The Excluded Apps tab of the Settings dialog](../help/images/settings-excluded-apps.png)
 
-**Add from running programs…** lists everything with a window open, so you can pick a program without knowing where it is installed. Only the file name is added, so the exclusion applies whenever that program runs — not just to the copy running now.
+*Processes whose copies are never recorded. Browse to one, or pick it from the running windows.*
+
+![The picker listing programs that currently have a window](../help/images/running-app-picker.png)
+
+***Add from running programs…** lists everything with a window open, so you can pick a program without knowing where it is installed. Only the file name is added, so the exclusion applies whenever that program runs — not just to the copy running now.*
 
 Processes listed here are ignored: while one of them is in the foreground, nothing it copies is recorded. Password managers are the obvious case. Add one by browsing to it, by picking from the list of running windows, or by typing the executable name.
 
 ## Appearance
 
-Theme, list density, and everything about the overlay drawn during the gesture.
+![The Appearance tab of the Settings dialog](../help/images/settings-appearance.png)
+
+*Theme, list density, and everything about the overlay drawn during the gesture.*
 
 | Setting | What it does |
 | --- | --- |
@@ -141,7 +155,9 @@ Theme, list density, and everything about the overlay drawn during the gesture.
 
 ## System
 
-Start-up, the paste timing, the external editors, and where the data lives.
+![The System tab of the Settings dialog](../help/images/settings-system.png)
+
+*Start-up, the paste timing, the external editors, and where the data lives.*
 
 **Add known slow programs** fills the table with the usual suspects — Word, Excel, PowerPoint, Outlook, OneNote, Teams, Slack, Discord, VS Code, Remote Desktop and Citrix — at a conservative starting delay. They are *starting points, not measurements*: the right number depends on your machine, so raise one until the wrong clip stops appearing. Programs you have already listed are left alone, so a value you have tuned is never overwritten and pressing the button twice does nothing the second time.
 
@@ -160,7 +176,9 @@ Start-up, the paste timing, the external editors, and where the data lives.
 >
 > **The two locations are independent, and moving either needs a restart.** PasteJump restarts, copies that half across, and leaves the old copy in place for you to delete. They cannot live in the settings file, because one of them decides where that file is — they are in `data-location.json` beside the executable, along with the folder you chose if you chose one.
 
-Choosing **A folder I choose…** reveals the path and a Browse button. Each half is independent, so the clips can live on another drive while the settings stay beside the program.
+![The System tab with both halves set to a folder of your own](../help/images/settings-custom-folder.png)
+
+*Choosing **A folder I choose…** reveals the path and a Browse button. Each half is independent, so the clips can live on another drive while the settings stay beside the program.*
 
 > **Warning**
 >
@@ -168,7 +186,9 @@ Choosing **A folder I choose…** reveals the path and a Browse button. Each hal
 
 ## Advanced
 
-Every setting with the value a fresh install would have. Changed rows are banded and carry a Reset button.
+![The Advanced tab of the Settings dialog](../help/images/settings-advanced.png)
+
+*Every setting with the value a fresh install would have. Changed rows are banded and carry a Reset button.*
 
 Every setting PasteJump has, with its current value and the value a fresh install would have — including the two data locations, which live in their own file and are labelled as such. Nothing is left out: if a setting exists, it is on this page. Rows that differ from their default are banded and marked, which is the first thing to check when behaviour is surprising.
 

@@ -17,13 +17,21 @@
 
 **Four of them, in the history window.** The shipped themes are not variations on an accent colour: each one repaints every surface, every border and the selection, so the differences are easiest to judge side by side rather than from a list of names.
 
-**GitHub Light** — light-based, and the one to try first if Light looks too plain.
+![PasteJump's history window under the GitHub Light theme](../help/images/theme-github-light.png)
 
-**Sepia** — light-based, warm rather than white.
+***GitHub Light** — light-based, and the one to try first if Light looks too plain.*
 
-**Catppuccin Mocha** — dark-based, low contrast.
+![PasteJump's history window under the Sepia theme](../help/images/theme-sepia.png)
 
-**Monokai** — dark-based, high contrast.
+***Sepia** — light-based, warm rather than white.*
+
+![PasteJump's history window under the Catppuccin Mocha theme](../help/images/theme-catppuccin-mocha.png)
+
+***Catppuccin Mocha** — dark-based, low contrast.*
+
+![PasteJump's history window under the Monokai theme](../help/images/theme-monokai.png)
+
+***Monokai** — dark-based, high contrast.*
 
 **The theme applies as you move through the list**, including with the arrow keys, so you can see it rather than imagine it. Nothing is saved until you press OK or Apply — Cancel, `Esc` and the close button all put the previous theme back.
 

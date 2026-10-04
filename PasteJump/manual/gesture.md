@@ -6,13 +6,17 @@
 
 **Press `Ctrl`+`V` and keep `Ctrl` held. An overlay appears near the text caret. Release `Ctrl` to commit whatever it is showing.**
 
-Clip 3 of 41. The chips read: pinned, its tags, the application it was copied from, POP because `Shift` is held, and the current paste format.
+![The paste overlay showing clip 3 of 41](../help/images/overlay.png)
+
+*Clip 3 of 41. The chips read: pinned, its tags, the application it was copied from, POP because `Shift` is held, and the current paste format.*
 
 Every key below works while `Ctrl` is still down. You never have to look at the overlay to use it — it is there so you can, not because you must.
 
 ## What it looks like
 
-The overlay through seven of its states, as stepping, searching, filtering, marking and the `X` cycle would show them. Everything here happens while `Ctrl` is still held.
+![The overlay stepping through a text clip, an image, a search, a kind filter, marked clips and DELETE ALL](../help/images/overlay-tour.gif)
+
+*The overlay through seven of its states, as stepping, searching, filtering, marking and the `X` cycle would show them. Everything here happens while `Ctrl` is still held.*
 
 There is also a **narrated tour of every window** as a video, which a help file cannot play: this viewer is the old Internet Explorer engine, with no support for HTML5 video. It is published beside the manual instead — [on the PasteJump website](https://pastejump.sourceforge.io/) — and attached to each release on GitHub.
 
@@ -54,7 +58,9 @@ Once it has a key — `J` below — that key marks the clip being shown. Mark as
 | **J** | Mark or unmark this clip. The cursor does not move, so `J` `V` `J` marks two clips in a row. |
 | **release Ctrl** | With anything marked, pastes the marked clips joined — wherever the cursor happens to be. |
 
-**JOIN 3** is how many clips will be pasted. The tick means the clip on show is one of them, so you can tell whether pressing `J` again would add it or remove it.
+![The overlay showing JOIN 3 with a tick](../help/images/overlay-join-mark.png)
+
+***JOIN 3** is how many clips will be pasted. The tick means the clip on show is one of them, so you can tell whether pressing `J` again would add it or remove it.*
 
 **This is not the same as `Enter`.** `Enter` pastes clips one after another as separate pastes, which leaves the application to decide what happens between them — in a spreadsheet, separate cells. Joining produces a single clip, so it lands as a single paste.
 
@@ -86,7 +92,9 @@ The same thing is available without the gesture: select several rows in the [his
 | **H** | Open the [clipboard history window](history-window.md). This **ends the gesture**, for the same reason `F1` does — and more so, since that window has a search box of its own. |
 | **F1** | Show the key list in a window. This **ends the gesture** — see below. |
 
-`F1` during the gesture, or Paste-mode keys on the tray menu. It names the trigger letter you have configured rather than assuming `V`, and it has a button through to this manual.
+![The paste-mode key list window](../help/images/shortcut-help.png)
+
+*`F1` during the gesture, or Paste-mode keys on the tray menu. It names the trigger letter you have configured rather than assuming `V`, and it has a button through to this manual.*
 
 `F1` closes the overlay and restores the clipboard before the list appears. It has to: the list is a real window that takes the keyboard, and while the overlay is up the gesture is swallowing keys — including the ones the list is busy explaining. So read it, close it, and press `Ctrl`+`V` again.
 
@@ -96,7 +104,9 @@ The same thing is available without the gesture: select several rows in the [his
 | --- | --- |
 | **K** | Narrow the stack: all clips, then text only, images only, files only, and back to all. |
 
-A chip names the filter, and the count changes with it — *clip 2 of 5* rather than *of 41*.
+![The overlay with the stack narrowed to images](../help/images/overlay-kind-filter.png)
+
+*A chip names the filter, and the count changes with it — *clip 2 of 5* rather than *of 41*.*
 
 This is what to reach for when you want the screenshot from twenty minutes ago and there are forty text clips in the way. Images are the clips most worth looking at before pasting, and the rarest in a stack, so stepping to one is the slowest thing the gesture does.
 
@@ -123,7 +133,9 @@ It combines with search: narrow to images, then `F` and type to search within th
 >
 > **While the search box is open, every letter and digit is part of the query.** None of the lettered actions fires — so typing *output* searches for "output" rather than opening the clip in an editor and pinning it on the way past. Press `Ctrl`+`F` to close the search first if you want one of those keys. The arrows are the only way to step through matches, because they are the one pair that can never be part of what you are typing.
 
-Search mode adds a row above the preview: the query, and how many clips match it.
+![The overlay in search mode, showing the query and a match count](../help/images/overlay-search.png)
+
+*Search mode adds a row above the preview: the query, and how many clips match it.*
 
 Search is the exception to "keep `Ctrl` held": releasing it while searching does not commit, so you can type a query at your own pace — **let go and type with both hands**. The footer says what applies while the box is open: `↑↓` steps the matches, `Enter` pastes, `Esc` cancels and `Ctrl`+`F` closes the box. The lettered keys are deliberately absent there, because every letter is part of your query.
 
@@ -131,7 +143,9 @@ Search is the exception to "keep `Ctrl` held": releasing it while searching does
 
 Search is not the only way to put `Ctrl` down. `L` **locks the overlay open**: the overlay says **LOCKED**, releasing `Ctrl` no longer pastes anything, and every key goes on working with both hands free. It is the answer to browsing a long stack, reading a preview properly, or tagging a clip without keeping a finger on a modifier.
 
-Locked: the chip says so, and the footer swaps to the two keys that now end the session.
+![The overlay with a LOCKED chip, and a footer offering Enter to paste and Esc to close](../help/images/overlay-locked.png)
+
+*Locked: the chip says so, and the footer swaps to the two keys that now end the session.*
 
 | Key | Action |
 | --- | --- |
@@ -181,7 +195,9 @@ Above about two thousand characters, PasteJump says how much it is about to type
 
 `?` lists every key at the bottom of the overlay. `/` does the same thing, since the question mark is the shifted version of that key.
 
-Every key, in the overlay, without ending the session. The list is built from your own bindings, so a letter you have moved shows where you moved it - and an action you have switched off is left out.
+![The overlay listing every paste-mode key in two columns beneath the preview](../help/images/overlay-key-list.png)
+
+*Every key, in the overlay, without ending the session. The list is built from your own bindings, so a letter you have moved shows where you moved it - and an action you have switched off is left out.*
 
 Unlike `F1`, which opens a window and therefore has to end the session first, this leaves the session exactly as it was — so the keys it lists can be tried as they are read. Press it again to hide the list. It is not remembered between gestures.
 
@@ -195,7 +211,9 @@ Unlike `F1`, which opens a window and therefore has to end the session first, th
 
 `Delete` and `X` are different in kind. `Delete` acts at once; `X` only *arms* something for the moment you release `Ctrl`. Pressing `Delete` leaves what releasing `Ctrl` does entirely alone, so it will still paste whatever the overlay has moved on to.
 
-After three taps of `X`. The banner is red, and it names what releasing `Ctrl` will now do — which is not pasting.
+![The overlay with the DELETE ALL banner showing](../help/images/overlay-delete-all.png)
+
+*After three taps of `X`. The banner is red, and it names what releasing `Ctrl` will now do — which is not pasting.*
 
 > **Warning**
 >
@@ -243,9 +261,11 @@ Note that this does not divide neatly into old and new: **ConEmu exposes a caret
 
 ## What the overlay shows
 
-The row under the preview reads left to right as **what the clip is, the facts about it, and when it was copied**: `Text · 6 lines, 119 characters` with the date and time at the far right. A picture says `Image` and gives its resolution, a file copy says `Files`. Those are the same words the Clipboard History window uses, so one clip never reads two ways — and the date is local time, which is often the quickest way to tell two similar clips apart.
+![The overlay showing a text clip with its line and character counts](../help/images/overlay-text-facts.png)
 
-Each part is yours to switch off on the Appearance tab: **What Kind of Clip It Is**, the per-kind details and sizes, and **When It Was Copied**. The row survives on its own if you switch the others off. A clip PasteJump cannot describe is left unlabelled rather than called "Other", since its preview already says `[binary data]`.
+*The row under the preview reads left to right as **what the clip is, the facts about it, and when it was copied**: `Text · 6 lines, 119 characters` with the date and time at the far right. A picture says `Image` and gives its resolution, a file copy says `Files`. Those are the same words the Clipboard History window uses, so one clip never reads two ways — and the date is local time, which is often the quickest way to tell two similar clips apart.*
+
+*Each part is yours to switch off on the Appearance tab: **What Kind of Clip It Is**, the per-kind details and sizes, and **When It Was Copied**. The row survives on its own if you switch the others off. A clip PasteJump cannot describe is left unlabelled rather than called "Other", since its preview already says `[binary data]`.*
 
 **A copied text file shows its contents too.** The path stays on top, the first lines of the file appear beneath it in a muted colour, and the facts row gives the line count and the file's size on disk — the same treatment a copied image file gets, where a thumbnail appears instead. Only the first file of a copy is read, only the first few kilobytes of it, never a file on a network share, and only for extensions that are plainly text: the overlay is redrawn on every tap of the trigger key, so nothing here may be slow. What a paste puts on the clipboard is still the path, which is why the contents are dimmed.
 
@@ -264,7 +284,9 @@ Most of that is description, and it is all optional. **Settings, Appearance, Wha
 
 The row under the preview is chosen **per kind of clip**, because the three do not report the same thing — text gives lines and characters, an image its resolution in pixels, a copied file its line count. A small grid pairs *details* and *size* against *Text*, *Image* and *File*, so you can keep resolutions for pictures and drop character counts for text. Anything that is neither text nor an image follows the File column.
 
-Everything optional switched off: the clip, and the **JOIN** count — which no setting can hide.
+![The overlay with every optional part switched off](../help/images/overlay-minimal.png)
+
+*Everything optional switched off: the clip, and the **JOIN** count — which no setting can hide.*
 
 > **Warning**
 >

@@ -8,7 +8,9 @@
 
 Hold `Ctrl`, tap `V` to step back through what you have copied, release to paste. No window, no mouse, no hands leaving the keyboard. That gesture — a jog wheel for your clipboard — is the whole point of the program; everything else exists to support it.
 
-What the gesture shows while `Ctrl` is held: the clip about to be pasted, where it came from, and where it sits in the stack.
+![The overlay naming the clip about to be pasted](../help/images/overlay-text-facts.png)
+
+*What the gesture shows while `Ctrl` is held: the clip about to be pasted, where it came from, and where it sits in the stack.*
 
 ## What it does
 
@@ -36,3 +38,5 @@ PasteJump is portable: unzip it and run it. The download to take carries the .NE
 - **[Another clipboard manager](coexisting.md)** — Read this if copying works and pasting silently does nothing.
 - **[Troubleshooting](troubleshooting.md)** — The symptoms that have actually been reported, and what each one means.
 - **[Limits and omissions](limitations.md)** — What PasteJump deliberately does not do, and the licence.
+
+*PasteJump is a ground-up reimplementation of [Clipjump](https://clipjump.sourceforge.net/) by [Avi Aryan](https://github.com/aviaryan), from observed behaviour. No Clipjump code was copied.*
