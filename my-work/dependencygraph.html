@@ -35,7 +35,7 @@ comments: true
                         project in Solution Explorer.
                     </p>
                     <ul class="project-features">
-                        <li>Five views, including <em>Referenced by</em>: everything that breaks if you change this project</li>
+                        <li>Five views, including an impact view of everything that depends on a project</li>
                         <li>Depth limits, focus on chosen projects, and solution folders as collapsible groups</li>
                         <li>Circular references drawn in red, naming the projects the build error does not</li>
                         <li>Drag nodes where you want them, and the layout is remembered per solution</li>
@@ -61,9 +61,9 @@ comments: true
                 <div class="col-lg-5 project-card-sidebar">
                     <div class="project-sidebar-inner">
                         <figure class="project-shot-figure" style="max-width: 400px;">
-                            <img class="project-shot" src="{{ '/assets/images/my-work/dependencygraph-grouped.png' | relative_url }}"
+                            <a class="project-shot-link" href="{{ '/assets/images/my-work/dependencygraph-grouped.png' | relative_url }}" target="_blank" rel="noopener" title="Open full size"><img class="project-shot" src="{{ '/assets/images/my-work/dependencygraph-grouped.png' | relative_url }}"
                                  width="985" height="665" loading="lazy"
-                                 alt="DependencyGraph showing every reference of Contoso.App, with the Presentation and Components solution folders drawn as boxes, and the legend">
+                                 alt="DependencyGraph showing every reference of Contoso.App, with the Presentation and Components solution folders drawn as boxes, and the legend"></a>
                             <figcaption>All references of one project, with solution folders grouped and the legend open.</figcaption>
                         </figure>
                         <div class="project-sidebar-links">

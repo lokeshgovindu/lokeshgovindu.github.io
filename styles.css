@@ -2869,3 +2869,16 @@ details[open] > summary .release-chevron { transform: rotate(180deg); }
     .blog-post-content th,
     .blog-post-content td { padding: 0.5rem 0.6rem; }
 }
+
+/* A sidebar screenshot opens full size: at sidebar width a 985px graph is too small to read. */
+.project-shot-link {
+    display: block;
+    cursor: zoom-in;
+    border-radius: 10px;
+}
+
+.project-shot-link:hover .project-shot,
+.project-shot-link:focus-visible .project-shot {
+    border-color: var(--primary);
+    box-shadow: 0 10px 28px rgba(99, 102, 241, 0.28);
+}
