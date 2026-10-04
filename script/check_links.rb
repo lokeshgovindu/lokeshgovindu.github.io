@@ -16,7 +16,11 @@ def external?(link)
 end
 
 def resolve_path(link, current_dir)
-  path_part = link.split("#", 2).first.to_s
+  # A URL's path ends at whichever comes first, "?" or "#". Splitting on "#" alone read
+  # "images/a.png?v=4a6dbe37" as a filename with a query in it - and a site that stamps its
+  # images with a content hash, so a cache cannot serve the old bytes, then failed this check
+  # on every one of them. The PATH is still checked, so a missing file still fails.
+  path_part = link.split(/[?#]/, 2).first.to_s
   return current_dir if path_part.empty?
 
   path_part.start_with?("/") ? SITE_DIR.join(path_part[1..]) : current_dir.join(path_part)
