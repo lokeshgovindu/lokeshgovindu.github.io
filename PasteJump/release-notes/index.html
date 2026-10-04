@@ -23,9 +23,14 @@ description: Release notes for every version of PasteJump, the keyboard-first cl
 {%- endcomment -%}
 {%- assign keys = "" | split: "" -%}
 {%- for p in site.pages -%}
-  {%- comment -%} By source path: with pretty permalinks a page's dir is its URL, /PasteJump/release-notes/2026.3.1/. {%- endcomment -%}
+  {%- comment -%}
+      By source path: with pretty permalinks a page's dir is its URL, /PasteJump/release-notes/2026.3.1/.
+      And by the name's extension, because Jekyll 3 (what GitHub Pages runs) gives a page only content,
+      dir, name, path and url in Liquid - p.ext is nil there, which emptied this page once already.
+  {%- endcomment -%}
   {%- assign p_folder = p.path | split: "/" | pop | join: "/" -%}
-  {%- if p_folder == "PasteJump/release-notes" and p.ext == ".md" and p.name != "README.md" -%}
+  {%- assign p_ext = p.name | split: "." | last -%}
+  {%- if p_folder == "PasteJump/release-notes" and p_ext == "md" and p.name != "README.md" -%}
     {%- assign v = p.name | remove: ".md" -%}
     {%- assign split = v | split: "-pre" -%}
     {%- assign nums = split[0] | split: "." -%}
