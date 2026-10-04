@@ -115,6 +115,10 @@ body {
     height: 1.25em;
 }
 
+/* Bootstrap draws the icon dark for a light navbar, which vanished against the dark theme. */
+:root[data-theme="dark"] .navbar-toggler-icon { filter: invert(1) brightness(1.6); }
+:root[data-theme="dark"] .navbar-toggler { border-color: rgba(129, 140, 248, 0.4); }
+
 .navbar-collapse {
     flex-grow: 0;
 }
@@ -2186,11 +2190,12 @@ button.md-editor-hint:disabled {
     margin-top: 6px;
 }
 
+/* No horizontal padding: a match inside a word ("PasteJump" for "paste") read as two words. */
 mark {
-    background: rgba(99, 102, 241, 0.15);
+    background: rgba(99, 102, 241, 0.18);
     color: inherit;
     border-radius: 2px;
-    padding: 0 2px;
+    padding: 0;
 }
 
 /* ── Anchor target: offset for fixed navbar + highlight animation ── */
