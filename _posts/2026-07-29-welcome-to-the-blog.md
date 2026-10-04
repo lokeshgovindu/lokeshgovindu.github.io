@@ -1,6 +1,10 @@
 ---
 title: "Welcome to the Blog"
 tags: [meta]
+# Not published: it is the starter post, a note on how to write one, and it told every visitor
+# "edit or delete it once you've written your first real one". Kept as a template. Delete this
+# line, or set it to true, to publish it.
+published: false
 ---
 
 This is a starter post — edit or delete it once you've written your first real one.
