@@ -99,8 +99,11 @@ function Get-RelativeFiles {
 
     $prefix = (Resolve-Path -LiteralPath $Root).Path.TrimEnd('\') + '\'
 
+    # Forward slashes, because that is how the Exclude list spells a path in a subfolder. With the
+    # backslashes Windows returns, 'launch/README.md' matched nothing, and the 2026-10-04 sync put the
+    # launch drafts back on the site three weeks after they were taken down.
     Get-ChildItem -LiteralPath $Root -Recurse -File -Force |
-        ForEach-Object { $_.FullName.Substring($prefix.Length) }
+        ForEach-Object { $_.FullName.Substring($prefix.Length).Replace('\', '/') }
 }
 
 function Test-SameFile {

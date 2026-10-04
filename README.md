@@ -1,13 +1,13 @@
 # Productivity Tools, Tips & Tricks
 
-A curated hub of productivity tips, shortcuts, and workflows for developers — Visual Studio, CMD Prompt, Windows, and more — plus a showcase of personal open-source projects and a blog for longer-form notes.
+A curated hub of productivity tips, shortcuts, and workflows for developers — Visual Studio, CMD Prompt, Windows, and more — plus a showcase of personal projects and a blog for longer-form notes.
 
 **Live site:** [lokeshgovindu.github.io](https://lokeshgovindu.github.io)
 
 ## What's here
 
 - **Windows / CMD Prompt / Visual Studio** — curated tools, extensions, and shortcuts. Every tool and extension has its own dedicated page (e.g. `/windows/powertoys/`), so it can carry its own comment thread instead of one shared thread per category.
-- **My Work** — a showcase of personal open-source projects, each with its own page.
+- **My Work** — a showcase of personal projects, each with its own page.
 - **Blog** — longer-form notes, written and published through the site itself (see below).
 - **Search** — press `Ctrl + K` (or `Cmd + K`) anywhere on the site, or visit `/search/`. Fuzzy search across tools, tips, projects, and posts, filterable by category or tag.
 - **Light / dark mode** — toggle in the navbar; respects your OS preference by default.

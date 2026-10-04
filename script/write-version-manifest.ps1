@@ -63,10 +63,11 @@ $ErrorActionPreference = 'Stop'
 # Where a person is sent to download each application, since a release page on a private repository is
 # the one link that cannot work. Keyed by repository name.
 #
-# PerchBar has NO mirror and no published release: its manifest is written as an empty list, which its
-# check reads as "nothing published yet" rather than as a failure. Give it a DownloadPage the day it
-# gets a release, and check the URL resolves before adding one - an invented download link is worse
-# than none.
+# PerchBar has no published release yet: its manifest is written as an empty list, which its check
+# reads as "nothing published yet" rather than as a failure. Its download page is its SourceForge file
+# area, like the others - it used to be lokeshgovindu.github.io/PerchBar/, which was never anything but
+# a 404, since this site serves only version.json from that folder and PerchBar's own repository is
+# private. Check a URL resolves before putting it here - an invented download link is worse than none.
 $Applications = @{
     PasteJump   = @{
         DownloadPage = 'https://sourceforge.net/projects/pastejump/files/'
@@ -77,7 +78,7 @@ $Applications = @{
         StableOnly   = $false
     }
     PerchBar    = @{
-        DownloadPage = 'https://lokeshgovindu.github.io/PerchBar/'
+        DownloadPage = 'https://sourceforge.net/projects/perchbar/files/'
         # Its check has no notion of a prerelease and takes the first entry, so it must not be offered
         # one.
         StableOnly   = $true
