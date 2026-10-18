@@ -1,5 +1,24 @@
 [
   {
+    "tag_name": "2026.4",
+    "draft": false,
+    "prerelease": false,
+    "published_at": "2026-10-18T12:36:57Z",
+    "html_url": "https://sourceforge.net/projects/pastejump/files/",
+    "assets": [
+      {
+        "name": "PasteJump-2026.4.0.353-win-x64-net10.zip",
+        "browser_download_url": "https://github.com/lokeshgovindu/PasteJump-releases/releases/download/2026.4/PasteJump-2026.4.0.353-win-x64-net10.zip",
+        "digest": "sha256:c162699e6f3523d71985ea8c5e284c6f31ce61b9fd2048ea2bcbd567396f917b"
+      },
+      {
+        "name": "PasteJump-2026.4.0.353-win-x64-unpacked.zip",
+        "browser_download_url": "https://github.com/lokeshgovindu/PasteJump-releases/releases/download/2026.4/PasteJump-2026.4.0.353-win-x64-unpacked.zip",
+        "digest": "sha256:185914a1fdc020963ac7e30727f1b4b06b78dc40857a97eaa4e8284f912d2df8"
+      }
+    ]
+  },
+  {
     "tag_name": "2026.3.1",
     "draft": false,
     "prerelease": false,
