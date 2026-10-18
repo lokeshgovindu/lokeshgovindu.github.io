@@ -446,6 +446,7 @@ footer {
 flowchart TB
   subgraph OS["Windows"]
     KEY["Keystroke"]
+    MOUSE["Mouse, while the overlay is open"]
     CLIP["Clipboard change"]
     HOT["Registered hotkey"]
     TRAY["Tray click"]
@@ -453,6 +454,7 @@ flowchart TB
 
   subgraph IO["PasteJump.Interop &mdash; Win32 adapters"]
     HOOK["LowLevelKeyboardHook&lt;br/&gt;WH_KEYBOARD_LL"]
+    MHOOK["LowLevelMouseHook&lt;br/&gt;WH_MOUSE_LL, session only"]
     MSGW["MessageOnlyWindow&lt;br/&gt;HWND_MESSAGE"]
     MON["ClipboardMonitor&lt;br/&gt;AddClipboardFormatListener"]
     HK["GlobalHotkey&lt;br/&gt;RegisterHotKey + MOD_NOREPEAT"]
@@ -474,13 +476,22 @@ flowchart TB
 
   subgraph APP["PasteJump.App &mdash; WPF"]
     HOST["PasteJumpPasteHost&lt;br/&gt;IPasteModeHost"]
-    OVL["OverlayWindow"]
+    OVL["OverlayWindow&lt;br/&gt;single clip, list, thumbnails"]
+    THUMB["ThumbnailCache&lt;br/&gt;decoded off the UI thread"]
+    AMENU["ActionMenuWindow"]
+    TIP["OverlayTooltipWindow"]
     HIST["HistoryWindow"]
     TOAST["ToastWindow"]
     MENU["TrayMenuBuilder"]
   end
 
   KEY --&gt; HOOK
+  MOUSE --&gt; MHOOK
+  MHOOK --&gt;|"wheel, clicks, hit-tested"| REC
+  MHOOK --&gt;|"right-click"| AMENU
+  MHOOK --&gt;|"pointer rests"| TIP
+  OVL --&gt; THUMB
+  THUMB --&gt;|"GetPayloads"| STORE
   CLIP --&gt; MSGW
   HOT --&gt; MSGW
   TRAY --&gt; MSGW
@@ -512,7 +523,11 @@ flowchart TB
   HIST --&gt; STORE
 </pre>
     </div>
-    <figcaption><b>Two independent paths, and that asymmetry is diagnostic.</b> Capture rides
+    <figcaption><b>The mouse is a third path, and it exists only while the overlay is open.</b> A low-level
+    mouse hook puts every pointer movement on the machine through the UI thread, so it is installed when a session
+    opens and removed when it ends, and it never lets WPF see a click: the overlay and its menu are click-through,
+    and the hook hit-tests each event against rectangles captured in physical pixels, so nothing the mouse does can
+    take focus from the window being pasted into. <b>Two independent paths, and that asymmetry is diagnostic.</b> Capture rides
     <code>WM_CLIPBOARDUPDATE</code>, which no other process's hook can suppress; the gesture rides the
     keyboard hook, which any hook earlier in the chain can. When copying works and pasting does not, a rival
     clipboard manager eating the injected keystroke is the first suspect &mdash; hence the configurable

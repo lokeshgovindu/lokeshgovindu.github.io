@@ -18,6 +18,8 @@
       <li><a href="overview.html">PasteJump</a></li>
       <li><a href="getting-started.html">Getting started</a></li>
       <li><a href="gesture.html">The gesture</a></li>
+      <li><a href="views.html">The overlay&#x27;s views</a></li>
+      <li><a href="mouse.html">Using the mouse</a></li>
       <li><a href="stores.html">Clips and history</a></li>
       <li><a href="history-window.html">The history window</a></li>
       <li><a href="themes.html">Themes</a></li>
@@ -75,7 +77,7 @@ takes you to the control you can actually change.</p>
 <h2>Capture</h2>
 
 <div class="shot">
-<img src="images/settings-capture.png?v=2f754ca3" alt="The Capture tab of the Settings dialog">
+<img src="images/settings-capture.png?v=09554a88" alt="The Capture tab of the Settings dialog">
 <p>Recording, and how many clips the gesture can reach.</p>
 </div>
 
@@ -97,7 +99,7 @@ uncompressed, so a handful of screenshots costs more than thousands of text clip
 <h2>History</h2>
 
 <div class="shot">
-<img src="images/settings-history.png?v=386572ae" alt="The History tab of the Settings dialog">
+<img src="images/settings-history.png?v=2f227e22" alt="The History tab of the Settings dialog">
 <p>The archive: how long entries are kept, how much of each one, and the Clipjump import.</p>
 </div>
 
@@ -133,7 +135,7 @@ Clipjump</a>.</td></tr>
 <h2>Paste Mode</h2>
 
 <div class="shot">
-<img src="images/settings-paste-mode.png?v=26a9cf0a" alt="The Paste Mode tab of the Settings dialog">
+<img src="images/settings-paste-mode.png?v=71c3793d" alt="The Paste Mode tab of the Settings dialog">
 <p>How the gesture behaves. The two controls at the top are greyed out &mdash; they are disabled in this release.</p>
 </div>
 
@@ -153,6 +155,12 @@ for example <code>Ctrl</code>+<code>Shift</code>+<code>H</code>. Empty by defaul
 hotkey takes that chord away from every other application on the desktop.</td></tr>
 <tr><td class="name">Reopen on the Clip I Was Last On</td><td>Whether the gesture resumes where it left
 off rather than starting at the newest clip. A new copy always resets the position regardless.</td></tr>
+<tr><td class="name">Step Through Clips with the Mouse Wheel</td><td>Whether the wheel moves through clips
+while the overlay is open, towards you for older and away for newer. On by default; the wheel is untouched
+outside the gesture.</td></tr>
+<tr><td class="name">Right-Click for a Menu of Actions</td><td>Whether a right-click during the gesture
+shows the action menu, and a left-click on the overlay pastes the clip it shows. On by default; clicks are
+untouched outside the gesture.</td></tr>
 <tr><td class="name">Open Straight into Search</td><td>Start the gesture in search mode.</td></tr>
 <tr><td class="name">Reset the Paste Format on Every Entry</td><td>Whether the format goes back to the
 default each time, instead of remembering the last one used.</td></tr>
@@ -160,10 +168,55 @@ default each time, instead of remembering the last one used.</td></tr>
 case or Unindent.</td></tr>
 </table>
 
+<h2>Style</h2>
+
+<div class="shot">
+<img src="images/settings-style.png?v=2825688f" alt="The Style tab of the Settings dialog: Single Clip, List and Thumbnails cards, each with a gear, and the Thumbnails options below them">
+<p>How the overlay shows your clips. Click a card to choose it; click a card's gear to see that view's options
+without choosing it.</p>
+</div>
+
+<p>Each view has its own options, in the box below the cards. It shows the chosen view's options; the
+<b>&#9881; gear</b> in a card's corner shows that view's instead, so you can set up a view before switching to it.
+Searching for one of these settings opens the right box.</p>
+
+<table>
+<tr><th>Setting</th><th>What it does</th></tr>
+<tr><td class="name">Single Clip</td><td>One clip at a time, as the overlay has always been. The default.</td></tr>
+<tr><td class="name">List</td><td>The current clip with its neighbours above and below it, one line each &mdash; see
+<a href="views.html#list-view">the list view</a>.</td></tr>
+<tr><td class="name">Thumbnails</td><td>The same clips as tiles, with a picture for each image &mdash; see
+<a href="views.html#thumbnails-view">the thumbnails view</a>.</td></tr>
+<tr><th colspan="2">Single Clip options</th></tr>
+<tr><td class="name">Keep the Overlay One Size</td><td>Off by default. On, the overlay is always the size of the
+largest preview, so it never changes as you step. Off, it fits each clip, growing and shrinking from its bottom
+and right edges while its top-left corner stays put. The list and thumbnails views are always one
+size.</td></tr>
+<tr><td class="name">Largest Image Preview (px)</td><td>The most room an image preview may take in the overlay. A
+maximum, not a size: a smaller picture is drawn at its own dimensions and never enlarged. Raise it to judge a
+screenshot while pasting; lower it to keep the overlay out of the way of the document underneath. Moved here from
+the Appearance tab.</td></tr>
+<tr><th colspan="2">List options</th></tr>
+<tr><td class="name">Show the Preview Beside the List</td><td>Off by default. On, every clip is a row &mdash; the
+current one highlighted &mdash; and its preview sits in a pane to the right, so only the highlight moves as you
+step. The overlay is about 750 pixels wide instead of 560.</td></tr>
+<tr><td class="name">Newer Clips Shown Above</td><td>0 to 9, two by default.</td></tr>
+<tr><td class="name">Older Clips Shown Below</td><td>0 to 9, five by default. Nine at most, because each row is
+numbered with the digit key that jumps to it.</td></tr>
+<tr><th colspan="2">Thumbnails options</th></tr>
+<tr><td class="name">Tile Size</td><td>Small (136 &times; 104, the default), Medium (180 &times; 135), Large
+(240 &times; 180) or Extra large (320 &times; 240). Pictures are loaded to suit, so a larger tile is sharper, not
+an enlarged small one. If a row would be wider than the screen, the tiles move onto more rows.</td></tr>
+<tr><td class="name">Thumbnails in a Row</td><td>2 to 8, four by default.</td></tr>
+<tr><td class="name">Newer Clips Shown Before</td><td>0 to 9, two by default. The thumbnails' own count, separate
+from the list's, because large tiles usually want fewer.</td></tr>
+<tr><td class="name">Older Clips Shown After</td><td>0 to 9, five by default.</td></tr>
+</table>
+
 <h2>Keys</h2>
 
 <div class="shot">
-<img src="images/settings-keys.png?v=9fddd53a" alt="The Keys tab of the Settings dialog">
+<img src="images/settings-keys.png?v=00c98841" alt="The Keys tab of the Settings dialog">
 <p>Which letter fires each action during the gesture, and which actions are switched off.</p>
 </div>
 
@@ -232,7 +285,7 @@ keyboard.</p>
 <h2>Excluded Apps</h2>
 
 <div class="shot">
-<img src="images/settings-excluded-apps.png?v=d1f9279c" alt="The Excluded Apps tab of the Settings dialog">
+<img src="images/settings-excluded-apps.png?v=1d3084b5" alt="The Excluded Apps tab of the Settings dialog">
 <p>Processes whose copies are never recorded. Browse to one, or pick it from the running windows.</p>
 </div>
 
@@ -250,7 +303,7 @@ running windows, or by typing the executable name.</p>
 <h2>Appearance</h2>
 
 <div class="shot">
-<img src="images/settings-appearance.png?v=87bbf001" alt="The Appearance tab of the Settings dialog">
+<img src="images/settings-appearance.png?v=074f6ffe" alt="The Appearance tab of the Settings dialog">
 <p>Theme, list density, and everything about the overlay drawn during the gesture.</p>
 </div>
 
@@ -285,10 +338,6 @@ and keeps it. <b>What cannot be switched off</b> is anything that changes what
 releasing <code>Ctrl</code> will do &mdash; the <code>POP</code> chip, the <b>JOIN</b> count, the kind filter and the
 Cancel or Delete banner &mdash; because hiding one of those would arm a deletion you could not see. See
 <a href="gesture.html">the gesture</a>.</td></tr>
-<tr><td class="name">Largest Image Preview (px)</td><td>The most room an image preview may take in the
-overlay during the gesture. A maximum, not a size: a smaller picture is drawn at its own dimensions and
-never enlarged. Raise it to judge a screenshot while pasting; lower it to keep the overlay out of the way
-of the document underneath.</td></tr>
 <tr><td class="name">Characters of Text Shown</td><td>How much of a text clip the overlay shows before
 eliding it. About what is worth reading in the second the gesture lasts, so it is far smaller than the
 amount stored.</td></tr>
@@ -328,7 +377,7 @@ notification is off, or when the copy happened on a monitor you were not looking
 <h2>System</h2>
 
 <div class="shot">
-<img src="images/settings-system.png?v=59cf40e1" alt="The System tab of the Settings dialog">
+<img src="images/settings-system.png?v=73a647aa" alt="The System tab of the Settings dialog">
 <p>Start-up, the paste timing, the external editors, and where the data lives.</p>
 </div>
 
@@ -383,7 +432,7 @@ settings file, because one of them decides where that file is &mdash; they are i
 </div>
 
 <div class="shot">
-<img src="images/settings-custom-folder.png?v=2ff2ff7a" alt="The System tab with both halves set to a folder of your own">
+<img src="images/settings-custom-folder.png?v=d3b67b91" alt="The System tab with both halves set to a folder of your own">
 <p>Choosing <b>A folder I choose&hellip;</b> reveals the path and a Browse button. Each half is independent, so the
 clips can live on another drive while the settings stay beside the program.</p>
 </div>
@@ -398,7 +447,7 @@ safe either.</p>
 <h2>Advanced</h2>
 
 <div class="shot">
-<img src="images/settings-advanced.png?v=928a6746" alt="The Advanced tab of the Settings dialog">
+<img src="images/settings-advanced.png?v=893438ce" alt="The Advanced tab of the Settings dialog">
 <p>Every setting with the value a fresh install would have. Changed rows are banded and carry a Reset button.</p>
 </div>
 

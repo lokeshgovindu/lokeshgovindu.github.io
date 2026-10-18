@@ -18,6 +18,8 @@
       <li><a href="overview.html">PasteJump</a></li>
       <li><a href="getting-started.html">Getting started</a></li>
       <li><a href="gesture.html">The gesture</a></li>
+      <li><a href="views.html">The overlay&#x27;s views</a></li>
+      <li><a href="mouse.html">Using the mouse</a></li>
       <li><a href="stores.html" aria-current="page">Clips and history</a></li>
       <li><a href="history-window.html">The history window</a></li>
       <li><a href="themes.html">Themes</a></li>
@@ -115,7 +117,7 @@ the <code>clip</code> and <code>history</code> tables. Payloads too large to sit
 times costs one file.</p>
 
 <div class="shot">
-<img src="images/settings-custom-folder.png?v=2ff2ff7a" alt="Where Data Is Kept, on the System tab, with the clip store pointed at a folder of its own">
+<img src="images/settings-custom-folder.png?v=d3b67b91" alt="Where Data Is Kept, on the System tab, with the clip store pointed at a folder of its own">
 <p><b>Settings, System</b> &mdash; <i>Where Data Is Kept</i>. The two are set separately, and the resolved
 path is shown under each so you can see where it has actually landed. Changing either takes effect on the
 next start: PasteJump copies the data across and leaves the old copy behind for you to delete once you are
@@ -123,6 +125,25 @@ satisfied.</p>
 </div>
 
 <p>The two locations are configurable and independent; see <a href="settings.html">Settings, System</a>.</p>
+
+<h2 id="backups">Safe on disk, and backed up daily</h2>
+
+<p><b>Every clip is on disk the moment it is copied.</b> Each one is written and synced as it arrives, so a power
+cut, a crash or a hard reset loses nothing that was copied before it &mdash; not merely what was copied before
+PasteJump last closed. The capture log says so at every start, with a line ending
+<code>survivesPowerLoss=True</code>.</p>
+
+<p><b>A copy of the database is kept for each of the last seven days</b>, in <code>data\backups</code>, named by
+date: <code>pastejump-2026-10-18.db</code>. The day's copy is taken about ten minutes after PasteJump starts and,
+on a machine that is never restarted, within the hour after midnight; the oldest is removed once there are seven.
+A copy is consistent &mdash; it holds everything committed when it was taken &mdash; and is written under a
+temporary name first, so a copy that fails part way is never mistaken for a good one.</p>
+
+<p>The backup is of the database only. Pictures and other large payloads in <code>data\blobs</code> are written
+once and never changed, so they cannot be half-updated, and copying several hundred megabytes of them every day
+would cost more than it saves. The backups sit on the same disk as the store, so they guard against a damaged or
+deleted database, not against the disk failing &mdash; anything that backs up your files can copy the folder
+elsewhere. To restore one, see <a href="troubleshooting.html#restore">Troubleshooting</a>.</p>
 
 </main>
 </body>

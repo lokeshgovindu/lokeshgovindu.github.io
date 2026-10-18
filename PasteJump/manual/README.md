@@ -9,6 +9,8 @@ are built from - so edit the HTML there, not the Markdown here.
 - [PasteJump](overview.md)
 - [Getting started](getting-started.md)
 - [The gesture](gesture.md)
+- [The overlay's views](views.md)
+- [Using the mouse](mouse.md)
 - [Clips and history](stores.md)
 - [The history window](history-window.md)
 - [Themes](themes.md)

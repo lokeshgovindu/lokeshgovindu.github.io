@@ -133,6 +133,12 @@ Windows has marked the file as downloaded from the internet, and blocks compiled
 
 `PasteJump.chm` is not beside the executable. It ships in the release download; a copy built from source does not include it, because the manual is compiled separately. The key list under **Paste-mode keys** is built into the program and always available.
 
+## My clips are gone, or the history is damaged
+
+PasteJump keeps a copy of its database for each of the last seven days in `data\backups` — see [Clips and history](stores.html#backups). To go back to one:
+
+Clips copied after that backup was taken are not in it. Pictures are not part of the backup, but they are not lost either: they live in `data\blobs`, which a restore leaves alone, so a restored clip's picture is still there.
+
 ## Where the data is
 
 `data\pastejump.db` and `data\blobs`, beside the executable by default, or under `%LOCALAPPDATA%\PasteJump` if you moved them. The settings are `PasteJump.json` in whichever location **Store Settings In** names; the two pointers themselves live in `data-location.json` beside the executable. The Advanced tab shows all of these resolved.

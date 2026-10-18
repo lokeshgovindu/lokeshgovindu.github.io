@@ -33,6 +33,10 @@ There is also a **narrated tour of every window** as a video, which a help file 
 
 The arrow keys and `Home` are alternatives, not replacements: the letters are the original Clipjump layout and they are not going anywhere. Use whichever your hand reaches for. The same applies to `P` beside `Space` and `M` beside `Q` further down.
 
+**The mouse wheel steps too**, and the overlay can be clicked — see [Using the mouse](mouse.md).
+
+**The overlay has three views** — one clip at a time, a list, or thumbnails — and `W` switches between them for one paste. See [The overlay's views](views.md).
+
 `H` is the one key whose meaning changed. In Clipjump it opened the clip in an editor, which reads as "help" to almost everybody; it now opens the history window, and the editor answers to `O`.
 
 ## Pasting
@@ -91,6 +95,7 @@ The same thing is available without the gesture: select several rows in the [his
 | **E** | Export the clip to a file. |
 | **H** | Open the [clipboard history window](history-window.md). This **ends the gesture**, for the same reason `F1` does — and more so, since that window has a search box of its own. |
 | **F1** | Show the key list in a window. This **ends the gesture** — see below. |
+| **,** | Open Settings — `Ctrl+,`, since `Ctrl` is already held, the shortcut most programs use for their settings. Closes the overlay first, pasting nothing. The gear at the end of the overlay's top line does the same. |
 
 ![The paste-mode key list window](../help/images/shortcut-help.png)
 
@@ -309,4 +314,4 @@ Along the bottom is a muted reminder of the keys worth knowing when you have los
 
 `F1` is deliberately not in that row any more. It still opens the key card, and the card and the `?` list both name it — but `?` answers the same question better, without opening a window or ending the session, so it takes the slot.
 
-The overlay never takes focus, so your typing target is untouched. How large an image preview may be, how much text is shown, and whether the overlay follows the caret or sits at a fixed position are all under **Settings, Appearance**.
+The overlay never takes focus, so your typing target is untouched. How much text is shown and whether the overlay follows the caret or sits at a fixed position are under **Settings, Appearance**; how large an image preview may be is a Single Clip option on **Settings, Style**.

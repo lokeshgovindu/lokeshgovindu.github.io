@@ -173,5 +173,57 @@
         <param name="Name" value="trigger key">
         <param name="Local" value="settings.html">
         </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="views, single clip, list, thumbnails">
+        <param name="Local" value="views.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="list view">
+        <param name="Local" value="views.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="thumbnails view">
+        <param name="Local" value="views.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="W, switch the view">
+        <param name="Local" value="views.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Style tab">
+        <param name="Local" value="views.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="mouse wheel">
+        <param name="Local" value="mouse.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="right-click menu">
+        <param name="Local" value="mouse.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="click to paste">
+        <param name="Local" value="mouse.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="tooltips">
+        <param name="Local" value="mouse.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="gear, Settings from the overlay">
+        <param name="Local" value="mouse.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Ctrl+comma, Settings">
+        <param name="Local" value="mouse.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="backups, daily">
+        <param name="Local" value="stores.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="restoring from a backup">
+        <param name="Local" value="troubleshooting.html">
+        </OBJECT>
 </UL>
 </BODY></HTML>

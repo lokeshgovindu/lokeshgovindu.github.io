@@ -20,7 +20,7 @@
 >
 > **Anything missing from the file takes its default**, which is what the table below lists. Deleting a key is therefore the way to reset one setting, and deleting the whole file resets everything.
 
-**71 settings**, grouped by the tab of the Settings dialog each one appears on, and in the dialog's own order.
+**82 settings**, grouped by the tab of the Settings dialog each one appears on, and in the dialog's own order.
 
 ## Capture
 
@@ -50,6 +50,8 @@
 | Name in the file | Type | Default | What it does |
 | --- | --- | --- | --- |
 | **`PreserveClipPosition`** | bool | `true` | Reopen on the previously active clip. |
+| **`WheelStepsThroughClips`** | bool | `true` | The mouse wheel steps through clips while the overlay is open: away from you for newer, towards you for older, exactly as the Up and Down arrows do. |
+| **`RightClickActionMenu`** | bool | `true` | A right-click while the overlay is open shows a menu of every action with its key, and a left click on the overlay pastes the clip it shows. |
 | **`OpenSearchImmediately`** | bool | *type default* | Open directly into search. |
 | **`ResetFormatterOnEntry`** | bool | *type default* | Revert to the default formatter on each entry. |
 | **`DefaultFormatterId`** | string | *computed* | Formatter id applied to every paste unless the user cycles it with `Z`. |
@@ -80,8 +82,6 @@
 | **`OverlayX`** | int | *type default* | Fixed overlay position in physical pixels, used when PopupPosition is Settings.PopupPosition.FixedPoint. |
 | **`OverlayY`** | int | *type default* | Fixed overlay position in physical pixels, used when PopupPosition is Settings.PopupPosition.FixedPoint. *(shared with the setting above)* |
 | **`Theme`** | string | *computed* | Colour scheme, by name. `System`, `Light`, `Dark`, or the name of any other theme - shipped or written by the user. |
-| **`OverlayPreviewMaxWidth`** | int | `600` | Largest size, in device-independent pixels, at which the paste overlay draws an image preview. |
-| **`OverlayPreviewMaxHeight`** | int | `400` | Largest size, in device-independent pixels, at which the paste overlay draws an image preview. *(shared with the setting above)* |
 | **`OverlayFontFamily`** | string | *empty* | The font the paste overlay draws in. |
 | **`OverlayFontSize`** | int | `12` | The overlay's text size in device-independent pixels. |
 | **`OverlayPreviewChars`** | int | `400` | Characters of a text clip shown in the paste overlay before it is elided. |
@@ -132,5 +132,21 @@
 | **`ClipboardRepublishMs`** | int | `1000` | How long after storing a clip a second publish of the same content counts as the same copy, in milliseconds. |
 | **`OverlayDeletedFlashMs`** | int | `1200` | How long the overlay shows `DELETED` after the `Delete` key, in milliseconds. `0` never shows it. |
 | **`TypeOutCharDelayMs`** | int | *type default* | Pause between batches of characters when a clip is typed out by the unbound type-out action, in milliseconds. |
+
+## Style
+
+| Name in the file | Type | Default | What it does |
+| --- | --- | --- | --- |
+| **`OverlayStyle`** | OverlayStyle | `SingleClip` | How the overlay lays out the stack: one clip at a time, or the current clip with its neighbours either side. |
+| **`ListNewerRows`** | int | `2` | In the list view, how many newer clips are shown above the current one. |
+| **`ListOlderRows`** | int | `5` | In the list view, how many older clips are shown below the current one - the way V steps. |
+| **`TilesPerRow`** | int | `4` | In the thumbnails view, how many tiles make a row. |
+| **`ThumbnailNewer`** | int | `2` | In the thumbnails view, how many newer clips come before the current tile. |
+| **`ThumbnailOlder`** | int | `5` | In the thumbnails view, how many older clips come after the current tile. |
+| **`TileSize`** | TileSize | `Small` | How large the thumbnails view draws its tiles, from Small - the size it shipped with - to Extra large. |
+| **`SingleClipFixedSize`** | bool | *type default* | The single-clip view stays one size - the largest its preview may be - instead of fitting each clip. |
+| **`ListPreviewBeside`** | bool | *type default* | In the list view, show the current clip's preview in a pane beside the list - every clip a row, the current one highlighted - instead of between the rows. |
+| **`OverlayPreviewMaxWidth`** | int | `600` | Largest size, in device-independent pixels, at which the paste overlay draws an image preview. |
+| **`OverlayPreviewMaxHeight`** | int | `400` | Largest size, in device-independent pixels, at which the paste overlay draws an image preview. *(shared with the setting above)* |
 
 *This table is generated from the source by `tools/generate-settings-reference.py`, so it cannot drift from the program. Edit the doc comment on the property, not this page.*

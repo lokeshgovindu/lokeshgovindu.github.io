@@ -18,6 +18,8 @@
       <li><a href="overview.html">PasteJump</a></li>
       <li><a href="getting-started.html">Getting started</a></li>
       <li><a href="gesture.html">The gesture</a></li>
+      <li><a href="views.html">The overlay&#x27;s views</a></li>
+      <li><a href="mouse.html">Using the mouse</a></li>
       <li><a href="stores.html">Clips and history</a></li>
       <li><a href="history-window.html">The history window</a></li>
       <li><a href="themes.html">Themes</a></li>
@@ -217,13 +219,13 @@ copying from is on the <b>Excluded Apps</b> list.</p>
 shown at start-up says so rather than simply reporting that PasteJump is running:</p>
 
 <div class="shot shot-inline">
-<img src="images/startup-notice-paused.png?v=fa897006" alt="The start-up notice reporting that capture is paused">
+<img src="images/startup-notice-paused.png?v=cf2bb4fd" alt="The start-up notice reporting that capture is paused">
 </div>
 
 <p>And if the whole program was switched off, it says that instead, naming what it means for the chord:</p>
 
 <div class="shot shot-inline">
-<img src="images/startup-notice-disabled.png?v=d277cf34" alt="The start-up notice reporting that PasteJump is disabled">
+<img src="images/startup-notice-disabled.png?v=dd5fbf50" alt="The start-up notice reporting that PasteJump is disabled">
 </div>
 
 <p>Both are undone from the tray menu, where the row that switches the state back on is shown in bold:</p>
@@ -246,6 +248,25 @@ way to get here.</p>
 <p><code>PasteJump.chm</code> is not beside the executable. It ships in the release download; a copy built
 from source does not include it, because the manual is compiled separately. The key list under <b>Paste-mode
 keys</b> is built into the program and always available.</p>
+
+<h2 id="restore">My clips are gone, or the history is damaged</h2>
+
+<p>PasteJump keeps a copy of its database for each of the last seven days in <code>data\backups</code> &mdash; see
+<a href="stores.html#backups">Clips and history</a>. To go back to one:</p>
+
+<ol>
+<li>Exit PasteJump from the tray menu.</li>
+<li>In the <code>data</code> folder, set aside <code>pastejump.db</code> &mdash; rename it rather than delete it,
+in case you want it back &mdash; and delete <code>pastejump.db-wal</code> and <code>pastejump.db-shm</code> if they
+are there.</li>
+<li>Copy the backup you want from <code>data\backups</code> into <code>data</code> and rename it
+<code>pastejump.db</code>.</li>
+<li>Start PasteJump.</li>
+</ol>
+
+<p>Clips copied after that backup was taken are not in it. Pictures are not part of the backup, but they are not
+lost either: they live in <code>data\blobs</code>, which a restore leaves alone, so a restored clip's picture is
+still there.</p>
 
 <h2>Where the data is</h2>
 

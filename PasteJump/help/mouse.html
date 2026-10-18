@@ -1,0 +1,128 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Using the mouse</title>
+<meta name="description" content="PasteJump is built for the keyboard, and needs nothing else &#x2014; but while the overlay is open, the hand already on the mouse can scroll through clips, click the one it wants, and ask any part of the&#x2026;">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" type="text/css" href="../site-nav.css">
+<link rel="icon" type="image/png" sizes="256x256" href="../pastejump-256.png">
+<script src="../site-shots.js" defer></script>
+</head>
+<body>
+<nav class="site-toc">
+  <a class="brand" href="../index.html">
+    <img src="../pastejump-256.png?v=58065af9" alt="" width="32" height="32">
+    <b>PasteJump<span>Clipboard manager</span></b>
+  </a>
+  <ol>
+      <li><a href="overview.html">PasteJump</a></li>
+      <li><a href="getting-started.html">Getting started</a></li>
+      <li><a href="gesture.html">The gesture</a></li>
+      <li><a href="views.html">The overlay&#x27;s views</a></li>
+      <li><a href="mouse.html" aria-current="page">Using the mouse</a></li>
+      <li><a href="stores.html">Clips and history</a></li>
+      <li><a href="history-window.html">The history window</a></li>
+      <li><a href="themes.html">Themes</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="tray-icon.html">The tray icon</a></li>
+      <li><a href="settings-reference.html">Settings reference</a></li>
+      <li><a href="importing.html">Importing from Clipjump</a></li>
+      <li><a href="coexisting.html">Another clipboard manager</a></li>
+      <li><a href="troubleshooting.html">Troubleshooting</a></li>
+      <li><a href="limitations.html">Limits and omissions</a></li>
+  </ol>
+  <div class="away">
+    <a href="../about.html">About &amp; contact</a>
+    <a href="https://sourceforge.net/projects/pastejump/files/latest/download" target="_blank" rel="noopener">Download the latest release</a>
+    <a href="https://sourceforge.net/projects/pastejump/files/" target="_blank" rel="noopener">All files and checksums</a>
+    <a href="https://sourceforge.net/projects/pastejump/" target="_blank" rel="noopener">The project on SourceForge</a>
+    <a href="https://sourceforge.net/p/pastejump/tickets/" target="_blank" rel="noopener">Report a problem</a>
+  </div>
+</nav>
+<main>
+
+<h1>Using the mouse</h1>
+<p class="lead">PasteJump is built for the keyboard, and needs nothing else &mdash; but while the overlay is open,
+the hand already on the mouse can scroll through clips, click the one it wants, and ask any part of the overlay
+what it means.</p>
+
+<p>The mouse is only listened to while the overlay is open. At every other moment the wheel, right-clicks and
+left-clicks go to your programs exactly as they always do &mdash; <code>Ctrl</code>+wheel still zooms your browser.
+Nothing the mouse does moves the keyboard away from the program you are pasting into, so the paste still lands
+where your cursor was.</p>
+
+<h2 id="wheel">The wheel</h2>
+
+<p>Turn the wheel towards you for older clips and away from you for newer ones, then release <code>Ctrl</code> to
+paste. It steps exactly as <code>&darr;</code> and <code>&uarr;</code> do, through search results too. Hold
+<code>Ctrl</code> with one hand and keep the other on the mouse. Inside the gesture <code>Ctrl</code>+wheel never
+reaches the program underneath, so it cannot zoom it while you are choosing a clip.</p>
+
+<h2 id="click">Clicking a clip</h2>
+
+<p><b>Click the overlay to paste the clip it shows.</b> In the <a href="views.html#list-view">list</a> and
+<a href="views.html#thumbnails-view">thumbnails</a> views you can click any of the other clips as well: the row
+or tile under the pointer is tinted as you move over it, and clicking it pastes that clip at once.</p>
+
+<p>Pointing on its own changes nothing. The current clip &mdash; the one with the accent outline &mdash; stays where
+it is until you click, so a pointer that happens to rest on the overlay can never change what releasing
+<code>Ctrl</code> pastes. A click counts only if you let go of the button on the same row or tile you pressed it
+on, so sliding off before letting go is the way to change your mind.</p>
+
+<h2 id="tooltips">Tooltips</h2>
+
+<p><b>Everything on the overlay explains itself.</b> Rest the pointer on anything that carries meaning and, after
+the same short pause a Windows tooltip takes, a tip says what it is and which key changes it:</p>
+
+<ul>
+<li><b>A tile or a list row</b> describes its clip &mdash; its kind and size, when it was copied and from which
+program, its tags &mdash; and how to reach it: the digit that jumps there, or a click.</li>
+<li><b>The top line</b> &mdash; the position, PINNED, the tags, where the clip came from, the paste format, POP,
+LOCKED, the kind filter, JOIN &mdash; says what each means and names the key that changes it, using your own
+letters.</li>
+<li><b>Each key in the hint along the bottom</b> gets a sentence: pointing at <i>L: lock open</i> explains
+locking.</li>
+</ul>
+
+<p>Moving across the overlay does not flash a tip for everything it crosses; a tip appears only where the pointer
+settles. Any click, or closing the overlay, puts it away.</p>
+
+<h2 id="buttons">The buttons on the top line</h2>
+
+<p>The overlay's top line ends with two buttons. <b>The view</b> &mdash; its icon, name and key, such as
+<i>Thumbnails (W)</i> &mdash; switches to the next view for this paste; see <a href="views.html#switch-view">the
+views</a>. <b>The gear</b> closes the overlay, pasting nothing, and opens Settings; <code>Ctrl+,</code> does the
+same from the keyboard.</p>
+
+<h2 id="menu">The right-click menu</h2>
+
+<p><b>Right-click anywhere while the overlay is open</b> for a menu of everything you can do to the clip, each
+action with its key beside it. Click one to do it. It is the quickest way to find an action you have not learnt
+the letter for yet &mdash; and the letters are right there for next time.</p>
+
+<div class="shot shot-inline">
+<img src="images/action-menu.png?v=fc52e983" alt="The paste-mode action menu: Paste, Pin, Move to the front, Delete, Edit tags and more, each with its key">
+<p>Every row names the key that does the same thing &mdash; your own letters, if you have changed them in
+Settings, Keys. Actions you have switched off are left out.</p>
+</div>
+
+<ul>
+<li><b>Opening the menu locks the overlay</b>, exactly as <code>L</code> does, so you can let go of
+<code>Ctrl</code> to use the mouse without pasting anything.</li>
+<li><b>Paste</b> pastes the clip and closes everything; <b>Cancel</b> puts the previous clipboard back.</li>
+<li>Rows whose effect you read off the overlay &mdash; pinning, the paste format, the kind of clip, the view,
+jumping to the newest or oldest &mdash; leave the menu open for the next one. The rest close it.</li>
+<li><b>Settings</b> closes the overlay, puts the previous clipboard back and opens Settings, as the gear does.</li>
+<li>Right-click again, or click anywhere off the menu, to close it. The keys and the wheel go on working while
+it is open.</li>
+</ul>
+
+<h2 id="off">Turning it off</h2>
+
+<p>The wheel and the clicks can be turned off separately, on the Paste Mode tab of Settings: <i>Step Through Clips
+with the Mouse Wheel</i>, and <i>Right-Click for a Menu of Actions</i> &mdash; which covers every click on the
+overlay, the menu, the tiles and rows, and the two buttons.</p>
+
+</main>
+</body>
+</html>

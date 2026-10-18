@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The overlay's views</title>
+<meta name="description" content="The overlay can show the stack three ways: one clip at a time, as a list, or as thumbnails. Choose one on the Style tab of Settings; press W during a paste to try another for that paste only.">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" type="text/css" href="../site-nav.css">
+<link rel="icon" type="image/png" sizes="256x256" href="../pastejump-256.png">
+<script src="../site-shots.js" defer></script>
+</head>
+<body>
+<nav class="site-toc">
+  <a class="brand" href="../index.html">
+    <img src="../pastejump-256.png?v=58065af9" alt="" width="32" height="32">
+    <b>PasteJump<span>Clipboard manager</span></b>
+  </a>
+  <ol>
+      <li><a href="overview.html">PasteJump</a></li>
+      <li><a href="getting-started.html">Getting started</a></li>
+      <li><a href="gesture.html">The gesture</a></li>
+      <li><a href="views.html" aria-current="page">The overlay&#x27;s views</a></li>
+      <li><a href="mouse.html">Using the mouse</a></li>
+      <li><a href="stores.html">Clips and history</a></li>
+      <li><a href="history-window.html">The history window</a></li>
+      <li><a href="themes.html">Themes</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="tray-icon.html">The tray icon</a></li>
+      <li><a href="settings-reference.html">Settings reference</a></li>
+      <li><a href="importing.html">Importing from Clipjump</a></li>
+      <li><a href="coexisting.html">Another clipboard manager</a></li>
+      <li><a href="troubleshooting.html">Troubleshooting</a></li>
+      <li><a href="limitations.html">Limits and omissions</a></li>
+  </ol>
+  <div class="away">
+    <a href="../about.html">About &amp; contact</a>
+    <a href="https://sourceforge.net/projects/pastejump/files/latest/download" target="_blank" rel="noopener">Download the latest release</a>
+    <a href="https://sourceforge.net/projects/pastejump/files/" target="_blank" rel="noopener">All files and checksums</a>
+    <a href="https://sourceforge.net/projects/pastejump/" target="_blank" rel="noopener">The project on SourceForge</a>
+    <a href="https://sourceforge.net/p/pastejump/tickets/" target="_blank" rel="noopener">Report a problem</a>
+  </div>
+</nav>
+<main>
+
+<h1>The overlay's views</h1>
+<p class="lead">The overlay can show the stack three ways: one clip at a time, as a list, or as thumbnails. Choose
+one on the <a href="settings.html">Style tab of Settings</a>; press <code>W</code> during a paste to try another
+for that paste only.</p>
+
+<h2 id="single-clip">One clip at a time</h2>
+
+<p>The default, and the overlay as it has always been: the current clip, with as much of its text or picture as
+fits, its facts underneath, and its place in the stack along the top. <code>V</code> steps to the next clip and
+the overlay redraws around it.</p>
+
+<div class="shot shot-inline">
+<img src="images/overlay.png?v=78dca9e0" alt="The overlay showing one clip: its position, chips and format along the top, the clip's text, and the key hint underneath">
+<p>One clip, its place in the stack, and along the top line the view button and the gear.</p>
+</div>
+
+<p><b>It keeps still while you step.</b> The list and thumbnails views are one size throughout. The
+single-clip view fits each clip, but where it is centred on the screen &mdash; in programs with no text cursor for
+it to sit beside &mdash; its top-left corner stays put, so it grows and shrinks from the bottom and right instead of
+jumping. Tick <i>Keep the Overlay One Size</i> (the gear on the Single Clip card) to hold it at one size.</p>
+
+<h2 id="list-view">The list view</h2>
+
+<p>Choose <b>List</b> on the <a href="settings.html">Style tab of Settings</a> and the overlay shows the clips either side of the current one as well &mdash; newer above, older below,
+one line each &mdash; so you can see the clip you want before you get to it.</p>
+
+<div class="shot shot-inline">
+<img src="images/overlay-list.png?v=e59b4b55" alt="The overlay in the list view: two newer clips above the current one, which is marked with an accent bar, and five older clips below, each numbered">
+<p>The current clip is the one with the bar down its left edge. The numbers are how many steps away each row is.</p>
+</div>
+
+<div class="shot shot-inline">
+<img src="images/overlay-list-beside.png?v=4131fe10" alt="The list view with the preview beside it: numbered rows on the left with the current clip highlighted among them, and its preview in a pane on the right">
+<p>With <i>Show the Preview Beside the List</i> on (the gear on the List card): every clip is a row, and the
+current one's preview has a pane of its own to the right.</p>
+</div>
+
+<p><b>The number beside a row is the key that jumps there.</b> Press <code>3</code> and you land on the row
+numbered 3 below. For the rows above, press <code>&minus;</code> first to turn the digits round, as always. A
+pinned clip's number is drawn in the accent colour.</p>
+
+<p>Everything else works exactly as before &mdash; <code>V</code>, the arrows, the wheel, search and the
+right-click menu all move the same current clip, and the rows follow it. A search or a kind filter narrows the
+list too, so every row is one you can reach. The list <b>goes round the ends</b>, as stepping does: on the
+newest clip the rows above it are the oldest ones, because that is where <code>Up</code> takes you, and a thin
+line marks where it wraps. How many rows appear above and below is set behind the gear on the List
+card, from none to nine each; every row is a line of height beside your cursor, so the defaults are two and
+five.</p>
+
+<h2 id="thumbnails-view">The thumbnails view</h2>
+
+<p>Choose <b>Thumbnails</b> on the Style tab and the same clips are drawn as tiles instead of rows: a picture for
+an image, the first few lines of a text clip, the names of copied files. If you copy a lot of screenshots, this
+is the view where you can tell them apart at a glance.</p>
+
+<div class="shot shot-inline">
+<img src="images/overlay-thumbnails.png?v=79d89953" alt="The overlay in the thumbnails view: eight tiles in two rows, the current clip outlined in the accent colour, pictures in the image tiles and the first lines of text in the others">
+<p>Newer clips, the current one outlined, then older ones &mdash; in the order of the stack, left to right and
+down. Each tile's number is the digit that jumps to it.</p>
+</div>
+
+<ul>
+<li>The tiles follow the stack in reading order. <b>The arrows move as they look:</b> <code>&rarr;</code> and
+<code>&larr;</code> go to the next or previous tile, <code>&darr;</code> and <code>&uarr;</code> to the tile directly
+below or above &mdash; a whole row at a time. <code>V</code> and the wheel step one tile, as everywhere else.</li>
+<li><b>Every tile says what it is.</b> Along its bottom are its number and, on the right, an icon and its kind
+and size &mdash; <i>Text &middot; 404 B</i>, <i>Image &middot; 1198 &times; 674</i>, <i>Files</i> &mdash; so a
+path, a copied file and a picture can be told apart at a glance. A picture's dimensions appear once its thumbnail
+has loaded.</li>
+<li>Numbers work exactly as in the list view &mdash; press the digit on a tile to jump to it.</li>
+<li>Under the tiles is the current clip's information line, the same one the single-clip view shows: what kind of
+clip it is, its lines and characters or its picture's size, how large it is, and when it was copied.</li>
+<li>Pointing at a tile tints it and shows a tooltip describing the clip; clicking it pastes it &mdash; see
+<a href="mouse.html">Using the mouse</a>.</li>
+<li>A picture appears a moment after its tile, the first time that clip is shown: it is read and shrunk in the
+background, so stepping is never held up by a large screenshot. After that it is remembered.</li>
+<li>The tile size, how many tiles make a row and how many clips appear before and after the current one are
+the view's own options &mdash; click the gear on the Thumbnails card in Settings, Style. Four sizes, from Small to
+Extra large; a larger tile gets a sharper picture and more lines of text.</li>
+</ul>
+
+<h2 id="switch-view">Switching the view for one paste</h2>
+
+<p>The overlay's top line ends with the view you are in &mdash; its icon, its name and its key, such as
+<i>Thumbnails (W)</i> &mdash; and the gear. <b>Clicking the view switches to the next one</b>; <code>W</code> does
+the same from the keyboard. The switch lasts for this gesture only: the next time you press
+<code>Ctrl+V</code> the overlay opens in the view chosen in Settings, Style, which the switch never changes. The
+second button, the gear, opens Settings.</p>
+
+<p>The views' own options &mdash; the image preview size for a single clip, the rows for the list, the tile size
+for the thumbnails &mdash; are behind the gear on each card in <a href="settings.html">Settings, Style</a>.</p>
+
+</main>
+</body>
+</html>

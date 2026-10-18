@@ -93,6 +93,7 @@ indirection and remove nothing.
 flowchart TB
   subgraph OS["Windows"]
     KEY["Keystroke"]
+    MOUSE["Mouse, while the overlay is open"]
     CLIP["Clipboard change"]
     HOT["Registered hotkey"]
     TRAY["Tray click"]
@@ -100,6 +101,7 @@ flowchart TB
 
   subgraph IO["PasteJump.Interop — Win32 adapters"]
     HOOK["LowLevelKeyboardHook<br/>WH_KEYBOARD_LL"]
+    MHOOK["LowLevelMouseHook<br/>WH_MOUSE_LL, session only"]
     MSGW["MessageOnlyWindow<br/>HWND_MESSAGE"]
     MON["ClipboardMonitor<br/>AddClipboardFormatListener"]
     HK["GlobalHotkey<br/>RegisterHotKey + MOD_NOREPEAT"]
@@ -121,13 +123,22 @@ flowchart TB
 
   subgraph APP["PasteJump.App — WPF"]
     HOST["PasteJumpPasteHost<br/>IPasteModeHost"]
-    OVL["OverlayWindow"]
+    OVL["OverlayWindow<br/>single clip, list, thumbnails"]
+    THUMB["ThumbnailCache<br/>decoded off the UI thread"]
+    AMENU["ActionMenuWindow"]
+    TIP["OverlayTooltipWindow"]
     HIST["HistoryWindow"]
     TOAST["ToastWindow"]
     MENU["TrayMenuBuilder"]
   end
 
   KEY --> HOOK
+  MOUSE --> MHOOK
+  MHOOK -->|"wheel, clicks, hit-tested"| REC
+  MHOOK -->|"right-click"| AMENU
+  MHOOK -->|"pointer rests"| TIP
+  OVL --> THUMB
+  THUMB -->|"GetPayloads"| STORE
   CLIP --> MSGW
   HOT --> MSGW
   TRAY --> MSGW
@@ -158,6 +169,13 @@ flowchart TB
   TI -->|"Activated"| MENU
   HIST --> STORE
 ```
+
+**The mouse is a third path, and it exists only while the overlay is open.** A low-level mouse hook puts every
+pointer movement on the machine through the UI thread, so `LowLevelMouseHook` is installed when a session opens
+and removed when it ends. It never lets WPF see a click: the overlay and its menu are click-through and
+non-activating, and the hook hit-tests each event against rectangles captured in physical pixels, so nothing the
+mouse does can take focus from the window being pasted into. Frames are drawn on the dispatcher, newest only,
+so a held key or a fast wheel skips frames rather than falling behind.
 
 **Two independent paths, and that asymmetry is diagnostic.** Capture rides `WM_CLIPBOARDUPDATE`, which no other
 process's hook can suppress; the gesture rides the keyboard hook, which any hook earlier in the chain can. When

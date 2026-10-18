@@ -43,3 +43,11 @@ Both live in one SQLite database, `data\pastejump.db`, beside the executable by 
 ***Settings, System** — *Where Data Is Kept*. The two are set separately, and the resolved path is shown under each so you can see where it has actually landed. Changing either takes effect on the next start: PasteJump copies the data across and leaves the old copy behind for you to delete once you are satisfied.*
 
 The two locations are configurable and independent; see [Settings, System](settings.md).
+
+## Safe on disk, and backed up daily
+
+**Every clip is on disk the moment it is copied.** Each one is written and synced as it arrives, so a power cut, a crash or a hard reset loses nothing that was copied before it — not merely what was copied before PasteJump last closed. The capture log says so at every start, with a line ending `survivesPowerLoss=True`.
+
+**A copy of the database is kept for each of the last seven days**, in `data\backups`, named by date: `pastejump-2026-10-18.db`. The day's copy is taken about ten minutes after PasteJump starts and, on a machine that is never restarted, within the hour after midnight; the oldest is removed once there are seven. A copy is consistent — it holds everything committed when it was taken — and is written under a temporary name first, so a copy that fails part way is never mistaken for a good one.
+
+The backup is of the database only. Pictures and other large payloads in `data\blobs` are written once and never changed, so they cannot be half-updated, and copying several hundred megabytes of them every day would cost more than it saves. The backups sit on the same disk as the store, so they guard against a damaged or deleted database, not against the disk failing — anything that backs up your files can copy the folder elsewhere. To restore one, see [Troubleshooting](troubleshooting.html#restore).

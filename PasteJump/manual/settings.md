@@ -70,9 +70,37 @@ Matches whose *label* contains what you typed are listed first, so searching `th
 | **Warn when another clipboard manager is running** | Shows a notification at start-up if a known rival is detected. It is a guess based on process names, and it says so. |
 | **Open History With** | An optional system-wide shortcut for the history window, for example `Ctrl`+`Shift`+`H`. Empty by default, deliberately: a global hotkey takes that chord away from every other application on the desktop. |
 | **Reopen on the Clip I Was Last On** | Whether the gesture resumes where it left off rather than starting at the newest clip. A new copy always resets the position regardless. |
+| **Step Through Clips with the Mouse Wheel** | Whether the wheel moves through clips while the overlay is open, towards you for older and away for newer. On by default; the wheel is untouched outside the gesture. |
+| **Right-Click for a Menu of Actions** | Whether a right-click during the gesture shows the action menu, and a left-click on the overlay pastes the clip it shows. On by default; clicks are untouched outside the gesture. |
 | **Open Straight into Search** | Start the gesture in search mode. |
 | **Reset the Paste Format on Every Entry** | Whether the format goes back to the default each time, instead of remembering the last one used. |
 | **Default Paste Format** | Original, Plain text, Collapse whitespace, Sentence case or Unindent. |
+
+## Style
+
+![The Style tab of the Settings dialog: Single Clip, List and Thumbnails cards, each with a gear, and the Thumbnails options below them](../help/images/settings-style.png)
+
+*How the overlay shows your clips. Click a card to choose it; click a card's gear to see that view's options without choosing it.*
+
+Each view has its own options, in the box below the cards. It shows the chosen view's options; the **⚙ gear** in a card's corner shows that view's instead, so you can set up a view before switching to it. Searching for one of these settings opens the right box.
+
+| Setting | What it does |
+| --- | --- |
+| **Single Clip** | One clip at a time, as the overlay has always been. The default. |
+| **List** | The current clip with its neighbours above and below it, one line each — see [the list view](views.html#list-view). |
+| **Thumbnails** | The same clips as tiles, with a picture for each image — see [the thumbnails view](views.html#thumbnails-view). |
+| Single Clip options |  |
+| **Keep the Overlay One Size** | Off by default. On, the overlay is always the size of the largest preview, so it never changes as you step. Off, it fits each clip, growing and shrinking from its bottom and right edges while its top-left corner stays put. The list and thumbnails views are always one size. |
+| **Largest Image Preview (px)** | The most room an image preview may take in the overlay. A maximum, not a size: a smaller picture is drawn at its own dimensions and never enlarged. Raise it to judge a screenshot while pasting; lower it to keep the overlay out of the way of the document underneath. Moved here from the Appearance tab. |
+| List options |  |
+| **Show the Preview Beside the List** | Off by default. On, every clip is a row — the current one highlighted — and its preview sits in a pane to the right, so only the highlight moves as you step. The overlay is about 750 pixels wide instead of 560. |
+| **Newer Clips Shown Above** | 0 to 9, two by default. |
+| **Older Clips Shown Below** | 0 to 9, five by default. Nine at most, because each row is numbered with the digit key that jumps to it. |
+| Thumbnails options |  |
+| **Tile Size** | Small (136 × 104, the default), Medium (180 × 135), Large (240 × 180) or Extra large (320 × 240). Pictures are loaded to suit, so a larger tile is sharper, not an enlarged small one. If a row would be wider than the screen, the tiles move onto more rows. |
+| **Thumbnails in a Row** | 2 to 8, four by default. |
+| **Newer Clips Shown Before** | 0 to 9, two by default. The thumbnails' own count, separate from the list's, because large tiles usually want fewer. |
+| **Older Clips Shown After** | 0 to 9, five by default. |
 
 ## Keys
 
@@ -144,7 +172,6 @@ Processes listed here are ignored: while one of them is in the foreground, nothi
 | **Overlay Font** | The font the paste overlay draws in. **(default)** is the built-in look, which is two fonts: the system UI font for the labels and `Consolas` for the clip's own text. Choosing a font applies it to **all** of the overlay, the clip text included — so pick a monospaced font if you want text previews to stay aligned. The list shows each font in its own face, and only fonts installed here; a name typed straight into the settings file is kept even if this machine lacks it, so a file can travel between machines. Colours are not here because they come from the [theme](themes.md). |
 | **Overlay Text Size** | 9 to 24. The whole overlay scales with it, keeping the one size difference it has always had: the detail line stays a point smaller than the clip's text. 12 is what it was designed at. Well above 24 it stops being a strip beside your work and starts covering what you are pasting into, which is why that is the ceiling. |
 | **What the Overlay Shows** | Switches for everything the overlay says beyond the clip itself, all on to begin with: the position in the stack, the paste format, tags, the application it was copied from, the `PINNED` marker, when the clip was copied, and the key reminder along the bottom. The row under the preview is chosen **per kind of clip** in a small grid — details and size, against Text, Image and File — because the three do not report the same thing: text gives lines and characters, an image its resolution, a copied file its line count. So "resolution for pictures, nothing for text" is expressible. A clip that is neither text nor an image follows the File column. With both boxes off for a kind, that row disappears for clips of that kind rather than leaving an empty strip — unless **When It Was Copied** is on, which sits at the right of that same row for every kind and keeps it. **What cannot be switched off** is anything that changes what releasing `Ctrl` will do — the `POP` chip, the **JOIN** count, the kind filter and the Cancel or Delete banner — because hiding one of those would arm a deletion you could not see. See [the gesture](gesture.md). |
-| **Largest Image Preview (px)** | The most room an image preview may take in the overlay during the gesture. A maximum, not a size: a smaller picture is drawn at its own dimensions and never enlarged. Raise it to judge a screenshot while pasting; lower it to keep the overlay out of the way of the document underneath. |
 | **Characters of Text Shown** | How much of a text clip the overlay shows before eliding it. About what is worth reading in the second the gesture lasts, so it is far smaller than the amount stored. |
 | **Where the Overlay Appears** | The overlay follows the text caret whenever the application tells Windows where it is. Most modern ones do not — see [Where the overlay appears](gesture.md) for which — and this chooses what happens then. **Automatically** centres it on the window being pasted into, which can never be on another monitor; **At the text caret, or the pointer** is what PasteJump did before, and puts it wherever the mouse was last left; **At the mouse pointer** uses the pointer even when there is a caret; **Centred on the window** ignores the caret entirely; **In the bottom-right corner** puts it where Windows puts its own notifications, on the monitor you are working on; and **At a fixed position** pins it to the coordinates below. Whatever you choose, the overlay steps aside from anything Windows draws above it, such as the Start menu — there is no position on top of one that could be seen. |
 | **Fixed Position (x, y)** | Only used when the setting above is **At a fixed position**. Physical pixels from the top-left of the primary monitor. Both halves are required: one without the other would track the caret in one axis and not the other, so a half-filled position is refused rather than half-honoured — and left empty it falls back to **Automatically** rather than pinning the overlay to the corner of the screen. |

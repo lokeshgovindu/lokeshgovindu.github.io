@@ -33,7 +33,7 @@
 <link rel="icon" href="pastejump.ico" sizes="16x16 32x32 48x48">
 
 <meta property="og:title" content="PasteJump">
-<meta property="og:description" content="Hold Ctrl, tap V to walk back through everything you have copied, release to paste. No window, no mouse.">
+<meta property="og:description" content="Hold Ctrl, tap V to walk back through everything you have copied, release to paste. No window, and no mouse needed.">
 <meta property="og:image" content="https://pastejump.sourceforge.io/pastejump-256.png">
 <meta property="og:url" content="https://pastejump.sourceforge.io/">
 <meta name="twitter:card" content="summary">
@@ -265,6 +265,8 @@ footer a { color: var(--muted); text-decoration: underline; }
       <li><a href="help/overview.html">PasteJump</a></li>
       <li><a href="help/getting-started.html">Getting started</a></li>
       <li><a href="help/gesture.html">The gesture</a></li>
+      <li><a href="help/views.html">The overlay&#x27;s views</a></li>
+      <li><a href="help/mouse.html">Using the mouse</a></li>
       <li><a href="help/stores.html">Clips and history</a></li>
       <li><a href="help/history-window.html">The history window</a></li>
       <li><a href="help/themes.html">Themes</a></li>
@@ -319,11 +321,12 @@ footer a { color: var(--muted); text-decoration: underline; }
 <section>
     <div class="wrap split">
         <div>
-            <h2>No window. No mouse.</h2>
+            <h2>No window. No mouse needed.</h2>
             <p class="lede">
                 Every clipboard manager can show you a list. The point of this one is that you never have to look at
                 it: hold <kbd>Ctrl</kbd>, tap <kbd>V</kbd> until the clip you want appears beside the caret, and let go.
-                Your hand never leaves the keyboard and nothing steals focus.
+                Your hand never has to leave the keyboard and nothing steals focus &mdash; though while the overlay is
+                open, the hand on the mouse can scroll, click and point too.
             </p>
             <p class="lede">
                 The overlay is there so you <em>can</em> look, not because you must. Once the gesture is in your
@@ -338,7 +341,7 @@ footer a { color: var(--muted); text-decoration: underline; }
             mark and the name, which directly below the hero made the page look as if it had repeated itself.
         -->
         <figure class="demo-gif">
-            <img src="tour.gif?v=b18bf077" alt="The overlay stepping back through clips while Ctrl is held, then pasting on release">
+            <img src="tour.gif?v=5c7cce0c" alt="The overlay stepping back through clips while Ctrl is held, then pasting on release">
             <figcaption>Hold <kbd>Ctrl</kbd>, tap <kbd>V</kbd> to walk back, release to paste. The overlay is
             there so you <em>can</em> look, not because you must.</figcaption>
         </figure>
@@ -361,19 +364,19 @@ footer a { color: var(--muted); text-decoration: underline; }
 -->
 <section>
     <div class="wrap">
-        <h2>The full tour, in a minute</h2>
+        <h2>The full tour, in two and a half minutes</h2>
         <p class="lede">
-            Every window, captioned: the gesture, searching mid-paste, the history window, the themes and the
-            settings. Generated from the program itself rather than recorded, so what you see is what it does.
+            Every window, captioned: the gesture and its three views, the mouse, searching mid-paste, the
+            history window, the themes and the settings. Generated from the program itself rather than recorded, so what you see is what it does.
         </p>
         <figure class="demo-video">
-            <video controls preload="metadata" poster="help/images/history-window.png?v=adb2f832" width="960">
-                <source src="PasteJump-tour.mp4?v=5cbe8793" type="video/mp4">
+            <video controls preload="metadata" poster="help/images/history-window.png?v=14e30c49" width="960">
+                <source src="PasteJump-tour.mp4?v=65f6069e" type="video/mp4">
                 <p>Your browser cannot play this video.
-                   <a href="PasteJump-tour.mp4">Download it instead</a> (1.1 MB, MP4).</p>
+                   <a href="PasteJump-tour.mp4">Download it instead</a> (2.8 MB, MP4).</p>
             </video>
             <figcaption>
-                About a minute, no sound. <a href="PasteJump-tour.mp4">Download the MP4</a> if you would rather
+                About two and a half minutes, no sound. <a href="PasteJump-tour.mp4">Download the MP4</a> if you would rather
                 keep it.
             </figcaption>
         </figure>
@@ -393,6 +396,29 @@ footer a { color: var(--muted); text-decoration: underline; }
                     glance away to. Where an application exposes no caret to Windows &mdash; every browser, Electron,
                     Visual Studio &mdash; it centres on the window you are pasting into, so it is never on another
                     monitor; and it steps aside from anything Windows draws above it, such as the Start menu.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Three ways to see the stack</h3>
+                <p>
+                    One clip at a time, a numbered list with the neighbours either side, or thumbnails with a picture
+                    of every screenshot and the kind and size of every clip. The number on each row or tile is the
+                    digit that jumps there, and <kbd>W</kbd> switches the view for a single paste.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Point, click, scroll</h3>
+                <p>
+                    Keyboard first, but the mouse is welcome while the overlay is open: the wheel steps through clips,
+                    a click pastes the one you want, right-click lists every action with its key, and every part of the
+                    overlay explains itself in a tooltip. At every other moment your clicks are your programs' own.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Nothing lost in a crash</h3>
+                <p>
+                    Each clip is on disk the moment it is copied, so a power cut or a hard reset takes nothing with it,
+                    and a copy of the whole store is kept for each of the last seven days.
                 </p>
             </div>
             <div class="card">
@@ -435,8 +461,8 @@ footer a { color: var(--muted); text-decoration: underline; }
                 <h3>Yours to rebind</h3>
                 <p>
                     Every letter can be moved or switched off. The arrows, <kbd>Home</kbd>, <kbd>End</kbd>,
-                    <kbd>Delete</kbd>, <kbd>Esc</kbd> and <kbd>F1</kbd> never move, so no set of bindings can leave you
-                    stuck.
+                    <kbd>Delete</kbd>, <kbd>Esc</kbd>, <kbd>F1</kbd> and <kbd>Ctrl</kbd>+<kbd>,</kbd> for Settings never
+                    move, so no set of bindings can leave you stuck.
                 </p>
             </div>
         </div>
@@ -445,8 +471,29 @@ footer a { color: var(--muted); text-decoration: underline; }
 
 <section>
     <div class="wrap split">
+        <div>
+            <h2>See it before you reach it</h2>
+            <p class="lede">
+                In the thumbnails view every clip is a tile: the picture for a screenshot, the first lines of text,
+                the names of copied files, each labelled with its kind and size. The arrows move as they look &mdash;
+                down is the tile below &mdash; and a click pastes any of them.
+            </p>
+            <p class="lede">
+                Prefer words? The list view shows the clips either side of the one you are on, one line each, with
+                the preview beside them if you like.
+            </p>
+        </div>
         <figure>
-            <img src="help/images/history-window.png?v=adb2f832" alt="The history window, showing the searchable archive with a preview pane">
+            <img src="help/images/overlay-thumbnails.png?v=79d89953" alt="The overlay in the thumbnails view: tiles with pictures, text and file names, each labelled with its kind and size, the current one outlined">
+            <figcaption>The thumbnails view, two rows of four. Each tile's number is the digit that jumps to it.</figcaption>
+        </figure>
+    </div>
+</section>
+
+<section>
+    <div class="wrap split">
+        <figure>
+            <img src="help/images/history-window.png?v=14e30c49" alt="The history window, showing the searchable archive with a preview pane">
             <figcaption>The archive: search, preview, copy back, remove duplicates.</figcaption>
         </figure>
         <div>
@@ -473,19 +520,19 @@ footer a { color: var(--muted); text-decoration: underline; }
 
         <div class="gallery">
             <figure>
-                <img src="help/images/theme-catppuccin-mocha.png?v=64e33c20" alt="PasteJump under the Catppuccin Mocha theme">
+                <img src="help/images/theme-catppuccin-mocha.png?v=e97c1a7c" alt="PasteJump under the Catppuccin Mocha theme">
                 <figcaption>Catppuccin Mocha</figcaption>
             </figure>
             <figure>
-                <img src="help/images/theme-monokai.png?v=d094bff9" alt="PasteJump under the Monokai theme">
+                <img src="help/images/theme-monokai.png?v=15b2ea15" alt="PasteJump under the Monokai theme">
                 <figcaption>Monokai</figcaption>
             </figure>
             <figure>
-                <img src="help/images/theme-sepia.png?v=edf84ea0" alt="PasteJump under the Sepia theme">
+                <img src="help/images/theme-sepia.png?v=e0dbed97" alt="PasteJump under the Sepia theme">
                 <figcaption>Sepia</figcaption>
             </figure>
             <figure>
-                <img src="help/images/theme-github-light.png?v=e30e85ca" alt="PasteJump under the GitHub Light theme">
+                <img src="help/images/theme-github-light.png?v=1b790c24" alt="PasteJump under the GitHub Light theme">
                 <figcaption>GitHub Light</figcaption>
             </figure>
         </div>

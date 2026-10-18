@@ -18,6 +18,8 @@
       <li><a href="overview.html">PasteJump</a></li>
       <li><a href="getting-started.html">Getting started</a></li>
       <li><a href="gesture.html">The gesture</a></li>
+      <li><a href="views.html">The overlay&#x27;s views</a></li>
+      <li><a href="mouse.html">Using the mouse</a></li>
       <li><a href="stores.html">Clips and history</a></li>
       <li><a href="history-window.html">The history window</a></li>
       <li><a href="themes.html">Themes</a></li>
@@ -68,7 +70,7 @@ is therefore the way to reset one setting, and deleting the whole file resets ev
 
 <!-- BEGIN GENERATED TABLE -->
 
-<p><b>71 settings</b>, grouped by the tab of the Settings dialog each one appears on, and in the dialog's own order.</p>
+<p><b>82 settings</b>, grouped by the tab of the Settings dialog each one appears on, and in the dialog's own order.</p>
 
 <h2>Capture</h2>
 
@@ -100,6 +102,8 @@ is therefore the way to reset one setting, and deleting the whole file resets ev
 <table>
 <tr><th>Name in the file</th><th>Type</th><th>Default</th><th>What it does</th></tr>
 <tr><td class="name"><code>PreserveClipPosition</code></td><td>bool</td><td><code>true</code></td><td>Reopen on the previously active clip.</td></tr>
+<tr><td class="name"><code>WheelStepsThroughClips</code></td><td>bool</td><td><code>true</code></td><td>The mouse wheel steps through clips while the overlay is open: away from you for newer, towards you for older, exactly as the Up and Down arrows do.</td></tr>
+<tr><td class="name"><code>RightClickActionMenu</code></td><td>bool</td><td><code>true</code></td><td>A right-click while the overlay is open shows a menu of every action with its key, and a left click on the overlay pastes the clip it shows.</td></tr>
 <tr><td class="name"><code>OpenSearchImmediately</code></td><td>bool</td><td><i>type default</i></td><td>Open directly into search.</td></tr>
 <tr><td class="name"><code>ResetFormatterOnEntry</code></td><td>bool</td><td><i>type default</i></td><td>Revert to the default formatter on each entry.</td></tr>
 <tr><td class="name"><code>DefaultFormatterId</code></td><td>string</td><td><i>computed</i></td><td>Formatter id applied to every paste unless the user cycles it with <code>Z</code>.</td></tr>
@@ -133,8 +137,6 @@ is therefore the way to reset one setting, and deleting the whole file resets ev
 <tr><td class="name"><code>OverlayX</code></td><td>int</td><td><i>type default</i></td><td>Fixed overlay position in physical pixels, used when PopupPosition is Settings.PopupPosition.FixedPoint.</td></tr>
 <tr><td class="name"><code>OverlayY</code></td><td>int</td><td><i>type default</i></td><td>Fixed overlay position in physical pixels, used when PopupPosition is Settings.PopupPosition.FixedPoint. <i>(shared with the setting above)</i></td></tr>
 <tr><td class="name"><code>Theme</code></td><td>string</td><td><i>computed</i></td><td>Colour scheme, by name. <code>System</code>, <code>Light</code>, <code>Dark</code>, or the name of any other theme - shipped or written by the user.</td></tr>
-<tr><td class="name"><code>OverlayPreviewMaxWidth</code></td><td>int</td><td><code>600</code></td><td>Largest size, in device-independent pixels, at which the paste overlay draws an image preview.</td></tr>
-<tr><td class="name"><code>OverlayPreviewMaxHeight</code></td><td>int</td><td><code>400</code></td><td>Largest size, in device-independent pixels, at which the paste overlay draws an image preview. <i>(shared with the setting above)</i></td></tr>
 <tr><td class="name"><code>OverlayFontFamily</code></td><td>string</td><td><i>empty</i></td><td>The font the paste overlay draws in.</td></tr>
 <tr><td class="name"><code>OverlayFontSize</code></td><td>int</td><td><code>12</code></td><td>The overlay's text size in device-independent pixels.</td></tr>
 <tr><td class="name"><code>OverlayPreviewChars</code></td><td>int</td><td><code>400</code></td><td>Characters of a text clip shown in the paste overlay before it is elided.</td></tr>
@@ -187,6 +189,23 @@ is therefore the way to reset one setting, and deleting the whole file resets ev
 <tr><td class="name"><code>ClipboardRepublishMs</code></td><td>int</td><td><code>1000</code></td><td>How long after storing a clip a second publish of the same content counts as the same copy, in milliseconds.</td></tr>
 <tr><td class="name"><code>OverlayDeletedFlashMs</code></td><td>int</td><td><code>1200</code></td><td>How long the overlay shows <code>DELETED</code> after the <code>Delete</code> key, in milliseconds. <code>0</code> never shows it.</td></tr>
 <tr><td class="name"><code>TypeOutCharDelayMs</code></td><td>int</td><td><i>type default</i></td><td>Pause between batches of characters when a clip is typed out by the unbound type-out action, in milliseconds.</td></tr>
+</table>
+
+<h2>Style</h2>
+
+<table>
+<tr><th>Name in the file</th><th>Type</th><th>Default</th><th>What it does</th></tr>
+<tr><td class="name"><code>OverlayStyle</code></td><td>OverlayStyle</td><td><code>SingleClip</code></td><td>How the overlay lays out the stack: one clip at a time, or the current clip with its neighbours either side.</td></tr>
+<tr><td class="name"><code>ListNewerRows</code></td><td>int</td><td><code>2</code></td><td>In the list view, how many newer clips are shown above the current one.</td></tr>
+<tr><td class="name"><code>ListOlderRows</code></td><td>int</td><td><code>5</code></td><td>In the list view, how many older clips are shown below the current one - the way V steps.</td></tr>
+<tr><td class="name"><code>TilesPerRow</code></td><td>int</td><td><code>4</code></td><td>In the thumbnails view, how many tiles make a row.</td></tr>
+<tr><td class="name"><code>ThumbnailNewer</code></td><td>int</td><td><code>2</code></td><td>In the thumbnails view, how many newer clips come before the current tile.</td></tr>
+<tr><td class="name"><code>ThumbnailOlder</code></td><td>int</td><td><code>5</code></td><td>In the thumbnails view, how many older clips come after the current tile.</td></tr>
+<tr><td class="name"><code>TileSize</code></td><td>TileSize</td><td><code>Small</code></td><td>How large the thumbnails view draws its tiles, from Small - the size it shipped with - to Extra large.</td></tr>
+<tr><td class="name"><code>SingleClipFixedSize</code></td><td>bool</td><td><i>type default</i></td><td>The single-clip view stays one size - the largest its preview may be - instead of fitting each clip.</td></tr>
+<tr><td class="name"><code>ListPreviewBeside</code></td><td>bool</td><td><i>type default</i></td><td>In the list view, show the current clip's preview in a pane beside the list - every clip a row, the current one highlighted - instead of between the rows.</td></tr>
+<tr><td class="name"><code>OverlayPreviewMaxWidth</code></td><td>int</td><td><code>600</code></td><td>Largest size, in device-independent pixels, at which the paste overlay draws an image preview.</td></tr>
+<tr><td class="name"><code>OverlayPreviewMaxHeight</code></td><td>int</td><td><code>400</code></td><td>Largest size, in device-independent pixels, at which the paste overlay draws an image preview. <i>(shared with the setting above)</i></td></tr>
 </table>
 
 <!-- END GENERATED TABLE -->

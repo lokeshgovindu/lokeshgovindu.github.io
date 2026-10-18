@@ -21,6 +21,14 @@
         <param name="Local" value="gesture.html">
         </OBJECT>
     <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="The overlay's views">
+        <param name="Local" value="views.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
+        <param name="Name" value="Using the mouse">
+        <param name="Local" value="mouse.html">
+        </OBJECT>
+    <LI> <OBJECT type="text/sitemap">
         <param name="Name" value="Clips and history">
         <param name="Local" value="stores.html">
         </OBJECT>

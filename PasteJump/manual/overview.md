@@ -6,7 +6,7 @@
 
 **A keyboard-driven multiple-clipboard manager for Windows.**
 
-Hold `Ctrl`, tap `V` to step back through what you have copied, release to paste. No window, no mouse, no hands leaving the keyboard. That gesture — a jog wheel for your clipboard — is the whole point of the program; everything else exists to support it.
+Hold `Ctrl`, tap `V` to step back through what you have copied, release to paste. No window, and no mouse needed — your hands need never leave the keyboard. That gesture — a jog wheel for your clipboard — is the whole point of the program; everything else exists to support it.
 
 ![The overlay naming the clip about to be pasted](../help/images/overlay-text-facts.png)
 
@@ -16,8 +16,11 @@ Hold `Ctrl`, tap `V` to step back through what you have copied, release to paste
 
 - **Keeps everything you copy** — Text with all its clipboard formats, images and file lists, in a searchable store beside the program.
 - **Pastes without a window** — The gesture is the chord you already use. One tap is an ordinary paste; the overlay appears from the second.
+- **Shows the stack your way** — One clip at a time, a numbered list, or thumbnails with a picture of every screenshot — and `W` switches for a single paste.
 - **Searches mid-gesture** — Press `F` while the overlay is up and type.
+- **Takes the mouse too** — Scroll through clips with the wheel, click the one you want, right-click for every action, and rest the pointer on anything for a tooltip. Only while the overlay is open.
 - **Keeps formats intact** — A paste into Word or Excel arrives as it left, because every format is stored rather than just the text.
+- **Keeps a daily backup** — Every clip is written to disk as it is copied, and a copy of the whole store is kept for each of the last seven days.
 - **Stays out of the way** — No main window, no account, and no network access except the update check, and only when you ask for it.
 
 ## Nothing to install
@@ -28,6 +31,8 @@ PasteJump is portable: unzip it and run it. The download to take carries the .NE
 
 - **[Getting started](getting-started.md)** — Which download to take, the first run, and the first thing to try.
 - **[The gesture](gesture.md)** — Every key that works while `Ctrl` is held. The one page worth reading in full.
+- **[The overlay's views](views.md)** — One clip, a list, or thumbnails, and switching between them.
+- **[Using the mouse](mouse.md)** — The wheel, clicking a clip, the right-click menu and tooltips.
 - **[Clips and history](stores.md)** — PasteJump keeps what you copy in two places. Confusing them is the easiest mistake to make here.
 - **[The history window](history-window.md)** — Searching, copying back, deleting, and removing duplicates.
 - **[Themes](themes.md)** — Nineteen of them, or write your own.
